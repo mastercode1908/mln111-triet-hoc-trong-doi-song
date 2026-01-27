@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="vi" class="light">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz 2: Phép biện chứng duy vật | PhiloMap</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#308ce8",
+                        "primary-dark": "#1a6bb8",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#111921",
+                        "success": "#10b981",
+                        "error": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "serif": ["Lora", "serif"],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Custom Radio Button Styling */
+        input[type="radio"]:checked+div {
+            border-color: #308ce8;
+            background-color: #eff6ff;
+        }
+
+        input[type="radio"]:checked+div .radio-circle {
+            background-color: #308ce8;
+            border-color: #308ce8;
+        }
+
+        input[type="radio"]:checked+div .radio-circle::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Quiz States */
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #ecfdf5 !important;
+        }
+
+        .wrong-answer {
+            border-color: #ef4444 !important;
+            background-color: #fef2f2 !important;
+        }
+
+        .correct-icon,
+        .wrong-icon {
+            display: none;
+        }
+
+        .correct-answer .correct-icon {
+            display: block;
+        }
+
+        .wrong-answer .wrong-icon {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-gray-200 min-h-screen flex flex-col">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-10">
+        <!-- Breadcrumb -->
+        <div class="mb-6">
+            <div
+                class="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-50 border border-emerald-100 dark:bg-emerald-900/20 dark:border-emerald-800 text-emerald-600 text-xs font-bold uppercase tracking-wider gap-2">
+                <a href="home.html" class="hover:underline hover:text-emerald-700 transition-colors">TRANG CHỦ</a>
+                <span class="opacity-60">/</span>
+                <a href="practice.html" class="hover:underline hover:text-emerald-700 transition-colors">THỰC HÀNH</a>
+                <span class="opacity-60">/</span>
+                <span>QUIZ 2</span>
+            </div>
+        </div>
+        <!-- Quiz Intro -->
+        <div class="text-center mb-10" id="quiz-intro">
+            <h1 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 dark:text-white mb-4">
+                Phép biện chứng duy vật – Quy luật của sự phát triển
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Kiểm tra hiểu biết của bạn về ba quy luật cơ bản của phép biện chứng duy vật. <br>
+                Hãy chọn đáp án đúng nhất cho 7 câu hỏi dưới đây.
+            </p>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="space-y-8">
+            <!-- Questions will be injected here by JS -->
+        </div>
+
+        <!-- Submit Action -->
+        <div class="mt-12 flex justify-center pb-20">
+            <button onclick="submitQuiz()" id="submit-btn"
+                class="px-8 py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                Nộp bài & Xem kết quả
+            </button>
+            <div id="result-actions" class="hidden flex gap-4">
+                <button onclick="location.reload()"
+                    class="px-6 py-3 border border-gray-300 hover:bg-gray-50 text-slate-700 font-bold rounded-xl transition-colors">
+                    Làm lại
+                </button>
+                <a href="practice.html"
+                    class="px-6 py-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl transition-colors">
+                    Quay về Thực hành
+                </a>
+            </div>
+        </div>
+
+        <!-- Score Modal (Hidden initially) -->
+        <div id="score-modal"
+            class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+            <div
+                class="bg-white dark:bg-gray-800 rounded-3xl p-8 max-w-md w-full shadow-2xl transform scale-90 transition-transform duration-300">
+                <div class="text-center">
+                    <div
+                        class="size-20 bg-emerald-50 dark:bg-emerald-900/30 rounded-full flex items-center justify-center mx-auto mb-4 text-emerald-600">
+                        <span class="material-symbols-outlined text-4xl">emoji_events</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Kết quả của bạn</h2>
+                    <div class="text-5xl font-black text-emerald-600 mb-4" id="final-score">0/7</div>
+                    <p class="text-slate-600 dark:text-gray-400 mb-8" id="feedback-text">Hãy xem lại các câu sai để hiểu
+                        rõ hơn nhé!</p>
+                    <button onclick="closeModal()"
+                        class="w-full py-3 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-700 transition-colors">
+                        Xem chi tiết đáp án
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="js/load-components.js"></script>
+    <script>
+        const quizData = [
+            {
+                id: 1,
+                question: "Theo quan điểm của Phép biện chứng duy vật, sự phát triển của sự vật, hiện tượng diễn ra theo khuynh hướng nào?",
+                options: [
+                    "A. Theo đường thẳng đi lên.",
+                    "B. Theo vòng tròn khép kín, lặp lại y hệt cái cũ.",
+                    "C. Theo đường xoáy ốc (trôn ốc).",
+                    "D. Theo đường dích dắc không có định hướng."
+                ],
+                correct: 2, // Index of C
+                explanation: "Phép biện chứng duy vật khẳng định sự phát triển không diễn ra theo đường thẳng mà theo đường xoáy ốc. Điều này thể hiện tính kế thừa, tính lặp lại nhưng trên cơ sở cao hơn của sự vật mới so với sự vật cũ. Quá trình này bao hàm cả những bước quanh co, thụt lùi tạm thời. (Nguồn: Chương 2, Mục II, 2.a và 2.c)"
+            },
+            {
+                id: 2,
+                question: "Trong Quy luật Lượng - Chất, khoảng giới hạn mà tại đó sự thay đổi về lượng chưa dẫn đến sự thay đổi căn bản về chất được gọi là gì?",
+                options: [
+                    "A. Điểm nút.",
+                    "B. Độ.",
+                    "C. Bước nhảy.",
+                    "D. Phủ định."
+                ],
+                correct: 1, // Index of B
+                explanation: "Khái niệm \"Độ\" dùng để chỉ mối liên hệ thống nhất và quy định lẫn nhau giữa chất với lượng; là giới hạn tồn tại của sự vật, hiện tượng mà trong đó sự thay đổi về lượng chưa dẫn đến sự thay đổi về chất. (Nguồn: Chương 2, Mục II, 2.c)"
+            },
+            {
+                id: 3,
+                question: "Một người muốn đạt được thành công ngay lập tức (thay đổi về Chất) mà không chịu bỏ thời gian học tập, rèn luyện (tích lũy về Lượng). Theo triết học Mác - Lênin, người này đang mắc phải sai lầm gì?",
+                options: [
+                    "A. Bảo thủ, trì trệ.",
+                    "B. Nôn nóng, tả khuynh.",
+                    "C. Chiết trung.",
+                    "D. Ngụy biện."
+                ],
+                correct: 1, // Index of B
+                explanation: "Quy luật Lượng - Chất chỉ ra rằng sự thay đổi về chất chỉ xảy ra khi lượng đã tích lũy đến điểm nút. Tư tưởng nôn nóng biểu hiện ở chỗ không chú ý thỏa đáng đến sự tích lũy về lượng mà chỉ muốn thực hiện những bước nhảy liên tục (đốt cháy giai đoạn). (Nguồn: Chương 2, Mục II, 2.c)"
+            },
+            {
+                id: 4,
+                question: "Theo Quy luật Mâu thuẫn, động lực và nguồn gốc bên trong của sự vận động, phát triển là gì?",
+                options: [
+                    "A. Sự tác động của các lực lượng siêu nhiên.",
+                    "B. Sự thỏa hiệp và điều hòa giữa các mặt đối lập.",
+                    "C. Sự thống nhất và đấu tranh giữa các mặt đối lập.",
+                    "D. Sự tác động qua lại giữa các sự vật hiện tượng bên ngoài."
+                ],
+                correct: 2, // Index of C
+                explanation: "Mâu thuẫn là hiện tượng khách quan. Sự thống nhất và đấu tranh giữa các mặt đối lập trong chính bản thân sự vật là nguyên nhân, động lực bên trong của sự vận động và phát triển. Đấu tranh giữa các mặt đối lập làm cái cũ mất đi và cái mới ra đời. (Nguồn: Chương 2, Mục II, 2.c)"
+            },
+            {
+                id: 5,
+                question: "Để giải quyết mâu thuẫn và thúc đẩy sự phát triển, phương pháp nào sau đây là đúng đắn theo quan điểm triết học Mác - Lênin?",
+                options: [
+                    "A. Né tránh mâu thuẫn để giữ ổn định.",
+                    "B. Điều hòa mâu thuẫn, dĩ hòa vi quý.",
+                    "C. Đấu tranh giữa các mặt đối lập.",
+                    "D. Xóa bỏ hoàn toàn cả hai mặt đối lập ngay lập tức."
+                ],
+                correct: 2, // Index of C
+                explanation: "Mâu thuẫn chỉ được giải quyết bằng con đường đấu tranh giữa các mặt đối lập, không được điều hòa mâu thuẫn. Đấu tranh là tuyệt đối, là phương thức để phá vỡ thế ổn định cũ, thiết lập cái mới. (Nguồn: Chương 2, Mục II, 2.c)"
+            },
+            {
+                id: 6,
+                question: "\"Phủ định biện chứng\" khác với \"phủ định sạch trơn\" (siêu hình) ở đặc điểm cơ bản nào?",
+                options: [
+                    "A. Xóa bỏ hoàn toàn cái cũ.",
+                    "B. Có tính kế thừa những yếu tố tích cực của cái cũ.",
+                    "C. Do tác động từ bên ngoài tiêu diệt sự vật.",
+                    "D. Chấm dứt sự phát triển."
+                ],
+                correct: 1, // Index of B
+                explanation: "Phủ định biện chứng là tiền đề cho sự phát triển, mang tính khách quan và tính kế thừa. Nó không xóa bỏ sạch trơn mà loại bỏ các yếu tố tiêu cực, lỗi thời và giữ lại, cải tạo các yếu tố tích cực của cái cũ để đưa vào cái mới. (Nguồn: Chương 2, Mục II, 2.c)"
+            },
+            {
+                id: 7,
+                question: "Nam đã tích lũy đủ kinh nghiệm và kỹ năng (Lượng đã đến Điểm nút) nhưng vẫn do dự, không dám nhận nhiệm vụ mới cao hơn vì sợ thất bại. Theo Quy luật Lượng - Chất, Nam đang rơi vào trạng thái nào?",
+                options: [
+                    "A. Nôn nóng.",
+                    "B. Bảo thủ.",
+                    "C. Biện chứng.",
+                    "D. Sáng tạo."
+                ],
+                correct: 1, // Index of B
+                explanation: "Khi lượng đã tích lũy đủ đến điểm nút, việc thực hiện bước nhảy là yêu cầu khách quan. Tư tưởng bảo thủ biểu hiện ở chỗ không dám thực hiện bước nhảy, ngại thay đổi, coi sự phát triển chỉ là sự thay đổi đơn thuần về lượng. (Nguồn: Chương 2, Mục II, 2.c)"
+            }
+        ];
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = quizData.map((item, index) => `
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-soft border border-gray-100 dark:border-gray-700 question-block" id="question-${index}">
+                    <div class="flex items-start gap-4 mb-6">
+                        <span class="flex-shrink-0 size-8 bg-emerald-50 text-emerald-600 font-bold rounded-lg flex items-center justify-center text-sm">
+                            ${index + 1}
+                        </span>
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white leading-relaxed pt-1">
+                            ${item.question}
+                        </h3>
+                    </div>
+                    <div class="space-y-3 pl-0 md:pl-12">
+                        ${item.options.map((opt, optIndex) => `
+                            <label class="cursor-pointer group block relative">
+                                <input type="radio" name="q${index}" value="${optIndex}" class="peer sr-only">
+                                <div class="p-4 rounded-xl border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all flex items-center gap-3">
+                                    <div class="radio-circle w-5 h-5 rounded-full border-2 border-gray-300 dark:border-gray-500 relative flex items-center justify-center transition-colors">
+                                        <div class="w-2.5 h-2.5 bg-white rounded-full opacity-0 transform scale-50 transition-all duration-200"></div>
+                                    </div>
+                                    <span class="text-slate-700 dark:text-gray-300 font-medium">${opt}</span>
+                                    
+                                    <!-- Icons for result -->
+                                    <span class="material-symbols-outlined text-green-500 ml-auto correct-icon">check_circle</span>
+                                    <span class="material-symbols-outlined text-red-500 ml-auto wrong-icon">cancel</span>
+                                </div>
+                            </label>
+                        `).join('')}
+                    </div>
+                    <!-- Explanation (Hidden) -->
+                    <div class="explanation hidden mt-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl border border-emerald-100 dark:border-emerald-800">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-emerald-600 mt-1">lightbulb</span>
+                            <div>
+                                <h4 class="font-bold text-emerald-600 text-sm uppercase mb-1">Giải thích chi tiết</h4>
+                                <p class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed">
+                                    ${item.explanation}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            let answered = 0;
+
+            quizData.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const questionBlock = document.getElementById(`question-${index}`);
+                const explanation = questionBlock.querySelector('.explanation');
+                const inputs = questionBlock.querySelectorAll(`input[name="q${index}"]`);
+
+                // Disable inputs
+                inputs.forEach(input => input.disabled = true);
+
+                // Remove previous formatting
+                questionBlock.querySelectorAll('label > div').forEach(div => {
+                    div.classList.remove('correct-answer', 'wrong-answer');
+                });
+
+                if (selected) {
+                    answered++;
+                    const val = parseInt(selected.value);
+                    const selectedDiv = selected.nextElementSibling;
+
+                    if (val === item.correct) {
+                        score++;
+                        selectedDiv.classList.add('correct-answer');
+                    } else {
+                        selectedDiv.classList.add('wrong-answer');
+                        // Highlight correct answer
+                        const correctInput = questionBlock.querySelector(`input[value="${item.correct}"]`);
+                        correctInput.nextElementSibling.classList.add('correct-answer');
+                    }
+                } else {
+                    // If not answered, just highlight correct
+                    const correctInput = questionBlock.querySelector(`input[value="${item.correct}"]`);
+                    correctInput.nextElementSibling.classList.add('correct-answer');
+                }
+
+                // Show explanation
+                explanation.classList.remove('hidden');
+            });
+
+            // Show Result
+            const modal = document.getElementById('score-modal');
+            const scoreDisplay = document.getElementById('final-score');
+            const feedback = document.getElementById('feedback-text');
+            const submitBtn = document.getElementById('submit-btn');
+            const resultActions = document.getElementById('result-actions');
+
+            scoreDisplay.innerText = `${score}/${quizData.length}`;
+
+            if (score === quizData.length) {
+                feedback.innerText = "Xuất sắc! Bạn đã nắm vững toàn bộ kiến thức!";
+            } else if (score >= 5) {
+                feedback.innerText = "Làm tốt lắm! Chỉ còn vài lỗi nhỏ thôi.";
+            } else {
+                feedback.innerText = "Cần cố gắng thêm nhé! Hãy xem lại kiến thức.";
+            }
+
+            // Animation
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div').classList.remove('scale-90', 'scale-100');
+                modal.querySelector('div').classList.add('scale-100');
+            }, 10);
+
+            // Change button area
+            submitBtn.classList.add('hidden');
+            resultActions.classList.remove('hidden');
+
+            // Scroll to top to see modal clearly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('score-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderQuiz);
+    </script>
+</body>
+
+</html>

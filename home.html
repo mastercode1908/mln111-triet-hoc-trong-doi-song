@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>PhiloMap Interactive Home Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Lora:wght@700&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#308ce8",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "serif": ["Lora", "serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Custom styles for the connector lines to appear behind */
+        .connector-lines {
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .node-hover-effect {
+            transition: all 0.3s ease;
+        }
+
+        .node-hover-effect:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            border-color: #308ce8;
+        }
+
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation active state transitions */
+        /* Scroll indicator styling */
+        #scroll-indicator {
+            transition: opacity 0.5s ease;
+        }
+
+        #scroll-indicator a:hover {
+            box-shadow: 0 10px 25px -5px rgba(48, 140, 232, 0.3);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-x-hidden">
+    <!-- Header Component -->
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    <!-- Hero Section Container -->
+    <main class="flex-grow flex items-center justify-center relative overflow-hidden py-10 lg:py-0">
+        <!-- Background Gradient Effects -->
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-background-light via-[#fffdfa] to-primary/5 dark:from-background-dark dark:via-[#161e27] dark:to-primary/10 -z-10">
+        </div>
+        <div
+            class="absolute top-0 right-0 w-1/2 h-1/2 bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-1/3 h-1/3 bg-orange-200/20 dark:bg-orange-900/10 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/4">
+        </div>
+        <!-- Interactive Map Container -->
+        <div id="mind-map-container"
+            class="relative w-full max-w-[700px] aspect-square flex items-center justify-center mx-auto">
+            <!-- SVG Connectors -->
+            <!-- Coordinates are based on % positions of the centers of the nodes below -->
+            <svg id="connector-svg" class="absolute inset-0 w-full h-full connector-lines opacity-40 dark:opacity-20"
+                preserveAspectRatio="none" viewBox="0 0 100 100">
+                <!-- Center is 50, 50 -->
+                <!-- Node 1 (Top): 50, 15 -->
+                <line class="animate-pulse-slow" stroke="#308ce8" stroke-dasharray="2 1" stroke-width="0.4" x1="50"
+                    x2="50" y1="50" y2="15"></line>
+                <!-- Node 2 (Right Top): 85, 38 -->
+                <line class="animate-pulse-slow" stroke="#308ce8" stroke-dasharray="2 1" stroke-width="0.4" x1="50"
+                    x2="85" y1="50" y2="38"></line>
+                <!-- Node 3 (Right Bottom): 75, 75 -->
+                <line class="animate-pulse-slow" stroke="#308ce8" stroke-dasharray="2 1" stroke-width="0.4" x1="50"
+                    x2="75" y1="50" y2="75"></line>
+                <!-- Node 4 (Left Bottom): 25, 75 -->
+                <line class="animate-pulse-slow" stroke="#308ce8" stroke-dasharray="2 1" stroke-width="0.4" x1="50"
+                    x2="25" y1="50" y2="75"></line>
+                <!-- Node 5 (Left Top): 15, 38 -->
+                <line class="animate-pulse-slow" stroke="#308ce8" stroke-dasharray="2 1" stroke-width="0.4" x1="50"
+                    x2="15" y1="50" y2="38"></line>
+            </svg>
+            <div id="center-hub"
+                class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 w-48 h-48 md:w-64 md:h-64 rounded-full bg-white dark:bg-gray-800 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.1)] dark:shadow-black/50 border-4 border-white dark:border-gray-700 ring-1 ring-primary/20 flex flex-col items-center justify-center p-6 text-center transition-transform hover:scale-105 duration-500 cursor-default group">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-b from-primary/5 to-transparent opacity-50">
+                </div>
+                <div class="relative z-10 flex flex-col items-center gap-3">
+                    <span
+                        class="material-symbols-outlined text-primary text-[40px] md:text-[48px] opacity-80 group-hover:scale-110 transition-transform duration-300">my_location</span>
+                    <h1
+                        class="text-[#111418] dark:text-white text-lg md:text-2xl font-bold leading-tight tracking-tight">
+                        Giải mã<br />cuộc sống bằng<br /><span class="text-primary">Triết học</span>
+                    </h1>
+                </div>
+            </div>
+            <!-- Node 1: Top (Triết học & Ý nghĩa sống) -->
+            <div class="node absolute top-[5%] left-1/2 transform -translate-x-1/2 z-10 w-32 md:w-40 flex flex-col items-center gap-3 group cursor-pointer"
+                data-topic="stress">
+                <div
+                    class="node-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700 flex items-center justify-center text-blue-500 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-blue-500/30">
+                    <span class="material-symbols-outlined text-[32px]">sentiment_stressed</span>
+                </div>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 text-center">
+                    <p class="text-sm font-semibold text-gray-800 dark:text-gray-200">Stress học tập</p>
+                </div>
+            </div>
+            <!-- Node 2: Top Right (Các thế giới quan) -->
+            <div class="node absolute top-[30%] left-[88%] transform -translate-x-1/2 z-10 w-32 md:w-40 flex flex-col items-center gap-3 group cursor-pointer"
+                data-topic="success">
+                <div
+                    class="node-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700 flex items-center justify-center text-green-500 group-hover:bg-green-500 group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-green-500/30">
+                    <span class="material-symbols-outlined text-[32px]">verified</span>
+                </div>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 text-center">
+                    <p class="text-sm font-semibold text-gray-800 dark:text-gray-200">Áp lực thành công</p>
+                </div>
+            </div>
+            <!-- Node 3: Bottom Right (Vấn đề đời sống hiện đại) -->
+            <div class="node absolute top-[70%] left-[88%] transform -translate-x-1/2 z-10 w-32 md:w-40 flex flex-col items-center gap-3 group cursor-pointer"
+                data-topic="failure">
+                <div
+                    class="node-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700 flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-amber-500/30">
+                    <span class="material-symbols-outlined text-[32px]">help</span>
+                </div>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 text-center">
+                    <p class="text-sm font-semibold text-gray-800 dark:text-gray-200">Thất bại - vấp ngã</p>
+                </div>
+            </div>
+            <!-- Node 4: Bottom Left (Triết gia & bài học sống) -->
+            <div class="node absolute top-[70%] left-[12%] transform -translate-x-1/2 z-10 w-32 md:w-40 flex flex-col items-center gap-3 group cursor-pointer"
+                data-topic="relationship">
+                <div
+                    class="node-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700 flex items-center justify-center text-pink-500 group-hover:bg-pink-500 group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-pink-500/30">
+                    <span class="material-symbols-outlined text-[32px]">favorite</span>
+                </div>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 text-center">
+                    <p class="text-sm font-semibold text-gray-800 dark:text-gray-200">Mâu thuẫn quan hệ</p>
+                </div>
+            </div>
+            <!-- Node 5: Top Left (Thực hành tư duy triết học) -->
+            <div class="node absolute top-[30%] left-[12%] transform -translate-x-1/2 z-10 w-32 md:w-40 flex flex-col items-center gap-3 group cursor-pointer"
+                data-topic="lost">
+                <div
+                    class="node-icon w-16 h-16 md:w-20 md:h-20 rounded-full bg-white dark:bg-gray-800 shadow-lg border border-gray-100 dark:border-gray-700 flex items-center justify-center text-amber-500 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-amber-500/30">
+                    <span class="material-symbols-outlined text-[32px]">explore</span>
+                </div>
+                <div
+                    class="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm px-4 py-2 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 text-center">
+                    <p class="text-sm font-semibold text-gray-800 dark:text-gray-200">Mất phương hướng</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="topicPanel"
+        class="mt-16 hidden max-w-3xl mx-auto bg-white rounded-3xl p-8 shadow-lg border border-gray-200 transition-all">
+
+        <h3 id="topicTitle" class="text-xl font-bold mb-4 text-slate-800"></h3>
+        <p id="topicContent" class="text-slate-600 leading-relaxed"></p>
+    </div>
+
+    <!-- Overview Section -->
+    <section id="overview" class="w-full bg-background-light py-16 md:py-24 px-4 md:px-10">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-12 text-center md:text-left">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 mb-4">Hành trình Khai phóng</h2>
+                <p class="text-slate-600 max-w-2xl text-lg">Khám phá 4 trụ cột của tư duy triết học để thấu hiểu bản
+                    thân và thế giới xung quanh.</p>
+            </div>
+            <div class="grid grid-cols-1 gap-8">
+                <!-- Module 1 -->
+                <a class="group block bg-white rounded-2xl p-8 shadow-soft hover:shadow-card border border-transparent hover:border-primary/10 transition-all duration-300 relative overflow-hidden"
+                    href="module1.html">
+                    <div class="flex flex-col md:flex-row gap-6 md:items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span
+                                    class="text-xs font-bold tracking-wider text-primary bg-blue-50 px-2 py-1 rounded uppercase">Module
+                                    1</span>
+                            </div>
+                            <h3
+                                class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
+                                Định vị bản thân trong thế giới hiện</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6 max-w-3xl">Khám phá nền tảng của tư duy nhân
+                                loại, phân biệt triết học với tôn giáo và khoa học.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-gray-100 text-slate-600 text-xs rounded-full font-medium">Định
+                                    vị bản thân</span>
+                                <span class="px-3 py-1 bg-gray-100 text-slate-600 text-xs rounded-full font-medium">Thế
+                                    giới quan</span>
+                                <span class="px-3 py-1 bg-gray-100 text-slate-600 text-xs rounded-full font-medium">Nhập
+                                    môn</span>
+                            </div>
+                        </div>
+                        <div class="md:self-center shrink-0">
+                            <div
+                                class="flex items-center gap-2 text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
+                                Khám phá Module
+                                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- Module 2 -->
+                <a class="group block bg-white rounded-2xl p-8 shadow-soft hover:shadow-card border border-transparent hover:border-primary/10 transition-all duration-300 relative overflow-hidden"
+                    href="module2.html">
+                    <div class="flex flex-col md:flex-row gap-6 md:items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span
+                                    class="text-xs font-bold tracking-wider text-primary bg-blue-50 px-2 py-1 rounded uppercase">Module
+                                    2</span>
+                            </div>
+                            <h3
+                                class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
+                                Nghệ thuật đối mặt với thay đổi và áp lực</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6 max-w-3xl">Tìm hiểu về bản ngã, ý thức qua
+                                lăng kính của Descartes, Hume và Phật giáo.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-3 py-1 bg-orange-50 text-orange-700 text-xs rounded-full font-medium">Đối
+                                    mặt thay đổi</span>
+                                <span class="px-3 py-1 bg-orange-50 text-orange-700 text-xs rounded-full font-medium">Áp
+                                    lực</span>
+                                <span
+                                    class="px-3 py-1 bg-orange-50 text-orange-700 text-xs rounded-full font-medium">Bản
+                                    lĩnh</span>
+                            </div>
+                        </div>
+                        <div class="md:self-center shrink-0">
+                            <div
+                                class="flex items-center gap-2 text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
+                                Khám phá Module
+                                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- Module 3 -->
+                <a class="group block bg-white rounded-2xl p-8 shadow-soft hover:shadow-card border border-transparent hover:border-primary/10 transition-all duration-300 relative overflow-hidden"
+                    href="module3.html">
+                    <div class="flex flex-col md:flex-row gap-6 md:items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span
+                                    class="text-xs font-bold tracking-wider text-primary bg-blue-50 px-2 py-1 rounded uppercase">Module
+                                    3</span>
+                            </div>
+                            <h3
+                                class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
+                                Hành trình tri thức</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6 max-w-3xl">Áp dụng tư duy triết học để giải
+                                quyết các vấn đề thực tiễn trong công việc và cuộc sống.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-green-50 text-green-700 text-xs rounded-full font-medium">Hành
+                                    trình tri thức</span>
+                                <span class="px-3 py-1 bg-green-50 text-green-700 text-xs rounded-full font-medium">Thực
+                                    tiễn</span>
+                                <span class="px-3 py-1 bg-green-50 text-green-700 text-xs rounded-full font-medium">Vận
+                                    dụng</span>
+                            </div>
+                        </div>
+                        <div class="md:self-center shrink-0">
+                            <div
+                                class="flex items-center gap-2 text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
+                                Khám phá Module
+                                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- Module 4 -->
+                <a class="group block bg-white rounded-2xl p-8 shadow-soft hover:shadow-card border border-transparent hover:border-primary/10 transition-all duration-300 relative overflow-hidden"
+                    href="module4.html">
+                    <div class="flex flex-col md:flex-row gap-6 md:items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span
+                                    class="text-xs font-bold tracking-wider text-primary bg-blue-50 px-2 py-1 rounded uppercase">Module
+                                    4</span>
+                            </div>
+                            <h3
+                                class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
+                                Luật chơi của xã hội</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6 max-w-3xl">Khám phá trí tuệ từ các triết gia
+                                vĩ đại và những bài học vượt thời gian về nghệ thuật sống.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span
+                                    class="px-3 py-1 bg-purple-50 text-purple-700 text-xs rounded-full font-medium">Luật
+                                    chơi xã hội</span>
+                                <span
+                                    class="px-3 py-1 bg-purple-50 text-purple-700 text-xs rounded-full font-medium">Cấu
+                                    trúc</span>
+                                <span
+                                    class="px-3 py-1 bg-purple-50 text-purple-700 text-xs rounded-full font-medium">Lịch
+                                    sử</span>
+                            </div>
+                        </div>
+                        <div class="md:self-center shrink-0">
+                            <div
+                                class="flex items-center gap-2 text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
+                                Khám phá Module
+                                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                <!-- Module 5 -->
+                <a class="group block bg-white rounded-2xl p-8 shadow-soft hover:shadow-card border border-transparent hover:border-primary/10 transition-all duration-300 relative overflow-hidden"
+                    href="module5.html">
+                    <div class="flex flex-col md:flex-row gap-6 md:items-start justify-between">
+                        <div class="flex-1">
+                            <div class="flex items-center gap-3 mb-3">
+                                <span
+                                    class="text-xs font-bold tracking-wider text-primary bg-blue-50 px-2 py-1 rounded uppercase">Module
+                                    5</span>
+                            </div>
+                            <h3
+                                class="text-2xl font-serif font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors">
+                                Con người – Mục tiêu &amp; Động lực</h3>
+                            <p class="text-slate-600 leading-relaxed mb-6 max-w-3xl">Hành trình khám phá bản chất nhân
+                                văn và ý nghĩa cuộc sống qua lăng kính Triết học Mác – Lênin.</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-red-50 text-red-700 text-xs rounded-full font-medium">Con
+                                    người</span>
+                                <span class="px-3 py-1 bg-red-50 text-red-700 text-xs rounded-full font-medium">Bản
+                                    chất</span>
+                                <span class="px-3 py-1 bg-red-50 text-red-700 text-xs rounded-full font-medium">Tự
+                                    do</span>
+                            </div>
+                        </div>
+                        <div class="md:self-center shrink-0">
+                            <div
+                                class="flex items-center gap-2 text-primary font-medium text-sm group-hover:translate-x-1 transition-transform">
+                                Khám phá Module
+                                <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Scroll indicator - fixed at bottom center, only visible at hero section -->
+    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 transition-all duration-500" id="scroll-indicator">
+        <a href="#overview"
+            class="flex flex-col items-center gap-2 animate-bounce cursor-pointer bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+            <span class="text-xs font-medium uppercase tracking-widest text-primary">Khám phá thêm</span>
+            <span class="material-symbols-outlined text-primary">keyboard_arrow_down</span>
+        </a>
+    </div>
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Load search data FIRST - must be before header loads -->
+    <script src="js/search-data-global.js"></script>
+
+    <!-- Component Loader -->
+    <script src="js/load-components.js"></script>
+
+    <!-- Search initialization - must be AFTER header is loaded -->
+    <script src="js/search-init.js"></script>
+</body>
+
+<script>
+
+    const topicData = {
+        stress: {
+            title: "Stress học tập",
+            content: "Áp lực học tập thường đến từ kỳ vọng xã hội và nỗi sợ thất bại. Triết học giúp ta phân biệt giữa điều ta kiểm soát được và điều không."
+        },
+        success: {
+            title: "Áp lực thành công",
+            content: "Thành công không phải lúc nào cũng đồng nghĩa với hạnh phúc. Các triết gia khuyên ta xác định giá trị sống thay vì chạy theo chuẩn mực bên ngoài."
+        },
+        failure: {
+            title: "Thất bại – vấp ngã",
+            content: "Thất bại là phần tất yếu của đời sống. Chủ nghĩa Khắc kỷ xem thất bại như bài kiểm tra cho phẩm chất cá nhân."
+        },
+        relationship: {
+            title: "Mâu thuẫn trong quan hệ",
+            content: "Xung đột bắt nguồn từ khác biệt góc nhìn. Triết học giúp ta lắng nghe, thấu hiểu và phản tư trước khi phán xét."
+        },
+        lost: {
+            title: "Mất phương hướng",
+            content: "Cảm giác lạc lối xuất hiện khi ta sống theo kỳ vọng người khác. Hiện sinh luận đặt câu hỏi: 'Ta đang sống cuộc đời của ai?'"
+        }
+    };
+
+    document.querySelectorAll(".node").forEach(node => {
+        node.addEventListener("click", () => {
+            const key = node.dataset.topic;
+            const panel = document.getElementById("topicPanel");
+
+            document.getElementById("topicTitle").innerText = topicData[key].title;
+            document.getElementById("topicContent").innerText = topicData[key].content;
+
+            panel.classList.remove("hidden");
+            panel.scrollIntoView({ behavior: "smooth" });
+        });
+    });
+
+    // Dynamically update SVG lines to connect center hub to node icons
+    function updateConnectorLines() {
+        const container = document.getElementById('mind-map-container');
+        const svg = document.getElementById('connector-svg');
+        const centerHub = document.getElementById('center-hub');
+        const nodes = document.querySelectorAll('.node-icon');
+        const lines = svg.querySelectorAll('line');
+
+        if (!container || !svg || !centerHub || nodes.length === 0) return;
+
+        const containerRect = container.getBoundingClientRect();
+        const hubRect = centerHub.getBoundingClientRect();
+
+        // Center of the hub relative to container
+        const hubCenterX = (hubRect.left + hubRect.width / 2 - containerRect.left) / containerRect.width * 100;
+        const hubCenterY = (hubRect.top + hubRect.height / 2 - containerRect.top) / containerRect.height * 100;
+
+        nodes.forEach((node, index) => {
+            const nodeRect = node.getBoundingClientRect();
+            const nodeCenterX = (nodeRect.left + nodeRect.width / 2 - containerRect.left) / containerRect.width * 100;
+            const nodeCenterY = (nodeRect.top + nodeRect.height / 2 - containerRect.top) / containerRect.height * 100;
+
+            if (lines[index]) {
+                lines[index].setAttribute('x1', hubCenterX);
+                lines[index].setAttribute('y1', hubCenterY);
+                lines[index].setAttribute('x2', nodeCenterX);
+                lines[index].setAttribute('y2', nodeCenterY);
+            }
+        });
+
+        // Continue updating to sync with floating animation
+        requestAnimationFrame(updateConnectorLines);
+    }
+
+    // Start the animation loop
+    window.addEventListener('load', () => {
+        requestAnimationFrame(updateConnectorLines);
+    });
+    window.addEventListener('resize', updateConnectorLines);
+
+    // Start immediately as well
+    requestAnimationFrame(updateConnectorLines);
+
+    // Scroll detection for navigation active state
+    function updateActiveNav() {
+        const overviewSection = document.getElementById('overview');
+        const scrollIndicator = document.getElementById('scroll-indicator');
+
+        if (!overviewSection) return;
+
+        const overviewTop = overviewSection.getBoundingClientRect().top;
+        const threshold = window.innerHeight * 0.5; // Switch when overview is 50% into view
+
+        if (overviewTop <= threshold) {
+            // Scrolled to overview
+            // Hide scroll indicator when in overview
+            if (scrollIndicator) {
+                scrollIndicator.style.opacity = '0';
+                scrollIndicator.style.pointerEvents = 'none';
+            }
+        } else {
+            // At top
+            // Show scroll indicator when at top
+            if (scrollIndicator) {
+                scrollIndicator.style.opacity = '1';
+                scrollIndicator.style.pointerEvents = 'auto';
+            }
+        }
+    }
+
+    // Listen to scroll events
+    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('load', updateActiveNav);
+</script>
+
+</html>

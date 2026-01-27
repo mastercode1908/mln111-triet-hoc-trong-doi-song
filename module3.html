@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Module 3: Hành trình từ lý thuyết đến thực tiễn | PhiloMap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#308ce8",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#111921",
+                        "paper": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "serif": ["Lora", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px" },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-x-hidden text-[#111418] dark:text-gray-100">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-8">
+        <div
+            class="mb-6 animate-fade-in-up inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800 text-primary text-xs font-bold uppercase tracking-wider gap-2">
+            <a href="home.html" class="hover:underline hover:text-blue-600 transition-colors">TRANG CHỦ</a>
+            <span class="opacity-60">/</span>
+            <a href="home.html#overview" class="hover:underline hover:text-blue-600 transition-colors">MODULES</a>
+            <span class="opacity-60">/</span>
+            <span>MODULE 3 • HÀNH TRÌNH TRI THỨC</span>
+        </div>
+        <section id="banner-video-container"
+            class="relative w-full h-[500px] md:h-[600px] rounded-2xl overflow-hidden shadow-lg mb-20 group">
+            <img src="https://img.youtube.com/vi/CGy2-vsB73g/maxresdefault.jpg" class="w-full h-full object-cover"
+                alt="Video Thumbnail">
+
+            <div id="video-overlay" class="absolute inset-0 cursor-pointer">
+                <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent"></div>
+                <div
+                    class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 hover:bg-white/30 transition-all group-hover:scale-110">
+                    <span class="material-symbols-outlined text-white text-4xl ml-1">play_arrow</span>
+                </div>
+                <div class="absolute bottom-12 left-8 md:left-12 max-w-2xl">
+                    <h1
+                        class="font-serif italic text-3xl md:text-4xl lg:text-5xl text-white leading-tight drop-shadow-lg">
+                        "Tri thức chỉ trở thành sức mạnh khi đi qua thực tiễn."
+                    </h1>
+                    <p
+                        class="mt-4 text-gray-200 font-light text-sm md:text-base tracking-wider uppercase border-l-2 border-primary pl-4">
+                        Học đi đôi với hành</p>
+                </div>
+            </div>
+        </section>
+        <section class="mb-24 relative">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl text-gray-900 dark:text-white font-medium mb-4">Câu
+                    chuyện:
+                    Khởi nghiệp trên giấy</h2>
+                <p class="text-gray-500 max-w-2xl mx-auto">Hành trình biện chứng từ lý thuyết đến bài học thực tế
+                    của
+                    Hùng.</p>
+            </div>
+            <div
+                class="absolute left-4 md:left-1/2 top-32 bottom-0 w-px border-l-2 border-dashed border-gray-200 dark:border-gray-700 transform md:-translate-x-1/2">
+            </div>
+            <div class="space-y-12 relative z-10">
+                <div class="flex flex-col md:flex-row items-center justify-between w-full group">
+                    <div class="w-full md:w-[45%] pl-12 md:pl-0 md:pr-12 md:text-right">
+                        <div
+                            class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all hover:-translate-y-1">
+                            <span class="text-primary text-xs font-bold uppercase tracking-widest mb-2 block">Giai
+                                đoạn
+                                1</span>
+                            <h3 class="font-serif text-2xl mb-3 text-gray-900 dark:text-white">Lý thuyết hoàn hảo
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 font-light leading-relaxed">
+                                Hùng là một sinh viên xuất sắc, tốt nghiệp loại giỏi. Cậu nắm vững mọi mô hình kinh
+                                tế
+                                trên sách vở. Bản kế hoạch kinh doanh quán Cafe của cậu đẹp như mơ với những con số
+                                lợi
+                                nhuận lý tưởng.
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute left-4 md:left-1/2 w-4 h-4 bg-primary rounded-full border-4 border-white dark:border-gray-900 transform -translate-x-1.5 md:-translate-x-1/2 mt-[-180px] md:mt-0">
+                    </div>
+                    <div class="hidden md:block w-[45%]"></div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center justify-between w-full group">
+                    <div class="hidden md:block w-[45%]"></div>
+                    <div
+                        class="absolute left-4 md:left-1/2 w-4 h-4 bg-red-500 rounded-full border-4 border-white dark:border-gray-900 transform -translate-x-1.5 md:-translate-x-1/2 mt-[-180px] md:mt-0">
+                    </div>
+                    <div class="w-full md:w-[45%] pl-12 md:pl-12">
+                        <div
+                            class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all hover:-translate-y-1">
+                            <span class="text-red-500 text-xs font-bold uppercase tracking-widest mb-2 block">Giai
+                                đoạn
+                                2</span>
+                            <h3 class="font-serif text-2xl mb-3 text-gray-900 dark:text-white">Va chạm thực tiễn
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 font-light leading-relaxed">
+                                Khi mở quán Cafe "Luxury" tại khu lao động, Hùng thất bại thảm hại. Khách hàng cần
+                                cà
+                                phê nhanh và rẻ, không phải không gian sang trọng đắt đỏ. Thực tế đã phủ định lý
+                                thuyết
+                                xa rời bối cảnh của cậu.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row items-center justify-between w-full group">
+                    <div class="w-full md:w-[45%] pl-12 md:pl-0 md:pr-12 md:text-right">
+                        <div
+                            class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all hover:-translate-y-1">
+                            <span class="text-green-600 text-xs font-bold uppercase tracking-widest mb-2 block">Giai
+                                đoạn 3</span>
+                            <h3 class="font-serif text-2xl mb-3 text-gray-900 dark:text-white">Điều chỉnh &amp; Học
+                                lại
+                            </h3>
+                            <p class="text-gray-600 dark:text-gray-300 font-light leading-relaxed">
+                                Hùng lắng nghe phản hồi, thay đổi mô hình sang "Cafe Mang đi". Cậu học từ chính
+                                khách
+                                hàng chứ không chỉ từ sách. Doanh thu tăng trưởng. Tri thức lúc này mới thực sự có
+                                sức
+                                sống.
+                            </p>
+                        </div>
+                    </div>
+                    <div
+                        class="absolute left-4 md:left-1/2 w-4 h-4 bg-green-500 rounded-full border-4 border-white dark:border-gray-900 transform -translate-x-1.5 md:-translate-x-1/2 mt-[-180px] md:mt-0">
+                    </div>
+                    <div class="hidden md:block w-[45%]"></div>
+                </div>
+            </div>
+        </section>
+        <section class="mb-24 max-w-4xl mx-auto">
+            <div class="mb-24 scroll-mt-24">
+                <span class="inline-block py-1 px-3 rounded-full bg-blue-50 text-primary text-xs font-bold mb-4">TRIẾT
+                    HỌC MÁC - LÊNIN</span>
+                <h2 class="font-serif text-4xl md:text-5xl text-gray-900 dark:text-white mb-8 leading-tight">Con
+                    đường
+                    biện chứng của nhận thức</h2>
+                <blockquote
+                    class="relative p-8 md:p-12 bg-white dark:bg-gray-800 rounded-tr-[3rem] rounded-bl-[3rem] shadow-sm border-l-4 border-primary mb-10">
+                    <span
+                        class="absolute top-4 left-4 text-6xl text-gray-200 dark:text-gray-700 font-serif leading-none z-0">“</span>
+                    <p
+                        class="relative z-10 font-serif text-xl md:text-2xl italic text-gray-800 dark:text-gray-200 leading-relaxed text-center">
+                        Từ trực quan sinh động đến tư duy trừu tượng, và từ tư duy trừu tượng đến thực tiễn - đó là
+                        con
+                        đường biện chứng của sự nhận thức chân lý, của sự nhận thức thực tại khách quan.
+                    </p>
+                    <cite class="block mt-6 text-sm text-gray-500 not-italic text-right uppercase tracking-wider">—
+                        V.I.
+                        Lênin (Nguồn: SGK MLN111, Chương 2, Mục III, 2.c)</cite>
+                </blockquote>
+                <div class="relative grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <!-- Connecting Line (Desktop) -->
+                    <div
+                        class="hidden md:block absolute top-[2.5rem] left-[16%] right-[16%] h-0.5 bg-gray-200 dark:bg-gray-700 -z-10">
+                    </div>
+
+                    <!-- Card 1 -->
+                    <div class="relative group">
+                        <!-- Dot -->
+                        <div
+                            class="hidden md:flex absolute top-[2.5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-gray-300 dark:bg-gray-600 group-hover:bg-primary transition-colors duration-300 rounded-full z-10 ring-4 ring-white dark:ring-gray-900 items-center justify-center">
+                            <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                        </div>
+
+                        <div
+                            class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300 md:mt-12 text-center h-full">
+                            <h4 class="font-bold text-xl text-gray-900 dark:text-white mb-3">1. Trực quan sinh động
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                <span class="font-bold text-primary block mb-1">Giai đoạn cảm tính</span>
+                                Như việc Hùng nhìn thấy quán vắng khách.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="relative group">
+                        <!-- Dot -->
+                        <div
+                            class="hidden md:flex absolute top-[2.5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-gray-300 dark:bg-gray-600 group-hover:bg-primary transition-colors duration-300 rounded-full z-10 ring-4 ring-white dark:ring-gray-900 items-center justify-center">
+                            <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                        </div>
+
+                        <div
+                            class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300 md:mt-12 text-center h-full">
+                            <h4 class="font-bold text-xl text-gray-900 dark:text-white mb-3">2. Tư duy trừu tượng
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                <span class="font-bold text-secondary block mb-1">Giai đoạn lý tính</span>
+                                Phân tích nguyên nhân, lên kế hoạch mới.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="relative group">
+                        <!-- Dot -->
+                        <div
+                            class="hidden md:flex absolute top-[2.5rem] left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-gray-300 dark:bg-gray-600 group-hover:bg-primary transition-colors duration-300 rounded-full z-10 ring-4 ring-white dark:ring-gray-900 items-center justify-center">
+                            <div class="w-1.5 h-1.5 bg-white rounded-full"></div>
+                        </div>
+
+                        <div
+                            class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300 md:mt-12 text-center h-full">
+                            <h4 class="font-bold text-xl text-gray-900 dark:text-white mb-3">3. Trở về thực tiễn
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                <span class="font-bold text-accent block mb-1">Kiểm nghiệm chân lý</span>
+                                Áp dụng mô hình mới vào kinh doanh.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-16 border-l border-gray-200 dark:border-gray-800 ml-4 pl-8 md:pl-12 group/timeline">
+                <div class="relative group/item">
+                    <span
+                        class="absolute -left-[3.2rem] md:-left-[3.7rem] top-6 flex h-6 w-6 items-center justify-center rounded-full bg-primary ring-4 ring-white dark:ring-gray-900 group-hover/timeline:bg-gray-200 dark:group-hover/timeline:bg-gray-700 group-hover/item:!bg-primary transition-colors duration-300"></span>
+                    <div
+                        class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                        <h3 class="font-serif text-2xl md:text-3xl text-gray-900 dark:text-white mb-4">Vai trò tối
+                            thượng
+                            của thực tiễn</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 text-lg">
+                            Thực tiễn không chỉ là mục đích của nhận thức mà còn là tiêu chuẩn duy nhất để kiểm tra
+                            chân
+                            lý.
+                            Mọi lý thuyết hay ho đến mấy nếu không áp dụng được hoặc sai khi áp dụng đều vô nghĩa.
+                        </p>
+                        <p class="text-xs text-gray-400">Nguồn: SGK MLN111</p>
+                    </div>
+                </div>
+                <div class="relative group/item">
+                    <span
+                        class="absolute -left-[3.2rem] md:-left-[3.7rem] top-6 flex h-6 w-6 items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 ring-4 ring-white dark:ring-gray-900 group-hover/item:bg-primary transition-colors duration-300"></span>
+                    <div
+                        class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                        <h3 class="font-serif text-2xl md:text-3xl text-gray-900 dark:text-white mb-4">Chân lý là cụ
+                            thể
+                        </h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4 text-lg">
+                            Không có chân lý trừu tượng. Chân lý luôn gắn liền với điều kiện, hoàn cảnh lịch sử cụ
+                            thể.
+                            Mô
+                            hình Cafe "Luxury" đúng ở Quận 1 (trung tâm) nhưng sai ở khu công nghiệp. Bối cảnh quyết
+                            định
+                            đúng sai.
+                        </p>
+                        <p class="text-xs text-gray-400">Nguồn: SGK MLN111</p>
+                    </div>
+                </div>
+                <div class="relative group/item">
+                    <span
+                        class="absolute -left-[3.2rem] md:-left-[3.7rem] top-6 flex h-6 w-6 items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 ring-4 ring-white dark:ring-gray-900 group-hover/item:bg-primary transition-colors duration-300"></span>
+                    <div
+                        class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                        <h3 class="font-serif text-2xl md:text-3xl text-gray-900 dark:text-white mb-4">Tránh bệnh
+                            giáo
+                            điều
+                            &amp; Kinh nghiệm chủ nghĩa</h3>
+                        <div
+                            class="bg-orange-50 dark:bg-orange-900/10 p-6 rounded-lg border border-orange-100 dark:border-orange-800/30">
+                            <ul class="space-y-3">
+                                <li class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-orange-500 mt-0.5">warning</span>
+                                    <span class="text-gray-700 dark:text-gray-300"><strong>Giáo điều:</strong> Áp
+                                        dụng
+                                        máy
+                                        móc lý thuyết sách vở mà không xét đến thực tế.</span>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <span class="material-symbols-outlined text-orange-500 mt-0.5">warning</span>
+                                    <span class="text-gray-700 dark:text-gray-300"><strong>Kinh nghiệm chủ
+                                            nghĩa:</strong>
+                                        Chỉ tin vào kinh nghiệm cũ, coi thường lý luận khoa học mới.</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4">Nguồn: SGK MLN111</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="mb-24">
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-3xl font-medium mb-2">Vòng xoắn ốc của Trí tuệ</h2>
+                <p class="text-gray-500">Quy trình vận dụng triết học vào đời sống</p>
+            </div>
+            <div
+                class="relative bg-white dark:bg-gray-800 rounded-[2.5rem] p-8 md:p-16 shadow-lg overflow-hidden max-w-5xl mx-auto">
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 w-64 h-64 bg-blue-200/20 dark:bg-blue-900/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2">
+                </div>
+                <div
+                    class="relative min-h-[400px] flex flex-col md:flex-row items-center justify-between gap-8 md:gap-0">
+                    <svg class="absolute inset-0 w-full h-full pointer-events-none hidden md:block"
+                        preserveAspectRatio="none" viewBox="0 0 800 400">
+                        <path class="opacity-50" d="M100 230 Q 400 140 720 70" fill="none" stroke="#308ce8"
+                            stroke-dasharray="5 5" stroke-width="2"></path>
+                    </svg>
+                    <div class="relative z-10 flex flex-col items-center text-center group md:mt-40">
+                        <div
+                            class="w-24 h-24 rounded-full bg-blue-50 dark:bg-gray-700 border-2 border-primary/20 flex items-center justify-center mb-4 transition-transform group-hover:scale-110 shadow-lg group-hover:bg-primary group-hover:text-white text-primary">
+                            <span class="material-symbols-outlined text-4xl">visibility</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 dark:text-white">GĐ1: QUAN SÁT</h4>
+                        <p class="text-sm text-gray-500 max-w-[150px]">Thu thập dữ liệu từ thực tế khách quan</p>
+                    </div>
+                    <div class="relative z-10 flex flex-col items-center text-center group md:mb-10">
+                        <div
+                            class="w-24 h-24 rounded-full bg-blue-50 dark:bg-gray-700 border-2 border-primary/20 flex items-center justify-center mb-4 transition-transform group-hover:scale-110 shadow-lg group-hover:bg-primary group-hover:text-white text-primary">
+                            <span class="material-symbols-outlined text-4xl">psychology</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 dark:text-white">GĐ2: SUY NGẪM</h4>
+                        <p class="text-sm text-gray-500 max-w-[150px]">Phân tích, trừu tượng hóa &amp; lập luận</p>
+                    </div>
+                    <div class="relative z-10 flex flex-col items-center text-center group md:mt-[-150px]">
+                        <div
+                            class="w-24 h-24 rounded-full bg-blue-50 dark:bg-gray-700 border-2 border-primary/20 flex items-center justify-center mb-4 transition-transform group-hover:scale-110 shadow-lg group-hover:bg-primary group-hover:text-white text-primary">
+                            <span class="material-symbols-outlined text-4xl">back_hand</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-gray-900 dark:text-white">GĐ3: HÀNH ĐỘNG</h4>
+                        <p class="text-sm text-gray-500 max-w-[150px]">Áp dụng vào thực tiễn &amp; kiểm chứng</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+
+    <script>
+
+        // Video Player Logic for Module 3 (YouTube Embed)
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('banner-video-container');
+            const overlay = document.getElementById('video-overlay');
+            const videoId = 'CGy2-vsB73g'; // Shared video with Module 2
+
+            if (container && overlay) {
+                function playVideo() {
+                    container.innerHTML = `
+                        <iframe class="w-full h-full" 
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>`;
+                }
+
+                overlay.addEventListener('click', playVideo);
+            }
+        });
+    </script>
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Component Loader -->
+    <script src="js/load-components.js"></script>
+</body>
+
+</html>

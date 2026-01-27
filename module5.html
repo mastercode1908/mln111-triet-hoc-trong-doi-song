@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>PhiloMap - Module 5: Con người</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;family=Noto+Sans:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#308ce8",
+                        "background-light": "#f8f9fa", /* Updated to off-white as requested */
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "serif": ["Lora", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .editorial-text {
+            line-height: 1.8;
+            font-size: 1.125rem;
+        }
+
+        .drop-cap::first-letter {
+            font-family: 'Lora', serif;
+            font-size: 3.5rem;
+            float: left;
+            line-height: 0.8;
+            margin-right: 0.5rem;
+            margin-top: 0.2rem;
+            color: #308ce8;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#111418] dark:text-white transition-colors duration-200 min-h-screen flex flex-col overflow-x-hidden">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    <!-- Main Content Area -->
+    <main class="flex flex-col items-center w-full flex-grow">
+        <!-- 2. Breadcrumb & Title Area -->
+        <div class="w-full max-w-7xl px-6 pt-10 pb-6">
+            <div class="flex flex-wrap gap-2 mb-4 items-center">
+                <div
+                    class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800 text-primary text-xs font-bold uppercase tracking-wider gap-2">
+                    <a href="home.html" class="hover:underline hover:text-blue-600 transition-colors">TRANG CHỦ</a>
+                    <span class="opacity-60">/</span>
+                    <a href="home.html#overview"
+                        class="hover:underline hover:text-blue-600 transition-colors">MODULES</a>
+                    <span class="opacity-60">/</span>
+                    <span>MODULE 5 • CON NGƯỜI &amp; BẢN CHẤT</span>
+                </div>
+            </div>
+        </div>
+        <h1 class="font-serif text-4xl md:text-5xl font-bold text-[#111418] dark:text-white leading-tight mb-2">
+            Con người – Mục tiêu &amp; Động lực</h1>
+        <p class="font-display text-[#637588] dark:text-gray-400 text-lg">Hành trình khám phá bản chất nhân văn
+            và ý nghĩa cuộc sống qua lăng kính Triết học Mác – Lênin.</p>
+        </div>
+        <!-- 3. Section 0 (Hero Video) -->
+        <div class="w-full max-w-7xl px-6 pb-16">
+            <div id="video-container"
+                class="relative w-full aspect-video rounded-xl overflow-hidden shadow-xl group cursor-pointer bg-black">
+                <img src="https://img.youtube.com/vi/yrvT86WEjso/maxresdefault.jpg"
+                    class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                    alt="Video Thumbnail">
+                <!-- Video Overlay -->
+                <div id="video-overlay"
+                    class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-colors">
+                    <!-- Play Button -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <button
+                            class="flex items-center justify-center size-20 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white transition-transform duration-300 group-hover:scale-110">
+                            <span class="material-symbols-outlined filled"
+                                style="font-size: 40px; font-variation-settings: 'FILL' 1;">play_arrow</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center font-serif italic text-[#637588] dark:text-gray-400 mt-4 text-lg">
+                "Tại sao con người hiện đại có đủ vật chất mà vẫn trống rỗng?"
+            </p>
+        </div>
+        <!-- 4. Section 1 (Storytelling) -->
+        <section class="w-full bg-white dark:bg-[#111921] py-20 border-y border-[#f0f2f4] dark:border-gray-800">
+            <div class="w-full max-w-[720px] mx-auto px-6">
+                <h2
+                    class="font-display font-bold text-2xl md:text-3xl text-[#111418] dark:text-white mb-10 text-center tracking-tight">
+                    CUỘC KHỦNG HOẢNG CỦA NAM VÀ HÀNH TRÌNH TÌM LẠI BẢN CHẤT
+                </h2>
+                <div class="editorial-text text-[#333d47] dark:text-gray-300 space-y-6 font-display font-light">
+                    <p class="drop-cap">
+                        Nam ngồi thẫn thờ trước màn hình máy tính vẫn sáng đèn lúc 2 giờ sáng. Ở tuổi 28, Nam có tất
+                        cả những gì mà xã hội định nghĩa là thành công: một công việc IT lương cao, căn hộ cao cấp
+                        nhìn ra sông Sài Gòn, và những chuyến du lịch check-in sang chảnh. Nhưng sâu thẳm bên trong,
+                        cậu cảm thấy một lỗ hổng vô hình đang ngày càng lớn dần.
+                    </p>
+                    <p>
+                        Mỗi ngày trôi qua như một vòng lặp được lập trình sẵn: thức dậy, làm việc, họp hành, và trở
+                        về nhà trong trạng thái kiệt quệ tinh thần. Nam tự hỏi: "Mình đang sống hay chỉ đang tồn tại
+                        như một cỗ máy?". Cậu cảm thấy xa lạ với chính sản phẩm mình tạo ra, xa lạ với đồng nghiệp
+                        dù ngồi cạnh nhau 8 tiếng mỗi ngày, và đáng sợ nhất là xa lạ với chính bản thân mình.
+                    </p>
+                    <p>
+                        Sự trống rỗng của Nam không phải là trường hợp cá biệt. Đó là biểu hiện điển hình của sự
+                        "tha hóa" – khi con người bị tách rời khỏi bản chất sáng tạo tự do của mình, trở thành nô lệ
+                        cho những quy trình và vật chất do chính mình tạo ra. Câu chuyện của Nam là khởi điểm cho
+                        hành trình đi tìm lại giá trị thực sự của con người: Chúng ta là ai? Chúng ta sống để làm
+                        gì? Và làm thế nào để tìm lại sự trọn vẹn trong một thế giới đầy biến động?
+                    </p>
+                </div>
+                <div class="flex justify-center mt-12">
+                    <span class="material-symbols-outlined text-[#cbd5e1]">more_horiz</span>
+                </div>
+            </div>
+        </section>
+        <!-- 5. Section 2 (Philosophy Core) -->
+        <section class="w-full max-w-7xl px-6 py-20 space-y-24">
+            <!-- A. Biological & Social -->
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="order-2 md:order-1">
+                    <span class="text-primary font-bold text-sm tracking-widest mb-2 block">PHẦN 01</span>
+                    <h3 class="font-serif text-3xl font-bold text-[#111418] dark:text-white mb-6">Thực thể thống
+                        nhất Sinh học &amp; Xã hội</h3>
+                    <div class="text-base text-[#4b5563] dark:text-gray-300 space-y-4 leading-relaxed">
+                        <p>
+                            <strong>Mặt sinh học (Con):</strong> Con người là một bộ phận của giới tự nhiên, "thân thể
+                            vô cơ" của con người. Con người phải phục tùng các quy luật sinh học (di truyền, tiến hóa)
+                            và đấu tranh sinh tồn (ăn, ở, mặc) để tồn tại.
+                        </p>
+                        <p>
+                            <strong>Mặt xã hội (Người):</strong> Đây là điểm khác biệt căn bản: "Người là giống vật duy
+                            nhất có thể bằng lao động mà thoát khỏi trạng thái thuần túy là loài vật". Nhờ lao động, con
+                            người trở thành chủ thể có ý thức, lý tính và ngôn ngữ.
+                        </p>
+
+                        <!-- Nam's Story Connection -->
+                        <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/10 rounded-lg border-l-4 border-primary">
+                            <h4 class="font-bold text-primary text-sm uppercase tracking-wider mb-2">Giải mã chuyện của
+                                Nam</h4>
+                            <ul class="text-sm space-y-2 list-disc pl-4 text-gray-600 dark:text-gray-400">
+                                <li><strong>Sinh học:</strong> Nam cần ăn ngon, mặc đẹp, nhà sang để thỏa mãn phần "thân
+                                    thể vô cơ" này.</li>
+                                <li><strong>Xã hội:</strong> Nam đau khổ vì cậu chỉ mới nuôi dưỡng phần "sinh học" mà bỏ
+                                    đói phần "xã hội" (thiếu giao tiếp, thiếu lao động có ý nghĩa).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg bg-gray-100 aspect-[4/3]">
+                        <img alt="Abstract representation of DNA double helix merging with digital network connections"
+                            class="w-full h-full object-cover"
+                            data-alt="Stylized graphic showing a DNA strand intertwining with a network of people icons"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPhYXmt-E-HdtTVnQf_dInTP9yROwPC8JK2EYhBz9veKxq1dTInNbvjCQNwqW26YaBHfwfOdWbkO3-uOhP8Rl3g8Us8D6u2pAlEJkxdsIqi9u0bDAQZ6Axdua5Ek5YfiWoaoJEB4reGgvzwuhVLP03XtAgPTenVvSQH3mcn_RtrrHlhrpEFEwRNB634T_p0K6cUUUeKN3jy4ErRj6jsYozHWHAGrjEeyWy3GKkCpzSFcFLLSRpDNJdwe1UIR6fkTtcHLrnNkUMCqo" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div
+                            class="absolute bottom-4 left-4 text-white text-xs font-medium bg-black/50 px-2 py-1 rounded">
+                            Sinh học • Xã hội</div>
+                    </div>
+                </div>
+            </div>
+            <!-- B. Social Relations -->
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="order-1">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg bg-gray-100 aspect-[4/3]">
+                        <img alt="Group of diverse friends laughing and connecting together outdoors"
+                            class="w-full h-full object-cover"
+                            data-alt="A central person silhouette connected by lines to icons of family, factory, school, and community"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdSJGTA8arY-R3UZeLJvpHxVD7lVvbe9kAwSraKFnQEy7o4vsAHqZsom7rnf-_AC5gwpz6EoWQldvCMM0TgqriSbRvEnRLxTWmn0BnmokbMCHrj4dbgCylCxc9z0pm8unfcoRc3xt_ITfNst5MIlm3o5VU8zjtm4oiKosLCdwb-pkKaBTJo3sHwDdf9gyJBBbRC_ircZUcSVQWJwQ9auzvAiRNbVc3wRQ_WC0HqFWC_hmwRuqP20oXAUzLDCqHc65OVeYPcEb-j80" />
+                    </div>
+                </div>
+                <div class="order-2">
+                    <span class="text-primary font-bold text-sm tracking-widest mb-2 block">PHẦN 02</span>
+                    <h3 class="font-serif text-3xl font-bold text-[#111418] dark:text-white mb-6">Bản chất là tổng
+                        hòa các quan hệ xã hội</h3>
+                    <div class="text-base text-[#4b5563] dark:text-gray-300 space-y-4 leading-relaxed">
+                        <p>
+                            C. Mác khẳng định: <em>"Trong tính hiện thực của nó, bản chất con người là tổng hòa những
+                                quan hệ xã hội"</em>.
+                        </p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li>Bản chất con người không trừu tượng, chung chung mà được hình thành qua các quan hệ xã
+                                hội cụ thể (gia đình, giai cấp, nghề nghiệp...).</li>
+                            <li>Khi các quan hệ xã hội thay đổi, bản chất con người cũng sẽ thay đổi theo.</li>
+                        </ul>
+
+                        <!-- Nam's Story Connection -->
+                        <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/10 rounded-lg border-l-4 border-primary">
+                            <h4 class="font-bold text-primary text-sm uppercase tracking-wider mb-2">Giải mã chuyện của
+                                Nam</h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Khi Nam chỉ quan hệ với máy tính, bản chất cậu trở nên khô khan, cô độc. Khi Nam thiết
+                                lập quan hệ với cộng đồng (nhóm thiện nguyện, các em nhỏ), bản chất cậu trở nên nhân
+                                văn, năng động và hạnh phúc hơn.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- C. Alienation & Liberation -->
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="order-2 md:order-1">
+                    <span class="text-primary font-bold text-sm tracking-widest mb-2 block">PHẦN 03</span>
+                    <h3 class="font-serif text-3xl font-bold text-[#111418] dark:text-white mb-6">Tha hóa &amp; Giải
+                        phóng</h3>
+                    <div class="text-base text-[#4b5563] dark:text-gray-300 space-y-4 leading-relaxed">
+                        <p>
+                            <strong>Tha hóa con người:</strong> Là khi sản phẩm của lao động quay lại thống trị con
+                            người. Người lao động cảm thấy bị ép buộc, không được sáng tạo, chỉ thực hiện chức năng như
+                            một mắt xích trong cỗ máy.
+                        </p>
+                        <p>
+                            <strong>Giải phóng con người:</strong> Mục tiêu là xóa bỏ chế độ tư hữu, trả lại bản chất
+                            sáng tạo cho lao động. <em>"Sự phát triển tự do của mỗi người là điều kiện cho sự phát triển
+                                tự do của tất cả mọi người"</em>.
+                        </p>
+
+                        <!-- Nam's Story Connection -->
+                        <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/10 rounded-lg border-l-4 border-primary">
+                            <h4 class="font-bold text-primary text-sm uppercase tracking-wider mb-2">Liên hệ với Nam
+                            </h4>
+                            <ul class="text-sm space-y-2 list-disc pl-4 text-gray-600 dark:text-gray-400">
+                                <li><strong>Tha hóa:</strong> Nam cảm thấy công việc vô nghĩa, bản thân như "cỗ máy"
+                                    kiếm tiền.</li>
+                                <li><strong>Giải phóng:</strong> Nam tự "giải phóng" mình bằng cách làm chủ công việc,
+                                    dùng kỹ năng để cống hiến tự nguyện (sáng tạo tự do), thoát khỏi sự chi phối hoàn
+                                    toàn của đồng tiền.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg bg-gray-100 aspect-[4/3]">
+                        <img alt="Birds flying freely into the sky breaking away from a cage"
+                            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                            data-alt="Split graphic: Left side shows a person tied to industrial gears; Right side shows broken chains and birds flying free"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTrsM9vYCZ7Bjm0EBz2kMaMUD0CoL5l51dPz_KIT-k-1G14GGefsuY6Z-rx2-H1xG_UQrEb-vKTcYE3V9sMSXKI1I7uSrUiIP0_ZnmHzwGDWiMS2RMT7-i0DocMuziWxTsKWYlM7wlZ5J34gRe9PV5fVJOD2kF78_XDcPI0BlJ-Jk_lAKA8eZoR8svop6-Fz2Dj2ZVIn8d3dTT6Vei0z6Z2ByJoEF84Z3yWLYxkRoBaJCYy4tz6ISbpVsI15OQvv9t4M2z4NynS2k" />
+                        <div class="absolute bottom-0 w-full h-1/2 bg-gradient-to-t from-black/60 to-transparent">
+                        </div>
+                        <div class="absolute bottom-4 left-4 text-white font-serif italic text-lg">"Từ vương quốc
+                            của tất yếu sang vương quốc của tự do"</div>
+                    </div>
+                </div>
+            </div>
+            <!-- D. Personal - Social & Vietnam -->
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="order-1">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg bg-gray-100 aspect-[4/3]">
+                        <img alt="Young Vietnamese students working together on a project with smiles"
+                            class="w-full h-full object-cover"
+                            data-alt="Modern Vietnamese youth holding books with icons of community service and development around them"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw0DwK-Z8N-pe_vcrt490YLTboLpzdA0H2lrUXDIiAuIjGHG0aTnBw2EGFXiTN5cZKhsz_C9DAWkmiqV_W6tOxS7BCqPlfW63m3EDDcyjlgNEGsGyn5YggWS2miPgTj-HUrXBCmQgR_Y-v7mFfVesyDDZ3edP98o1nOXBD4q_a1-QGZ9hWU8hbr4uvFubq5lISFDSfhgWBOUibP7yu5mzzguP4Jrfk3YwDWaCaCrhe17aNes4ROnGAXGKL4rYYPGldrj8Y4vtQyh8" />
+                    </div>
+                </div>
+                <div class="order-2">
+                    <span class="text-primary font-bold text-sm tracking-widest mb-2 block">PHẦN 04</span>
+                    <h3 class="font-serif text-3xl font-bold text-[#111418] dark:text-white mb-6">Quan hệ cá nhân -
+                        xã hội &amp; VN</h3>
+                    <div class="text-base text-[#4b5563] dark:text-gray-300 space-y-4 leading-relaxed">
+                        <p>
+                            <strong>Quan hệ Cá nhân - Xã hội:</strong> Xã hội do các cá nhân hợp thành. Cần tránh 2 thái
+                            cực: Tuyệt đối hóa cá nhân (chủ nghĩa cá nhân cực đoan) hoặc tuyệt đối hóa xã hội (coi nhẹ
+                            lợi ích cá nhân).
+                        </p>
+                        <p>
+                            <strong>Vai trò con người ở Việt Nam:</strong>
+                        </p>
+                        <ul class="list-disc pl-5 space-y-1">
+                            <li><strong>Mục tiêu:</strong> Phấn đấu vì độc lập, tự do, hạnh phúc. Xây dựng con người
+                                phát triển toàn diện (Đức, Trí, Thể, Mỹ).</li>
+                            <li><strong>Động lực:</strong> Con người là nguồn lực quan trọng nhất. Phát huy tính tích
+                                cực, tự giác, sáng tạo.</li>
+                        </ul>
+
+                        <!-- Nam's Story Connection -->
+                        <div class="mt-4 p-4 bg-blue-50 dark:bg-blue-900/10 rounded-lg border-l-4 border-primary">
+                            <h4 class="font-bold text-primary text-sm uppercase tracking-wider mb-2">Bài học thực tiễn
+                            </h4>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Sinh viên cần tránh lối sống vị kỷ (như Nam lúc đầu) nhưng cũng không đánh mất bản sắc
+                                riêng. Cần hài hòa lợi ích cá nhân với cống hiến xã hội để tìm thấy ý nghĩa thực sự.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 6. Section 3 (Infographic Summary) -->
+        <section class="w-full bg-[#ecf0f3] dark:bg-[#1a2632] py-24">
+            <div class="w-full max-w-7xl mx-auto px-6">
+                <div class="text-center mb-16">
+                    <span class="text-primary font-bold tracking-widest uppercase text-sm mb-3 block">TỔNG
+                        KẾT</span>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#111418] dark:text-white">TRIẾT HỌC
+                        MÁC – LÊNIN VỀ CON NGƯỜI</h2>
+                    <div class="w-20 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div
+                        class="flex flex-col bg-white dark:bg-[#232f3c] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div class="h-48 bg-gray-200 relative">
+                            <img alt="DNA Helix structure" class="w-full h-full object-cover"
+                                data-alt="Iconic representation of Biological Unity"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX-0EzjzfRGu472dyfyBDxOrRXuf3uE1snnGpiox2u6vt6JM_BLRdxE_ydNDZ-Ion3nR20cTAMjsbcbyUAmbsookzdL9hwDy8yanx41h8_P5fgT7J6PELp8oB8fhHpO_okqX6xFlJCzGYQVdwtk6yF-yx5tX6O_Kb43o-CnrKiJQV8lbMyi-uuvgiZRx6QFXv4D3FizXU8l0WIuzmA8Bph7gBJFiorz86j_DemMmQtbt5CeWtc8yMEKTfDFvRQJJmSeiX3tX1W--4" />
+                            <div
+                                class="absolute top-4 left-4 size-8 bg-white dark:bg-black rounded-full flex items-center justify-center font-bold text-primary shadow-sm">
+                                I</div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h4 class="font-bold text-lg mb-3 dark:text-white">Thống nhất Biện chứng</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
+                                Con người là sự kết hợp không thể tách rời giữa mặt sinh học (tự nhiên) và mặt xã
+                                hội (lịch sử).
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div
+                        class="flex flex-col bg-white dark:bg-[#232f3c] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div class="h-48 bg-gray-200 relative">
+                            <img alt="Network of people connected" class="w-full h-full object-cover"
+                                data-alt="Iconic representation of Social Relations"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1LI6yuKB-Z1FrAqMJ3VKrVSvTZ-vG4b2DUXJzkSqOWBTcgBYw2b16DLmRYt3uHyDwoGSmTKrTJpfbLjPFbPHy-LwYP8sAF6FHzOFVr88fuRcbL4nuX2n0DROtCnB3NwvHQxyle8o7pa0TCimSDfp_WENubx7b_jpCs8ZxF6ZzoCHqs8e1BZiYQO3ru9CrcC-9fu5ialfj6JaRMY3bV5eh2la0bsjqsDWyD_upZ_Yafir5tAA3DCSmWS5GqdEPk9ViG0lY0lRqTbk" />
+                            <div
+                                class="absolute top-4 left-4 size-8 bg-white dark:bg-black rounded-full flex items-center justify-center font-bold text-primary shadow-sm">
+                                II</div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h4 class="font-bold text-lg mb-3 dark:text-white">Bản chất Xã hội</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
+                                Bản chất con người không phải là cái gì trừu tượng mà là tổng hòa các quan hệ xã
+                                hội.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div
+                        class="flex flex-col bg-white dark:bg-[#232f3c] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div class="h-48 bg-gray-200 relative">
+                            <img alt="Woman looking at wide open landscape" class="w-full h-full object-cover"
+                                data-alt="Iconic representation of Liberation"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpnqH9EK05OP7ZC3jMihiJtC3oc3Mj9ss4Wc2RjY21u2QaeT3rBZ9D4bCxfrPZcTRO5LLYtX2y7WNglnY2-76-icxC_KbcWWbk9cybuxhkBdbiUsTe-tTYe5akokQUCUaSG-P2oiF757Kp-Ni1Dl_cHpDBXLDuvInssk-_fqLadVOqR1-deC4DkDHMjDV8Qh7MWhA4k-TC5dRgbrN-iiyph-DiT0U0x3NERJaMEhfq9DItqwxbjisiD0q9O0NvCaDQh1qLqj_c1qc" />
+                            <div
+                                class="absolute top-4 left-4 size-8 bg-white dark:bg-black rounded-full flex items-center justify-center font-bold text-primary shadow-sm">
+                                III</div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h4 class="font-bold text-lg mb-3 dark:text-white">Lịch sử &amp; Sáng tạo</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
+                                Con người vừa là sản phẩm của lịch sử, vừa là chủ thể sáng tạo ra lịch sử thông qua
+                                hoạt động thực tiễn.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 4 -->
+                    <div
+                        class="flex flex-col bg-white dark:bg-[#232f3c] rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full">
+                        <div class="h-48 bg-gray-200 relative">
+                            <img alt="People holding hands in circle" class="w-full h-full object-cover"
+                                data-alt="Iconic representation of Human Development"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuByNloKwi4NkWpskQS_1CkqEOXDlFL8p559cGjCzMs6zgqsy2JPYhbKyPJ6p25z8Hi7o-HRL3WWklNvPyIZ8uMvEyddXobtK_5VuqaL1meJG81hBLYPGVr26pxUAjDeLohTQTFSZGKkObfGmnWZg4vzihCFBF46O5Q8wYWLVWFnNc_bFUF2ddRqsqLNWjMGMRvbGBum6ZCTAKnh_7STh5ymSISq99VSkSi04Y_N3UfTce8eegS7tgrNzaeR18xkcGxQu_auwFceISU" />
+                            <div
+                                class="absolute top-4 left-4 size-8 bg-white dark:bg-black rounded-full flex items-center justify-center font-bold text-primary shadow-sm">
+                                IV</div>
+                        </div>
+                        <div class="p-6 flex flex-col flex-1">
+                            <h4 class="font-bold text-lg mb-3 dark:text-white">Mục tiêu Giải phóng</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed flex-1">
+                                Sự phát triển tự do của mỗi người là điều kiện cho sự phát triển tự do của tất cả
+                                mọi người.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Component Loader -->
+    <script src="js/load-components.js"></script>
+    <script>
+        // Video Player Logic for Module 5
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('video-container');
+            const videoId = 'yrvT86WEjso';
+
+            if (container) {
+                function playVideo() {
+                    container.innerHTML = `
+                        <iframe class="w-full h-full" 
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>`;
+                }
+                container.addEventListener('click', playVideo);
+            }
+        });
+    </script>
+</body>
+
+</html>

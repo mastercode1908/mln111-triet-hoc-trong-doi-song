@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Module 4: Luật chơi của xã hội - PhiloMap</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;family=Lora:ital,wght@0,400;0,600;0,700;1,400&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#308ce8",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#111921",
+                        "off-white": "#f8f9fa",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "serif": ["Lora", "serif"],
+                        "body": ["Lexend", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-[#111418] font-body antialiased min-h-screen flex flex-col overflow-x-hidden">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    <main class="flex-1 flex flex-col items-center w-full py-8 px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-7xl flex flex-col gap-10">
+            <!-- Breadcrumb & Title Area -->
+            <div class="flex flex-col gap-4">
+                <div
+                    class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800 text-primary text-xs font-bold uppercase tracking-wider w-fit gap-2">
+                    <a href="home.html" class="hover:underline hover:text-blue-600 transition-colors">TRANG CHỦ</a>
+                    <span class="opacity-60">/</span>
+                    <a href="home.html#overview"
+                        class="hover:underline hover:text-blue-600 transition-colors">MODULES</a>
+                    <span class="opacity-60">/</span>
+                    <span>MODULE 4 • LUẬT CHƠI XÃ HỘI</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-serif font-bold text-[#111418] leading-tight">
+                    Luật chơi của xã hội <br />
+                    <span class="text-[#637588] font-serif italic text-3xl font-normal">Chủ nghĩa duy vật lịch
+                        sử</span>
+                </h1>
+            </div>
+            <!-- Block 1: Hero Video -->
+            <div class="flex flex-col gap-4">
+                <div id="video-container"
+                    class="relative w-full aspect-video rounded-xl overflow-hidden bg-black group cursor-pointer shadow-lg">
+                    <img src="https://img.youtube.com/vi/TF2FDNeIjrk/maxresdefault.jpg"
+                        class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                        alt="Video Thumbnail">
+                    <div id="video-overlay"
+                        class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/20 transition-colors">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button
+                                class="flex items-center justify-center rounded-full size-20 bg-white/20 backdrop-blur-sm border border-white/40 text-white transition-transform transform group-hover:scale-110">
+                                <span class="material-symbols-outlined text-[40px] ml-1">play_arrow</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p class="font-serif italic text-lg text-[#4b5563] border-l-4 border-primary pl-4 py-1">
+                    "Muốn hiểu xã hội nghĩ gì, hãy nhìn xem xã hội sống bằng cách nào."
+                </p>
+            </div>
+            <!-- Block 2: Storytelling - Comparison -->
+            <div class="flex flex-col gap-6">
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined">compare_arrows</span>
+                        <span class="text-sm font-bold uppercase tracking-widest font-display">Sự thay đổi cấu
+                            trúc</span>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold text-[#111418]">Sự thay đổi của Làng Chài</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Left Block: Old -->
+                    <div class="bg-gray-100 rounded-xl p-8 flex flex-col gap-6 border border-gray-200">
+                        <div
+                            class="size-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 mb-2">
+                            <span class="material-symbols-outlined">sailing</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold font-serif text-gray-800 mb-2">Làng chài cũ</h4>
+                            <p class="text-sm text-gray-500 font-display uppercase tracking-wide">Kinh tế tiểu nông
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-gray-400">
+                                <span class="block text-xs text-gray-400 font-bold uppercase mb-1">Công cụ sản
+                                    xuất</span>
+                                <p class="text-gray-700 font-medium">Thuyền thúng, lưới rách (công cụ thô sơ). Đời
+                                    sống bấp bênh, ăn bữa nay lo bữa mai.
+                                </p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-gray-400">
+                                <span class="block text-xs text-gray-400 font-bold uppercase mb-1">Tư duy &amp; Tín
+                                    ngưỡng</span>
+                                <p class="text-gray-700 font-medium">Thờ cá Ông (cá voi) vì sợ biển cả. Sống theo
+                                    "lệ làng", cha truyền con nối. Việc học không được coi trọng bằng kinh nghiệm
+                                    sông nước.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right Block: New -->
+                    <div class="bg-blue-50/50 rounded-xl p-8 flex flex-col gap-6 border border-blue-100">
+                        <div
+                            class="size-12 rounded-full bg-blue-100 flex items-center justify-center text-primary mb-2">
+                            <span class="material-symbols-outlined">directions_boat</span>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold font-serif text-primary mb-2">Làng chài mới</h4>
+                            <p class="text-sm text-blue-400 font-display uppercase tracking-wide">Kinh tế hàng hóa
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary">
+                                <span class="block text-xs text-blue-400 font-bold uppercase mb-1">Công cụ sản
+                                    xuất</span>
+                                <p class="text-gray-800 font-medium">Tàu công suất lớn, máy định vị. Kinh tế phát
+                                    triển thành thị trấn du lịch và xuất khẩu hải sản sầm uất.
+                                </p>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg shadow-sm border-l-4 border-primary">
+                                <span class="block text-xs text-blue-400 font-bold uppercase mb-1">Tư duy &amp; Ý
+                                    thức</span>
+                                <p class="text-gray-800 font-medium">Tin vào khoa học, gửi con đi học đại học. Hủ
+                                    tục giảm bớt, luật pháp nhà nước được thực thi nghiêm ngặt hơn lệ làng.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-blue-50 dark:bg-blue-900/10 border-l-4 border-primary p-6 rounded-r-xl mt-2">
+                    <h4 class="text-lg font-bold text-primary mb-2 flex items-center gap-2 font-display">
+                        <span class="material-symbols-outlined">lightbulb</span>
+                        Liên hệ
+                    </h4>
+                    <p class="text-gray-700 dark:text-gray-300 italic font-serif leading-relaxed">
+                        "Câu chuyện này cho thấy, khi cách thức kiếm tiền (sản xuất vật chất) thay đổi, thì lối
+                        sống,
+                        văn hóa, luật lệ (tư tưởng) cũng thay đổi theo. Đây chính là <span
+                            class="font-bold text-gray-900 dark:text-white not-italic">"Luật chơi của xã hội"</span>
+                        mà Triết học Mác - Lênin giải mã."
+                    </p>
+                </div>
+            </div>
+            <!-- Block 3: Philosophy - Stacked Layout -->
+            <div class="flex flex-col gap-8 py-8">
+                <div class="flex flex-col gap-2">
+                    <div class="flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined">layers</span>
+                        <span class="text-sm font-bold uppercase tracking-widest font-display">Cấu trúc tầng</span>
+                    </div>
+                    <h3 class="text-2xl font-serif font-bold text-[#111418]">Hệ thống xã hội</h3>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <!-- Layer 3: Top -->
+                    <div
+                        class="group relative bg-white border border-[#e5e7eb] rounded-t-xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="absolute left-0 top-0 bottom-0 w-2 bg-purple-400 rounded-tl-xl"></div>
+                        <div class="flex flex-col md:flex-row gap-6 md:items-start justify-between">
+                            <div class="flex flex-col gap-3 max-w-2xl">
+                                <span class="text-xs font-bold text-purple-500 uppercase tracking-widest">Tầng 3:
+                                    Tinh thần</span>
+                                <h4 class="text-2xl font-serif font-bold text-[#111418]">Tồn tại xã hội &amp; Ý thức
+                                    xã hội</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Đời sống tinh thần của xã hội không lơ lửng trên trời, nó là sự phản ánh của đời
+                                    sống vật chất. Thói quen, tập quán và tâm lý xã hội được hình thành từ cách con
+                                    người sống hàng ngày.
+                                </p>
+                            </div>
+                            <blockquote
+                                class="md:w-1/3 border-l-2 border-purple-200 pl-4 py-1 italic font-serif text-gray-500 text-sm">
+                                "Sức mạnh của tập quán ở hàng triệu và hàng chục triệu người là một sức mạnh ghê gớm
+                                nhất." <br />
+                                <span class="not-italic text-xs font-bold mt-2 block text-gray-400">— V.I.
+                                    Lenin</span>
+                            </blockquote>
+                        </div>
+                    </div>
+                    <!-- Layer 2: Middle -->
+                    <div
+                        class="group relative bg-white border-x border-[#e5e7eb] p-8 md:p-10 shadow-sm z-10 hover:shadow-md transition-shadow my-[-1px]">
+                        <div class="absolute left-0 top-0 bottom-0 w-2 bg-blue-500"></div>
+                        <div class="flex flex-col md:flex-row gap-6 md:items-start justify-between">
+                            <div class="flex flex-col gap-3 max-w-2xl">
+                                <span class="text-xs font-bold text-primary uppercase tracking-widest">Tầng 2: Cấu
+                                    trúc</span>
+                                <h4 class="text-2xl font-serif font-bold text-[#111418]">Cơ sở hạ tầng &amp; Kiến
+                                    trúc thượng tầng</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Kinh tế (Cơ sở hạ tầng) đóng vai trò nền tảng quyết định Nhà nước, Pháp luật và
+                                    các thể chế chính trị (Kiến trúc thượng tầng). Ai nắm kinh tế, người đó nắm
+                                    quyền lực chính trị.
+                                </p>
+                            </div>
+                            <div class="md:w-1/3 bg-blue-50 p-4 rounded-lg text-sm text-blue-800">
+                                <div class="flex items-center gap-2 mb-2 font-bold">
+                                    <span class="material-symbols-outlined text-lg">account_balance</span>
+                                    Quy luật:
+                                </div>
+                                Kinh tế thay đổi =&gt; Thể chế chính trị buộc phải thay đổi theo.
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Layer 1: Bottom -->
+                    <div
+                        class="group relative bg-white border border-[#e5e7eb] rounded-b-xl p-8 md:p-10 shadow-sm hover:shadow-md transition-shadow">
+                        <div class="absolute left-0 top-0 bottom-0 w-2 bg-emerald-500 rounded-bl-xl"></div>
+                        <div class="flex flex-col md:flex-row gap-6 md:items-start justify-between">
+                            <div class="flex flex-col gap-3 max-w-2xl">
+                                <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Tầng 1:
+                                    Nền tảng</span>
+                                <h4 class="text-2xl font-serif font-bold text-[#111418]">Sản xuất vật chất</h4>
+                                <p class="text-gray-600 leading-relaxed">
+                                    Đây là điểm xuất phát của mọi lịch sử. Trước khi làm nghệ thuật, triết học hay
+                                    tôn giáo, con người cần phải ăn, mặc, ở. Cách con người sản xuất ra của cải vật
+                                    chất quyết định mọi mặt khác của đời sống.
+                                </p>
+                            </div>
+                            <blockquote
+                                class="md:w-1/3 border-l-2 border-emerald-200 pl-4 py-1 italic font-serif text-gray-500 text-sm">
+                                "Theo quan điểm duy vật thì nhân tố quyết định trong lịch sử, quy cho đến cùng, là
+                                sản xuất và tái sản xuất ra đời sống thực hiện thực." <br />
+                                <span class="not-italic text-xs font-bold mt-2 block text-gray-400">— F.
+                                    Engels</span>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Block 4: Infographic - House Metaphor -->
+            <div class="flex flex-col gap-6 bg-[#f0f2f4] p-8 md:p-12 rounded-2xl items-center text-center">
+                <h3 class="text-2xl font-serif font-bold text-[#111418] mb-4">Mô hình Ngôi nhà Xã hội</h3>
+                <div class="relative w-full max-w-3xl flex flex-col gap-4">
+                    <!-- Roof -->
+                    <div
+                        class="w-full bg-white border border-gray-200 rounded-t-[4rem] p-8 shadow-sm flex flex-col items-center gap-3 relative z-20">
+                        <div
+                            class="bg-purple-100 text-purple-700 size-12 rounded-full flex items-center justify-center mb-1">
+                            <span class="material-symbols-outlined">gavel</span>
+                        </div>
+                        <h5 class="font-bold text-lg text-gray-800">Kiến trúc Thượng tầng</h5>
+                        <div class="flex flex-wrap justify-center gap-2 text-xs font-medium text-gray-500">
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">Nhà nước</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">Pháp luật</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">Tôn giáo</span>
+                            <span class="bg-gray-100 px-3 py-1 rounded-full">Đạo đức</span>
+                        </div>
+                        <!-- Side Mirror Graphic -->
+                        <div
+                            class="absolute -right-4 top-1/2 transform translate-x-full -translate-y-1/2 hidden md:flex flex-col items-center gap-2 w-32">
+                            <span class="text-xs font-bold text-purple-500 uppercase text-center">Ý thức xã
+                                hội</span>
+                            <span class="material-symbols-outlined text-gray-300">subdirectory_arrow_left</span>
+                        </div>
+                    </div>
+                    <!-- Pillars -->
+                    <div class="w-[90%] mx-auto flex justify-between gap-4 h-32 relative z-10">
+                        <div
+                            class="flex-1 bg-gradient-to-b from-gray-200 to-gray-300 rounded-lg flex items-center justify-center text-gray-500 shadow-inner">
+                            <span class="material-symbols-outlined text-4xl opacity-20">foundation</span>
+                        </div>
+                        <div
+                            class="flex-1 bg-gradient-to-b from-gray-200 to-gray-300 rounded-lg flex items-center justify-center flex-col gap-2 shadow-inner">
+                            <span class="font-bold text-gray-700 text-sm uppercase tracking-wider">Cơ sở hạ
+                                tầng</span>
+                            <span class="text-xs text-gray-500">(Quan hệ sản xuất)</span>
+                        </div>
+                        <div
+                            class="flex-1 bg-gradient-to-b from-gray-200 to-gray-300 rounded-lg flex items-center justify-center text-gray-500 shadow-inner">
+                            <span class="material-symbols-outlined text-4xl opacity-20">foundation</span>
+                        </div>
+                    </div>
+                    <!-- Foundation -->
+                    <div class="w-full bg-slate-800 text-white rounded-b-lg p-6 shadow-lg relative z-30">
+                        <div class="flex items-center justify-center gap-3">
+                            <span class="material-symbols-outlined text-emerald-400">precision_manufacturing</span>
+                            <h5 class="font-bold text-lg tracking-wide">Lực lượng Sản xuất</h5>
+                        </div>
+                        <p class="text-slate-400 text-sm mt-2">Nền tảng vật chất của toàn bộ xã hội</p>
+                        <!-- Side Mirror Graphic Link -->
+                        <div
+                            class="absolute -right-4 top-1/2 transform translate-x-full -translate-y-1/2 hidden md:flex flex-col items-center gap-2 w-32">
+                            <span
+                                class="material-symbols-outlined text-gray-300 rotate-180">subdirectory_arrow_right</span>
+                            <span class="text-xs font-bold text-slate-600 uppercase text-center">Tồn tại xã
+                                hội</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer CTA -->
+            <div class="mt-10 mb-20 flex flex-col items-center gap-8 text-center border-t border-gray-200 pt-16">
+                <h2 class="text-2xl md:text-3xl font-serif font-bold text-[#111418] max-w-3xl leading-snug">
+                    "Muốn thay đổi xã hội, không thể chỉ thay đổi suy nghĩ. Phải thay đổi cách con người sống và sản
+                    xuất."
+                </h2>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        // Video Player Logic for Module 4
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('video-container');
+            const videoId = 'TF2FDNeIjrk';
+
+            if (container) {
+                function playVideo() {
+                    container.innerHTML = `
+                        <iframe class="w-full h-full" 
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>`;
+                }
+                container.addEventListener('click', playVideo);
+            }
+        });
+    </script>
+    <!-- Component Loader -->
+    <script src="js/load-components.js"></script>
+</body>
+
+</html>

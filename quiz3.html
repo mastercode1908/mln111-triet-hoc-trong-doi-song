@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="vi" class="light">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz 3: Lý luận nhận thức | PhiloMap</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#308ce8",
+                        "primary-dark": "#1a6bb8",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#111921",
+                        "success": "#10b981",
+                        "error": "#ef4444",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "serif": ["Lora", "serif"],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Custom Radio Button Styling */
+        input[type="radio"]:checked+div {
+            border-color: #308ce8;
+            background-color: #eff6ff;
+        }
+
+        input[type="radio"]:checked+div .radio-circle {
+            background-color: #308ce8;
+            border-color: #308ce8;
+        }
+
+        input[type="radio"]:checked+div .radio-circle::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Quiz States */
+        .correct-answer {
+            border-color: #10b981 !important;
+            background-color: #ecfdf5 !important;
+        }
+
+        .wrong-answer {
+            border-color: #ef4444 !important;
+            background-color: #fef2f2 !important;
+        }
+
+        .correct-icon,
+        .wrong-icon {
+            display: none;
+        }
+
+        .correct-answer .correct-icon {
+            display: block;
+        }
+
+        .wrong-answer .wrong-icon {
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-gray-200 min-h-screen flex flex-col">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <main class="flex-grow w-full max-w-4xl mx-auto px-4 py-10">
+        <!-- Breadcrumb -->
+        <div class="mb-6">
+            <div
+                class="inline-flex items-center px-4 py-1.5 rounded-full bg-amber-50 border border-amber-100 dark:bg-amber-900/20 dark:border-amber-800 text-amber-600 text-xs font-bold uppercase tracking-wider gap-2">
+                <a href="home.html" class="hover:underline hover:text-amber-700 transition-colors">TRANG CHỦ</a>
+                <span class="opacity-60">/</span>
+                <a href="practice.html" class="hover:underline hover:text-amber-700 transition-colors">THỰC HÀNH</a>
+                <span class="opacity-60">/</span>
+                <span>QUIZ 3</span>
+            </div>
+        </div>
+        <!-- Quiz Intro -->
+        <div class="text-center mb-10" id="quiz-intro">
+            <h1 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 dark:text-white mb-4">
+                Nhận thức – Thực tiễn – Chân lý
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
+                Lý luận nhận thức - Thực tiễn và chân lý. <br>
+                Hãy chọn đáp án đúng nhất cho 7 câu hỏi dưới đây.
+            </p>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="space-y-8">
+            <!-- Questions will be injected here by JS -->
+        </div>
+
+        <!-- Submit Action -->
+        <div class="mt-12 flex justify-center pb-20">
+            <button onclick="submitQuiz()" id="submit-btn"
+                class="px-8 py-3 bg-amber-600 hover:bg-amber-700 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                Nộp bài & Xem kết quả
+            </button>
+            <div id="result-actions" class="hidden flex gap-4">
+                <button onclick="location.reload()"
+                    class="px-6 py-3 border border-gray-300 hover:bg-gray-50 text-slate-700 font-bold rounded-xl transition-colors">
+                    Làm lại
+                </button>
+                <a href="practice.html"
+                    class="px-6 py-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl transition-colors">
+                    Quay về Thực hành
+                </a>
+            </div>
+        </div>
+
+        <!-- Score Modal (Hidden initially) -->
+        <div id="score-modal"
+            class="hidden fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm opacity-0 transition-opacity duration-300">
+            <div
+                class="bg-white dark:bg-gray-800 rounded-3xl p-8 max-w-md w-full shadow-2xl transform scale-90 transition-transform duration-300">
+                <div class="text-center">
+                    <div
+                        class="size-20 bg-amber-50 dark:bg-amber-900/30 rounded-full flex items-center justify-center mx-auto mb-4 text-amber-600">
+                        <span class="material-symbols-outlined text-4xl">emoji_events</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Kết quả của bạn</h2>
+                    <div class="text-5xl font-black text-amber-600 mb-4" id="final-score">0/7</div>
+                    <p class="text-slate-600 dark:text-gray-400 mb-8" id="feedback-text">Hãy xem lại các câu sai để hiểu
+                        rõ hơn nhé!</p>
+                    <button onclick="closeModal()"
+                        class="w-full py-3 bg-amber-600 text-white font-bold rounded-xl hover:bg-amber-700 transition-colors">
+                        Xem chi tiết đáp án
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="js/load-components.js"></script>
+    <script>
+        const quizData = [
+            {
+                id: 1,
+                question: "Theo V.I. Lênin, con đường biện chứng của sự nhận thức chân lý diễn ra theo trình tự nào?",
+                options: [
+                    "A. Từ tư duy trừu tượng đến trực quan sinh động và trở về thực tiễn.",
+                    "B. Từ thực tiễn đến tư duy trừu tượng và kết thúc ở trực quan sinh động.",
+                    "C. Từ trực quan sinh động đến tư duy trừu tượng, và từ tư duy trừu tượng đến thực tiễn.",
+                    "D. Từ cảm giác đến tri giác, từ tri giác đến ý thức và trở về thực tiễn."
+                ],
+                correct: 2, // Index of C
+                explanation: "V.I. Lênin đã khái quát quy luật chung của quá trình nhận thức như sau: \"Từ trực quan sinh động đến tư duy trừu tượng, và từ tư duy trừu tượng đến thực tiễn - đó là con đường biện chứng của sự nhận thức chân lý, của sự nhận thức thực tại khách quan\". Đây là một vòng khâu lặp đi lặp lại và nâng cao, không có điểm kết thúc tuyệt đối. (Nguồn: Chương 2, Mục III, 2.c)"
+            },
+            {
+                id: 2,
+                question: "Đâu là định nghĩa đúng đắn nhất về \"Thực tiễn\" theo quan điểm của Triết học Mác - Lênin?",
+                options: [
+                    "A. Là toàn bộ hoạt động tinh thần và vật chất của con người nhằm cải tạo thế giới.",
+                    "B. Là toàn bộ những hoạt động vật chất - cảm tính, có tính lịch sử - xã hội của con người nhằm cải tạo tự nhiên và xã hội phục vụ nhân loại tiến bộ.",
+                    "C. Là các hoạt động thí nghiệm, nghiên cứu khoa học trong phòng lab để tìm ra chân lý.",
+                    "D. Là hoạt động bản năng của con người nhằm thích nghi thụ động với môi trường xung quanh."
+                ],
+                correct: 1, // Index of B
+                explanation: "Giáo trình khẳng định thực tiễn không phải là toàn bộ hoạt động (bao gồm cả tinh thần) mà chỉ là những hoạt động vật chất - cảm tính (con người có thể quan sát trực quan được). Nó mang tính lịch sử - xã hội (diễn ra trong xã hội, có sự kế thừa) và có tính mục đích (cải tạo thế giới chủ động, khác với hoạt động bản năng của động vật). (Nguồn: Chương 2, Mục III, 2.b)"
+            },
+            {
+                id: 3,
+                question: "Giai đoạn \"Tư duy trừu tượng\" (Nhận thức lý tính) bao gồm những hình thức nào?",
+                options: [
+                    "A. Cảm giác, Tri giác, Biểu tượng.",
+                    "B. Khái niệm, Phán đoán, Suy luận (Suy lý).",
+                    "C. Cảm giác, Khái niệm, Suy luận.",
+                    "D. Tri giác, Phán đoán, Thực nghiệm."
+                ],
+                correct: 1, // Index of B
+                explanation: "Nhận thức lý tính phản ánh sự vật một cách gián tiếp, khái quát hơn thông qua các hình thức: 1. Khái niệm: Phản ánh khái quát các thuộc tính bản chất (Ví dụ: khái niệm \"Tổ quốc\"). 2. Phán đoán: Liên kết các khái niệm để khẳng định hay phủ định một thuộc tính (Ví dụ: \"Hà Nội là thủ đô\"). 3. Suy lý (Suy luận): Từ những phán đoán đã biết rút ra phán đoán mới (kết luận). (Nguồn: Chương 2, Mục III, 2.c)"
+            },
+            {
+                id: 4,
+                question: "Tại sao nói \"Thực tiễn là tiêu chuẩn của chân lý\"?",
+                options: [
+                    "A. Vì thực tiễn là hoạt động của số đông nên luôn luôn đúng.",
+                    "B. Vì chỉ có thực tiễn mới có thể vật chất hóa được tri thức, qua đó khẳng định được chân lý hoặc bác bỏ sai lầm.",
+                    "C. Vì thực tiễn là hiển nhiên, rõ ràng, ai cũng nhìn thấy được.",
+                    "D. Vì lý thuyết luôn màu xám còn thực tiễn thì sinh động."
+                ],
+                correct: 1, // Index of B
+                explanation: "Theo giáo trình, không thể lấy tri thức để kiểm tra tri thức, cũng không thể lấy sự tán thành của số đông làm tiêu chuẩn. Thực tiễn là tiêu chuẩn khách quan duy nhất vì chỉ có thực tiễn mới có thể \"vật chất hóa\" được tư tưởng, biến cái quan niệm thành cái hiện thực, qua đó mới kiểm nghiệm được tri thức đó phản ánh đúng hay sai. (Nguồn: Chương 2, Mục III, 2.b)"
+            },
+            {
+                id: 5,
+                question: "Luận điểm \"Không có chân lý trừu tượng, chân lý luôn là cụ thể\" muốn nhấn mạnh điều gì?",
+                options: [
+                    "A. Chân lý là những gì sờ nắm được, nhìn thấy được cụ thể.",
+                    "B. Chân lý luôn đúng trong mọi hoàn cảnh, mọi thời đại.",
+                    "C. Chân lý phụ thuộc vào điều kiện lịch sử, không gian và thời gian xác định.",
+                    "D. Chân lý chỉ tồn tại trong các sự vật cụ thể, không tồn tại trong tư duy."
+                ],
+                correct: 2, // Index of C
+                explanation: "Chân lý là tri thức phản ánh đúng hiện thực khách quan. Vì hiện thực khách quan luôn biến đổi và gắn với điều kiện cụ thể, nên chân lý cũng phải gắn với những điều kiện lịch sử, không gian, thời gian xác định. Nếu thoát ly những điều kiện cụ thể này (áp dụng máy móc cái đúng ở chỗ này sang chỗ khác) thì tri thức đó sẽ không còn là chân lý nữa. (Nguồn: Chương 2, Mục III, 2.d)"
+            },
+            {
+                id: 6,
+                question: "Ba hình thức cơ bản của hoạt động thực tiễn là gì?",
+                options: [
+                    "A. Sản xuất vật chất, Hoạt động chính trị - xã hội, Hoạt động thực nghiệm khoa học.",
+                    "B. Sản xuất nông nghiệp, Sản xuất công nghiệp, Nghiên cứu khoa học.",
+                    "C. Đấu tranh giai cấp, Lao động sản xuất, Hoạt động nghệ thuật.",
+                    "D. Hoạt động kinh tế, Hoạt động chính trị, Hoạt động văn hóa."
+                ],
+                correct: 0, // Index of A
+                explanation: "Thực tiễn tồn tại dưới nhiều hình thức nhưng có 3 hình thức cơ bản: 1. Sản xuất vật chất: Quan trọng nhất, quyết định sự tồn tại của xã hội. 2. Hoạt động chính trị - xã hội: Nhằm biến đổi, cải tạo các quan hệ xã hội. 3. Hoạt động thực nghiệm khoa học: Con người chủ động tạo ra điều kiện để thí nghiệm, vận dụng khoa học vào thực tế. (Nguồn: Chương 2, Mục III, 2.b)"
+            },
+            {
+                id: 7,
+                question: "Câu nói \"Thực tiễn không có lý luận là thực tiễn mù quáng\" phê phán căn bệnh nào trong nhận thức và hành động?",
+                options: [
+                    "A. Bệnh giáo điều.",
+                    "B. Bệnh chủ quan duy ý chí.",
+                    "C. Bệnh kinh nghiệm chủ nghĩa.",
+                    "D. Bệnh cơ hội."
+                ],
+                correct: 2, // Index of C
+                explanation: "Bệnh giáo điều là chỉ biết lý thuyết mà không biết vận dụng vào thực tế. Bệnh kinh nghiệm chủ nghĩa là chỉ dựa vào kinh nghiệm thực tiễn, coi thường lý luận khoa học. Câu nói trên nhấn mạnh vai trò soi đường của lý luận (nhận thức lý tính). Nếu chỉ cắm đầu làm (thực tiễn) mà không có lý luận soi sáng thì sẽ mò mẫm, dễ thất bại (mù quáng). (Nguồn: Chương 2, Mục III, 2.b và 2.c)"
+            }
+        ];
+
+        function renderQuiz() {
+            const container = document.getElementById('quiz-container');
+            container.innerHTML = quizData.map((item, index) => `
+                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-soft border border-gray-100 dark:border-gray-700 question-block" id="question-${index}">
+                    <div class="flex items-start gap-4 mb-6">
+                        <span class="flex-shrink-0 size-8 bg-amber-50 text-amber-600 font-bold rounded-lg flex items-center justify-center text-sm">
+                            ${index + 1}
+                        </span>
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white leading-relaxed pt-1">
+                            ${item.question}
+                        </h3>
+                    </div>
+                    <div class="space-y-3 pl-0 md:pl-12">
+                        ${item.options.map((opt, optIndex) => `
+                            <label class="cursor-pointer group block relative">
+                                <input type="radio" name="q${index}" value="${optIndex}" class="peer sr-only">
+                                <div class="p-4 rounded-xl border border-gray-200 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all flex items-center gap-3">
+                                    <div class="radio-circle w-5 h-5 rounded-full border-2 border-gray-300 dark:border-gray-500 relative flex items-center justify-center transition-colors">
+                                        <div class="w-2.5 h-2.5 bg-white rounded-full opacity-0 transform scale-50 transition-all duration-200"></div>
+                                    </div>
+                                    <span class="text-slate-700 dark:text-gray-300 font-medium">${opt}</span>
+                                    
+                                    <!-- Icons for result -->
+                                    <span class="material-symbols-outlined text-green-500 ml-auto correct-icon">check_circle</span>
+                                    <span class="material-symbols-outlined text-red-500 ml-auto wrong-icon">cancel</span>
+                                </div>
+                            </label>
+                        `).join('')}
+                    </div>
+                    <!-- Explanation (Hidden) -->
+                    <div class="explanation hidden mt-6 p-4 bg-amber-50 dark:bg-amber-900/20 rounded-xl border border-amber-100 dark:border-amber-800">
+                        <div class="flex items-start gap-3">
+                            <span class="material-symbols-outlined text-amber-600 mt-1">lightbulb</span>
+                            <div>
+                                <h4 class="font-bold text-amber-600 text-sm uppercase mb-1">Giải thích chi tiết</h4>
+                                <p class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed">
+                                    ${item.explanation}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function submitQuiz() {
+            let score = 0;
+            let answered = 0;
+
+            quizData.forEach((item, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                const questionBlock = document.getElementById(`question-${index}`);
+                const explanation = questionBlock.querySelector('.explanation');
+                const inputs = questionBlock.querySelectorAll(`input[name="q${index}"]`);
+
+                // Disable inputs
+                inputs.forEach(input => input.disabled = true);
+
+                // Remove previous formatting
+                questionBlock.querySelectorAll('label > div').forEach(div => {
+                    div.classList.remove('correct-answer', 'wrong-answer');
+                });
+
+                if (selected) {
+                    answered++;
+                    const val = parseInt(selected.value);
+                    const selectedDiv = selected.nextElementSibling;
+
+                    if (val === item.correct) {
+                        score++;
+                        selectedDiv.classList.add('correct-answer');
+                    } else {
+                        selectedDiv.classList.add('wrong-answer');
+                        // Highlight correct answer
+                        const correctInput = questionBlock.querySelector(`input[value="${item.correct}"]`);
+                        correctInput.nextElementSibling.classList.add('correct-answer');
+                    }
+                } else {
+                    // If not answered, just highlight correct
+                    const correctInput = questionBlock.querySelector(`input[value="${item.correct}"]`);
+                    correctInput.nextElementSibling.classList.add('correct-answer');
+                }
+
+                // Show explanation
+                explanation.classList.remove('hidden');
+            });
+
+            // Show Result
+            const modal = document.getElementById('score-modal');
+            const scoreDisplay = document.getElementById('final-score');
+            const feedback = document.getElementById('feedback-text');
+            const submitBtn = document.getElementById('submit-btn');
+            const resultActions = document.getElementById('result-actions');
+
+            scoreDisplay.innerText = `${score}/${quizData.length}`;
+
+            if (score === quizData.length) {
+                feedback.innerText = "Xuất sắc! Bạn đã nắm vững toàn bộ kiến thức!";
+            } else if (score >= 5) {
+                feedback.innerText = "Làm tốt lắm! Chỉ còn vài lỗi nhỏ thôi.";
+            } else {
+                feedback.innerText = "Cần cố gắng thêm nhé! Hãy xem lại kiến thức.";
+            }
+
+            // Animation
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div').classList.remove('scale-90', 'scale-100');
+                modal.querySelector('div').classList.add('scale-100');
+            }, 10);
+
+            // Change button area
+            submitBtn.classList.add('hidden');
+            resultActions.classList.remove('hidden');
+
+            // Scroll to top to see modal clearly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('score-modal');
+            modal.classList.add('opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', renderQuiz);
+    </script>
+</body>
+
+</html>

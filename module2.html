@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>PhiloMap Module 2: Đối mặt với thay đổi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#308ce8",
+                        "background-light": "#f8f9fa",
+                        "background-dark": "#111921",
+                        "accent-green": "#10b981",
+                        "accent-yellow": "#f59e0b",
+                    },
+                    fontFamily: {
+                        "sans": ["Lexend", "sans-serif"],
+                        "serif": ["Lora", "serif"],
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "2xl": "2rem", "full": "9999px" },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-family: 'Material Symbols Outlined';
+            font-weight: normal;
+            font-style: normal;
+            font-size: 24px;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .text-small-caps {
+            font-variant: small-caps;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-sans text-[#111418] dark:text-gray-100 min-h-screen flex flex-col overflow-x-hidden">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+    <main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-8 space-y-16 pb-24">
+        <div
+            class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800 text-primary text-xs font-bold uppercase tracking-wider mb-4 gap-2">
+            <a href="home.html" class="hover:underline hover:text-blue-600 transition-colors">TRANG CHỦ</a>
+            <span class="opacity-60">/</span>
+            <a href="home.html#overview" class="hover:underline hover:text-blue-600 transition-colors">MODULES</a>
+            <span class="opacity-60">/</span>
+            <span>MODULE 2 • ĐỐI MẶT VỚI THAY ĐỔI</span>
+        </div>
+        <section class="space-y-6">
+            <h1
+                class="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#111418] dark:text-white leading-tight">
+                Nghệ thuật đối mặt với<br />thay đổi và áp lực
+            </h1>
+            <div id="video-container"
+                class="relative w-full aspect-video bg-gray-200 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-soft group cursor-pointer">
+                <img src="https://img.youtube.com/vi/95PHjGZFOoA/maxresdefault.jpg"
+                    class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                    alt="Video Thumbnail">
+                <div id="video-overlay"
+                    class="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-colors flex items-center justify-center">
+                    <div
+                        class="w-20 h-20 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center border border-white/50 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <span class="material-symbols-outlined text-white text-[48px] ml-2">play_arrow</span>
+                    </div>
+                </div>
+            </div>
+            <p class="text-center font-sans text-[#637588] dark:text-gray-400 italic text-lg max-w-2xl mx-auto">
+                "Triết học không dạy bạn mơ mộng. Triết học dạy bạn nhìn thẳng vào thực tế để thay đổi nó."
+            </p>
+        </section>
+
+        <!-- ... (omitted content from line 98 to 333) ... -->
+        <section>
+            <div class="flex items-center gap-3 mb-8">
+                <span class="h-px flex-1 bg-gray-200 dark:bg-gray-700"></span>
+                <h2 class="font-serif text-2xl md:text-3xl font-bold text-center text-[#111418] dark:text-white">
+                    Khoảng
+                    lặng trước cú nhảy</h2>
+                <span class="h-px flex-1 bg-gray-200 dark:bg-gray-700"></span>
+            </div>
+            <!-- The replace tool requires a dedicated block if we skip content, but I cannot skip content in a single valid replacement block if I want to replace disconnected parts. 
+Since Module 2 has video at top and script at bottom, it's safer to do 2 replacement calls or use multi-replace.
+Let's use multi_replace interaction. 
+-->
+            <section>
+                <p class="text-center text-gray-600 dark:text-gray-400 mb-10 max-w-2xl mx-auto">
+                    Hành trình của Nam - một nhân viên văn phòng điển hình, phản chiếu chính những bế tắc mà chúng ta
+                    thường
+                    gặp phải.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div
+                        class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center gap-4 hover:-translate-y-1 transition-transform duration-300">
+                        <div
+                            class="w-12 h-12 bg-blue-50 dark:bg-blue-900/20 rounded-full flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined">directions_run</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg">Nỗ lực âm thầm</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Nam làm việc chăm chỉ mỗi ngày, tích lũy
+                            kinh
+                            nghiệm nhưng không thấy kết quả ngay lập tức.</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center gap-4 hover:-translate-y-1 transition-transform duration-300">
+                        <div
+                            class="w-12 h-12 bg-gray-50 dark:bg-gray-700 rounded-full flex items-center justify-center text-gray-500">
+                            <span class="material-symbols-outlined">visibility_off</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg">Thực tế chưa ghi nhận</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Dù cố gắng, vị trí và thu nhập vẫn dậm chân
+                            tại
+                            chỗ. Sự thay đổi về "lượng" chưa đủ để tạo ra "chất".</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-soft border border-gray-100 dark:border-gray-700 flex flex-col items-center text-center gap-4 hover:-translate-y-1 transition-transform duration-300">
+                        <div
+                            class="w-12 h-12 bg-red-50 dark:bg-red-900/20 rounded-full flex items-center justify-center text-red-500">
+                            <span class="material-symbols-outlined">battery_alert</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-lg">Burnout &amp; Nghi ngờ</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400">Áp lực tích tụ tạo ra mâu thuẫn nội tâm. Nam
+                            bắt
+                            đầu nghi ngờ năng lực của chính mình.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="space-y-10">
+                <div class="text-center space-y-2">
+                    <span class="text-primary font-bold uppercase tracking-widest text-xs">Góc nhìn triết học</span>
+                    <h2 class="font-serif text-3xl md:text-4xl font-bold text-[#111418] dark:text-white">Giải mã bằng 3
+                        quy
+                        luật</h2>
+                </div>
+                <div class="space-y-8">
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-2xl shadow-soft overflow-hidden border-l-4 border-primary">
+                        <div class="grid md:grid-cols-12 gap-0">
+                            <div class="md:col-span-4 bg-primary/5 p-8 flex flex-col justify-center">
+                                <h3 class="font-serif text-2xl font-bold text-primary mb-4">Quy luật<br />Lượng - Chất
+                                </h3>
+                                <blockquote class="font-serif italic text-gray-600 dark:text-gray-300">
+                                    "Mọi sự thay đổi về lượng, đến một giới hạn nhất định, sẽ dẫn đến sự thay đổi về
+                                    chất."
+                                </blockquote>
+                            </div>
+                            <div class="md:col-span-8 p-8 space-y-6">
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl">
+                                        <span class="text-primary font-bold text-sm block mb-1">ĐỘ</span>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">Khoảng giới hạn mà lượng đổi
+                                            nhưng chất chưa đổi.</p>
+                                    </div>
+                                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl">
+                                        <span class="text-primary font-bold text-sm block mb-1">ĐIỂM NÚT</span>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">Thời điểm lượng đã tích lũy
+                                            đủ
+                                            để phá vỡ chất cũ.</p>
+                                    </div>
+                                    <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-xl">
+                                        <span class="text-primary font-bold text-sm block mb-1">BƯỚC NHẢY</span>
+                                        <p class="text-xs text-gray-600 dark:text-gray-400">Quá trình chuyển hóa từ chất
+                                            cũ
+                                            sang chất mới.</p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm uppercase text-gray-400 mb-2">Ứng dụng cho Nam</h4>
+                                    <p class="text-gray-700 dark:text-gray-300">Giai đoạn "nỗ lực âm thầm" của Nam chính
+                                        là
+                                        quá trình tích lũy về lượng trong phạm vi "Độ". Sự chán nản là dấu hiệu anh đang
+                                        tiến gần đến "Điểm nút".</p>
+                                </div>
+                                <p
+                                    class="text-[10px] text-gray-400 text-right mt-4 italic border-t border-gray-100 pt-2">
+                                    Nguồn: SGK MLN111, Chương 2, Mục II, 2.c</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-2xl shadow-soft overflow-hidden border-l-4 border-accent-yellow">
+                        <div class="grid md:grid-cols-12 gap-0">
+                            <div class="md:col-span-4 bg-accent-yellow/5 p-8 flex flex-col justify-center">
+                                <h3 class="font-serif text-2xl font-bold text-accent-yellow mb-4">Quy luật<br />Mâu
+                                    thuẫn
+                                </h3>
+                                <blockquote class="font-serif italic text-gray-600 dark:text-gray-300">
+                                    "Mâu thuẫn là nguồn gốc và động lực của sự phát triển."
+                                </blockquote>
+                            </div>
+                            <div class="md:col-span-8 p-8 space-y-6">
+                                <div>
+                                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                        Sự vật phát triển nhờ sự đấu tranh giữa các mặt đối lập. Không có áp lực, không
+                                        có
+                                        mâu thuẫn thì không có động lực để tiến lên.
+                                    </p>
+                                    <h4 class="font-bold text-sm uppercase text-gray-400 mb-2">Ứng dụng cho Nam</h4>
+                                    <p class="text-gray-700 dark:text-gray-300">Áp lực công việc và mong muốn tự do là
+                                        hai
+                                        mặt đối lập. Chính sự xung đột gay gắt này thúc đẩy Nam phải tìm giải pháp mới:
+                                        học
+                                        kỹ năng mới hoặc thay đổi cách làm việc.</p>
+                                </div>
+                                <p
+                                    class="text-[10px] text-gray-400 text-right mt-4 italic border-t border-gray-100 pt-2">
+                                    Nguồn: SGK MLN111, Chương 2, Mục II, 2.c</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 rounded-2xl shadow-soft overflow-hidden border-l-4 border-accent-green">
+                        <div class="grid md:grid-cols-12 gap-0">
+                            <div class="md:col-span-4 bg-accent-green/5 p-8 flex flex-col justify-center">
+                                <h3 class="font-serif text-2xl font-bold text-accent-green mb-4">Quy luật<br />Phủ định
+                                    của
+                                    phủ định</h3>
+                                <blockquote class="font-serif italic text-gray-600 dark:text-gray-300">
+                                    "Sự phát triển diễn ra theo đường xoáy ốc, cái mới ra đời kế thừa hạt nhân hợp lý
+                                    của
+                                    cái cũ."
+                                </blockquote>
+                            </div>
+                            <div class="md:col-span-8 p-8 space-y-6">
+                                <div>
+                                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                                        Phủ định không phải là xóa bỏ hoàn toàn, mà là sự thay thế cái cũ bằng cái mới
+                                        tiến
+                                        bộ hơn, trên cơ sở kế thừa những yếu tố tích cực.
+                                    </p>
+                                    <h4 class="font-bold text-sm uppercase text-gray-400 mb-2">Tính khuynh hướng</h4>
+                                    <p class="text-gray-700 dark:text-gray-300">Nam không bỏ cuộc (xóa bỏ) mà chuyển
+                                        sang
+                                        một trạng thái nghề nghiệp mới (thăng chức hoặc khởi nghiệp), mang theo kinh
+                                        nghiệm
+                                        (kế thừa) từ giai đoạn cũ nhưng ở trình độ cao hơn.</p>
+                                </div>
+                                <p
+                                    class="text-[10px] text-gray-400 text-right mt-4 italic border-t border-gray-100 pt-2">
+                                    Nguồn: SGK MLN111, Chương 2, Mục II, 2.c</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section>
+                <div class="flex items-center gap-3 mb-10">
+                    <span class="h-px flex-1 bg-gray-200 dark:bg-gray-700"></span>
+                    <h2
+                        class="font-serif text-2xl md:text-3xl font-bold text-center text-[#111418] dark:text-white uppercase tracking-wider">
+                        Bài học hành động</h2>
+                    <span class="h-px flex-1 bg-gray-200 dark:bg-gray-700"></span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="group bg-gradient-to-br from-white to-blue-50/50 dark:from-gray-800 dark:to-blue-900/10 rounded-3xl p-6 shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                        <div class="h-40 flex items-center justify-center mb-4">
+                            <span
+                                class="material-symbols-outlined text-[80px] text-primary group-hover:animate-spin-slow opacity-80">cyclone</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-gray-900 dark:text-white mb-2">Lò xo phát triển
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Cuộc sống không đi lên theo đường thẳng. Hãy
+                            kiên nhẫn khi bạn cảm thấy mình đang "đi vòng", thực ra bạn đang đi lên theo đường xoáy ốc.
+                        </p>
+                    </div>
+                    <div
+                        class="group bg-gradient-to-br from-white to-green-50/50 dark:from-gray-800 dark:to-green-900/10 rounded-3xl p-6 shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                        <div class="h-40 flex items-center justify-center mb-4 relative">
+                            <span
+                                class="material-symbols-outlined text-[80px] text-accent-green opacity-80 z-10">water_drop</span>
+                            <div
+                                class="absolute bottom-8 right-10 bg-accent-green text-white text-xs font-bold px-2 py-1 rounded-md">
+                                99°C</div>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-gray-900 dark:text-white mb-2">Độ 99 và Điểm nút
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Ở 99°C, nước vẫn chưa sôi. Đừng bỏ cuộc khi
+                            chưa
+                            thấy kết quả, có thể bạn chỉ cách "điểm nút" đúng 1°C nỗ lực cuối cùng.</p>
+                    </div>
+                    <div
+                        class="group bg-gradient-to-br from-white to-yellow-50/50 dark:from-gray-800 dark:to-yellow-900/10 rounded-3xl p-6 shadow-soft border border-gray-100 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
+                        <div class="h-40 flex items-center justify-center mb-4">
+                            <span
+                                class="material-symbols-outlined text-[80px] text-accent-yellow opacity-80 group-hover:rotate-12 transition-transform">settings_applications</span>
+                        </div>
+                        <h3 class="font-serif font-bold text-xl text-gray-900 dark:text-white mb-2">Động cơ mâu thuẫn
+                        </h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Đừng sợ mâu thuẫn hay áp lực. Hãy coi chúng
+                            là
+                            nhiên liệu cho động cơ phát triển của bạn. Đối mặt thay vì né tránh.</p>
+                    </div>
+                </div>
+            </section>
+            <section
+                class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 text-center shadow-soft border border-gray-100 dark:border-gray-700 mt-12">
+                <span class="material-symbols-outlined text-4xl text-primary mb-6">format_quote</span>
+                <h2
+                    class="font-serif text-2xl md:text-3xl font-bold text-[#111418] dark:text-white mb-6 leading-relaxed max-w-3xl mx-auto">
+                    Hiểu quy luật để không lạc lối trong khó khăn.<br />Bạn đã sẵn sàng cho bước nhảy vọt tiếp theo?
+                </h2>
+            </section>
+    </main>
+
+    <script>
+        // Video Player Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('video-container');
+            const videoId = 'CGy2-vsB73g'; // Module 2 Video ID updated
+
+            if (container) {
+                function playVideo() {
+                    container.innerHTML = `
+                        <iframe class="w-full h-full" 
+                            src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>`;
+                }
+
+                container.addEventListener('click', playVideo);
+            }
+        });
+    </script>
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Component Loader -->
+    <script src="js/load-components.js"></script>
+</body>
+
+</html>
