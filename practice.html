@@ -357,14 +357,42 @@
         const saveBtn = document.getElementById("saveDiaryBtn");
         const diaryList = document.getElementById("diaryList");
 
+        // Add Cancel Button dynamically
+        const cancelBtn = document.createElement("button");
+        cancelBtn.id = "cancelEditBtn";
+        cancelBtn.className = "mt-4 w-full bg-gray-200 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-300 transition hidden";
+        cancelBtn.innerText = "Hủy bỏ";
+        saveBtn.parentNode.insertBefore(cancelBtn, saveBtn.nextSibling);
+
         let diaries = JSON.parse(localStorage.getItem("philosophyDiaries")) || [];
+        let editingIndex = -1;
 
         // Toggle khung viết
         openBtn.addEventListener("click", () => {
             diaryBox.classList.toggle("hidden");
+            if (!diaryBox.classList.contains("hidden") && editingIndex === -1) {
+                diaryContent.focus();
+            }
         });
 
-        // Lưu nhật ký
+        // Cancel Edit
+        cancelBtn.addEventListener("click", () => {
+            resetForm();
+        });
+
+        function resetForm() {
+            editingIndex = -1;
+            diaryContent.value = "";
+            saveBtn.innerText = "Lưu nhật ký";
+            saveBtn.classList.remove("bg-blue-600", "hover:bg-blue-700");
+            saveBtn.classList.add("bg-accent-yellow-dark", "hover:opacity-90");
+            cancelBtn.classList.add("hidden");
+
+            // Optionally hide box if it was closed before, but UX is better if we just reset
+            // If we want to close box: diaryBox.classList.add("hidden");
+        }
+
+        // Lưu nhật ký (Create or Update)
         saveBtn.addEventListener("click", () => {
             const content = diaryContent.value.trim();
             if (!content) {
@@ -377,24 +405,73 @@
                 content: content
             };
 
-            diaries.unshift(diary); // mới nhất lên trên
-            localStorage.setItem("philosophyDiaries", JSON.stringify(diaries));
+            if (editingIndex > -1) {
+                // Update existing
+                diaries[editingIndex] = diary;
+                resetForm();
+            } else {
+                // Create new
+                diaries.unshift(diary); // mới nhất lên trên
+                diaryContent.value = "";
+            }
 
-            diaryContent.value = "";
+            saveLocalStorage();
             renderDiaries();
         });
+
+        function saveLocalStorage() {
+            localStorage.setItem("philosophyDiaries", JSON.stringify(diaries));
+        }
+
+        window.deleteDiary = function (index) {
+            if (confirm("Bạn có chắc chắn muốn xóa nhật ký này không?")) {
+                diaries.splice(index, 1);
+                saveLocalStorage();
+                renderDiaries();
+                // If we were editing the deleted item, reset form
+                if (editingIndex === index) resetForm();
+            }
+        }
+
+        window.editDiary = function (index) {
+            editingIndex = index;
+            diaryContent.value = diaries[index].content;
+
+            // Change UI to Edit Mode
+            saveBtn.innerText = "Cập nhật";
+            saveBtn.classList.remove("bg-accent-yellow-dark", "hover:opacity-90");
+            saveBtn.classList.add("bg-blue-600", "hover:bg-blue-700");
+            cancelBtn.classList.remove("hidden");
+
+            // Open box if closed
+            diaryBox.classList.remove("hidden");
+            diaryContent.focus();
+
+            // Scroll to editor
+            diaryBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
 
         // Render danh sách
         function renderDiaries() {
             diaryList.innerHTML = "";
 
-            diaries.forEach(diary => {
+            diaries.forEach((diary, index) => {
                 const div = document.createElement("div");
                 div.className =
-                    "bg-white p-5 rounded-xl border border-gray-200 shadow-sm";
+                    "bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative group";
 
                 div.innerHTML = `
-            <div class="text-xs text-slate-400 mb-2">📅 ${diary.date}</div>
+            <div class="flex justify-between items-start mb-2">
+                <div class="text-xs text-slate-400">📅 ${diary.date}</div>
+                <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button onclick="editDiary(${index})" class="text-blue-500 hover:bg-blue-50 p-2 rounded-md transition-colors" title="Sửa">
+                        <span class="material-symbols-outlined text-xl">edit</span>
+                    </button>
+                    <button onclick="deleteDiary(${index})" class="text-red-500 hover:bg-red-50 p-2 rounded-md transition-colors" title="Xóa">
+                        <span class="material-symbols-outlined text-xl">delete</span>
+                    </button>
+                </div>
+            </div>
             <p class="text-sm text-slate-700 whitespace-pre-line">
                 ${diary.content}
             </p>

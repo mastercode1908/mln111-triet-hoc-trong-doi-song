@@ -426,6 +426,21 @@
 
 <script>
 
+    // Tooltip Logic
+    const tooltip = document.createElement('div');
+    tooltip.id = 'node-tooltip';
+    tooltip.className = 'fixed z-50 hidden max-w-sm bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-700 pointer-events-none transition-opacity duration-300 opacity-0 transform scale-95 origin-center';
+    tooltip.innerHTML = `
+        <h3 id="tooltip-title" class="text-lg font-bold text-slate-900 dark:text-white mb-2"></h3>
+        <p id="tooltip-content" class="text-slate-600 dark:text-gray-300 text-sm leading-relaxed"></p>
+        <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-800 rotate-45 border-r border-b border-gray-100 dark:border-gray-700"></div>
+    `;
+    document.body.appendChild(tooltip);
+
+    const tooltipTitle = tooltip.querySelector('#tooltip-title');
+    const tooltipContent = tooltip.querySelector('#tooltip-content');
+
+    // Use existing topicData
     const topicData = {
         stress: {
             title: "Stress học tập",
@@ -449,18 +464,95 @@
         }
     };
 
+    let leaveTimeout;
+
     document.querySelectorAll(".node").forEach(node => {
-        node.addEventListener("click", () => {
+        node.addEventListener("mouseenter", (e) => {
+            // Cancel any pending hide action
+            if (leaveTimeout) clearTimeout(leaveTimeout);
+
             const key = node.dataset.topic;
-            const panel = document.getElementById("topicPanel");
+            if (!topicData[key]) return;
 
-            document.getElementById("topicTitle").innerText = topicData[key].title;
-            document.getElementById("topicContent").innerText = topicData[key].content;
+            tooltipTitle.innerText = topicData[key].title;
+            tooltipContent.innerText = topicData[key].content;
 
-            panel.classList.remove("hidden");
-            panel.scrollIntoView({ behavior: "smooth" });
+            // Show tooltip to calculate dimensions
+            tooltip.classList.remove('hidden');
+
+            // Force a reflow to ensure we get accurate dimensions
+            void tooltip.offsetWidth;
+
+            positionTooltip(node);
+
+            // Animate in
+            requestAnimationFrame(() => {
+                tooltip.classList.remove('opacity-0', 'scale-95');
+                tooltip.classList.add('opacity-100', 'scale-100');
+            });
+        });
+
+        node.addEventListener("mouseleave", () => {
+            // Add a small delay before hiding to prevent flickering from accidental jitter or cursor overlap
+            leaveTimeout = setTimeout(() => {
+                tooltip.classList.remove('opacity-100', 'scale-100');
+                tooltip.classList.add('opacity-0', 'scale-95');
+
+                // Wait for transition to finish before display:none
+                setTimeout(() => {
+                    // Check if it's still "hidden" (opacity 0) before applying hidden class
+                    // This prevents race conditions if user re-entered during transition
+                    if (tooltip.classList.contains('opacity-0')) {
+                        tooltip.classList.add('hidden');
+                    }
+                }, 300);
+            }, 100);
         });
     });
+
+    function positionTooltip(node) {
+        const rect = node.getBoundingClientRect();
+        const tooltipRect = tooltip.getBoundingClientRect();
+        const gap = 20; // Increased gap for stability
+
+        // Default: Position above the node
+        let top = rect.top - tooltipRect.height - gap;
+        let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+
+        // Check vertical fit
+        // If placing above goes off-screen (top < 10)
+        if (top < 10) {
+            // Place below instead: scale gap slightly more to avoid cursor overlap if moving down
+            top = rect.bottom + gap;
+
+            // Adjust arrow to point up
+            const arrow = tooltip.querySelector('.absolute');
+            if (arrow) {
+                arrow.className = 'absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-800 rotate-45 border-t border-l border-gray-100 dark:border-gray-700';
+            }
+        } else {
+            // Reset arrow to point down
+            const arrow = tooltip.querySelector('.absolute');
+            if (arrow) {
+                arrow.className = 'absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-white dark:bg-gray-800 rotate-45 border-r border-b border-gray-100 dark:border-gray-700';
+            }
+        }
+
+        // Check horizontal fit
+        if (left < 10) left = 10;
+        if (left + tooltipRect.width > window.innerWidth - 10) {
+            left = window.innerWidth - tooltipRect.width - 10;
+        }
+
+        tooltip.style.top = `${top}px`;
+        tooltip.style.left = `${left}px`;
+    }
+
+    // Hide tooltip on scroll to prevent detachment
+    window.addEventListener('scroll', () => {
+        tooltip.classList.add('hidden');
+        tooltip.classList.remove('opacity-100', 'scale-100');
+    }, { passive: true });
 
     // Dynamically update SVG lines to connect center hub to node icons
     function updateConnectorLines() {
