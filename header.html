@@ -1,147 +1,310 @@
-<header id="main-header"
-    class="fixed top-0 left-0 right-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
-    <div class="px-4 md:px-10 py-3 max-w-7xl mx-auto flex items-center justify-between">
-        <div class="flex items-center gap-8">
-            <a href="home.html" class="flex items-center gap-3 text-slate-900 group cursor-pointer">
-                <div
-                    class="size-8 text-primary flex items-center justify-center bg-blue-50 rounded-lg border border-blue-100">
-                    <span class="material-symbols-outlined">hub</span>
-                </div>
-                <h2
-                    class="text-lg font-bold leading-tight tracking-tight transition-colors group-hover:text-primary font-sans">
-                    PhiloMap</h2>
-            </a>
-            <nav class="hidden lg:flex items-center gap-6 pl-4">
-                <a id="home-link"
-                    class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
-                    href="home.html">Trang chủ</a>
-                <a id="modules-link"
-                    class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
-                    href="home.html#overview">Modules</a>
-
-                <a class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
-                    href="practice.html">Thực hành</a>
-
-            </nav>
+<header
+  id="main-header"
+  class="fixed top-0 left-0 right-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300"
+>
+  <div
+    class="px-4 md:px-10 py-3 max-w-7xl mx-auto flex items-center justify-between"
+  >
+    <div class="flex items-center gap-8">
+      <a
+        href="home.html"
+        class="flex items-center gap-3 text-slate-900 group cursor-pointer"
+      >
+        <div
+          class="size-8 text-primary flex items-center justify-center bg-blue-50 rounded-lg border border-blue-100"
+        >
+          <span class="material-symbols-outlined">hub</span>
         </div>
-        <div class="flex items-center gap-4">
-            <div class="relative group" id="search-container">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <span
-                        class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors text-[20px]">search</span>
-                </div>
-                <input id="search-input"
-                    class="block w-64 md:w-72 pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm text-slate-700 placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm hover:shadow-md hover:border-primary/30"
-                    placeholder="Tìm kiếm khái niệm..." type="text" autocomplete="off" />
+        <h2
+          class="text-lg font-bold leading-tight tracking-tight transition-colors group-hover:text-primary font-sans"
+        >
+          PhiloMap
+        </h2>
+      </a>
+      <nav class="hidden lg:flex items-center gap-6 pl-4">
+        <a
+          id="home-link"
+          class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
+          href="home.html"
+          >Trang chủ</a
+        >
+        <a
+          id="modules-link"
+          class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
+          href="home.html#overview"
+          >Modules</a
+        >
 
-                <!-- Search Results Dropdown -->
-                <div id="search-results"
-                    class="hidden absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-96 overflow-y-auto z-50">
-                    <!-- Results will be populated here by JavaScript -->
-                </div>
-            </div>
-        </div>
+        <a
+          class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
+          href="practice.html"
+          >Thực hành</a
+        >
+
+        <a
+          class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent flex items-center gap-1"
+          href="worldview-game.html"
+        >
+          <span class="material-symbols-outlined text-[18px]">extension</span>
+          Game
+        </a>
+      </nav>
     </div>
+    <div class="flex items-center gap-4">
+      <div class="relative group" id="search-container">
+        <div
+          class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
+        >
+          <span
+            class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors text-[20px]"
+            >search</span
+          >
+        </div>
+        <input
+          id="search-input"
+          class="block w-64 md:w-72 pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm text-slate-700 placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm hover:shadow-md hover:border-primary/30"
+          placeholder="Tìm kiếm khái niệm..."
+          type="text"
+          autocomplete="off"
+        />
+
+        <!-- Search Results Dropdown -->
+        <div
+          id="search-results"
+          class="hidden absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-96 overflow-y-auto z-50"
+        >
+          <!-- Results will be populated here by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
 </header>
 
 <!-- Spacer to prevent content from going under fixed header -->
-<div style="height: 60px;"></div>
+<div style="height: 60px"></div>
 
 <!-- Add CSS for smooth scroll with offset for fixed header -->
 <style>
-    /* Scroll offset for anchor links to account for fixed header */
-    html {
-        scroll-padding-top: 80px;
-        /* Height of header + some padding */
-        scroll-behavior: smooth;
-    }
+  /* Scroll offset for anchor links to account for fixed header */
+  html {
+    scroll-padding-top: 80px;
+    /* Height of header + some padding */
+    scroll-behavior: smooth;
+  }
 </style>
 
 <!-- Load search data inline to avoid path issues -->
 <script>
-    const searchData = [
-        { title: "Module 1: Triết học là gì?", subtitle: "Khái niệm và vai trò của triết học", url: "module1.html", keywords: ["triết học", "khái niệm", "thế giới quan", "phương pháp luận", "module 1", "m1"], type: "module", icon: "school" },
-        { title: "Module 2: Đối mặt với thay đổi", subtitle: "Nghệ thuật đối mặt với thay đổi và áp lực", url: "module2.html", keywords: ["lượng chất", "mâu thuẫn", "phủ định", "biện chứng", "quy luật", "module 2", "m2", "thay đổi"], type: "module", icon: "change_circle" },
-        { title: "Module 3: Hành trình tri thức", subtitle: "Con đường biện chứng của nhận thức", url: "module3.html", keywords: ["nhận thức", "thực tiễn", "lý thuyết", "chân lý", "module 3", "m3", "tri thức"], type: "module", icon: "psychology" },
-        { title: "Module 4: Luật chơi xã hội", subtitle: "Chủ nghĩa duy vật lịch sử", url: "module4.html", keywords: ["xã hội", "lịch sử", "kinh tế", "chính trị", "module 4", "m4", "duy vật"], type: "module", icon: "groups" },
-        { title: "Module 5: Con người", subtitle: "Mục tiêu và động lực", url: "module5.html", keywords: ["con người", "bản chất", "tha hóa", "giải phóng", "module 5", "m5"], type: "module", icon: "person" },
-        { title: "Thực hành", subtitle: "Bài tập và câu hỏi ôn tập", url: "practice.html", keywords: ["thực hành", "bài tập", "ôn tập", "practice"], type: "practice", icon: "edit_note" },
-        { title: "Quy luật Lượng - Chất", subtitle: "Module 2", url: "module2.html", keywords: ["lượng", "chất", "độ", "điểm nút", "bước nhảy"], type: "concept", icon: "science" },
-        { title: "Quy luật Mâu thuẫn", subtitle: "Module 2", url: "module2.html", keywords: ["mâu thuẫn", "đối lập", "đấu tranh"], type: "concept", icon: "balance" },
-        { title: "Trang chủ", subtitle: "Tổng quan về PhiloMap", url: "home.html", keywords: ["trang chủ", "home", "overview"], type: "page", icon: "home" }
-    ];
-    console.log('✓ Search data loaded:', searchData.length, 'items');
+  const searchData = [
+    {
+      title: "Module 1: Triết học là gì?",
+      subtitle: "Khái niệm và vai trò của triết học",
+      url: "module1.html",
+      keywords: [
+        "triết học",
+        "khái niệm",
+        "thế giới quan",
+        "phương pháp luận",
+        "module 1",
+        "m1",
+      ],
+      type: "module",
+      icon: "school",
+    },
+    {
+      title: "Module 2: Đối mặt với thay đổi",
+      subtitle: "Nghệ thuật đối mặt với thay đổi và áp lực",
+      url: "module2.html",
+      keywords: [
+        "lượng chất",
+        "mâu thuẫn",
+        "phủ định",
+        "biện chứng",
+        "quy luật",
+        "module 2",
+        "m2",
+        "thay đổi",
+      ],
+      type: "module",
+      icon: "change_circle",
+    },
+    {
+      title: "Module 3: Hành trình tri thức",
+      subtitle: "Con đường biện chứng của nhận thức",
+      url: "module3.html",
+      keywords: [
+        "nhận thức",
+        "thực tiễn",
+        "lý thuyết",
+        "chân lý",
+        "module 3",
+        "m3",
+        "tri thức",
+      ],
+      type: "module",
+      icon: "psychology",
+    },
+    {
+      title: "Module 4: Luật chơi xã hội",
+      subtitle: "Chủ nghĩa duy vật lịch sử",
+      url: "module4.html",
+      keywords: [
+        "xã hội",
+        "lịch sử",
+        "kinh tế",
+        "chính trị",
+        "module 4",
+        "m4",
+        "duy vật",
+      ],
+      type: "module",
+      icon: "groups",
+    },
+    {
+      title: "Module 5: Con người",
+      subtitle: "Mục tiêu và động lực",
+      url: "module5.html",
+      keywords: [
+        "con người",
+        "bản chất",
+        "tha hóa",
+        "giải phóng",
+        "module 5",
+        "m5",
+      ],
+      type: "module",
+      icon: "person",
+    },
+    {
+      title: "Thực hành",
+      subtitle: "Bài tập và câu hỏi ôn tập",
+      url: "practice.html",
+      keywords: ["thực hành", "bài tập", "ôn tập", "practice"],
+      type: "practice",
+      icon: "edit_note",
+    },
+    {
+      title: "Game Xây Thế Giới Quan",
+      subtitle: "Trò chơi tương tác xây dựng hệ tư duy",
+      url: "worldview-game.html",
+      keywords: [
+        "game",
+        "trò chơi",
+        "thế giới quan",
+        "tương tác",
+        "xây dựng",
+        "worldview",
+      ],
+      type: "game",
+      icon: "extension",
+    },
+    {
+      title: "Quy luật Lượng - Chất",
+      subtitle: "Module 2",
+      url: "module2.html",
+      keywords: ["lượng", "chất", "độ", "điểm nút", "bước nhảy"],
+      type: "concept",
+      icon: "science",
+    },
+    {
+      title: "Quy luật Mâu thuẫn",
+      subtitle: "Module 2",
+      url: "module2.html",
+      keywords: ["mâu thuẫn", "đối lập", "đấu tranh"],
+      type: "concept",
+      icon: "balance",
+    },
+    {
+      title: "Trang chủ",
+      subtitle: "Tổng quan về PhiloMap",
+      url: "home.html",
+      keywords: ["trang chủ", "home", "overview"],
+      type: "page",
+      icon: "home",
+    },
+  ];
+  console.log("✓ Search data loaded:", searchData.length, "items");
 </script>
 
 <script>
-    // Add shadow to header on scroll
-    window.addEventListener('scroll', function () {
-        const header = document.getElementById('main-header');
-        if (header && window.scrollY > 10) {
-            header.classList.add('shadow-md');
-        } else if (header) {
-            header.classList.remove('shadow-md');
-        }
-    });
+  // Add shadow to header on scroll
+  window.addEventListener("scroll", function () {
+    const header = document.getElementById("main-header");
+    if (header && window.scrollY > 10) {
+      header.classList.add("shadow-md");
+    } else if (header) {
+      header.classList.remove("shadow-md");
+    }
+  });
 
-    // Search functionality
-    document.addEventListener('DOMContentLoaded', function () {
-        const searchInput = document.getElementById('search-input');
-        const searchResults = document.getElementById('search-results');
-        const searchContainer = document.getElementById('search-container');
-        let selectedIndex = -1;
+  // Search functionality
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("search-input");
+    const searchResults = document.getElementById("search-results");
+    const searchContainer = document.getElementById("search-container");
+    let selectedIndex = -1;
 
-        if (!searchInput || !searchResults) {
-            console.error('Search elements not found');
-            return;
-        }
+    if (!searchInput || !searchResults) {
+      console.error("Search elements not found");
+      return;
+    }
 
-        // Check if searchData is loaded
-        if (typeof searchData === 'undefined') {
-            console.error('searchData is not loaded. Make sure search-data.js is loaded correctly.');
-            return;
-        }
+    // Check if searchData is loaded
+    if (typeof searchData === "undefined") {
+      console.error(
+        "searchData is not loaded. Make sure search-data.js is loaded correctly.",
+      );
+      return;
+    }
 
-        console.log('Search initialized with', searchData.length, 'items');
+    console.log("Search initialized with", searchData.length, "items");
 
-        // Search function
-        function performSearch(query) {
-            if (!query || query.trim().length < 2) {
-                searchResults.classList.add('hidden');
-                return;
-            }
+    // Search function
+    function performSearch(query) {
+      if (!query || query.trim().length < 2) {
+        searchResults.classList.add("hidden");
+        return;
+      }
 
-            query = query.toLowerCase().trim();
+      query = query.toLowerCase().trim();
 
-            // Filter search data
-            const results = searchData.filter(item => {
-                return item.title.toLowerCase().includes(query) ||
-                    item.subtitle.toLowerCase().includes(query) ||
-                    item.keywords.some(keyword => keyword.toLowerCase().includes(query));
-            }).slice(0, 8); // Limit to 8 results
+      // Filter search data
+      const results = searchData
+        .filter((item) => {
+          return (
+            item.title.toLowerCase().includes(query) ||
+            item.subtitle.toLowerCase().includes(query) ||
+            item.keywords.some((keyword) =>
+              keyword.toLowerCase().includes(query),
+            )
+          );
+        })
+        .slice(0, 8); // Limit to 8 results
 
-            console.log('Search query:', query, 'Results:', results.length);
-            displayResults(results, query);
-        }
+      console.log("Search query:", query, "Results:", results.length);
+      displayResults(results, query);
+    }
 
-        // Display results
-        function displayResults(results, query) {
-            console.log('displayResults called with', results.length, 'results');
-            console.log('searchResults element:', searchResults);
+    // Display results
+    function displayResults(results, query) {
+      console.log("displayResults called with", results.length, "results");
+      console.log("searchResults element:", searchResults);
 
-            if (results.length === 0) {
-                searchResults.innerHTML = `
+      if (results.length === 0) {
+        searchResults.innerHTML = `
                     <div class="p-4 text-center text-gray-500">
                         <span class="material-symbols-outlined text-3xl mb-2 opacity-50">search_off</span>
                         <p class="text-sm">Không tìm thấy kết quả cho "${query}"</p>
                     </div>
                 `;
-                searchResults.classList.remove('hidden');
-                console.log('Showing empty state, classes:', searchResults.className);
-                return;
-            }
+        searchResults.classList.remove("hidden");
+        console.log("Showing empty state, classes:", searchResults.className);
+        return;
+      }
 
-            const html = results.map((item, index) => `
+      const html = results
+        .map(
+          (item, index) => `
                 <a href="${item.url}" 
                    class="search-result-item flex items-start gap-3 p-3 hover:bg-blue-50 transition-colors cursor-pointer border-b border-gray-100 last:border-b-0"
                    data-index="${index}">
@@ -154,148 +317,160 @@
                         <div class="text-xs text-primary mt-0.5 capitalize">${getTypeLabel(item.type)}</div>
                     </div>
                 </a>
-            `).join('');
+            `,
+        )
+        .join("");
 
-            searchResults.innerHTML = html;
-            searchResults.classList.remove('hidden');
-            console.log('Showing results, classes:', searchResults.className);
-            selectedIndex = -1;
-        }
+      searchResults.innerHTML = html;
+      searchResults.classList.remove("hidden");
+      console.log("Showing results, classes:", searchResults.className);
+      selectedIndex = -1;
+    }
 
-        // Highlight matching text
-        function highlightText(text, query) {
-            const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
-            return text.replace(regex, '<mark class="bg-yellow-200 text-gray-900">$1</mark>');
-        }
+    // Highlight matching text
+    function highlightText(text, query) {
+      const regex = new RegExp(`(${escapeRegex(query)})`, "gi");
+      return text.replace(
+        regex,
+        '<mark class="bg-yellow-200 text-gray-900">$1</mark>',
+      );
+    }
 
-        // Escape special regex characters
-        function escapeRegex(string) {
-            return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-        }
+    // Escape special regex characters
+    function escapeRegex(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    }
 
-        // Get type label in Vietnamese
-        function getTypeLabel(type) {
-            const labels = {
-                'module': 'Module',
-                'concept': 'Khái niệm',
-                'practice': 'Thực hành',
-                'page': 'Trang'
-            };
-            return labels[type] || type;
-        }
+    // Get type label in Vietnamese
+    function getTypeLabel(type) {
+      const labels = {
+        module: "Module",
+        concept: "Khái niệm",
+        practice: "Thực hành",
+        game: "Trò chơi",
+        page: "Trang",
+      };
+      return labels[type] || type;
+    }
 
-        // Event listeners
-        searchInput.addEventListener('input', function (e) {
-            performSearch(e.target.value);
-        });
-
-        searchInput.addEventListener('focus', function (e) {
-            if (e.target.value.trim().length >= 2) {
-                performSearch(e.target.value);
-            }
-        });
-
-        // Keyboard navigation
-        searchInput.addEventListener('keydown', function (e) {
-            const items = searchResults.querySelectorAll('.search-result-item');
-
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
-                updateSelection(items);
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                selectedIndex = Math.max(selectedIndex - 1, -1);
-                updateSelection(items);
-            } else if (e.key === 'Enter' && selectedIndex >= 0) {
-                e.preventDefault();
-                items[selectedIndex].click();
-            } else if (e.key === 'Escape') {
-                searchResults.classList.add('hidden');
-                searchInput.blur();
-            }
-        });
-
-        // Update selection highlight
-        function updateSelection(items) {
-            items.forEach((item, index) => {
-                if (index === selectedIndex) {
-                    item.classList.add('bg-blue-50');
-                    item.scrollIntoView({ block: 'nearest' });
-                } else {
-                    item.classList.remove('bg-blue-50');
-                }
-            });
-        }
-
-        // Click outside to close
-        document.addEventListener('click', function (e) {
-            if (searchContainer && !searchContainer.contains(e.target)) {
-                searchResults.classList.add('hidden');
-            }
-        });
-
-        // Prevent dropdown from closing when clicking inside
-        searchResults.addEventListener('click', function (e) {
-            e.stopPropagation();
-        });
+    // Event listeners
+    searchInput.addEventListener("input", function (e) {
+      performSearch(e.target.value);
     });
 
-    // Smart navigation for Modules link
-    document.addEventListener('DOMContentLoaded', function () {
-        const modulesLink = document.getElementById('modules-link');
-        if (modulesLink) {
-            modulesLink.addEventListener('click', function (e) {
-                const currentPage = window.location.pathname.split('/').pop() || 'home.html';
-
-                // If we're already on home.html, just scroll to overview
-                if (currentPage === 'home.html' || currentPage === '') {
-                    e.preventDefault();
-                    const overviewSection = document.getElementById('overview');
-                    if (overviewSection) {
-                        overviewSection.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-                // Otherwise, let the link navigate to home.html#overview normally
-            });
-        }
-
-        // Update active nav link based on scroll position (only on home page)
-        const currentPage = window.location.pathname.split('/').pop() || 'home.html';
-        if (currentPage === 'home.html' || currentPage === '') {
-            function updateNavOnScroll() {
-                const overviewSection = document.getElementById('overview');
-                if (!overviewSection) return;
-
-                const overviewTop = overviewSection.getBoundingClientRect().top;
-                const threshold = 200; // Pixels from top to consider "in overview"
-
-                const homeLink = document.querySelector('a[href="home.html"]');
-                const modulesLinkNav = document.getElementById('modules-link');
-
-                if (overviewTop <= threshold) {
-                    // We're in overview section - highlight Modules
-                    if (homeLink) {
-                        homeLink.className = "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent";
-                    }
-                    if (modulesLinkNav) {
-                        modulesLinkNav.className = "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-primary text-sm font-bold hover:text-primary relative pb-1 border-b-2 border-primary";
-                    }
-                } else {
-                    // We're in hero section - highlight Trang chủ
-                    if (homeLink) {
-                        homeLink.className = "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-primary text-sm font-bold hover:text-primary relative pb-1 border-b-2 border-primary";
-                    }
-                    if (modulesLinkNav) {
-                        modulesLinkNav.className = "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent";
-                    }
-                }
-            }
-
-            // Listen to scroll events
-            window.addEventListener('scroll', updateNavOnScroll);
-            // Run once on load
-            setTimeout(updateNavOnScroll, 100);
-        }
+    searchInput.addEventListener("focus", function (e) {
+      if (e.target.value.trim().length >= 2) {
+        performSearch(e.target.value);
+      }
     });
+
+    // Keyboard navigation
+    searchInput.addEventListener("keydown", function (e) {
+      const items = searchResults.querySelectorAll(".search-result-item");
+
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        selectedIndex = Math.min(selectedIndex + 1, items.length - 1);
+        updateSelection(items);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        selectedIndex = Math.max(selectedIndex - 1, -1);
+        updateSelection(items);
+      } else if (e.key === "Enter" && selectedIndex >= 0) {
+        e.preventDefault();
+        items[selectedIndex].click();
+      } else if (e.key === "Escape") {
+        searchResults.classList.add("hidden");
+        searchInput.blur();
+      }
+    });
+
+    // Update selection highlight
+    function updateSelection(items) {
+      items.forEach((item, index) => {
+        if (index === selectedIndex) {
+          item.classList.add("bg-blue-50");
+          item.scrollIntoView({ block: "nearest" });
+        } else {
+          item.classList.remove("bg-blue-50");
+        }
+      });
+    }
+
+    // Click outside to close
+    document.addEventListener("click", function (e) {
+      if (searchContainer && !searchContainer.contains(e.target)) {
+        searchResults.classList.add("hidden");
+      }
+    });
+
+    // Prevent dropdown from closing when clicking inside
+    searchResults.addEventListener("click", function (e) {
+      e.stopPropagation();
+    });
+  });
+
+  // Smart navigation for Modules link
+  document.addEventListener("DOMContentLoaded", function () {
+    const modulesLink = document.getElementById("modules-link");
+    if (modulesLink) {
+      modulesLink.addEventListener("click", function (e) {
+        const currentPage =
+          window.location.pathname.split("/").pop() || "home.html";
+
+        // If we're already on home.html, just scroll to overview
+        if (currentPage === "home.html" || currentPage === "") {
+          e.preventDefault();
+          const overviewSection = document.getElementById("overview");
+          if (overviewSection) {
+            overviewSection.scrollIntoView({ behavior: "smooth" });
+          }
+        }
+        // Otherwise, let the link navigate to home.html#overview normally
+      });
+    }
+
+    // Update active nav link based on scroll position (only on home page)
+    const currentPage =
+      window.location.pathname.split("/").pop() || "home.html";
+    if (currentPage === "home.html" || currentPage === "") {
+      function updateNavOnScroll() {
+        const overviewSection = document.getElementById("overview");
+        if (!overviewSection) return;
+
+        const overviewTop = overviewSection.getBoundingClientRect().top;
+        const threshold = 200; // Pixels from top to consider "in overview"
+
+        const homeLink = document.querySelector('a[href="home.html"]');
+        const modulesLinkNav = document.getElementById("modules-link");
+
+        if (overviewTop <= threshold) {
+          // We're in overview section - highlight Modules
+          if (homeLink) {
+            homeLink.className =
+              "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent";
+          }
+          if (modulesLinkNav) {
+            modulesLinkNav.className =
+              "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-primary text-sm font-bold hover:text-primary relative pb-1 border-b-2 border-primary";
+          }
+        } else {
+          // We're in hero section - highlight Trang chủ
+          if (homeLink) {
+            homeLink.className =
+              "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-primary text-sm font-bold hover:text-primary relative pb-1 border-b-2 border-primary";
+          }
+          if (modulesLinkNav) {
+            modulesLinkNav.className =
+              "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent";
+          }
+        }
+      }
+
+      // Listen to scroll events
+      window.addEventListener("scroll", updateNavOnScroll);
+      // Run once on load
+      setTimeout(updateNavOnScroll, 100);
+    }
+  });
 </script>
