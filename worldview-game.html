@@ -1,619 +1,634 @@
 <!doctype html>
 
 <html class="light" lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Xây Thế Giới Quan - PhiloMap Interactive Game</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Lora:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#308ce8",
-              "background-light": "#f6f7f8",
-              "background-dark": "#111921",
-            },
-            fontFamily: {
-              display: ["Lexend", "sans-serif"],
-              serif: ["Lora", "serif"],
-            },
-            borderRadius: {
-              DEFAULT: "0.5rem",
-              lg: "1rem",
-              xl: "1.5rem",
-              full: "9999px",
-            },
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Bản Đồ Phát Triển - Development Map Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Lora:wght@700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#308ce8",
+            "background-light": "#f6f7f8",
+            "background-dark": "#111921",
+          },
+          fontFamily: {
+            display: ["Lexend", "sans-serif"],
+            serif: ["Lora", "serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            full: "9999px",
           },
         },
-      };
-    </script>
-    <style>
-      .material-symbols-outlined {
-        font-family: "Material Symbols Outlined";
-        font-weight: normal;
-        font-style: normal;
-        font-size: 24px;
-        display: inline-block;
-        line-height: 1;
-        text-transform: none;
-        letter-spacing: normal;
-        word-wrap: normal;
-        white-space: nowrap;
-        direction: ltr;
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
+      },
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-family: "Material Symbols Outlined";
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+
+    .draggable-element {
+      cursor: grab;
+      transition: all 0.3s ease;
+    }
+
+    .draggable-element:active {
+      cursor: grabbing;
+    }
+
+    .draggable-element.dragging {
+      opacity: 0.5;
+      transform: scale(0.95);
+    }
+
+    #character-drop-zone.drag-over {
+      border-color: #308ce8;
+      background-color: rgba(48, 140, 232, 0.05);
+      transform: scale(1.02);
+    }
+
+    .transform-animation {
+      animation: transform-pulse 1s ease-out;
+    }
+
+    @keyframes transform-pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
       }
 
-      .puzzle-piece {
-        cursor: grab;
-        transition: all 0.3s ease;
+      50% {
+        transform: scale(1.1);
+      }
+    }
+
+    .animate-slide-in {
+      animation: slide-in 0.3s ease-out;
+    }
+
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
       }
 
-      .puzzle-piece:active {
-        cursor: grabbing;
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-bounce-in {
+      animation: bounce-in 0.6s ease-out;
+    }
+
+    @keyframes bounce-in {
+      0% {
+        opacity: 0;
+        transform: scale(0.3);
       }
 
-      .puzzle-piece.dragging {
-        opacity: 0.5;
-        transform: scale(0.95);
+      50% {
+        transform: scale(1.05);
       }
 
-      .canvas-area {
-        background-image:
-          linear-gradient(rgba(48, 140, 232, 0.05) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(48, 140, 232, 0.05) 1px, transparent 1px);
-        background-size: 40px 40px;
+      70% {
+        transform: scale(0.9);
       }
 
-      .dark .canvas-area {
-        background-image:
-          linear-gradient(rgba(48, 140, 232, 0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(48, 140, 232, 0.1) 1px, transparent 1px);
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fade-out {
+      from {
+        opacity: 1;
       }
 
-      .connection-line {
-        pointer-events: stroke;
-        cursor: pointer;
-        transition: stroke-width 0.2s ease;
+      to {
+        opacity: 0;
       }
+    }
 
-      .connection-line:hover {
-        stroke-width: 4;
-      }
+    .sidebar-scroll {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(48, 140, 232, 0.3) transparent;
+    }
 
-      .placed-piece {
-        position: absolute;
-        cursor: move;
-        transition: box-shadow 0.2s ease;
-      }
+    .sidebar-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
 
-      .placed-piece:hover {
-        box-shadow: 0 10px 30px -5px rgba(48, 140, 232, 0.3);
-      }
+    .sidebar-scroll::-webkit-scrollbar-track {
+      background: transparent;
+    }
 
-      .placed-piece.selected {
-        box-shadow: 0 0 0 3px rgba(48, 140, 232, 0.5);
-        z-index: 100;
-      }
+    .sidebar-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(48, 140, 232, 0.3);
+      border-radius: 3px;
+    }
+  </style>
+</head>
 
-      .sidebar-scroll {
-        scrollbar-width: thin;
-        scrollbar-color: rgba(48, 140, 232, 0.3) transparent;
-      }
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-hidden">
+  <!-- Header Component -->
+  <div id="header-placeholder"></div>
 
-      .sidebar-scroll::-webkit-scrollbar {
-        width: 6px;
-      }
+  <!-- Main Game Container -->
+  <main class="flex-grow flex overflow-hidden">
+    <!-- Left Sidebar - Elements Library -->
+    <aside class="w-64 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col">
+      <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+        <h1 class="text-xl font-bold text-slate-900 dark:text-white mb-1">
+          <span class="material-symbols-outlined text-primary align-middle mr-1 text-lg">trending_up</span>
+          Bản Đồ Phát Triển
+        </h1>
+        <p class="text-xs text-slate-600 dark:text-gray-400">
+          Kéo thả để phát triển
+        </p>
+      </div>
 
-      .sidebar-scroll::-webkit-scrollbar-track {
-        background: transparent;
-      }
-
-      .sidebar-scroll::-webkit-scrollbar-thumb {
-        background-color: rgba(48, 140, 232, 0.3);
-        border-radius: 3px;
-      }
-    </style>
-  </head>
-
-  <body
-    class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-hidden"
-  >
-    <!-- Header Component -->
-    <div id="header-placeholder"></div>
-
-    <!-- Main Game Container -->
-    <main class="flex-grow flex overflow-hidden">
-      <!-- Sidebar - Puzzle Pieces Library -->
-      <aside
-        class="w-80 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col"
-      >
-        <div class="p-6 border-b border-gray-200 dark:border-gray-700">
-          <h1 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">
-            <span
-              class="material-symbols-outlined text-primary align-middle mr-2"
-              >extension</span
-            >
-            Xây Thế Giới Quan
-          </h1>
-          <p class="text-sm text-slate-600 dark:text-gray-400">
-            Kéo thả các mảnh ghép để xây dựng hệ tư duy của bạn
-          </p>
-        </div>
-
-        <!-- Puzzle Categories -->
-        <div class="flex-grow overflow-y-auto sidebar-scroll p-4 space-y-6">
-          <!-- Category 1: Vật chất - Ý thức -->
-          <div class="puzzle-category">
-            <h3
-              class="text-sm font-bold text-slate-700 dark:text-gray-300 mb-3 flex items-center gap-2"
-            >
-              <span class="w-3 h-3 rounded-full bg-blue-500"></span>
-              Quan hệ Vật chất – Ý thức
-            </h3>
-            <div class="space-y-2">
-              <div
-                class="puzzle-piece bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-700 rounded-xl p-3 hover:shadow-lg hover:border-blue-400 dark:hover:border-blue-500"
-                data-category="matter_consciousness"
-                data-id="materialism"
-                data-concept-id="materialism"
-                draggable="true"
-              >
-                <div class="flex items-start gap-2">
-                  <span
-                    class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-xl"
-                    >science</span
-                  >
-                  <div class="flex-1 min-w-0">
-                    <div
-                      class="font-semibold text-sm text-slate-900 dark:text-white"
-                    >
-                      Duy vật
-                    </div>
-                    <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
-                      Vật chất quyết định ý thức
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="puzzle-piece bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-700 rounded-xl p-3 hover:shadow-lg hover:border-blue-400 dark:hover:border-blue-500"
-                data-category="matter_consciousness"
-                data-id="idealism"
-                data-concept-id="idealism"
-                draggable="true"
-              >
-                <div class="flex items-start gap-2">
-                  <span
-                    class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-xl"
-                    >psychology</span
-                  >
-                  <div class="flex-1 min-w-0">
-                    <div
-                      class="font-semibold text-sm text-slate-900 dark:text-white"
-                    >
-                      Duy tâm
-                    </div>
-                    <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
-                      Ý thức quyết định vật chất
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Category 2: Mâu thuẫn -->
-          <div class="puzzle-category">
-            <h3
-              class="text-sm font-bold text-slate-700 dark:text-gray-300 mb-3 flex items-center gap-2"
-            >
-              <span class="w-3 h-3 rounded-full bg-green-500"></span>
-              Quan điểm về Mâu thuẫn
-            </h3>
-            <div class="space-y-2">
-              <div
-                class="puzzle-piece bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-700 rounded-xl p-3 hover:shadow-lg hover:border-green-400 dark:hover:border-green-500"
-                data-category="contradiction"
-                data-id="dialectical"
-                data-concept-id="dialectical"
-                draggable="true"
-              >
-                <div class="flex items-start gap-2">
-                  <span
-                    class="material-symbols-outlined text-green-600 dark:text-green-400 text-xl"
-                    >sync</span
-                  >
-                  <div class="flex-1 min-w-0">
-                    <div
-                      class="font-semibold text-sm text-slate-900 dark:text-white"
-                    >
-                      Biện chứng
-                    </div>
-                    <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
-                      Mâu thuẫn là động lực phát triển
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="puzzle-piece bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-700 rounded-xl p-3 hover:shadow-lg hover:border-green-400 dark:hover:border-green-500"
-                data-category="contradiction"
-                data-id="metaphysical"
-                data-concept-id="metaphysical"
-                draggable="true"
-              >
-                <div class="flex items-start gap-2">
-                  <span
-                    class="material-symbols-outlined text-green-600 dark:text-green-400 text-xl"
-                    >lock</span
-                  >
-                  <div class="flex-1 min-w-0">
-                    <div
-                      class="font-semibold text-sm text-slate-900 dark:text-white"
-                    >
-                      Siêu hình
-                    </div>
-                    <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
-                      Tránh mâu thuẫn, tìm hài hòa
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Category 3: Phát triển -->
-          <div class="puzzle-category">
-            <h3
-              class="text-sm font-bold text-slate-700 dark:text-gray-300 mb-3 flex items-center gap-2"
-            >
-              <span class="w-3 h-3 rounded-full bg-amber-500"></span>
-              Cách nhìn Sự phát triển
-            </h3>
-            <div class="space-y-2">
-              <div
-                class="puzzle-piece bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-700 rounded-xl p-3 hover:shadow-lg hover:border-amber-400 dark:hover:border-amber-500"
-                data-category="development"
-                data-id="evolution"
-                data-concept-id="evolution"
-                draggable="true"
-              >
-                <div class="flex items-start gap-2">
-                  <span
-                    class="material-symbols-outlined text-amber-600 dark:text-amber-400 text-xl"
-                    >trending_up</span
-                  >
-                  <div class="flex-1 min-w-0">
-                    <div
-                      class="font-semibold text-sm text-slate-900 dark:text-white"
-                    >
-                      Tiến hóa
-                    </div>
-                    <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
-                      Mọi thứ luôn thay đổi, phát triển
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="puzzle-piece bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-700 rounded-xl p-3 hover:shadow-lg hover:border-amber-400 dark:hover:border-amber-500"
-                data-category="development"
-                data-id="static"
-                data-concept-id="static"
-                draggable="true"
-              >
-                <div class="flex items-start gap-2">
-                  <span
-                    class="material-symbols-outlined text-amber-600 dark:text-amber-400 text-xl"
-                    >pause</span
-                  >
-                  <div class="flex-1 min-w-0">
-                    <div
-                      class="font-semibold text-sm text-slate-900 dark:text-white"
-                    >
-                      Tĩnh tại
-                    </div>
-                    <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
-                      Bản chất không đổi, ổn định
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Category 4: Cá nhân - Xã hội -->
-          <div class="puzzle-category">
-            <h3
-              class="text-sm font-bold text-slate-700 dark:text-gray-300 mb-3 flex items-center gap-2"
-            >
-              <span class="w-3 h-3 rounded-full bg-pink-500"></span>
-              Vai trò Cá nhân – Xã hội
-            </h3>
-            <div class="space-y-2">
-              <div
-                class="puzzle-piece bg-pink-50 dark:bg-pink-900/20 border-2 border-pink-200 dark:border-pink-700 rounded-xl p-3 hover:shadow-lg hover:border-pink-400 dark:hover:border-pink-500"
-                data-category="individual_society"
-                data-id="individualism"
-                data-concept-id="individualism"
-                draggable="true"
-              >
-                <div class="flex items-start gap-2">
-                  <span
-                    class="material-symbols-outlined text-pink-600 dark:text-pink-400 text-xl"
-                    >person</span
-                  >
-                  <div class="flex-1 min-w-0">
-                    <div
-                      class="font-semibold text-sm text-slate-900 dark:text-white"
-                    >
-                      Cá nhân
-                    </div>
-                    <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
-                      Cá nhân tự do, độc lập
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                class="puzzle-piece bg-pink-50 dark:bg-pink-900/20 border-2 border-pink-200 dark:border-pink-700 rounded-xl p-3 hover:shadow-lg hover:border-pink-400 dark:hover:border-pink-500"
-                data-category="individual_society"
-                data-id="collectivism"
-                data-concept-id="collectivism"
-                draggable="true"
-              >
-                <div class="flex items-start gap-2">
-                  <span
-                    class="material-symbols-outlined text-pink-600 dark:text-pink-400 text-xl"
-                    >groups</span
-                  >
-                  <div class="flex-1 min-w-0">
-                    <div
-                      class="font-semibold text-sm text-slate-900 dark:text-white"
-                    >
-                      Tập thể
-                    </div>
-                    <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
-                      Xã hội quyết định cá nhân
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Action Buttons -->
+      <!-- Draggable Elements -->
+      <div class="flex-grow overflow-y-auto sidebar-scroll p-4 space-y-3">
+        <!-- Study Element -->
         <div
-          class="p-4 border-t border-gray-200 dark:border-gray-700 space-y-2"
-        >
-          <button
-            id="btn-visualize"
-            class="w-full bg-primary hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
-          >
-            <span class="material-symbols-outlined">insights</span>
-            Xem Sơ Đồ Thế Giới Quan
-          </button>
-          <div class="flex gap-2">
-            <button
-              id="btn-reset"
-              class="flex-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-slate-700 dark:text-gray-300 font-medium py-2 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <span class="material-symbols-outlined text-lg">refresh</span>
-              Reset
-            </button>
-            <button
-              id="btn-save"
-              class="flex-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-slate-700 dark:text-gray-300 font-medium py-2 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
-            >
-              <span class="material-symbols-outlined text-lg">download</span>
-              Lưu
-            </button>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Canvas Area -->
-      <div
-        class="flex-grow flex flex-col bg-background-light dark:bg-background-dark"
-      >
-        <!-- Canvas Header -->
-        <div
-          class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 px-6 py-4"
-        >
-          <div class="flex items-center justify-between">
-            <div>
-              <h2 class="text-lg font-bold text-slate-900 dark:text-white">
-                Không Gian Sáng Tạo
-              </h2>
-              <p class="text-sm text-slate-600 dark:text-gray-400">
-                Kéo thả và kết nối các mảnh ghép
-              </p>
-            </div>
-            <div class="flex items-center gap-4">
-              <div class="text-sm text-slate-600 dark:text-gray-400">
-                <span class="font-semibold" id="piece-count">0</span> mảnh ghép
+          class="draggable-element bg-blue-50 dark:bg-blue-900/20 border-2 border-blue-200 dark:border-blue-700 rounded-xl p-4 hover:shadow-lg hover:border-blue-400 dark:hover:border-blue-500"
+          data-element="study" draggable="true">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-blue-600 dark:text-blue-400 text-2xl">menu_book</span>
+            <div class="flex-1">
+              <div class="font-semibold text-sm text-slate-900 dark:text-white">
+                📚 Học tập
               </div>
-              <div class="text-sm text-slate-600 dark:text-gray-400">
-                <span class="font-semibold" id="connection-count">0</span> kết
-                nối
+              <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
+                +5 Lượng, +10 Tri thức, -3 Tinh thần
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Canvas -->
-        <div id="canvas" class="flex-grow canvas-area relative overflow-hidden">
-          <!-- SVG for connections -->
-          <svg
-            id="connections-svg"
-            class="absolute inset-0 w-full h-full pointer-events-none"
-            style="z-index: 1"
-          >
-            <!-- Connection lines will be drawn here -->
-          </svg>
-
-          <!-- Placed pieces will be added here dynamically -->
+        <!-- Time Element -->
+        <div
+          class="draggable-element bg-indigo-50 dark:bg-indigo-900/20 border-2 border-indigo-200 dark:border-indigo-700 rounded-xl p-4 hover:shadow-lg hover:border-indigo-400"
+          data-element="time" draggable="true">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-indigo-600 dark:text-indigo-400 text-2xl">schedule</span>
+            <div class="flex-1">
+              <div class="font-semibold text-sm text-slate-900 dark:text-white">
+                ⏳ Thời gian
+              </div>
+              <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
+                +3 Lượng, +2 tất cả kỹ năng
+              </div>
+            </div>
+          </div>
         </div>
 
-        <!-- Instructions Overlay (shown when empty) -->
+        <!-- Perseverance Element -->
         <div
-          id="instructions-overlay"
-          class="absolute inset-0 flex items-center justify-center pointer-events-none"
-        >
-          <div class="text-center max-w-md px-6">
-            <span
-              class="material-symbols-outlined text-primary text-6xl mb-4 opacity-30"
-              >touch_app</span
-            >
-            <h3
-              class="text-xl font-bold text-slate-700 dark:text-gray-300 mb-2"
-            >
-              Bắt đầu xây dựng
-            </h3>
-            <p class="text-slate-600 dark:text-gray-400 mb-4">
-              Kéo các mảnh ghép từ thanh bên vào đây để bắt đầu xây dựng thế
-              giới quan của bạn
-            </p>
-            <div
-              class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-xl p-4 text-left"
-            >
-              <p
-                class="text-sm text-slate-700 dark:text-gray-300 mb-2 font-semibold"
-              >
-                💡 Hướng dẫn:
-              </p>
-              <ul class="text-sm text-slate-600 dark:text-gray-400 space-y-1">
-                <li>• Kéo thả mảnh ghép vào canvas</li>
-                <li>• Click 2 mảnh ghép để tạo kết nối</li>
-                <li>• Click vào đường nối để xóa</li>
-                <li>• Xem sơ đồ khi hoàn thành</li>
-              </ul>
+          class="draggable-element bg-green-50 dark:bg-green-900/20 border-2 border-green-200 dark:border-green-700 rounded-xl p-4 hover:shadow-lg hover:border-green-400"
+          data-element="perseverance" draggable="true">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-green-600 dark:text-green-400 text-2xl">fitness_center</span>
+            <div class="flex-1">
+              <div class="font-semibold text-sm text-slate-900 dark:text-white">
+                💪 Kiên trì
+              </div>
+              <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
+                +8 Lượng, +5 Tri thức, +5 Tinh thần
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pressure Element -->
+        <div
+          class="draggable-element bg-red-50 dark:bg-red-900/20 border-2 border-red-200 dark:border-red-700 rounded-xl p-4 hover:shadow-lg hover:border-red-400"
+          data-element="pressure" draggable="true">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-red-600 dark:text-red-400 text-2xl">warning</span>
+            <div class="flex-1">
+              <div class="font-semibold text-sm text-slate-900 dark:text-white">
+                😓 Áp lực
+              </div>
+              <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
+                +4 Lượng, <span class="text-red-600 font-semibold">-10 Tinh thần ⚠️</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social Element -->
+        <div
+          class="draggable-element bg-pink-50 dark:bg-pink-900/20 border-2 border-pink-200 dark:border-pink-700 rounded-xl p-4 hover:shadow-lg hover:border-pink-400"
+          data-element="social" draggable="true">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-pink-600 dark:text-pink-400 text-2xl">groups</span>
+            <div class="flex-1">
+              <div class="font-semibold text-sm text-slate-900 dark:text-white">
+                💬 Giao tiếp
+              </div>
+              <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
+                +4 Lượng, +10 Kỹ năng mềm, +5 Tinh thần
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rest Element -->
+        <div
+          class="draggable-element bg-purple-50 dark:bg-purple-900/20 border-2 border-purple-200 dark:border-purple-700 rounded-xl p-4 hover:shadow-lg hover:border-purple-400"
+          data-element="rest" draggable="true">
+          <div class="flex items-start gap-3">
+            <span class="material-symbols-outlined text-purple-600 dark:text-purple-400 text-2xl">hotel</span>
+            <div class="flex-1">
+              <div class="font-semibold text-sm text-slate-900 dark:text-white">
+                💭 Nghỉ ngơi
+              </div>
+              <div class="text-xs text-slate-600 dark:text-gray-400 mt-1">
+                +15 Tinh thần, <span class="text-gray-500">không tăng Lượng</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </main>
 
-    <!-- Visualization Modal -->
-    <div
-      id="visualization-modal"
-      class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-    >
-      <div
-        class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden flex flex-col"
-      >
-        <!-- Modal Header -->
-        <div
-          class="p-6 border-b border-gray-200 dark:border-gray-700 flex items-center justify-between"
-        >
-          <div>
-            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-1">
-              Sơ Đồ Thế Giới Quan
+      <!-- Philosophy Tip -->
+      <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3">
+          <div class="flex items-start gap-2">
+            <span class="material-symbols-outlined text-primary text-sm">lightbulb</span>
+            <div class="flex-1">
+              <div class="text-xs font-semibold text-slate-700 dark:text-gray-300 mb-1">
+                💡 Mẹo:
+              </div>
+              <div id="current-tip" class="text-xs text-slate-600 dark:text-gray-400">
+                Kéo yếu tố vào nhân vật để bắt đầu!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="p-4 border-t border-gray-200 dark:border-gray-700 space-y-2">
+        <div class="flex gap-2">
+          <button id="btn-reset"
+            class="flex-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-slate-700 dark:text-gray-300 font-medium py-2 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-lg">refresh</span>
+            Reset
+          </button>
+          <button id="btn-save"
+            class="flex-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-slate-700 dark:text-gray-300 font-medium py-2 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-lg">download</span>
+            Lưu
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Center Area - Character & Game -->
+    <div class="flex-grow flex flex-col bg-background-light dark:bg-background-dark">
+      <!-- Character Display-->
+      <div id="character-drop-zone" class="flex-grow relative p-8 transition-all duration-300">
+        <!-- Character Card -->
+        <div id="character-display"
+          class="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 border-4 border-dashed border-gray-300 dark:border-gray-700 transition-all duration-300">
+          <!-- Character Header -->
+          <div class="text-center mb-8">
+            <div class="mb-4">
+              <span id="character-state-icon" class="material-symbols-outlined"
+                style="font-size: 80px; color: #3b82f6">school</span>
+            </div>
+            <h2 id="character-state-name" class="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+              Sinh viên năm 1
             </h2>
-            <p class="text-sm text-slate-600 dark:text-gray-400">
-              Hệ tư duy triết học của bạn
+            <p id="character-state-description" class="text-slate-600 dark:text-gray-400">
+              Mới bắt đầu, đang làm quen
+            </p>
+            <div class="mt-2">
+              <span id="current-semester"
+                class="inline-block bg-blue-100 dark:bg-blue-900/30 text-primary px-3 py-1 rounded-full text-sm font-medium">Kỳ
+                1</span>
+            </div>
+          </div>
+
+          <!-- Quantity Bar -->
+          <div class="mb-6">
+            <div class="flex justify-between items-center mb-2">
+              <label class="text-sm font-bold text-slate-700 dark:text-gray-300">LƯỢNG Tích lũy (Quantity)</label>
+              <span id="quantity-percentage" class="text-sm font-bold text-primary">0%</span>
+            </div>
+            <div class="w-full h-8 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+              <div id="quantity-bar-fill"
+                class="h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-500"
+                style="width: 0%"></div>
+            </div>
+            <p class="text-xs text-slate-500 dark:text-gray-500 mt-1">
+              Đạt ngưỡng để biến đổi CHẤT (Quality)
             </p>
           </div>
-          <button
-            id="btn-close-modal"
-            class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
-          >
-            <span
-              class="material-symbols-outlined text-slate-600 dark:text-gray-400"
-              >close</span
-            >
-          </button>
-        </div>
 
-        <!-- Modal Content -->
-        <div class="flex-grow overflow-y-auto p-6">
-          <!-- Analysis Section -->
-          <div
-            id="analysis-section"
-            class="mb-6 grid grid-cols-1 md:grid-cols-2 gap-4"
-          >
-            <!-- Will be populated by JS -->
+          <!-- Skills Display -->
+          <div class="grid grid-cols-2 gap-4 mb-6">
+            <!-- Knowledge -->
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-blue-500 text-sm">menu_book</span>
+                <span class="text-xs font-semibold text-slate-700 dark:text-gray-300">Tri thức</span>
+                <span id="skill-knowledge-value"
+                  class="ml-auto text-xs font-bold text-slate-600 dark:text-gray-400">20</span>
+              </div>
+              <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div id="skill-knowledge-fill" class="h-full bg-blue-500 rounded-full transition-all duration-300"
+                  style="width: 20%"></div>
+              </div>
+            </div>
+
+            <!-- Soft Skills -->
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-pink-500 text-sm">groups</span>
+                <span class="text-xs font-semibold text-slate-700 dark:text-gray-300">Kỹ năng mềm</span>
+                <span id="skill-softSkills-value"
+                  class="ml-auto text-xs font-bold text-slate-600 dark:text-gray-400">10</span>
+              </div>
+              <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div id="skill-softSkills-fill" class="h-full bg-pink-500 rounded-full transition-all duration-300"
+                  style="width: 10%"></div>
+              </div>
+            </div>
+
+            <!-- Creativity -->
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-amber-500 text-sm">lightbulb</span>
+                <span class="text-xs font-semibold text-slate-700 dark:text-gray-300">Sáng tạo</span>
+                <span id="skill-creativity-value"
+                  class="ml-auto text-xs font-bold text-slate-600 dark:text-gray-400">15</span>
+              </div>
+              <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div id="skill-creativity-fill" class="h-full bg-amber-500 rounded-full transition-all duration-300"
+                  style="width: 15%"></div>
+              </div>
+            </div>
+
+            <!-- Mental Health -->
+            <div>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="material-symbols-outlined text-green-500 text-sm">favorite</span>
+                <span class="text-xs font-semibold text-slate-700 dark:text-gray-300">Tinh thần</span>
+                <span id="skill-mentalHealth-value"
+                  class="ml-auto text-xs font-bold text-slate-600 dark:text-gray-400">100</span>
+              </div>
+              <div class="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                <div id="skill-mentalHealth-fill" class="h-full bg-green-500 rounded-full transition-all duration-300"
+                  style="width: 100%"></div>
+              </div>
+            </div>
           </div>
 
-          <!-- Visualization Canvas -->
-          <div
-            class="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 min-h-[400px] flex items-center justify-center"
-          >
-            <canvas id="visualization-canvas" class="max-w-full"></canvas>
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+            <div class="text-center">
+              <div class="text-2xl font-bold text-primary" id="stat-actions">0</div>
+              <div class="text-xs text-slate-600 dark:text-gray-400">Hành động</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-green-600" id="stat-transformations">0</div>
+              <div class="text-xs text-slate-600 dark:text-gray-400">Biến đổi</div>
+            </div>
+            <div class="text-center">
+              <div class="text-2xl font-bold text-purple-600" id="stat-events">0</div>
+              <div class="text-xs text-slate-600 dark:text-gray-400">Sự kiện</div>
+            </div>
           </div>
         </div>
 
-        <!-- Modal Footer -->
-        <div
-          class="p-6 border-t border-gray-200 dark:border-gray-700 flex gap-3"
-        >
-          <button
-            id="btn-ai-analysis"
-            class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
-          >
-            <span class="material-symbols-outlined">psychology</span>
-            Phân Tích AI
-          </button>
-          <button
-            id="btn-export-image"
-            class="flex-1 bg-primary hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
-          >
-            <span class="material-symbols-outlined">download</span>
-            Tải xuống
-          </button>
-          <button
-            id="btn-share"
-            class="flex-1 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-slate-700 dark:text-gray-300 font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2"
-          >
-            <span class="material-symbols-outlined">share</span>
-            Chia sẻ
-          </button>
+        <!-- Achievement Unlock Container (Above Character) -->
+        <div id="achievement-container"
+          class="absolute top-0 left-1/2 transform -translate-x-1/2 z-50 space-y-4 pointer-events-none"></div>
+        <!-- Drop instruction (shown initially) -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none hidden">
+          <div class="text-center max-w-md px-6 opacity-20">
+            <span class="material-symbols-outlined text-primary text-6xl mb-4">touch_app</span>
+            <h3 class="text-xl font-bold text-slate-700 dark:text-gray-300 mb-2">
+              Kéo thả để bắt đầu
+            </h3>
+            <p class="text-slate-600 dark:text-gray-400">
+              Kéo các yếu tố từ thanh bên vào đây
+            </p>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Load search data FIRST -->
-    <script src="js/search-data-global.js"></script>
+    <!-- Right Sidebar - Actions & Achievements -->
+    <aside class="w-72 bg-white dark:bg-gray-800 border-l border-gray-200 dark:border-gray-700 flex flex-col">
+      <!-- Event Notifications -->
+      <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+        <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-3">
+          <span class="material-symbols-outlined text-primary align-middle mr-1 text-sm">notifications</span>
+          Sự kiện
+        </h3>
+        <div id="event-notifications" class="space-y-2 max-h-40 overflow-y-auto sidebar-scroll">
+          <!-- Events will appear here -->
+        </div>
+      </div>
 
-    <!-- Component Loader -->
-    <script src="js/load-components.js"></script>
+      <!-- Action Log -->
+      <div class="flex-grow overflow-y-auto sidebar-scroll p-4 border-b border-gray-200 dark:border-gray-700">
+        <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-3 sticky top-0 bg-white dark:bg-gray-800">
+          <span class="material-symbols-outlined text-primary align-middle mr-1 text-sm">history</span>
+          Hoạt động
+        </h3>
+        <div id="action-log" class="space-y-2">
+          <!-- Actions will appear here -->
+        </div>
+      </div>
 
-    <!-- Search initialization -->
-    <script src="js/search-init.js"></script>
+      <!-- Achievements -->
+      <div class="p-4">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-bold text-sm text-slate-900 dark:text-white">
+            Thành tựu
+          </h3>
+          <span id="achievement-percentage" class="text-xs font-bold text-primary">0%</span>
+        </div>
+        <div id="achievements-list" class="grid grid-cols-2 gap-2 max-h-48 overflow-y-auto sidebar-scroll">
+          <!-- Achievements will appear here -->
+        </div>
+      </div>
+    </aside>
+  </main>
 
-    <!-- Game Scripts -->
-    <script src="js/worldview-game.js"></script>
-    <script src="js/worldview-visualization.js"></script>
-    
-    <!-- Enhancement Scripts -->
-    <script src="js/worldview-animations.js"></script>
-    <script src="js/worldview-achievements.js"></script>
-    <script src="js/worldview-ai-analysis.js"></script>
-    <script src="js/worldview-challenges.js"></script>
-    <script src="js/worldview-templates.js"></script>
-  </body>
+
+  <!-- Welcome Modal -->
+  <div id="welcome-modal"
+    class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-2xl w-full p-8">
+      <div class="text-center">
+        <span class="material-symbols-outlined text-primary text-6xl mb-4">trending_up</span>
+        <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">
+          Bản Đồ Phát Triển
+        </h2>
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6 mb-6">
+          <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-3">
+            🎯 Mục tiêu Game
+          </h3>
+          <p class="text-slate-700 dark:text-gray-300 text-sm leading-relaxed mb-4">
+            Trải nghiệm quy luật <strong>LƯỢNG → CHẤT</strong> của triết học Mác-Lênin
+            qua cuộc sống sinh viên.
+          </p>
+          <p class="text-slate-600 dark:text-gray-400 text-sm">
+            Tích lũy đủ về LƯỢNG (học tập, kiên trì) sẽ dẫn đến biến đổi về CHẤT
+            (sinh viên → thực tập sinh → có việc làm)
+          </p>
+        </div>
+        <div class="text-left mb-6">
+          <h4 class="font-bold text-sm text-slate-900 dark:text-white mb-2">
+            📚 Cách chơi:
+          </h4>
+          <ul class="text-sm text-slate-600 dark:text-gray-400 space-y-1">
+            <li>• Kéo các yếu tố (học tập, thời gian, kiên trì...) vào nhân vật</li>
+            <li>• Theo dõi thanh LƯỢNG và 4 chỉ số kỹ năng</li>
+            <li>• Đạt ngưỡng để trải nghiệm biến đổi CHẤT</li>
+            <li>• Cân bằng giữa học tập và tinh thần</li>
+            <li>• Mở khóa thành tựu và vượt qua sự kiện ngẫu nhiên</li>
+          </ul>
+        </div>
+        <button id="btn-start-game"
+          class="w-full bg-primary hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+          Bắt đầu chơi
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Transformation Modal -->
+  <div id="transformation-modal"
+    class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-lg w-full p-8 text-center">
+      <div class="mb-4">
+        <span class="text-6xl">🎉</span>
+      </div>
+      <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+        Biến đổi CHẤT!
+      </h2>
+      <div class="flex items-center justify-center gap-4 mb-6">
+        <div class="text-center">
+          <div id="old-state-name" class="text-lg text-slate-600 dark:text-gray-400">
+            Sinh viên
+          </div>
+        </div>
+        <span class="material-symbols-outlined text-primary text-4xl">arrow_forward</span>
+        <div class="text-center">
+          <div id="new-state-name" class="text-xl font-bold text-primary">
+            Thực tập sinh
+          </div>
+        </div>
+      </div>
+      <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4">
+        <p id="transformation-message" class="text-sm text-slate-700 dark:text-gray-300">
+          Tích lũy đủ về lượng đã tạo nên bước nhảy về chất!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Completion Modal -->
+  <div id="completion-modal"
+    class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl max-w-2xl w-full p-8 text-center">
+      <div class="mb-4">
+        <span class="text-6xl">🏆</span>
+      </div>
+      <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-2">
+        Hoàn thành xuất sắc!
+      </h2>
+      <p class="text-slate-600 dark:text-gray-400 mb-6">
+        Bạn đã trải nghiệm quy luật LƯỢNG → CHẤT
+      </p>
+
+      <div class="grid grid-cols-3 gap-4 mb-6">
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4">
+          <div class="text-3xl font-bold text-primary" id="final-quantity">100%</div>
+          <div class="text-xs text-slate-600 dark:text-gray-400">Lượng đạt được</div>
+        </div>
+        <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-4">
+          <div class="text-3xl font-bold text-green-600" id="final-transformations">3</div>
+          <div class="text-xs text-slate-600 dark:text-gray-400">Biến đổi chất</div>
+        </div>
+        <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-4">
+          <div class="text-3xl font-bold text-purple-600" id="final-achievements">5/15</div>
+          <div class="text-xs text-slate-600 dark:text-gray-400">Thành tựu</div>
+        </div>
+      </div>
+
+      <div class="bg-amber-50 dark:bg-amber-900/20 rounded-xl p-6 text-left mb-6">
+        <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-3">
+          📖 Bài học Triết học:
+        </h3>
+        <p class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed mb-3">
+          Quy luật <strong>lượng - chất</strong> cho thấy rằng sự tích lũy liên tục về lượng
+          (học tập, rèn luyện, kinh nghiệm) đến một ngưỡng nhất định sẽ tạo nên sự biến đổi về chất -
+          một bước nhảy trong phát triển.
+        </p>
+        <p class="text-sm text-slate-600 dark:text-gray-400">
+          💡 Trong cuộc sống: Không có thành công tức thời. Mọi sự phát triển đều cần sự tích lũy kiên trì!
+        </p>
+      </div>
+
+      <button
+        class="close-modal w-full bg-primary hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300">
+        Đóng
+      </button>
+    </div>
+  </div>
+
+  <!-- Load Scripts -->
+  <script src="js/search-data-global.js"></script>
+  <script src="js/load-components.js"></script>
+  <script src="js/search-init.js"></script>
+
+  <!-- Game Scripts -->
+  <script src="js/element-effects.js"></script>
+  <script src="js/character-state.js"></script>
+  <script src="js/event-system.js"></script>
+  <script src="js/achievement-system.js"></script>
+  <script src="js/development-map-game.js"></script>
+</body>
+
 </html>
