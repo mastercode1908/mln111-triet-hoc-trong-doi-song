@@ -96,6 +96,102 @@ const ELEMENT_EFFECTS = {
             mentalHealth: 15
         },
         tip: 'Không tăng lượng, nhưng cần thiết!'
+    },
+
+    parttime: {
+        id: 'parttime',
+        icon: 'attach_money',
+        name: 'Làm thêm',
+        description: 'Kiếm tiền nhưng ảnh hưởng học tập',
+        color: '#f97316',
+        effects: {
+            quantity: 3,
+            knowledge: -3,
+            creativity: 2,
+            softSkills: 8,
+            mentalHealth: -5
+        },
+        tip: 'Kiếm tiền nhưng cần cân bằng thời gian!'
+    },
+
+    entertainment: {
+        id: 'entertainment',
+        icon: 'videogame_asset',
+        name: 'Giải trí',
+        description: 'Giảm stress nhưng không tăng lượng',
+        color: '#06b6d4',
+        effects: {
+            quantity: 0,
+            knowledge: 0,
+            creativity: 3,
+            softSkills: 0,
+            mentalHealth: 12
+        },
+        tip: 'Giải trí vừa đủ để thư giãn!'
+    },
+
+    socialmedia: {
+        id: 'socialmedia',
+        icon: 'smartphone',
+        name: 'Mạng xã hội',
+        description: 'Kết nối nhưng dễ phân tâm',
+        color: '#14b8a6',
+        effects: {
+            quantity: 1,
+            knowledge: -2,
+            creativity: 1,
+            softSkills: 5,
+            mentalHealth: 3
+        },
+        tip: 'Cẩn thận! Dễ mất thời gian!'
+    },
+
+    selfstudy: {
+        id: 'selfstudy',
+        icon: 'auto_stories',
+        name: 'Tự học',
+        description: 'Học theo đam mê, sáng tạo cao',
+        color: '#a855f7',
+        effects: {
+            quantity: 6,
+            knowledge: 8,
+            creativity: 12,
+            softSkills: 0,
+            mentalHealth: 5
+        },
+        tip: 'Học điều mình thích hiệu quả hơn!'
+    },
+
+    sports: {
+        id: 'sports',
+        icon: 'sports_soccer',
+        name: 'Thể thao',
+        description: 'Khỏe mạnh, giảm căng thẳng',
+        color: '#16a34a',
+        effects: {
+            quantity: 2,
+            knowledge: 0,
+            creativity: 3,
+            softSkills: 5,
+            mentalHealth: 18
+        },
+        tip: 'Cơ thể khỏe, tinh thần tỉnh táo!'
+    },
+
+    club: {
+        id: 'club',
+        icon: 'groups_2',
+        name: 'Hoạt động CLB',
+        description: 'Networking, kỹ năng lãnh đạo',
+        color: '#db2777',
+        effects: {
+            quantity: 5,
+            knowledge: 2,
+            creativity: 5,
+            softSkills: 15,
+            mentalHealth: 8
+        },
+        tip: 'CLB giúp phát triển kỹ năng mềm!'
     }
 };
 

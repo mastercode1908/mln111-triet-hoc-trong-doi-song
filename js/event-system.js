@@ -124,6 +124,70 @@ class EventSystem {
                     mentalHealth: -5
                 },
                 message: '💰 Làm thêm giúp bạn trưởng thành, nhưng mất thời gian học'
+            },
+
+            failed_exam: {
+                id: 'failed_exam',
+                name: 'Thi trượt môn',
+                icon: 'cancel',
+                description: 'Không đạt yêu cầu kỳ thi',
+                color: '#dc2626',
+                effects: {
+                    quantity: -10,
+                    knowledge: -8,
+                    creativity: -3,
+                    mentalHealth: -12
+                },
+                message: '📉 Thi trượt môn! Cần nỗ lực hơn!'
+            },
+
+            breakup: {
+                id: 'breakup',
+                name: 'Chia tay',
+                icon: 'heart_broken',
+                description: 'Kết thúc mối quan hệ',
+                color: '#be123c',
+                effects: {
+                    quantity: -5,
+                    knowledge: -2,
+                    creativity: -5,
+                    softSkills: 3,
+                    mentalHealth: -20
+                },
+                message: '💔 Chia tay... Thời gian sẽ chữa lành!'
+            },
+
+            illness: {
+                id: 'illness',
+                name: 'Ốm đau',
+                icon: 'sick',
+                description: 'Sức khỏe giảm sút',
+                color: '#9333ea',
+                effects: {
+                    quantity: -8,
+                    knowledge: -4,
+                    creativity: -3,
+                    softSkills: -2,
+                    mentalHealth: -10
+                },
+                message: '🤒 Ốm rồi! Cần nghỉ ngơi phục hồi!'
+            },
+
+            game_addiction: {
+                id: 'game_addiction',
+                name: 'Nghiện game',
+                icon: 'gamepad',
+                description: 'Chơi game quá nhiều, bỏ bê học tập',
+                color: '#7c3aed',
+                effects: {
+                    quantity: -12,
+                    knowledge: -10,
+                    creativity: 2,
+                    softSkills: -5,
+                    mentalHealth: -8
+                },
+                message: '🎮 Nghiện game! Cần tự chủ hơn!',
+                condition: (char) => char.skills.mentalHealth < 50
             }
         };
     }

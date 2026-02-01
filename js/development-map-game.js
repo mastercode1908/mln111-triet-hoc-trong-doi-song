@@ -17,7 +17,13 @@ class DevelopmentMapGame {
                 perseverance: 0,
                 pressure: 0,
                 social: 0,
-                rest: 0
+                rest: 0,
+                parttime: 0,
+                entertainment: 0,
+                socialmedia: 0,
+                selfstudy: 0,
+                sports: 0,
+                club: 0
             }
         };
 
