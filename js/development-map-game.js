@@ -148,10 +148,7 @@ class DevelopmentMapGame {
 
         feedbackContainer.insertBefore(feedback, feedbackContainer.firstChild);
 
-        // Remove old feedbacks (keep last 5)
-        while (feedbackContainer.children.length > 5) {
-            feedbackContainer.removeChild(feedbackContainer.lastChild);
-        }
+        // Keep all feedbacks (no limit)
 
         // Show tip
         this.showTip(elementData.tip);
@@ -223,11 +220,10 @@ class DevelopmentMapGame {
         notification.className = 'achievement-unlock-badge';
 
         notification.innerHTML = `
-      <div class="bg-gradient-to-br from-yellow-400 to-orange-500 text-white rounded-2xl p-4 shadow-2xl border-4 border-yellow-200">
-        <div class="text-center">
-          <span class="material-symbols-outlined text-5xl mb-2">${achievement.icon}</span>
-          <div class="font-bold text-lg">🏆 ${achievement.name}</div>
-          <div class="text-sm opacity-90">${achievement.description}</div>
+      <div class="bg-white dark:bg-gray-800 rounded-lg p-2 shadow-xl border-2 border-primary flex items-center gap-2 max-w-xs">
+        <span class="material-symbols-outlined text-xl flex-shrink-0 text-primary">${achievement.icon}</span>
+        <div class="flex-1 min-w-0">
+          <div class="font-semibold text-xs truncate text-slate-900 dark:text-white">🏆 ${achievement.name}</div>
         </div>
       </div>
     `;
@@ -351,7 +347,7 @@ class DevelopmentMapGame {
 
         setTimeout(() => {
             modal.classList.add('hidden');
-        }, 4000);
+        }, 2000); // Reduced from 4000ms to 2000ms
     }
 
     showCompletionModal() {
@@ -425,6 +421,7 @@ class DevelopmentMapGame {
 
         document.getElementById('action-log').innerHTML = '';
         document.getElementById('achievements-list').innerHTML = '';
+        document.getElementById('achievement-percentage').textContent = '0%'; // Reset percentage display
 
         this.updateUI();
     }
