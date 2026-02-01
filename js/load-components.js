@@ -4,8 +4,8 @@
  */
 document.addEventListener("DOMContentLoaded", function () {
     // Determine path prefix (handle subdirectories if needed, though structure seems flat for now)
-    const storedPathDiff = window.location.pathname.split('/').length - 2; // Rough estimate if needed, but assuming flat
-    const prefix = ""; // Assuming all HTML files are in root
+    // Determine path prefix
+    const prefix = window.componentPrefix || "";
 
     // Load Header
     const timestamp = new Date().getTime();
@@ -13,12 +13,54 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.text())
         .then(data => {
             document.getElementById('header-placeholder').innerHTML = data;
+
+            // Fix relative links in header
+            if (prefix) {
+                const headerLinks = document.querySelectorAll('#header-placeholder a');
+                headerLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+                        link.setAttribute('href', prefix + href);
+                    }
+                });
+                const headerImages = document.querySelectorAll('#header-placeholder img');
+                headerImages.forEach(img => {
+                    const src = img.getAttribute('src');
+                    if (src && !src.startsWith('http') && !src.startsWith('data:')) {
+                        img.setAttribute('src', prefix + src);
+                    }
+                });
+            }
+
             setActiveNavLink();
 
             // Initialize search AFTER header is loaded
-            if (typeof initializeSearch === 'function') {
-                initializeSearch();
-            }
+            // Initialize search AFTER header is loaded
+            // Dynamically load search scripts if they are not already present
+            const scriptPrefix = prefix || '';
+            const loadScript = (src) => {
+                return new Promise((resolve, reject) => {
+                    if (document.querySelector(`script[src="${src}"]`)) {
+                        resolve();
+                        return;
+                    }
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    document.body.appendChild(script);
+                });
+            };
+
+            // Load search data first, then search init script
+            loadScript(scriptPrefix + 'js/search-data-global.js')
+                .then(() => loadScript(scriptPrefix + 'js/search-init.js'))
+                .then(() => {
+                    if (typeof initializeSearch === 'function') {
+                        initializeSearch();
+                    }
+                })
+                .catch(err => console.error('Error loading search scripts:', err));
 
             // Add scroll-based navigation highlighting for home.html
             setupScrollBasedNavigation();
@@ -30,6 +72,24 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(response => response.text())
         .then(data => {
             document.getElementById('footer-placeholder').innerHTML = data;
+
+            // Fix relative links in footer
+            if (prefix) {
+                const footerLinks = document.querySelectorAll('#footer-placeholder a');
+                footerLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href && !href.startsWith('http') && !href.startsWith('#') && !href.startsWith('mailto:')) {
+                        link.setAttribute('href', prefix + href);
+                    }
+                });
+                const footerImages = document.querySelectorAll('#footer-placeholder img');
+                footerImages.forEach(img => {
+                    const src = img.getAttribute('src');
+                    if (src && !src.startsWith('http') && !src.startsWith('data:')) {
+                        img.setAttribute('src', prefix + src);
+                    }
+                });
+            }
         })
         .catch(error => console.error('Error loading footer:', error));
 });
@@ -58,7 +118,8 @@ function setActiveNavLink() {
             (currentPath === 'home.html' && linkHref === 'home.html' && !currentHash) ||
             (currentPath === 'home.html' && linkHref === '#overview' && currentHash === '#overview') ||
             (linkHref === 'home.html#overview' && currentPath.includes('module')) ||
-            (linkHref === 'practice.html' && currentPath.includes('quiz')); // Quiz pages highlight Practice
+            (linkHref === 'practice.html' && (currentPath.includes('quiz') || currentPath.includes('worldview-game'))) ||
+            (linkHref.includes('articles.html') && (window.location.pathname.includes('/articles/') || currentPath.includes('articles'))); // Highlight Articles for sub-pages
 
 
         if (isMatch) {

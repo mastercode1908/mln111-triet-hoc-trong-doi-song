@@ -1,50 +1,31 @@
-<header
-  id="main-header"
-  class="fixed top-0 left-0 right-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300"
->
-  <div
-    class="px-4 md:px-10 py-3 max-w-7xl mx-auto flex items-center justify-between"
-  >
+<header id="main-header"
+  class="fixed top-0 left-0 right-0 z-50 w-full bg-white/95 backdrop-blur-md border-b border-gray-100 transition-shadow duration-300">
+  <div class="px-4 md:px-10 py-3 max-w-7xl mx-auto flex items-center justify-between">
     <div class="flex items-center gap-8">
-      <a
-        href="home.html"
-        class="flex items-center gap-3 text-slate-900 group cursor-pointer"
-      >
-        <div
-          class="size-8 text-primary flex items-center justify-center bg-blue-50 rounded-lg border border-blue-100"
-        >
+      <a href="home.html" class="flex items-center gap-3 text-slate-900 group cursor-pointer">
+        <div class="size-8 text-primary flex items-center justify-center bg-blue-50 rounded-lg border border-blue-100">
           <span class="material-symbols-outlined">hub</span>
         </div>
-        <h2
-          class="text-lg font-bold leading-tight tracking-tight transition-colors group-hover:text-primary font-sans"
-        >
+        <h2 class="text-lg font-bold leading-tight tracking-tight transition-colors group-hover:text-primary font-sans">
           PhiloMap
         </h2>
       </a>
       <nav class="hidden lg:flex items-center gap-6 pl-4">
-        <a
-          id="home-link"
+        <a id="home-link"
           class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
-          href="home.html"
-          >Trang chủ</a
-        >
-        <a
-          id="modules-link"
+          href="home.html">Trang chủ</a>
+        <a id="modules-link"
           class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
-          href="home.html#overview"
-          >Modules</a
-        >
+          href="home.html#overview">Modules</a>
 
-        <a
-          class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
-          href="practice.html"
-          >Thực hành</a
-        >
+        <a class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
+          href="practice.html">Thực hành</a>
 
-        <a
-          class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent flex items-center gap-1"
-          href="worldview-game.html"
-        >
+        <a class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent"
+          href="articles.html">Góc nhìn</a>
+
+        <a class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent flex items-center gap-1"
+          href="worldview-game.html">
           <span class="material-symbols-outlined text-[18px]">extension</span>
           Game
         </a>
@@ -52,27 +33,17 @@
     </div>
     <div class="flex items-center gap-4">
       <div class="relative group" id="search-container">
-        <div
-          class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
-        >
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <span
-            class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors text-[20px]"
-            >search</span
-          >
+            class="material-symbols-outlined text-gray-400 group-focus-within:text-primary transition-colors text-[20px]">search</span>
         </div>
-        <input
-          id="search-input"
+        <input id="search-input"
           class="block w-64 md:w-72 pl-10 pr-4 py-2.5 bg-white border border-gray-200 rounded-full text-sm text-slate-700 placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-sm hover:shadow-md hover:border-primary/30"
-          placeholder="Tìm kiếm khái niệm..."
-          type="text"
-          autocomplete="off"
-        />
+          placeholder="Tìm kiếm khái niệm..." type="text" autocomplete="off" />
 
         <!-- Search Results Dropdown -->
-        <div
-          id="search-results"
-          class="hidden absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-96 overflow-y-auto z-50"
-        >
+        <div id="search-results"
+          class="hidden absolute top-full left-0 right-0 mt-2 bg-white border border-gray-200 rounded-xl shadow-lg max-h-96 overflow-y-auto z-50">
           <!-- Results will be populated here by JavaScript -->
         </div>
       </div>

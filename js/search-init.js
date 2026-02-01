@@ -92,8 +92,10 @@ function initializeSearch() {
             return;
         }
 
+        const prefix = window.componentPrefix || '';
+
         const html = results.map((item, index) => `
-            <a href="${item.url}" 
+            <a href="${prefix}${item.url}" 
                class="search-result-item flex items-start gap-3 p-3 hover:bg-blue-50 transition-colors cursor-pointer border-b border-gray-100 last:border-b-0"
                data-index="${index}">
                 <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-primary">
@@ -129,7 +131,9 @@ function initializeSearch() {
             'module': 'Module',
             'concept': 'Khái niệm',
             'practice': 'Thực hành',
-            'page': 'Trang'
+            'game': 'Trò chơi',
+            'page': 'Trang',
+            'article': 'Bài viết'
         };
         return labels[type] || type;
     }

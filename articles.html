@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Góc nhìn & Bài viết - PhiloMap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Lora:wght@700&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#308ce8",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#111921",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"],
+                        "serif": ["Lora", "serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px" }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col">
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main class="flex-grow py-12 px-4 md:px-10">
+        <div class="max-w-7xl mx-auto">
+            <!-- Page Header -->
+            <div class="mb-12 text-center">
+                <h1 class="text-3xl md:text-5xl font-serif font-bold text-slate-900 mb-4">Góc nhìn Triết học</h1>
+                <p class="text-slate-600 max-w-2xl mx-auto text-lg">
+                    Tuyển tập các bài viết và góc nhìn sâu sắc về các vấn đề đời sống, xã hội dưới lăng kính triết học.
+                </p>
+            </div>
+
+            <!-- Articles Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Article 1: 7 Inspirational Quotes (CafeF) -->
+                <article
+                    class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col h-full border border-gray-100 relative">
+                    <a href="articles/top-7-cau-noi-truyen-cam-hung.html" class="absolute inset-0 z-0"></a>
+                    <div class="h-48 relative overflow-hidden z-10 pointer-events-none">
+                        <img src="images/articles/card-hinh-cafef.gif" alt="7 câu nói truyền cảm hứng"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow z-10 pointer-events-none">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-amber-600 transition-colors line-clamp-2">
+                            Khi rơi vào bế tắc, hãy nhớ 7 câu nói này
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow line-clamp-3">
+                            Cuộc sống không phải lúc nào cũng suôn sẻ. Những lúc hoang mang hay tuyệt vọng, tư duy tích
+                            cực và cái nhìn lạc quan sẽ là ngọn hải đăng dẫn lối. Bài viết tổng hợp 7 câu nói truyền cảm
+                            hứng giúp bạn lấy lại động lực và niềm tin.
+                        </p>
+                        <div
+                            class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between pointer-events-auto">
+                            <a href="articles/top-7-cau-noi-truyen-cam-hung.html"
+                                class="text-sm font-semibold text-primary hover:text-blue-700">
+                                Đọc ngay
+                            </a>
+                            <a href="https://cafef.vn/khi-roi-vao-be-tac-mat-phuong-huong-hay-ghi-nho-7-cau-noi-truyen-cam-hung-nay-20180724111229756.chn"
+                                target="_blank"
+                                class="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">link</span>
+                                Nguồn: CafeF
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 2: Who am I (Career GPO) -->
+                <article
+                    class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col h-full border border-gray-100 relative">
+                    <a href="articles/toi-la-ai-kham-pha-ban-than.html" class="absolute inset-0 z-0"></a>
+                    <div class="h-48 relative overflow-hidden z-10 pointer-events-none">
+                        <img src="images/articles/card-hinh-careergpo.jpg" alt="Tôi là ai?"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow z-10 pointer-events-none">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors line-clamp-2">
+                            Tôi là ai? Khám phá bản thân và nhận thức chính mình
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow line-clamp-3">
+                            "Tôi là ai?" - câu hỏi muôn thuở của triết học và nhân sinh. Hành trình tìm kiếm bản thân
+                            không chỉ là việc định danh mà còn là quá trình thấu hiểu giá trị cốt lõi, điểm mạnh, điểm
+                            yếu để sống một cuộc đời ý nghĩa và trọn vẹn.
+                        </p>
+                        <div
+                            class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between pointer-events-auto">
+                            <a href="articles/toi-la-ai-kham-pha-ban-than.html"
+                                class="text-sm font-semibold text-primary hover:text-blue-700">
+                                Đọc ngay
+                            </a>
+                            <a href="https://career.gpo.vn/toi-la-ai-kham-pha-ban-than-nhan-thuc-chinh-minh-a4333.html"
+                                target="_blank"
+                                class="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">link</span>
+                                Nguồn: Career GPO
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 3: Stress (Vinmec) -->
+                <article
+                    class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col h-full border border-gray-100 relative">
+                    <a href="articles/stress-nguyen-nhan-va-cach-dieu-tri.html" class="absolute inset-0 z-0"></a>
+                    <div class="h-48 relative overflow-hidden z-10 pointer-events-none">
+                        <img src="images/articles/card-hinh-vinmec.jpg" alt="Stress và cách giải quyết"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow z-10 pointer-events-none">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors line-clamp-2">
+                            Stress: Nguyên nhân, triệu chứng và giải pháp
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow line-clamp-3">
+                            Stress là phản ứng tự nhiên của cơ thể trước áp lực, nhưng nếu kéo dài sẽ gây hại. Hiểu rõ
+                            nguyên nhân từ góc độ y khoa và tâm lý học giúp ta xây dựng cơ chế đối phó hiệu quả, tìm lại
+                            sự cân bằng nội tại.
+                        </p>
+                        <div
+                            class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between pointer-events-auto">
+                            <a href="articles/stress-nguyen-nhan-va-cach-dieu-tri.html"
+                                class="text-sm font-semibold text-primary hover:text-blue-700">
+                                Đọc ngay
+                            </a>
+                            <a href="https://www.vinmec.com/vie/bai-viet/stress-nguyen-nhan-trieu-chung-va-cach-dieu-tri-vi"
+                                target="_blank"
+                                class="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">link</span>
+                                Nguồn: Vinmec
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 4: Academic Pressure (Long Chau) -->
+                <article
+                    class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col h-full border border-gray-100 relative">
+                    <a href="articles/ap-luc-hoc-tap.html" class="absolute inset-0 z-0"></a>
+                    <div class="h-48 relative overflow-hidden z-10 pointer-events-none">
+                        <img src="images/articles/card-hinh-longchau.jpg" alt="Áp lực học tập"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow z-10 pointer-events-none">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                            Áp lực học tập: Nguyên nhân và cách giải tỏa
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow line-clamp-3">
+                            Áp lực đồng trang lứa, kỳ vọng của gia đình và khối lượng kiến thức khổng lồ khiến học sinh
+                            dễ rơi vào khủng hoảng. Bài viết phân tích sâu nguyên nhân và đề xuất các phương pháp giải
+                            tỏa, hướng tới môi trường học tập lành mạnh.
+                        </p>
+                        <div
+                            class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between pointer-events-auto">
+                            <a href="articles/ap-luc-hoc-tap.html"
+                                class="text-sm font-semibold text-primary hover:text-blue-700">
+                                Đọc ngay
+                            </a>
+                            <a href="https://nhathuoclongchau.com.vn/bai-viet/ap-luc-hoc-tap-nguyen-nhan-hau-qua-va-cach-giai-toa-hieu-qua.html"
+                                target="_blank"
+                                class="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">link</span>
+                                Nguồn: Nhà thuốc Long Châu
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 5: Alienation (Luat Minh Khue) -->
+                <article
+                    class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col h-full border border-gray-100 relative">
+                    <a href="articles/khai-niem-tha-hoa.html" class="absolute inset-0 z-0"></a>
+                    <div class="h-48 relative overflow-hidden z-10 pointer-events-none">
+                        <img src="images/articles/card-hinh-minhkhue.jpg" alt="Khái niệm Tha hóa"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow z-10 pointer-events-none">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-slate-600 transition-colors line-clamp-2">
+                            Khái niệm "Tha hóa" trong xã hội hiện đại
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow line-clamp-3">
+                            "Tha hóa" (Alienation) là một khái niệm trung tâm trong triết học Mác, mô tả tình trạng con
+                            người bị tách rời khỏi sản phẩm lao động và bản chất xã hội của mình. Liệu khái niệm này còn
+                            đúng trong xã hội công nghệ ngày nay?
+                        </p>
+                        <div
+                            class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between pointer-events-auto">
+                            <a href="articles/khai-niem-tha-hoa.html"
+                                class="text-sm font-semibold text-primary hover:text-blue-700">
+                                Đọc ngay
+                            </a>
+                            <a href="https://luatminhkhue.vn/tim-hieu-khai-niem-tha-hoa-trong-triet-hoc-vi-du-ve-tha-hoa-trong-xa-hoi-hien-nay.aspx"
+                                target="_blank"
+                                class="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">link</span>
+                                Nguồn: Luật Minh Khuê
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 6: Human Emancipation (Ly Luan Chinh Tri) -->
+                <article
+                    class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col h-full border border-gray-100 relative">
+                    <a href="articles/giai-phong-con-nguoi-mac.html" class="absolute inset-0 z-0"></a>
+                    <div class="h-48 relative overflow-hidden z-10 pointer-events-none">
+                        <img src="images/articles/card-hinh-lyluan.jpg" alt="Giải phóng con người"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow z-10 pointer-events-none">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-pink-600 transition-colors line-clamp-2">
+                            Quan điểm của C.Mác về giải phóng con người
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow line-clamp-3">
+                            Mục tiêu tối thượng của sự phát triển xã hội, theo C.Mác, là giải phóng con người khỏi mọi
+                            áp bức, nô dịch để phát triển toàn diện. Bài viết bàn về sự vận dụng quan điểm này trong bối
+                            cảnh Việt Nam hiện nay.
+                        </p>
+                        <div
+                            class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between pointer-events-auto">
+                            <a href="articles/giai-phong-con-nguoi-mac.html"
+                                class="text-sm font-semibold text-primary hover:text-blue-700">
+                                Đọc ngay
+                            </a>
+                            <a href="https://lyluanchinhtri.vn/quan-diem-cua-c-mac-ve-giai-phong-con-nguoi-va-su-van-dung-o-viet-nam-hien-nay-6222.html"
+                                target="_blank"
+                                class="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">link</span>
+                                Nguồn: Lý luận Chính trị
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 7: Education & Practice (Tuoi Tre) -->
+                <article
+                    class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col h-full border border-gray-100 relative">
+                    <a href="articles/dao-tao-dai-hoc-thuc-tien.html" class="absolute inset-0 z-0"></a>
+                    <div class="h-48 relative overflow-hidden z-10 pointer-events-none">
+                        <img src="images/articles/card-hinh-tuoitre.jpg" alt="Đào tạo gắn với thực tiễn"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow z-10 pointer-events-none">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-teal-600 transition-colors line-clamp-2">
+                            Đào tạo đại học gắn với thực tiễn là tất yếu
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow line-clamp-3">
+                            "Học đi đôi với hành" - nguyên lý giáo dục bền vững. Việc gắn kết đào tạo đại học với nhu
+                            cầu thực tiễn của doanh nghiệp và xã hội không chỉ nâng cao chất lượng nhân lực mà còn tránh
+                            lãng phí nguồn lực xã hội.
+                        </p>
+                        <div
+                            class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between pointer-events-auto">
+                            <a href="articles/dao-tao-dai-hoc-thuc-tien.html"
+                                class="text-sm font-semibold text-primary hover:text-blue-700">
+                                Đọc ngay
+                            </a>
+                            <a href="https://tuoitre.vn/dao-tao-dai-hoc-gan-voi-thuc-tien-la-tat-yeu-20230809155708104.htm"
+                                target="_blank"
+                                class="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">link</span>
+                                Nguồn: Tuổi Trẻ
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 8: 5 Habits (VnExpress) -->
+                <article
+                    class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col h-full border border-gray-100 relative">
+                    <a href="articles/5-thoi-quen-thay-doi-doi-nguoi.html" class="absolute inset-0 z-0"></a>
+                    <div class="h-48 relative overflow-hidden z-10 pointer-events-none">
+                        <img src="images/articles/vnexpress-5-thoi-quen-card.jpg" alt="5 thói quen thay đổi cuộc đời"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow z-10 pointer-events-none">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                            5 thói quen đơn giản thay đổi đời người
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow line-clamp-3">
+                            Sức khỏe, sự giàu có, hạnh phúc và thành công phụ thuộc vào thói quen của bạn. Nếu muốn cải
+                            thiện cuộc sống, đây là 5 thói quen nên áp dụng ngay hôm nay.
+                        </p>
+                        <div
+                            class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between pointer-events-auto">
+                            <a href="articles/5-thoi-quen-thay-doi-doi-nguoi.html"
+                                class="text-sm font-semibold text-primary hover:text-blue-700">
+                                Đọc ngay
+                            </a>
+                            <a href="https://vnexpress.net/5-thoi-quen-don-gian-thay-doi-doi-nguoi-4632783.html"
+                                target="_blank"
+                                class="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">link</span>
+                                Nguồn: VnExpress
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Article 9: Sống mòn (Tuổi Trẻ) -->
+                <article
+                    class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all duration-300 group flex flex-col h-full border border-gray-100 relative">
+                    <a href="articles/song-mon-nguoi-tre-tu-hai-minh.html" class="absolute inset-0 z-0"></a>
+                    <div class="h-48 relative overflow-hidden z-10 pointer-events-none">
+                        <img src="images/articles/tuoitre-song-mon-card.jpg" alt="Sống mòn, người trẻ tự hại mình"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow z-10 pointer-events-none">
+                        <h3
+                            class="text-xl font-bold text-slate-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                            Sống mòn, người trẻ tự hại mình
+                        </h3>
+                        <p class="text-slate-600 text-sm mb-4 flex-grow line-clamp-3">
+                            Chán ngán cuộc sống hiện tại, không tin tưởng vào tương lai để rồi mỗi ngày qua là một ngày
+                            dài với chính mình... Hiện tượng "sống mòn" ở người trẻ đang rất đáng lo ngại.
+                        </p>
+                        <div
+                            class="mt-auto pt-4 border-t border-gray-50 flex items-center justify-between pointer-events-auto">
+                            <a href="articles/song-mon-nguoi-tre-tu-hai-minh.html"
+                                class="text-sm font-semibold text-primary hover:text-blue-700">
+                                Đọc ngay
+                            </a>
+                            <a href="https://tuoitre.vn/song-mon-nguoi-tre-tu-hai-minh-582802.htm" target="_blank"
+                                class="text-xs text-slate-400 hover:text-slate-600 flex items-center gap-1">
+                                <span class="material-symbols-outlined text-sm">link</span>
+                                Nguồn: Tuổi Trẻ
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="js/search-data-global.js"></script>
+    <script src="js/load-components.js"></script>
+    <script src="js/search-init.js"></script>
+</body>
+
+</html>
