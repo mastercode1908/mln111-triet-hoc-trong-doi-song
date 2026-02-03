@@ -6,6 +6,7 @@ window.searchData = [
     { title: "Module 4: Luật chơi của xã hội", subtitle: "Khám phá trí tuệ từ các triết gia vĩ đại", url: "module4.html", keywords: ["xã hội", "lịch sử", "kinh tế", "chính trị", "module 4", "m4", "duy vật", "luật chơi"], type: "module", icon: "groups" },
     { title: "Module 5: Con người – Mục tiêu & Động lực", subtitle: "Hành trình khám phá bản chất nhân sinh", url: "module5.html", keywords: ["con người", "bản chất", "tha hóa", "giải phóng", "module 5", "m5", "mục tiêu", "động lực"], type: "module", icon: "person" },
     { title: "Thực hành", subtitle: "Bài tập và câu hỏi ôn tập", url: "practice.html", keywords: ["thực hành", "bài tập", "ôn tập", "practice"], type: "practice", icon: "edit_note" },
+    { title: "Trò chuyện với AI Assistants", subtitle: "Hỏi đáp triết học dựa trên giáo trình", url: "ai-assistants.html", keywords: ["ai", "assistant", "chat", "trò chuyện", "gemini", "giáo trình", "triết học mác - lênin"], type: "page", icon: "smart_toy" },
     { title: "Quy luật Lượng - Chất", subtitle: "Module 2", url: "module2.html", keywords: ["lượng", "chất", "độ", "điểm nút", "bước nhảy"], type: "concept", icon: "science" },
     { title: "Quy luật Mâu thuẫn", subtitle: "Module 2", url: "module2.html", keywords: ["mâu thuẫn", "đối lập", "đấu tranh"], type: "concept", icon: "balance" },
     { title: "Quy luật Phủ định", subtitle: "Module 2", url: "module2.html", keywords: ["phủ định", "xoáy ốc", "kế thừa"], type: "concept", icon: "autorenew" },
