@@ -110,7 +110,7 @@
           <span class="opacity-60">/</span>
           <a href="practice.html" class="hover:underline">THỰC HÀNH</a>
           <span class="opacity-60">/</span>
-          <span>TRÒ CHƠI NÂNG CAO</span>
+          <span>TÌM RA TRIẾT LÝ SỐNG</span>
         </div>
       </div>
 
@@ -159,35 +159,55 @@
             <div
               class="avatar-option cursor-pointer p-4 border-2 border-gray-200 rounded-xl hover:border-primary transition-colors text-center"
               data-avatar="😊"
+              data-philosophy="care"
+              title="Ủng hộ: Đạo đức Quan tâm (+1 điểm)"
             >
               <div class="text-4xl mb-2">😊</div>
               <div class="text-xs">Vui vẻ</div>
+              <div class="text-xs text-pink-600 font-semibold mt-1">
+                🔴 Quan tâm
+              </div>
             </div>
             <div
               class="avatar-option cursor-pointer p-4 border-2 border-gray-200 rounded-xl hover:border-primary transition-colors text-center"
               data-avatar="🤔"
+              data-philosophy="consequentialism"
+              title="Ủng hộ: Hậu quả luận (+1 điểm)"
             >
               <div class="text-4xl mb-2">🤔</div>
               <div class="text-xs">Suy tư</div>
+              <div class="text-xs text-green-600 font-semibold mt-1">
+                🟢 Hậu quả
+              </div>
             </div>
             <div
               class="avatar-option cursor-pointer p-4 border-2 border-gray-200 rounded-xl hover:border-primary transition-colors text-center"
               data-avatar="😌"
+              data-philosophy="virtue"
+              title="Ủng hộ: Đức hạnh (+1 điểm)"
             >
               <div class="text-4xl mb-2">😌</div>
               <div class="text-xs">Bình thản</div>
+              <div class="text-xs text-purple-600 font-semibold mt-1">
+                🟣 Đức hạnh
+              </div>
             </div>
             <div
               class="avatar-option cursor-pointer p-4 border-2 border-gray-200 rounded-xl hover:border-primary transition-colors text-center"
               data-avatar="🧐"
+              data-philosophy="deontology"
+              title="Ủng hộ: Nghĩa vụ luận (+1 điểm)"
             >
               <div class="text-4xl mb-2">🧐</div>
               <div class="text-xs">Trí tuệ</div>
+              <div class="text-xs text-blue-600 font-semibold mt-1">
+                🔵 Nghĩa vụ
+              </div>
             </div>
           </div>
 
           <button
-            onclick="startGame()"
+            onclick="showPhilosophyIntro()"
             class="w-full px-10 py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105"
           >
             <span class="flex items-center justify-center gap-2">
@@ -237,6 +257,571 @@
             <p class="text-sm text-slate-600 dark:text-gray-400">
               Mở khóa huy hiệu và theo dõi tiến trình
             </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Philosophy Introduction Screen -->
+      <div id="philosophy-intro-screen" class="hidden animate-fade-in">
+        <div class="text-center mb-12">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full mb-6 animate-pulse-glow"
+          >
+            <span class="material-symbols-outlined text-white text-4xl"
+              >school</span
+            >
+          </div>
+          <h1
+            class="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4"
+          >
+            5 Triết lý Sống
+          </h1>
+          <p
+            class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto mb-8"
+          >
+            Tìm hiểu về 5 trường phái triết học đạo đức trước khi bắt đầu hành
+            trình khám phá bản thân
+          </p>
+        </div>
+
+        <!-- Philosophy Cards Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <!-- Card 1: Deontology -->
+          <div
+            class="philosophy-card bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border-2 border-blue-200 dark:border-blue-700 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+          >
+            <div class="text-center mb-4">
+              <div class="text-6xl mb-3">🔵</div>
+              <h3
+                class="text-xl font-bold text-blue-600 dark:text-blue-400 mb-2"
+              >
+                Nghĩa vụ luận
+              </h3>
+              <p class="text-sm italic text-slate-600 dark:text-gray-400 mb-3">
+                "Quy tắc là quy tắc!"
+              </p>
+            </div>
+            <p
+              class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed"
+            >
+              Tin vào nguyên tắc đạo đức tuyệt đối. Hành động đúng là tuân thủ
+              quy tắc, bất kể hậu quả. Đề cao trách nhiệm và công bằng.
+            </p>
+            <div
+              class="mt-4 pt-4 border-t border-blue-200 dark:border-blue-700"
+            >
+              <p class="text-xs text-slate-500 dark:text-gray-400">
+                <strong>Triết gia:</strong> Immanuel Kant
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Consequentialism -->
+          <div
+            class="philosophy-card bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border-2 border-green-200 dark:border-green-700 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+          >
+            <div class="text-center mb-4">
+              <div class="text-6xl mb-3">🟢</div>
+              <h3
+                class="text-xl font-bold text-green-600 dark:text-green-400 mb-2"
+              >
+                Hậu quả luận
+              </h3>
+              <p class="text-sm italic text-slate-600 dark:text-gray-400 mb-3">
+                "Kết quả quyết định đúng sai!"
+              </p>
+            </div>
+            <p
+              class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed"
+            >
+              Đánh giá hành động qua hậu quả. Điều đúng là mang lại lợi ích lớn
+              nhất cho nhiều người nhất. Linh hoạt và thực dụng.
+            </p>
+            <div
+              class="mt-4 pt-4 border-t border-green-200 dark:border-green-700"
+            >
+              <p class="text-xs text-slate-500 dark:text-gray-400">
+                <strong>Triết gia:</strong> John Stuart Mill
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3: Virtue Ethics -->
+          <div
+            class="philosophy-card bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border-2 border-purple-200 dark:border-purple-700 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+          >
+            <div class="text-center mb-4">
+              <div class="text-6xl mb-3">🟣</div>
+              <h3
+                class="text-xl font-bold text-purple-600 dark:text-purple-400 mb-2"
+              >
+                Đức hạnh
+              </h3>
+              <p class="text-sm italic text-slate-600 dark:text-gray-400 mb-3">
+                "Trở thành người tốt hơn!"
+              </p>
+            </div>
+            <p
+              class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed"
+            >
+              Tập trung phát triển phẩm chất tốt đẹp: dũng cảm, khôn ngoan, công
+              bằng. Tìm kiếm sự cân bằng và trung dung trong mọi việc.
+            </p>
+            <div
+              class="mt-4 pt-4 border-t border-purple-200 dark:border-purple-700"
+            >
+              <p class="text-xs text-slate-500 dark:text-gray-400">
+                <strong>Triết gia:</strong> Aristotle
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 4: Care Ethics -->
+          <div
+            class="philosophy-card bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border-2 border-pink-200 dark:border-pink-700 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+          >
+            <div class="text-center mb-4">
+              <div class="text-6xl mb-3">🔴</div>
+              <h3
+                class="text-xl font-bold text-pink-600 dark:text-pink-400 mb-2"
+              >
+                Đạo đức Quan tâm
+              </h3>
+              <p class="text-sm italic text-slate-600 dark:text-gray-400 mb-3">
+                "Tình cảm là trọng tâm!"
+              </p>
+            </div>
+            <p
+              class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed"
+            >
+              Đạo đức từ mối quan hệ và sự quan tâm. Đề cao lòng trắc ẩn, đồng
+              cảm. Ưu tiên người thân và bạn bè.
+            </p>
+            <div
+              class="mt-4 pt-4 border-t border-pink-200 dark:border-pink-700"
+            >
+              <p class="text-xs text-slate-500 dark:text-gray-400">
+                <strong>Triết gia:</strong> Carol Gilligan
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 5: Rational Egoism -->
+          <div
+            class="philosophy-card bg-white dark:bg-gray-800 rounded-3xl p-6 shadow-xl border-2 border-orange-200 dark:border-orange-700 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+          >
+            <div class="text-center mb-4">
+              <div class="text-6xl mb-3">🟠</div>
+              <h3
+                class="text-xl font-bold text-orange-600 dark:text-orange-400 mb-2"
+              >
+                Vị kỷ hợp lý
+              </h3>
+              <p class="text-sm italic text-slate-600 dark:text-gray-400 mb-3">
+                "Bản thân là ưu tiên!"
+              </p>
+            </div>
+            <p
+              class="text-sm text-slate-700 dark:text-gray-300 leading-relaxed"
+            >
+              Tối đa hóa lợi ích bản thân một cách hợp lý. Không phải ích kỷ mù
+              quáng, mà là sự tự chủ trong lựa chọn, tự trọng trong hành động.
+            </p>
+            <div
+              class="mt-4 pt-4 border-t border-orange-200 dark:border-orange-700"
+            >
+              <p class="text-xs text-slate-500 dark:text-gray-400">
+                <strong>Triết gia:</strong> Ayn Rand
+              </p>
+            </div>
+          </div>
+
+          <!-- Info Card -->
+          <div
+            class="bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-3xl p-6 shadow-xl border-2 border-blue-200 dark:border-blue-700 flex items-center justify-center"
+          >
+            <div class="text-center">
+              <div class="text-5xl mb-3">💡</div>
+              <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">
+                Không có đúng sai!
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-gray-400">
+                Mỗi triết lý đều hợp lý theo cách riêng. Game sẽ giúp bạn khám
+                phá mình thiên về triết lý nào!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Start Button -->
+        <div class="text-center">
+          <button
+            onclick="showGameTutorial()"
+            class="px-12 py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 text-lg"
+          >
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined">arrow_forward</span>
+              Tiếp tục
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Game Tutorial Screen -->
+      <div id="game-tutorial-screen" class="hidden animate-fade-in">
+        <div class="text-center mb-8">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-full mb-6 animate-pulse-glow"
+          >
+            <span class="material-symbols-outlined text-white text-4xl"
+              >help</span
+            >
+          </div>
+          <h1
+            class="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4"
+          >
+            Cách chơi
+          </h1>
+          <p
+            class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto"
+          >
+            Hiểu rõ cơ chế chơi để có trải nghiệm tốt nhất
+          </p>
+        </div>
+
+        <div class="max-w-5xl mx-auto space-y-6">
+          <!-- Section 1: Game Flow -->
+          <div
+            class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <span
+                class="material-symbols-outlined text-4xl text-blue-600 dark:text-blue-400"
+                >gamepad</span
+              >
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+                Luồng chơi
+              </h2>
+            </div>
+            <div class="grid md:grid-cols-4 gap-4">
+              <div
+                class="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl"
+              >
+                <div class="text-3xl mb-2">①</div>
+                <div class="font-semibold mb-1">10 Tình huống</div>
+                <div class="text-xs text-slate-600 dark:text-gray-400">
+                  Các tình huống đạo đức thực tế
+                </div>
+              </div>
+              <div
+                class="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-xl"
+              >
+                <div class="text-3xl mb-2">②</div>
+                <div class="font-semibold mb-1">4 Lựa chọn</div>
+                <div class="text-xs text-slate-600 dark:text-gray-400">
+                  Mỗi tình huống có 4 đáp án
+                </div>
+              </div>
+              <div
+                class="text-center p-4 bg-purple-50 dark:bg-purple-900/20 rounded-xl"
+              >
+                <div class="text-3xl mb-2">③</div>
+                <div class="font-semibold mb-1">Xem hậu quả</div>
+                <div class="text-xs text-slate-600 dark:text-gray-400">
+                  Nhận feedback ngay lập tức
+                </div>
+              </div>
+              <div
+                class="text-center p-4 bg-pink-50 dark:bg-pink-900/20 rounded-xl"
+              >
+                <div class="text-3xl mb-2">④</div>
+                <div class="font-semibold mb-1">Kết quả</div>
+                <div class="text-xs text-slate-600 dark:text-gray-400">
+                  Khám phá triết lý của bạn
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Scoring System -->
+          <div
+            class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <span
+                class="material-symbols-outlined text-4xl text-green-600 dark:text-green-400"
+                >calculate</span
+              >
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+                Cách tính điểm
+              </h2>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Example scoring -->
+              <div
+                class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-xl p-6"
+              >
+                <h3 class="font-bold mb-3 text-lg">📊 Ví dụ tính điểm:</h3>
+                <div class="space-y-3">
+                  <div
+                    class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg"
+                  >
+                    <span class="text-sm"
+                      >Chọn đáp án A: "Từ chối vì quy tắc"</span
+                    >
+                    <div class="flex gap-2">
+                      <span
+                        class="px-3 py-1 bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 rounded-full text-xs font-semibold"
+                      >
+                        🔵 Nghĩa vụ +3
+                      </span>
+                      <span
+                        class="px-3 py-1 bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-purple-300 rounded-full text-xs font-semibold"
+                      >
+                        🟣 Đức hạnh +1
+                      </span>
+                    </div>
+                  </div>
+
+                  <div
+                    class="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-lg"
+                  >
+                    <span class="text-sm"
+                      >Chọn đáp án B: "Giúp vì tình bạn"</span
+                    >
+                    <div class="flex gap-2">
+                      <span
+                        class="px-3 py-1 bg-pink-100 text-pink-700 dark:bg-pink-900 dark:text-pink-300 rounded-full text-xs font-semibold"
+                      >
+                        🔴 Quan tâm +3
+                      </span>
+                      <span
+                        class="px-3 py-1 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 rounded-full text-xs font-semibold"
+                      >
+                        🟢 Hậu quả +1
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="mt-4 p-4 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg border-l-4 border-yellow-500"
+                >
+                  <p
+                    class="text-sm font-semibold text-yellow-800 dark:text-yellow-300"
+                  >
+                    💡 Mỗi lựa chọn cho điểm cho 1-2 triết lý. Triết lý có điểm
+                    cao nhất sau 10 câu là triết lý của bạn!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Avatar Bonus -->
+          <div
+            class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <span
+                class="material-symbols-outlined text-4xl text-purple-600 dark:text-purple-400"
+                >emoji_emotions</span
+              >
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+                Bonus Avatar
+              </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <h3 class="font-bold mb-3">
+                  🎭 Avatar của bạn có sức mạnh đặc biệt!
+                </h3>
+                <div class="space-y-2 text-sm">
+                  <div
+                    class="flex items-center gap-2 p-2 bg-pink-50 dark:bg-pink-900/20 rounded-lg"
+                  >
+                    <span class="text-2xl">😊</span>
+                    <span
+                      >Vui vẻ →
+                      <strong class="text-pink-600"
+                        >+1 điểm Quan tâm</strong
+                      ></span
+                    >
+                  </div>
+                  <div
+                    class="flex items-center gap-2 p-2 bg-green-50 dark:bg-green-900/20 rounded-lg"
+                  >
+                    <span class="text-2xl">🤔</span>
+                    <span
+                      >Suy tư →
+                      <strong class="text-green-600"
+                        >+1 điểm Hậu quả</strong
+                      ></span
+                    >
+                  </div>
+                  <div
+                    class="flex items-center gap-2 p-2 bg-purple-50 dark:bg-purple-900/20 rounded-lg"
+                  >
+                    <span class="text-2xl">😌</span>
+                    <span
+                      >Bình thản →
+                      <strong class="text-purple-600"
+                        >+1 điểm Đức hạnh</strong
+                      ></span
+                    >
+                  </div>
+                  <div
+                    class="flex items-center gap-2 p-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg"
+                  >
+                    <span class="text-2xl">🧐</span>
+                    <span
+                      >Trí tuệ →
+                      <strong class="text-blue-600"
+                        >+1 điểm Nghĩa vụ</strong
+                      ></span
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6"
+              >
+                <h3 class="font-bold mb-3">⚡ Cách hoạt động:</h3>
+                <div class="space-y-3 text-sm">
+                  <div class="flex items-start gap-2">
+                    <span class="text-green-600 font-bold">✓</span>
+                    <span
+                      >Khi chọn đáp án <strong>phù hợp với avatar</strong> →
+                      Nhận <strong>+1 điểm bonus</strong></span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="text-blue-600 font-bold">📈</span>
+                    <span
+                      >Tối đa <strong>+10 điểm</strong> nếu 10 câu đều
+                      match</span
+                    >
+                  </div>
+                  <div class="flex items-start gap-2">
+                    <span class="text-purple-600 font-bold">🎯</span>
+                    <span
+                      >Ảnh hưởng <strong>~10-15%</strong> kết quả cuối
+                      cùng</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 4: Achievements -->
+          <div
+            class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700"
+          >
+            <div class="flex items-center gap-3 mb-6">
+              <span
+                class="material-symbols-outlined text-4xl text-yellow-600 dark:text-yellow-400"
+                >emoji_events</span
+              >
+              <h2 class="text-2xl font-bold text-slate-900 dark:text-white">
+                Hệ thống Thành tích
+              </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4">
+              <div
+                class="p-4 bg-gradient-to-r from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-xl border-2 border-blue-200 dark:border-blue-700"
+              >
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-3xl">🎯</span>
+                  <div>
+                    <div class="font-bold">Bước đầu tiên</div>
+                    <div class="text-xs text-slate-600 dark:text-gray-400">
+                      Hoàn thành game lần đầu
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="p-4 bg-gradient-to-r from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-xl border-2 border-purple-200 dark:border-purple-700"
+              >
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-3xl">🎓</span>
+                  <div>
+                    <div class="font-bold">Nhà triết học toàn diện</div>
+                    <div class="text-xs text-slate-600 dark:text-gray-400">
+                      Trải nghiệm tất cả 5 triết lý
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="p-4 bg-gradient-to-r from-pink-50 to-pink-100 dark:from-pink-900/20 dark:to-pink-800/20 rounded-xl border-2 border-pink-200 dark:border-pink-700"
+              >
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-3xl">💎</span>
+                  <div>
+                    <div class="font-bold">Kiên định</div>
+                    <div class="text-xs text-slate-600 dark:text-gray-400">
+                      Chọn cùng 1 triết lý suốt game
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="p-4 bg-gradient-to-r from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-xl border-2 border-green-200 dark:border-green-700"
+              >
+                <div class="flex items-center gap-3 mb-2">
+                  <span class="text-3xl">☯️</span>
+                  <div>
+                    <div class="font-bold">Hiền nhân cân bằng</div>
+                    <div class="text-xs text-slate-600 dark:text-gray-400">
+                      Điểm các triết lý đều nhau
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="mt-6 p-4 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-xl border-l-4 border-yellow-500"
+            >
+              <p class="text-sm font-semibold">
+                🏆 Thành tích được lưu tự động và hiển thị trong kết quả cuối
+                cùng!
+              </p>
+            </div>
+          </div>
+
+          <!-- Ready to Play -->
+          <div class="text-center pt-4">
+            <div class="mb-4">
+              <p
+                class="text-lg font-semibold text-slate-900 dark:text-white mb-2"
+              >
+                🎮 Sẵn sàng khám phá triết lý của bạn?
+              </p>
+              <p class="text-sm text-slate-600 dark:text-gray-400">
+                Hãy trả lời thật lòng, không có đáp án đúng hay sai!
+              </p>
+            </div>
+            <button
+              onclick="proceedToGame()"
+              class="px-16 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 text-xl"
+            >
+              <span class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-3xl"
+                  >play_circle</span
+                >
+                Bắt đầu chơi ngay!
+              </span>
+            </button>
           </div>
         </div>
       </div>
@@ -489,6 +1074,7 @@
       // Game State
       let playerName = "";
       let playerAvatar = "😊";
+      let playerPhilosophy = "care"; // Avatar's philosophy for bonus
       let currentScenario = 0;
       let scores = {
         deontology: 0,
@@ -499,6 +1085,7 @@
       };
       let chart = null;
       let gameHistory = [];
+      let shuffledScenarios = []; // For randomized questions
       let achievements = {
         first_game: { name: "Bước đầu tiên", icon: "🎯", unlocked: false },
         all_philosophies: {
@@ -530,6 +1117,7 @@
             .forEach((o) => o.classList.remove("border-primary", "bg-blue-50"));
           this.classList.add("border-primary", "bg-blue-50");
           playerAvatar = this.dataset.avatar;
+          playerPhilosophy = this.dataset.philosophy; // Save avatar's philosophy
         });
       });
 
@@ -1108,28 +1696,66 @@
         },
       };
 
-      function startGame() {
+      // Shuffle array function (Fisher-Yates)
+      function shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      }
+
+      // Show philosophy introduction screen
+      function showPhilosophyIntro() {
         playerName =
           document.getElementById("player-name").value.trim() || "Bạn";
         document.getElementById("intro-screen").classList.add("hidden");
+        document
+          .getElementById("philosophy-intro-screen")
+          .classList.remove("hidden");
+      }
+
+      // Show game tutorial screen
+      function showGameTutorial() {
+        document
+          .getElementById("philosophy-intro-screen")
+          .classList.add("hidden");
+        document
+          .getElementById("game-tutorial-screen")
+          .classList.remove("hidden");
+      }
+
+      // Proceed to game after reading tutorial
+      function proceedToGame() {
+        document.getElementById("game-tutorial-screen").classList.add("hidden");
         document.getElementById("game-screen").classList.remove("hidden");
+
+        // Shuffle scenarios for random order
+        shuffledScenarios = shuffleArray(gameData.scenarios);
+
         initChart();
         loadScenario();
       }
 
+      function startGame() {
+        // This function is now replaced by showPhilosophyIntro + showGameTutorial + proceedToGame
+        showPhilosophyIntro();
+      }
+
       function loadScenario() {
-        if (currentScenario >= gameData.scenarios.length) {
+        if (currentScenario >= shuffledScenarios.length) {
           showResult();
           return;
         }
 
-        const scenario = gameData.scenarios[currentScenario];
+        const scenario = shuffledScenarios[currentScenario];
         const progress =
-          ((currentScenario + 1) / gameData.scenarios.length) * 100;
+          ((currentScenario + 1) / shuffledScenarios.length) * 100;
 
         document.getElementById("progress-bar").style.width = progress + "%";
         document.getElementById("progress-text").textContent =
-          `${currentScenario + 1}/${gameData.scenarios.length}`;
+          `${currentScenario + 1}/${shuffledScenarios.length}`;
         document.getElementById("scenario-icon").textContent = scenario.icon;
         document.getElementById("scenario-title").textContent = scenario.title;
         document.getElementById("scenario-description").textContent =
@@ -1138,7 +1764,10 @@
         const choicesContainer = document.getElementById("choices-container");
         choicesContainer.innerHTML = "";
 
-        scenario.choices.forEach((choice, index) => {
+        // Shuffle choices for random order
+        const shuffledChoices = shuffleArray(scenario.choices);
+
+        shuffledChoices.forEach((choice, index) => {
           const choiceCard = document.createElement("button");
           choiceCard.className =
             "choice-card w-full text-left p-5 bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 border-2 border-gray-200 dark:border-gray-600 hover:border-primary rounded-xl transition-all";
@@ -1159,9 +1788,37 @@
         // Show consequence
         showConsequence(choice.consequence, choice.scores);
 
-        // Update scores
+        // Update scores with avatar bonus
+        let bonusApplied = false;
+        let bonusPhilosophy = "";
+
+        console.log("=== AVATAR BONUS DEBUG ===");
+        console.log("Player Avatar:", playerAvatar);
+        console.log("Player Philosophy:", playerPhilosophy);
+        console.log("Choice scores:", choice.scores);
+
         for (let key in choice.scores) {
-          scores[key] += choice.scores[key];
+          const baseScore = choice.scores[key];
+          scores[key] += baseScore;
+
+          // Apply avatar bonus (+1 if choice matches avatar's philosophy)
+          if (key === playerPhilosophy && choice.scores[key] > 0) {
+            scores[key] += 1;
+            bonusApplied = true;
+            bonusPhilosophy = key;
+            console.log(
+              `✨ BONUS APPLIED! +1 to ${key} (${baseScore} → ${baseScore + 1})`,
+            );
+          }
+        }
+
+        console.log("Final scores:", scores);
+        console.log("Bonus applied:", bonusApplied);
+        console.log("======================");
+
+        // Show bonus notification if applied
+        if (bonusApplied) {
+          showBonusNotification(bonusPhilosophy);
         }
 
         // Save to history
@@ -1169,6 +1826,7 @@
           scenario: currentScenario,
           choice: choice.text,
           scores: { ...choice.scores },
+          bonusApplied: bonusApplied,
         });
 
         setTimeout(() => {
@@ -1309,6 +1967,39 @@
                 `;
           list.appendChild(div);
         }
+      }
+
+      // Show bonus notification when avatar bonus is applied
+      function showBonusNotification(philosophy) {
+        const philosophyNames = {
+          deontology: { name: "Nghĩa vụ luận", icon: "🔵", color: "blue" },
+          consequentialism: {
+            name: "Hậu quả luận",
+            icon: "🟢",
+            color: "green",
+          },
+          virtue: { name: "Đức hạnh", icon: "🟣", color: "purple" },
+          care: { name: "Quan tâm", icon: "🔴", color: "pink" },
+          egoism: { name: "Vị kỷ", icon: "🟠", color: "orange" },
+        };
+
+        const phil = philosophyNames[philosophy];
+        if (!phil) return;
+
+        const notif = document.getElementById("achievement-notification");
+        document.getElementById("notif-icon").textContent = "⚡";
+        document.getElementById("notif-text").textContent =
+          `Avatar Bonus! +1 điểm ${phil.icon} ${phil.name}`;
+
+        notif.classList.remove("hidden");
+        notif.style.animation = "slideInRight 0.3s ease-out";
+
+        setTimeout(() => {
+          notif.style.animation = "slideOutRight 0.3s ease-in";
+          setTimeout(() => {
+            notif.classList.add("hidden");
+          }, 300);
+        }, 2000);
       }
 
       function restartGame() {

@@ -101,6 +101,21 @@
         background-color: rgba(48, 140, 232, 0.08);
         transform: translateY(-1px);
       }
+
+      /* Pulse scale animation */
+      @keyframes pulse-scale {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+
+      .animate-pulse-scale {
+        animation: pulse-scale 2s ease-in-out infinite;
+      }
     </style>
   </head>
 
@@ -157,7 +172,7 @@
         <div class="md:col-span-12 mb-8">
           <a href="philosophy-game-enhanced.html" class="block group">
             <div
-              class="bg-gradient-to-br from-primary via-blue-600 to-purple-600 rounded-3xl p-8 md:p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02] relative overflow-hidden"
+              class="bg-indigo-600 rounded-3xl p-8 md:p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02] relative overflow-hidden"
             >
               <!-- Animated Background Elements -->
               <div
@@ -192,18 +207,18 @@
                     >
                     <span
                       class="text-yellow-100 text-xs font-bold uppercase tracking-wider"
-                      >Tính năng mới</span
+                      >THẾ GIỚI QUAN</span
                     >
                   </div>
                   <h2
                     class="text-3xl md:text-4xl font-serif font-bold text-white mb-3"
                   >
-                    🎮 Trò chơi Triết học
+                    KHÁM PHÁ TRIẾT LÝ SỐNG
                   </h2>
                   <p class="text-blue-50 text-lg mb-4 max-w-2xl">
-                    Khám phá thế giới quan của bạn qua 10 tình huống đạo đức
-                    thực tế. Mỗi lựa chọn sẽ tiết lộ triết lý sống ẩn sâu trong
-                    tâm hồn bạn!
+                    Game giúp các bạn khám phá triết lý sống của bản thân qua
+                    các tình huống thực tế, biến triết học từ lý thuyết trừu
+                    tượng thành công cụ sống có ích.
                   </p>
                   <div
                     class="flex flex-wrap gap-3 justify-center md:justify-start"
@@ -226,13 +241,10 @@
                 <!-- CTA Button -->
                 <div class="flex-shrink-0">
                   <div
-                    class="px-8 py-4 bg-white text-primary rounded-xl font-bold shadow-xl group-hover:shadow-2xl group-hover:bg-yellow-400 group-hover:text-slate-900 transition-all duration-300 flex items-center gap-2"
+                    class="px-8 py-4 bg-cyan-100 text-cyan-700 rounded-xl font-bold shadow-xl transition-all duration-300 flex items-center gap-2 animate-pulse-scale"
                   >
                     <span>Chơi ngay</span>
-                    <span
-                      class="material-symbols-outlined group-hover:translate-x-1 transition-transform"
-                      >arrow_forward</span
-                    >
+                    <span class="material-symbols-outlined">arrow_forward</span>
                   </div>
                 </div>
               </div>
