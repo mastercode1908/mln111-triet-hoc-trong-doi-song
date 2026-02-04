@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="vi" class="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Trò chơi Triết học - Khám phá Thế giới quan của bạn | PhiloMap
+    </title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#308ce8",
+              "primary-dark": "#1a6bb8",
+              "background-light": "#f8f9fa",
+              "background-dark": "#111921",
+            },
+            fontFamily: {
+              display: ["Lexend", "sans-serif"],
+              serif: ["Lora", "serif"],
+            },
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-in",
+              "slide-up": "slideUp 0.5s ease-out",
+              "bounce-slow": "bounce 2s infinite",
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              slideUp: {
+                "0%": { transform: "translateY(20px)", opacity: "0" },
+                "100%": { transform: "translateY(0)", opacity: "1" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-family: "Material Symbols Outlined";
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+
+      .choice-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .choice-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+
+      .progress-bar {
+        transition: width 0.5s ease-in-out;
+      }
+
+      @keyframes pulse-glow {
+        0%,
+        100% {
+          box-shadow: 0 0 20px rgba(48, 140, 232, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 40px rgba(48, 140, 232, 0.6);
+        }
+      }
+
+      .glow-effect {
+        animation: pulse-glow 2s infinite;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-gray-200 min-h-screen flex flex-col font-display"
+  >
+    <!-- Header Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <main class="flex-grow w-full max-w-5xl mx-auto px-4 py-10">
+      <!-- Breadcrumb -->
+      <div class="mb-6">
+        <div
+          class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800 text-primary text-xs font-bold uppercase tracking-wider gap-2"
+        >
+          <a
+            href="home.html"
+            class="hover:underline hover:text-blue-600 transition-colors"
+            >TRANG CHỦ</a
+          >
+          <span class="opacity-60">/</span>
+          <a
+            href="practice.html"
+            class="hover:underline hover:text-blue-600 transition-colors"
+            >THỰC HÀNH</a
+          >
+          <span class="opacity-60">/</span>
+          <span>TRÒ CHƠI TRIẾT HỌC</span>
+        </div>
+      </div>
+
+      <!-- Welcome Screen -->
+      <div id="welcome-screen" class="animate-fade-in">
+        <div class="text-center mb-12">
+          <div
+            class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary to-blue-600 rounded-full mb-6 glow-effect"
+          >
+            <span class="material-symbols-outlined text-white text-4xl"
+              >psychology</span
+            >
+          </div>
+          <h1
+            class="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4"
+          >
+            Hành trình Khám phá
+            <span class="text-primary italic">Thế giới quan</span>
+          </h1>
+          <p
+            class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto mb-8"
+          >
+            Bạn sẽ đối mặt với 5 tình huống đạo đức trong cuộc sống. Mỗi lựa
+            chọn của bạn sẽ tiết lộ triết lý sống ẩn sâu trong tâm hồn.
+          </p>
+        </div>
+
+        <div
+          class="bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-xl border border-gray-100 dark:border-gray-700 mb-8"
+        >
+          <h2 class="text-2xl font-bold mb-6 text-center">🎯 Cách chơi</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div
+                class="w-12 h-12 bg-blue-100 text-primary rounded-full flex items-center justify-center mx-auto mb-3"
+              >
+                <span class="text-2xl font-bold">1</span>
+              </div>
+              <h3 class="font-bold mb-2">Đọc tình huống</h3>
+              <p class="text-sm text-slate-600 dark:text-gray-400">
+                Đắm chìm vào câu chuyện và suy nghĩ kỹ
+              </p>
+            </div>
+            <div class="text-center">
+              <div
+                class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3"
+              >
+                <span class="text-2xl font-bold">2</span>
+              </div>
+              <h3 class="font-bold mb-2">Chọn hành động</h3>
+              <p class="text-sm text-slate-600 dark:text-gray-400">
+                Lựa chọn theo trực giác và giá trị của bạn
+              </p>
+            </div>
+            <div class="text-center">
+              <div
+                class="w-12 h-12 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-3"
+              >
+                <span class="text-2xl font-bold">3</span>
+              </div>
+              <h3 class="font-bold mb-2">Khám phá kết quả</h3>
+              <p class="text-sm text-slate-600 dark:text-gray-400">
+                Tìm hiểu triết lý sống của bạn
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center">
+          <button
+            onclick="startGame()"
+            class="px-10 py-4 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all transform hover:scale-105 text-lg"
+          >
+            <span class="flex items-center gap-2">
+              <span class="material-symbols-outlined">play_arrow</span>
+              Bắt đầu hành trình
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Game Screen -->
+      <div id="game-screen" class="hidden">
+        <!-- Progress Bar -->
+        <div class="mb-8">
+          <div class="flex justify-between items-center mb-2">
+            <span class="text-sm font-medium text-slate-600 dark:text-gray-400"
+              >Tiến độ</span
+            >
+            <span class="text-sm font-bold text-primary" id="progress-text"
+              >1/5</span
+            >
+          </div>
+          <div
+            class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden"
+          >
+            <div
+              id="progress-bar"
+              class="progress-bar bg-gradient-to-r from-primary to-blue-600 h-full rounded-full"
+              style="width: 20%"
+            ></div>
+          </div>
+        </div>
+
+        <!-- Scenario Card -->
+        <div
+          id="scenario-card"
+          class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-10 shadow-xl border border-gray-100 dark:border-gray-700 mb-8 animate-slide-up"
+        >
+          <div class="flex items-start gap-4 mb-6">
+            <div
+              class="w-14 h-14 bg-gradient-to-br from-primary to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0"
+            >
+              <span
+                class="material-symbols-outlined text-white text-3xl"
+                id="scenario-icon"
+                >help</span
+              >
+            </div>
+            <div>
+              <h2
+                class="text-2xl md:text-3xl font-serif font-bold text-slate-900 dark:text-white mb-3"
+                id="scenario-title"
+              >
+                Tình huống
+              </h2>
+              <p
+                class="text-slate-600 dark:text-gray-400 leading-relaxed text-lg"
+                id="scenario-description"
+              >
+                Mô tả tình huống...
+              </p>
+            </div>
+          </div>
+
+          <!-- Choices -->
+          <div class="space-y-4" id="choices-container">
+            <!-- Choices will be injected here -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Result Screen -->
+      <div id="result-screen" class="hidden animate-fade-in">
+        <div class="text-center mb-8">
+          <div
+            class="inline-flex items-center justify-center w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full mb-6 animate-bounce-slow"
+          >
+            <span class="material-symbols-outlined text-white text-5xl"
+              >emoji_events</span
+            >
+          </div>
+          <h1
+            class="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4"
+          >
+            Thế giới quan của bạn
+          </h1>
+        </div>
+
+        <div
+          class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-10 shadow-xl border border-gray-100 dark:border-gray-700 mb-8"
+        >
+          <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-primary mb-2" id="result-title">
+              Chủ nghĩa...
+            </h2>
+            <p
+              class="text-slate-600 dark:text-gray-400 italic"
+              id="result-subtitle"
+            >
+              Phụ đề
+            </p>
+          </div>
+
+          <div class="prose prose-lg max-w-none mb-8">
+            <p
+              class="text-slate-700 dark:text-gray-300 leading-relaxed"
+              id="result-description"
+            >
+              Mô tả chi tiết...
+            </p>
+          </div>
+
+          <!-- Characteristics -->
+          <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-6">
+              <h3 class="font-bold text-primary mb-3 flex items-center gap-2">
+                <span class="material-symbols-outlined">check_circle</span>
+                Điểm mạnh
+              </h3>
+              <ul class="space-y-2 text-sm" id="result-strengths">
+                <!-- Strengths will be injected -->
+              </ul>
+            </div>
+            <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-6">
+              <h3
+                class="font-bold text-orange-600 mb-3 flex items-center gap-2"
+              >
+                <span class="material-symbols-outlined">warning</span>
+                Cần lưu ý
+              </h3>
+              <ul class="space-y-2 text-sm" id="result-warnings">
+                <!-- Warnings will be injected -->
+              </ul>
+            </div>
+          </div>
+
+          <!-- Famous Philosophers -->
+          <div
+            class="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20 rounded-xl p-6 mb-8"
+          >
+            <h3
+              class="font-bold text-purple-700 dark:text-purple-400 mb-3 flex items-center gap-2"
+            >
+              <span class="material-symbols-outlined">school</span>
+              Triết gia đại diện
+            </h3>
+            <p
+              class="text-slate-700 dark:text-gray-300"
+              id="result-philosophers"
+            >
+              Danh sách triết gia...
+            </p>
+          </div>
+
+          <!-- Recommended Modules -->
+          <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-6">
+            <h3
+              class="font-bold text-green-700 dark:text-green-400 mb-3 flex items-center gap-2"
+            >
+              <span class="material-symbols-outlined">auto_stories</span>
+              Module học phù hợp
+            </h3>
+            <p
+              class="text-slate-700 dark:text-gray-300 mb-4"
+              id="result-modules"
+            >
+              Gợi ý module...
+            </p>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onclick="restartGame()"
+            class="px-8 py-3 bg-slate-800 hover:bg-slate-900 text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2"
+          >
+            <span class="material-symbols-outlined">refresh</span>
+            Chơi lại
+          </button>
+          <button
+            onclick="shareResult()"
+            class="px-8 py-3 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2"
+          >
+            <span class="material-symbols-outlined">share</span>
+            Chia sẻ kết quả
+          </button>
+          <a
+            href="practice.html"
+            class="px-8 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-white font-bold rounded-xl transition-colors flex items-center justify-center gap-2"
+          >
+            <span class="material-symbols-outlined">arrow_back</span>
+            Về Thực hành
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Scripts -->
+    <script src="js/load-components.js"></script>
+    <script>
+      // Game Data Structure
+      const gameData = {
+        scenarios: [
+          {
+            id: 1,
+            icon: "school",
+            title: "Bài thi cuối kỳ",
+            description:
+              "Bạn đang làm bài thi cuối kỳ quan trọng. Bạn bè ngồi cạnh nhờ bạn cho xem bài vì họ sắp trượt môn. Nếu giúp, bạn có nguy cơ bị phát hiện gian lận. Bạn sẽ làm gì?",
+            choices: [
+              {
+                text: "Từ chối vì quy tắc là quy tắc, không thể vi phạm",
+                scores: { deontology: 3, virtue: 1 },
+              },
+              {
+                text: "Giúp bạn vì tình bạn quan trọng hơn quy tắc",
+                scores: { care: 3, consequentialism: 1 },
+              },
+              {
+                text: "Cân nhắc hậu quả: nếu không bị phát hiện thì giúp",
+                scores: { consequentialism: 3 },
+              },
+              {
+                text: "Tìm cách khác: hứa sẽ dạy bạn ấy sau khi thi xong",
+                scores: { virtue: 3, care: 1 },
+              },
+            ],
+          },
+          {
+            id: 2,
+            icon: "account_balance_wallet",
+            title: "Tìm thấy ví tiền",
+            description:
+              "Bạn nhặt được một chiếc ví có 5 triệu đồng và CMND của người khác. Gia đình bạn đang rất khó khăn về tài chính. Bạn sẽ làm gì?",
+            choices: [
+              {
+                text: "Trả lại ngay cho chủ nhân vì đó là của người ta",
+                scores: { deontology: 3, virtue: 2 },
+              },
+              {
+                text: "Giữ lại vì gia đình mình cần tiền hơn",
+                scores: { egoism: 3 },
+              },
+              {
+                text: "Trả lại nhưng mong nhận phần thưởng",
+                scores: { consequentialism: 2, egoism: 1 },
+              },
+              {
+                text: "Quyên góp số tiền đó cho người nghèo hơn",
+                scores: { consequentialism: 3, care: 1 },
+              },
+            ],
+          },
+          {
+            id: 3,
+            icon: "favorite",
+            title: "Lời hứa với bạn thân",
+            description:
+              "Bạn hứa sẽ đi sinh nhật bạn thân. Nhưng đột nhiên có cơ hội phỏng vấn thực tập ở công ty mơ ước vào đúng giờ đó. Bạn sẽ làm gì?",
+            choices: [
+              {
+                text: "Giữ lời hứa vì tình bạn là thiêng liêng",
+                scores: { deontology: 3, care: 2 },
+              },
+              {
+                text: "Đi phỏng vấn vì tương lai nghề nghiệp quan trọng hơn",
+                scores: { consequentialism: 3, egoism: 1 },
+              },
+              {
+                text: "Thương lượng với công ty để đổi lịch phỏng vấn",
+                scores: { virtue: 3, care: 1 },
+              },
+              {
+                text: "Đi sinh nhật nhưng về sớm để chuẩn bị phỏng vấn",
+                scores: { virtue: 2, care: 2 },
+              },
+            ],
+          },
+          {
+            id: 4,
+            icon: "gavel",
+            title: "Chứng kiến gian lận",
+            description:
+              "Bạn thấy người quen đang gian lận trong kỳ thi. Nếu t고phát, họ sẽ bị đuổi học và gia đình họ rất khó khăn. Bạn sẽ làm gì?",
+            choices: [
+              {
+                text: "Báo cáo ngay vì công bằng cho những người khác",
+                scores: { deontology: 3, consequentialism: 1 },
+              },
+              {
+                text: "Im lặng vì không muốn hại người khác",
+                scores: { care: 3 },
+              },
+              {
+                text: "Nhắc nhở riêng và cho họ cơ hội sửa sai",
+                scores: { virtue: 3, care: 2 },
+              },
+              {
+                text: "Không can thiệp vì đó là chuyện của họ",
+                scores: { egoism: 2 },
+              },
+            ],
+          },
+          {
+            id: 5,
+            icon: "groups",
+            title: "Dự án nhóm",
+            description:
+              "Trong nhóm làm việc, có một thành viên không đóng góp gì nhưng vẫn muốn được điểm cao. Các thành viên khác muốn loại người đó ra. Bạn là nhóm trưởng, bạn quyết định thế nào?",
+            choices: [
+              {
+                text: "Loại ra vì công bằng với những người đã cố gắng",
+                scores: { deontology: 2, consequentialism: 2 },
+              },
+              {
+                text: "Giữ lại nhưng cho điểm thấp hơn",
+                scores: { virtue: 3, consequentialism: 1 },
+              },
+              {
+                text: "Cho cơ hội cuối để người đó đóng góp",
+                scores: { care: 3, virtue: 2 },
+              },
+              {
+                text: "Giữ lại vì không muốn gây mâu thuẫn",
+                scores: { care: 1, egoism: 1 },
+              },
+            ],
+          },
+        ],
+        philosophies: {
+          deontology: {
+            name: "Chủ nghĩa Nghĩa vụ luận (Deontology)",
+            subtitle: "Nguyên tắc là kim chỉ nam",
+            description:
+              "Bạn tin rằng có những nguyên tắc đạo đức phổ quát mà mọi người phải tuân theo, bất kể hậu quả. Đối với bạn, hành động đúng là hành động tuân thủ nghĩa vụ và quy tắc đạo đức, không phải vì lợi ích hay kết quả. Bạn đề cao tính nhất quán, công bằng và trách nhiệm.",
+            strengths: [
+              "Có nguyên tắc vững vàng, không dễ bị lay chuyển",
+              "Đáng tin cậy và có trách nhiệm cao",
+              "Tôn trọng quyền lợi và phẩm giá con người",
+              "Hành động nhất quán và có thể dự đoán",
+            ],
+            warnings: [
+              "Đôi khi quá cứng nhắc, thiếu linh hoạt",
+              "Có thể bỏ qua hậu quả thực tế của hành động",
+              "Khó xử lý khi các nguyên tắc mâu thuẫn nhau",
+              "Có thể bị coi là thiếu đồng cảm",
+            ],
+            philosophers: "Immanuel Kant, W.D. Ross, Thomas Aquinas",
+            modules:
+              "Module 1 (Định vị bản thân), Module 4 (Luật chơi của xã hội)",
+          },
+          consequentialism: {
+            name: "Chủ nghĩa Hậu quả luận (Consequentialism)",
+            subtitle: "Kết quả quyết định đúng sai",
+            description:
+              "Bạn đánh giá hành động dựa trên hậu quả của nó. Một hành động là đúng nếu nó mang lại kết quả tốt nhất cho số đông người. Bạn là người thực dụng, linh hoạt và luôn cân nhắc lợi ích tổng thể. Bạn tin rằng đạo đức không phải là tuyệt đối mà phụ thuộc vào hoàn cảnh.",
+            strengths: [
+              "Linh hoạt và thực tế trong ra quyết định",
+              "Quan tâm đến lợi ích chung và hạnh phúc tập thể",
+              "Có khả năng cân nhắc và phân tích tốt",
+              "Sẵn sàng thay đổi khi hoàn cảnh đổi khác",
+            ],
+            warnings: [
+              "Có thể biện minh cho hành động sai trái vì 'mục đích cao cả'",
+              "Khó dự đoán chính xác mọi hậu quả",
+              "Có nguy cơ hy sinh quyền lợi thiểu số vì đa số",
+              "Đôi khi thiếu nguyên tắc rõ ràng",
+            ],
+            philosophers: "Jeremy Bentham, John Stuart Mill, Peter Singer",
+            modules:
+              "Module 2 (Nghệ thuật đối mặt với thay đổi), Module 3 (Hành trình tri thức)",
+          },
+          virtue: {
+            name: "Chủ nghĩa Đức hạnh (Virtue Ethics)",
+            subtitle: "Trở thành người tốt hơn mỗi ngày",
+            description:
+              "Bạn tin rằng đạo đức không chỉ là tuân theo quy tắc hay tính toán hậu quả, mà là phát triển phẩm chất tốt đẹp trong con người. Bạn hướng đến việc trở thành một người có đức hạnh: dũng cảm, khôn ngoan, công bằng, tiết chế. Bạn tin vào sự cân bằng và trung dung.",
+            strengths: [
+              "Tập trung vào phát triển bản thân toàn diện",
+              "Cân bằng giữa lý trí và cảm xúc",
+              "Có khả năng phán đoán tình huống linh hoạt",
+              "Xây dựng nhân cách vững chắc theo thời gian",
+            ],
+            warnings: [
+              "Khái niệm 'đức hạnh' có thể mơ hồ và chủ quan",
+              "Cần thời gian dài để phát triển phẩm chất",
+              "Khó áp dụng trong tình huống cần quyết định nhanh",
+              "Có thể thiếu hướng dẫn cụ thể cho hành động",
+            ],
+            philosophers:
+              "Aristotle, Confucius, Thomas Aquinas, Alasdair MacIntyre",
+            modules:
+              "Module 2 (Nghệ thuật đối mặt với thay đổi), Module 5 (Con người – Mục tiêu & Động lực)",
+          },
+          care: {
+            name: "Đạo đức Quan tâm (Care Ethics)",
+            subtitle: "Tình cảm và mối quan hệ là trọng tâm",
+            description:
+              "Bạn tin rằng đạo đức nảy sinh từ mối quan hệ và sự quan tâm đến người khác. Bạn đề cao lòng trắc ẩn, sự đồng cảm và trách nhiệm trong các mối quan hệ. Đối với bạn, đạo đức không phải là áp dụng quy tắc trừu tượng mà là đáp ứng nhu cầu cụ thể của những người xung quanh.",
+            strengths: [
+              "Có khả năng đồng cảm và thấu hiểu cao",
+              "Xây dựng mối quan hệ sâu sắc và ý nghĩa",
+              "Nhạy bén với nhu cầu và cảm xúc người khác",
+              "Tạo môi trường hỗ trợ và an toàn",
+            ],
+            warnings: [
+              "Có thể quá thiên vị với người thân quen",
+              "Khó duy trì ranh giới cá nhân",
+              "Nguy cơ bị lợi dụng lòng tốt",
+              "Đôi khi bỏ qua công bằng vì tình cảm",
+            ],
+            philosophers: "Carol Gilligan, Nel Noddings, Virginia Held",
+            modules:
+              "Module 2 (Nghệ thuật đối mặt với thay đổi), Module 5 (Con người – Mục tiêu & Động lực)",
+          },
+          egoism: {
+            name: "Chủ nghĩa Vị kỷ hợp lý (Rational Egoism)",
+            subtitle: "Lợi ích bản thân là ưu tiên",
+            description:
+              "Bạn tin rằng mỗi người nên hành động vì lợi ích tốt nhất của chính mình. Điều này không có nghĩa là ích kỷ mù quáng, mà là nhận thức rằng việc chăm sóc bản thân là điều kiện để có thể giúp đỡ người khác. Bạn tin vào tự do cá nhân và trách nhiệm với chính mình.",
+            strengths: [
+              "Độc lập và tự chủ cao",
+              "Có động lực mạnh mẽ để phát triển bản thân",
+              "Không phụ thuộc vào sự công nhận của người khác",
+              "Trung thực với bản thân và mong muốn của mình",
+            ],
+            warnings: [
+              "Có thể bỏ qua trách nhiệm với cộng đồng",
+              "Nguy cơ cô lập và thiếu hỗ trợ xã hội",
+              "Khó hợp tác và xây dựng lòng tin",
+              "Có thể bị coi là ích kỷ và vô cảm",
+            ],
+            philosophers: "Ayn Rand, Max Stirner, Friedrich Nietzsche",
+            modules:
+              "Module 1 (Định vị bản thân), Module 5 (Con người – Mục tiêu & Động lực)",
+          },
+        },
+      };
+
+      // Game State
+      let currentScenario = 0;
+      let scores = {
+        deontology: 0,
+        consequentialism: 0,
+        virtue: 0,
+        care: 0,
+        egoism: 0,
+      };
+
+      // Start Game
+      function startGame() {
+        document.getElementById("welcome-screen").classList.add("hidden");
+        document.getElementById("game-screen").classList.remove("hidden");
+        currentScenario = 0;
+        scores = {
+          deontology: 0,
+          consequentialism: 0,
+          virtue: 0,
+          care: 0,
+          egoism: 0,
+        };
+        loadScenario();
+      }
+
+      // Load Scenario
+      function loadScenario() {
+        const scenario = gameData.scenarios[currentScenario];
+        const progress =
+          ((currentScenario + 1) / gameData.scenarios.length) * 100;
+
+        // Update progress
+        document.getElementById("progress-bar").style.width = progress + "%";
+        document.getElementById("progress-text").textContent =
+          `${currentScenario + 1}/${gameData.scenarios.length}`;
+
+        // Update scenario content
+        document.getElementById("scenario-icon").textContent = scenario.icon;
+        document.getElementById("scenario-title").textContent = scenario.title;
+        document.getElementById("scenario-description").textContent =
+          scenario.description;
+
+        // Render choices
+        const choicesContainer = document.getElementById("choices-container");
+        choicesContainer.innerHTML = "";
+
+        scenario.choices.forEach((choice, index) => {
+          const choiceCard = document.createElement("button");
+          choiceCard.className =
+            "choice-card w-full text-left p-5 bg-gray-50 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 border-2 border-gray-200 dark:border-gray-600 hover:border-primary rounded-xl transition-all";
+          choiceCard.innerHTML = `
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 bg-white dark:bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0 font-bold text-primary">
+                            ${String.fromCharCode(65 + index)}
+                        </div>
+                        <p class="text-slate-700 dark:text-gray-200 font-medium leading-relaxed">${choice.text}</p>
+                    </div>
+                `;
+          choiceCard.onclick = () => selectChoice(choice.scores);
+          choicesContainer.appendChild(choiceCard);
+        });
+
+        // Animate in
+        document
+          .getElementById("scenario-card")
+          .classList.remove("animate-slide-up");
+        setTimeout(() => {
+          document
+            .getElementById("scenario-card")
+            .classList.add("animate-slide-up");
+        }, 10);
+      }
+
+      // Select Choice
+      function selectChoice(choiceScores) {
+        // Update scores
+        for (let key in choiceScores) {
+          scores[key] += choiceScores[key];
+        }
+
+        // Move to next scenario or show result
+        currentScenario++;
+        if (currentScenario < gameData.scenarios.length) {
+          setTimeout(() => loadScenario(), 300);
+        } else {
+          setTimeout(() => showResult(), 300);
+        }
+      }
+
+      // Show Result
+      function showResult() {
+        // Find dominant philosophy
+        let maxScore = 0;
+        let dominantPhilosophy = "virtue";
+
+        for (let key in scores) {
+          if (scores[key] > maxScore) {
+            maxScore = scores[key];
+            dominantPhilosophy = key;
+          }
+        }
+
+        const result = gameData.philosophies[dominantPhilosophy];
+
+        // Hide game screen, show result screen
+        document.getElementById("game-screen").classList.add("hidden");
+        document.getElementById("result-screen").classList.remove("hidden");
+
+        // Populate result
+        document.getElementById("result-title").textContent = result.name;
+        document.getElementById("result-subtitle").textContent =
+          result.subtitle;
+        document.getElementById("result-description").textContent =
+          result.description;
+
+        // Strengths
+        const strengthsList = document.getElementById("result-strengths");
+        strengthsList.innerHTML = result.strengths
+          .map(
+            (s) =>
+              `<li class="flex gap-2"><span class="text-primary">✓</span><span class="text-slate-700 dark:text-gray-300">${s}</span></li>`,
+          )
+          .join("");
+
+        // Warnings
+        const warningsList = document.getElementById("result-warnings");
+        warningsList.innerHTML = result.warnings
+          .map(
+            (w) =>
+              `<li class="flex gap-2"><span class="text-orange-600">⚠</span><span class="text-slate-700 dark:text-gray-300">${w}</span></li>`,
+          )
+          .join("");
+
+        // Philosophers
+        document.getElementById("result-philosophers").textContent =
+          result.philosophers;
+
+        // Modules
+        document.getElementById("result-modules").textContent = result.modules;
+
+        // Save to localStorage
+        localStorage.setItem(
+          "philosophyGameResult",
+          JSON.stringify({
+            philosophy: dominantPhilosophy,
+            name: result.name,
+            date: new Date().toLocaleDateString("vi-VN"),
+          }),
+        );
+
+        // Scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Restart Game
+      function restartGame() {
+        document.getElementById("result-screen").classList.add("hidden");
+        document.getElementById("welcome-screen").classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // Share Result
+      function shareResult() {
+        const resultTitle = document.getElementById("result-title").textContent;
+        const shareText = `Tôi vừa khám phá thế giới quan của mình: ${resultTitle}! Bạn thuộc trường phái triết học nào? Hãy thử ngay! 🎮✨`;
+
+        if (navigator.share) {
+          navigator
+            .share({
+              title: "Kết quả Trò chơi Triết học",
+              text: shareText,
+              url: window.location.href,
+            })
+            .catch((err) => console.log("Error sharing:", err));
+        } else {
+          // Fallback: Copy to clipboard
+          navigator.clipboard
+            .writeText(shareText + "\n" + window.location.href)
+            .then(() => alert("Đã sao chép kết quả! Bạn có thể chia sẻ ngay."))
+            .catch((err) => console.log("Error copying:", err));
+        }
+      }
+    </script>
+  </body>
+</html>

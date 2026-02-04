@@ -26,8 +26,12 @@
 
         <a class="nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-slate-600 text-sm font-medium hover:text-primary relative pb-1 border-b-2 border-transparent flex items-center gap-1"
           href="worldview-game.html">
-          <span class="material-symbols-outlined text-[18px]">extension</span>
           Game
+        </a>
+
+        <a class="px-4 py-2 rounded-lg bg-cyan-100 text-cyan-700 text-sm font-bold flex items-center gap-1.5 hover:bg-cyan-200 transition-all animate-pulse-scale shadow-sm"
+          href="philosophy-game-enhanced.html">
+          Triết lý sống
         </a>
       </nav>
     </div>
@@ -51,6 +55,33 @@
   </div>
 </header>
 
+<!-- Floating AI Chat Button -->
+<a href="ai-assistants.html" class="fixed bottom-6 right-6 z-50 group" title="Trò chuyện với AI Assistants">
+  <div
+    class="w-14 h-14 bg-gradient-to-br from-purple-600 to-pink-600 rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 animate-pulse-slow">
+    <span class="material-symbols-outlined text-white text-2xl">smart_toy</span>
+  </div>
+  <!-- Tooltip -->
+  <div
+    class="absolute bottom-full right-0 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+    Trò chuyện với AI
+  </div>
+</a>
+
+<!-- Floating Tet Effect Button -->
+<button id="tet-toggle-btn-header" class="fixed bottom-6 right-24 z-50 group" title="Chúc Mừng Năm Mới 2026"
+  onclick="window.showTetOverlay && window.showTetOverlay()">
+  <div
+    class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-500 rounded-full shadow-lg hover:shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 animate-pulse-slow">
+    <span class="text-white text-2xl">🎊</span>
+  </div>
+  <!-- Tooltip -->
+  <div
+    class="absolute bottom-full right-0 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+    Chúc Mừng Năm Mới 2026
+  </div>
+</button>
+
 <!-- Spacer to prevent content from going under fixed header -->
 <div style="height: 60px"></div>
 
@@ -61,6 +92,44 @@
     scroll-padding-top: 80px;
     /* Height of header + some padding */
     scroll-behavior: smooth;
+  }
+
+  /* Pulse scale animation for Philosophy Game button */
+  @keyframes pulse-scale {
+
+    0%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-pulse-scale {
+    animation: pulse-scale 2s ease-in-out infinite;
+  }
+
+  /* Slow pulse animation for floating AI button */
+  @keyframes pulse-slow {
+
+    0%,
+    100% {
+      box-shadow:
+        0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 0 0 0 rgba(147, 51, 234, 0.4);
+    }
+
+    50% {
+      box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 0 0 10px rgba(147, 51, 234, 0);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 2s ease-in-out infinite;
   }
 </style>
 
@@ -168,6 +237,22 @@
       ],
       type: "game",
       icon: "extension",
+    },
+    {
+      title: "Trò chuyện với AI Assistants",
+      subtitle: "Hỏi đáp triết học dựa trên giáo trình",
+      url: "ai-assistants.html",
+      keywords: [
+        "ai",
+        "assistant",
+        "chat",
+        "trò chuyện",
+        "gemini",
+        "giáo trình",
+        "triết học mác - lênin",
+      ],
+      type: "page",
+      icon: "smart_toy",
     },
     {
       title: "Quy luật Lượng - Chất",
