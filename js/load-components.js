@@ -118,12 +118,18 @@ function setActiveNavLink() {
             (currentPath === 'home.html' && linkHref === 'home.html' && !currentHash) ||
             (currentPath === 'home.html' && linkHref === '#overview' && currentHash === '#overview') ||
             (linkHref === 'home.html#overview' && currentPath.includes('module')) ||
-            (linkHref === 'practice.html' && (currentPath.includes('quiz') || currentPath.includes('worldview-game'))) ||
+            (linkHref === 'practice.html' && currentPath.includes('quiz')) ||
+            (linkHref === 'games.html' && (currentPath.includes('worldview-game') || currentPath.includes('philosophy-game') || currentPath.includes('philosopher-match-game') || currentPath.includes('games'))) ||
             (linkHref.includes('articles.html') && (window.location.pathname.includes('/articles/') || currentPath.includes('articles'))); // Highlight Articles for sub-pages
 
 
         if (isMatch) {
-            link.className = "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-primary text-sm font-bold hover:text-primary relative pb-1 border-b-2 border-primary";
+            // Special handling for Game link to include flex items-center gap-1
+            if (linkHref === 'games.html') {
+                link.className = "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-primary text-sm font-bold hover:text-primary relative pb-1 border-b-2 border-primary flex items-center gap-1";
+            } else {
+                link.className = "nav-link px-3 py-2 rounded-lg hover:bg-primary/10 hover:-translate-y-px transition-all duration-300 text-primary text-sm font-bold hover:text-primary relative pb-1 border-b-2 border-primary";
+            }
         }
     });
 }

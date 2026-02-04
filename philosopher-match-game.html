@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html class="light" lang="vi">
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -7,8 +8,11 @@
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
     <script>
@@ -68,17 +72,20 @@
             direction: ltr;
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
         }
-        
+
         /* Card flip animation */
         .card {
             transform-style: preserve-3d;
             transition: transform 0.6s;
             cursor: pointer;
         }
+
         .card.flipped {
             transform: rotateY(180deg);
         }
-        .card-front, .card-back {
+
+        .card-front,
+        .card-back {
             backface-visibility: hidden;
             position: absolute;
             top: 0;
@@ -92,10 +99,11 @@
             padding: 1rem;
             text-align: center;
         }
+
         .card-back {
             transform: rotateY(180deg);
         }
-        
+
         /* Confetti effect */
         .confetti {
             position: fixed;
@@ -105,7 +113,7 @@
             z-index: 9999;
             border-radius: 50%;
         }
-        
+
         /* Academic badge */
         .academic-badge {
             position: absolute;
@@ -123,409 +131,477 @@
             z-index: 10;
             cursor: pointer;
         }
-        
+
         /* Modal scroll */
         .modal-scroll {
             max-height: 70vh;
             overflow-y: auto;
         }
-        
+
         /* Custom scrollbar */
         .modal-scroll::-webkit-scrollbar {
             width: 8px;
         }
-        
+
         .modal-scroll::-webkit-scrollbar-track {
             background: #f1f1f1;
             border-radius: 4px;
         }
-        
+
         .modal-scroll::-webkit-scrollbar-thumb {
             background: #8b5cf6;
             border-radius: 4px;
         }
-        
+
         .modal-scroll::-webkit-scrollbar-thumb:hover {
             background: #7c3aed;
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-gray-200 font-sans min-h-screen overflow-x-hidden">
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-gray-200 font-sans min-h-screen overflow-x-hidden flex flex-col">
+    <!-- Header -->
+    <div id="header-placeholder"></div>
+
     <!-- Game Container -->
-    <div class="max-w-6xl mx-auto px-4 py-8">
-        <!-- Header -->
-        <div class="text-center mb-10 animate-bounce-in">
-            <div class="inline-flex items-center px-4 py-1.5 rounded-full bg-academic/10 border border-academic/20 dark:bg-academic/20 dark:border-academic/30 text-academic text-xs font-bold uppercase tracking-wider gap-2 mb-6">
-                <span class="material-symbols-outlined text-sm">verified</span>
-                <span>GAME HỌC THUẬT - CÓ TRÍCH DẪN NGUỒN</span>
+    <main class="flex-grow">
+        <!-- Welcome Modal -->
+        <div id="welcome-modal"
+            class="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-5 relative">
+                <!-- Close Button -->
+                <button id="btn-close-modal"
+                    class="absolute top-3 right-3 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <span
+                        class="material-symbols-outlined text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">close</span>
+                </button>
+                <div class="text-center">
+                    <span class="material-symbols-outlined text-academic text-4xl mb-2">menu_book</span>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-3">
+                        Ghép đôi Triết gia
+                    </h2>
+                    <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mb-4">
+                        <h3 class="font-bold text-sm text-slate-900 dark:text-white mb-2">
+                            🎯 Mục tiêu Game
+                        </h3>
+                        <p class="text-slate-700 dark:text-gray-300 text-xs leading-relaxed">
+                            Ghép cặp <strong>Triết gia</strong> với <strong>Câu nói nổi tiếng</strong> của họ.
+                            Hoàn thành 8 cặp trước khi hết thời gian.
+                        </p>
+                    </div>
+                    <div class="text-left mb-4">
+                        <h4 class="font-bold text-xs text-slate-900 dark:text-white mb-1">
+                            📚 Cách chơi:
+                        </h4>
+                        <ul class="text-xs text-slate-600 dark:text-gray-400 space-y-0.5">
+                            <li>• Nhấn vào thẻ để lật mặt</li>
+                            <li>• Tìm cặp thẻ: <strong>Triết gia</strong> ↔ <strong>Câu nói</strong></li>
+                            <li>• Ghép đúng 8 cặp trước khi hết 120 giây</li>
+                            <li>• Dùng gợi ý khi cần (3 lần)</li>
+                        </ul>
+                    </div>
+
+                    <!-- Example Cards -->
+                    <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 mb-4">
+                        <h4 class="font-bold text-xs text-slate-900 dark:text-white mb-2">
+                            🎴 Ví dụ cặp ghép:
+                        </h4>
+                        <div class="flex justify-center items-center gap-2">
+                            <div
+                                class="w-20 h-16 bg-primary text-white rounded-lg flex flex-col items-center justify-center p-1.5 shadow">
+                                <div class="text-[10px] font-bold">Triết gia</div>
+                                <div class="text-xs font-medium">Socrates</div>
+                            </div>
+                            <span class="material-symbols-outlined text-primary text-lg">sync_alt</span>
+                            <div
+                                class="w-20 h-16 bg-secondary text-white rounded-lg flex flex-col items-center justify-center p-1.5 shadow">
+                                <div class="text-[10px] font-bold">Trích dẫn</div>
+                                <div class="text-[9px] font-medium text-center leading-tight">"Tôi biết rằng tôi không
+                                    biết gì cả"</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="btn-start-game"
+                        class="w-full px-6 py-3 bg-gradient-to-r from-primary to-blue-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:scale-105">
+                        <span class="flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">play_arrow</span>
+                            Bắt đầu chơi
+                        </span>
+                    </button>
+                </div>
             </div>
-            
-            <h1 class="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4">
-                📖 <span class="text-academic">Ghép đôi</span> Triết gia
-            </h1>
-            <p class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
-                Ghép cặp triết gia với câu nói nổi tiếng của họ. Mỗi thẻ đều có bằng chứng học thuật!
-            </p>
         </div>
 
-        <!-- Academic Notice -->
-        <div class="max-w-3xl mx-auto bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-purple-900/20 rounded-2xl p-6 mb-8">
-            <div class="flex items-start gap-4">
-                <div class="p-3 bg-academic/10 rounded-xl">
-                    <span class="material-symbols-outlined text-academic">school</span>
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg mb-2">Tính xác thực học thuật</h3>
-                    <p class="text-sm text-slate-600 dark:text-gray-400 mb-3">
-                        Mọi câu nói đều được trích dẫn từ <strong>tác phẩm nguyên bản</strong> và <strong>giáo trình chính thức</strong>. 
-                        Nhấn vào biểu tượng <span class="inline-flex items-center justify-center w-5 h-5 bg-academic text-white rounded-full text-xs">i</span> trên mỗi thẻ để xem nguồn tham khảo.
-                    </p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs rounded-full">Giáo trình Triết học Mác - Lênin</span>
-                        <span class="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs rounded-full">Tác phẩm nguyên bản</span>
-                        <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs rounded-full">Nguồn đã kiểm chứng</span>
+        <div class="max-w-7xl mx-auto px-4 md:px-10 py-8">
+            <!-- Header -->
+            <div class="text-center mb-10 animate-bounce-in">
+                <h1 class="text-4xl md:text-5xl font-serif font-bold text-slate-900 dark:text-white mb-4">
+                    📖 <span class="text-academic">Ghép đôi</span> Triết gia
+                </h1>
+                <p class="text-lg text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
+                    Ghép cặp triết gia với câu nói nổi tiếng của họ.
+                </p>
+            </div>
+
+            <!-- Game Stats -->
+            <div class="w-full mb-8">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center">
+                        <div class="text-3xl font-bold text-primary mb-2" id="score">0</div>
+                        <div class="text-sm text-slate-500 dark:text-gray-400">ĐIỂM SỐ</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center">
+                        <div class="text-3xl font-bold text-secondary mb-2" id="timer">120</div>
+                        <div class="text-sm text-slate-500 dark:text-gray-400">THỜI GIAN</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center">
+                        <div class="text-3xl font-bold text-accent mb-2" id="pairs-matched">0/8</div>
+                        <div class="text-sm text-slate-500 dark:text-gray-400">CẶP ĐÃ GHÉP</div>
+                    </div>
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center">
+                        <div class="text-3xl font-bold text-academic mb-2" id="hints-left">3</div>
+                        <div class="text-sm text-slate-500 dark:text-gray-400">GỢI Ý CÒN LẠI</div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Game Stats -->
-        <div class="max-w-4xl mx-auto mb-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center">
-                    <div class="text-3xl font-bold text-primary mb-2" id="score">0</div>
-                    <div class="text-sm text-slate-500 dark:text-gray-400">ĐIỂM SỐ</div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center">
-                    <div class="text-3xl font-bold text-secondary mb-2" id="timer">120</div>
-                    <div class="text-sm text-slate-500 dark:text-gray-400">THỜI GIAN</div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center">
-                    <div class="text-3xl font-bold text-accent mb-2" id="pairs-matched">0/8</div>
-                    <div class="text-sm text-slate-500 dark:text-gray-400">CẶP ĐÃ GHÉP</div>
-                </div>
-                <div class="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg text-center">
-                    <div class="text-3xl font-bold text-academic mb-2" id="hints-left">3</div>
-                    <div class="text-sm text-slate-500 dark:text-gray-400">GỢI Ý CÒN LẠI</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Game Grid -->
-        <div class="max-w-4xl mx-auto">
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8" id="game-grid">
-                <!-- Cards will be generated by JavaScript -->
-            </div>
-            
             <!-- Controls -->
-            <div class="text-center space-y-4">
-                <div class="flex flex-wrap justify-center gap-4">
-                    <button id="hint-btn" 
-                            class="px-6 py-3 bg-academic hover:bg-purple-700 text-white rounded-xl font-medium transition-colors flex items-center gap-2">
-                        <span class="material-symbols-outlined">lightbulb</span>
-                        Gợi ý học thuật
-                    </button>
-                    <button id="show-sources-btn" 
-                            class="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-xl font-medium transition-colors flex items-center gap-2">
-                        <span class="material-symbols-outlined">library_books</span>
-                        Xem tất cả nguồn tham khảo
-                    </button>
-                    <button id="restart-btn" 
-                            class="px-6 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-slate-700 dark:text-gray-300 rounded-xl font-medium transition-colors flex items-center gap-2">
-                        <span class="material-symbols-outlined">restart_alt</span>
-                        Chơi lại từ đầu
-                    </button>
+            <div class="w-full mb-6">
+                <div class="text-center space-y-4">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <button id="hint-btn"
+                            class="w-full justify-center px-4 py-3 bg-academic hover:bg-purple-700 text-white rounded-xl text-sm font-medium transition-colors flex items-center gap-2 shadow-sm hover:shadow-md">
+                            <span class="material-symbols-outlined text-xl">lightbulb</span>
+                            Gợi ý
+                        </button>
+                        <button id="show-sources-btn"
+                            class="w-full justify-center px-4 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-xl text-sm font-medium transition-colors flex items-center gap-2 shadow-sm hover:shadow-md">
+                            <span class="material-symbols-outlined text-xl">library_books</span>
+                            Nguồn
+                        </button>
+                        <button id="restart-btn"
+                            class="w-full justify-center px-4 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-slate-700 dark:text-gray-300 rounded-xl text-sm font-medium transition-colors flex items-center gap-2 shadow-sm hover:shadow-md">
+                            <span class="material-symbols-outlined text-xl">restart_alt</span>
+                            Chơi lại
+                        </button>
+                        <button id="help-btn"
+                            class="w-full justify-center px-4 py-3 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-sm font-medium transition-colors flex items-center gap-2 shadow-sm hover:shadow-md">
+                            <span class="material-symbols-outlined text-xl">help</span>
+                            Hướng dẫn
+                        </button>
+                    </div>
                 </div>
-                
-                <p class="text-sm text-slate-500 dark:text-gray-400">
-                    <span class="material-symbols-outlined align-middle text-xs">info</span>
-                    Mỗi lần ghép đúng sẽ hiện giải thích học thuật và trích dẫn nguồn
-                </p>
+            </div>
+
+            <!-- Game Grid -->
+            <div class="w-full">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8" id="game-grid">
+                    <!-- Cards will be generated by JavaScript -->
+                </div>
             </div>
         </div>
 
-        <!-- How to Play -->
-        <div class="max-w-4xl mx-auto mt-12 bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg">
-            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 text-center">📖 Hướng dẫn chơi & Học thuật</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="space-y-4">
-                    <h4 class="font-bold text-lg flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary">play_circle</span>
-                        Cách chơi
-                    </h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-2">
-                            <span class="text-primary font-bold">1.</span>
-                            <span class="text-sm">Nhấn vào thẻ để lật mặt</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-primary font-bold">2.</span>
-                            <span class="text-sm">Tìm cặp thẻ: <strong>Triết gia</strong> ↔ <strong>Câu nói nổi tiếng</strong></span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-primary font-bold">3.</span>
-                            <span class="text-sm">Ghép đúng 8 cặp trước khi hết thời gian</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-primary font-bold">4.</span>
-                            <span class="text-sm">Dùng gợi ý khi cần (3 lần)</span>
-                        </li>
-                    </ul>
+        <!-- Help Modal -->
+        <div id="help-modal"
+            class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-lg w-full p-5 relative">
+                <!-- Close Button -->
+                <button id="btn-close-help"
+                    class="absolute top-3 right-3 p-1 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                    <span
+                        class="material-symbols-outlined text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">close</span>
+                </button>
+                <div class="text-center mb-4">
+                    <span class="material-symbols-outlined text-amber-500 text-4xl mb-2">help</span>
+                    <h2 class="text-xl font-bold text-slate-900 dark:text-white">Hướng dẫn chơi</h2>
                 </div>
-                <div class="space-y-4">
-                    <h4 class="font-bold text-lg flex items-center gap-2">
-                        <span class="material-symbols-outlined text-academic">school</span>
-                        Giá trị học thuật
-                    </h4>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-2">
-                            <span class="text-academic font-bold">•</span>
-                            <span class="text-sm">Mỗi câu nói đều có <strong>trích dẫn nguồn chính xác</strong></span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-academic font-bold">•</span>
-                            <span class="text-sm">Giải thích <strong>theo giáo trình Triết học Mác - Lênin</strong></span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-academic font-bold">•</span>
-                            <span class="text-sm">Liên kết với <strong>Module PhiloMap</strong> để học sâu hơn</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-academic font-bold">•</span>
-                            <span class="text-sm">Phù hợp cho <strong>ôn tập và nghiên cứu</strong></span>
-                        </li>
-                    </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-sm flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-lg">play_circle</span>
+                            Cách chơi
+                        </h4>
+                        <ul class="space-y-2 text-xs text-slate-600 dark:text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <span class="text-primary font-bold">1.</span>
+                                <span>Nhấn vào thẻ để lật mặt</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-primary font-bold">2.</span>
+                                <span>Tìm cặp thẻ: <strong>Triết gia</strong> ↔ <strong>Câu nói</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-primary font-bold">3.</span>
+                                <span>Ghép đúng 8 cặp trước khi hết thời gian</span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-primary font-bold">4.</span>
+                                <span>Dùng gợi ý khi cần (3 lần)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-sm flex items-center gap-2">
+                            <span class="material-symbols-outlined text-academic text-lg">school</span>
+                            Giá trị học thuật
+                        </h4>
+                        <ul class="space-y-2 text-xs text-slate-600 dark:text-gray-400">
+                            <li class="flex items-start gap-2">
+                                <span class="text-academic font-bold">•</span>
+                                <span>Mỗi câu nói đều có <strong>trích dẫn nguồn</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-academic font-bold">•</span>
+                                <span>Theo <strong>giáo trình Triết học Mác - Lênin</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-academic font-bold">•</span>
+                                <span>Liên kết với <strong>Module PhiloMap</strong></span>
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <span class="text-academic font-bold">•</span>
+                                <span>Phù hợp cho <strong>ôn tập và nghiên cứu</strong></span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Source Modal -->
-    <div id="source-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
-            <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
-                <h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                    <span class="material-symbols-outlined text-academic">menu_book</span>
-                    <span id="modal-title">Nguồn tham khảo</span>
-                </h3>
-                <button onclick="closeSourceModal()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
-                    <span class="material-symbols-outlined">close</span>
+                <button id="btn-close-help-bottom"
+                    class="w-full mt-4 px-6 py-2 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl transition-colors">
+                    Đã hiểu
                 </button>
             </div>
-            
-            <div class="p-6 overflow-y-auto flex-grow modal-scroll" id="source-content">
-                <!-- Content will be loaded here -->
+        </div>
+
+        <!-- Source Modal -->
+        <div id="source-modal" class="hidden fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
+            <div
+                class="bg-white dark:bg-gray-800 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col">
+                <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                        <span class="material-symbols-outlined text-academic">menu_book</span>
+                        <span id="modal-title">Nguồn tham khảo</span>
+                    </h3>
+                    <button onclick="closeSourceModal()"
+                        class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg">
+                        <span class="material-symbols-outlined">close</span>
+                    </button>
+                </div>
+
+                <div class="p-6 overflow-y-auto flex-grow modal-scroll" id="source-content">
+                    <!-- Content will be loaded here -->
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- Game Logic -->
-    <script>
-        // ==================== ACADEMIC DATA ====================
-        const academicPairs = [
-            {
-                id: 1,
-                philosopher: "Socrates",
-                quote: "Tôi biết rằng tôi không biết gì cả",
-                explanation: "Câu nói thể hiện phương pháp biện chứng Socrates: bắt đầu từ sự khiêm tốn nhận thức để đi tìm chân lý.",
-                module: "Module 1: Nhập môn Triết học",
-                sources: [
-                    {
-                        type: "primary",
-                        citation: "Plato, Apology, 21d",
-                        description: "Trong 'Lời Biện hộ của Socrates', Plato ghi lại lời Socrates trước tòa án Athens: 'Điều tôi biết chắc là tôi không biết gì cả'."
-                    },
-                    {
-                        type: "textbook",
-                        citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 45",
-                        description: "Socrates là đại diện tiêu biểu của triết học Hy Lạp cổ đại, phương pháp đối thoại biện chứng của ông đặt nền móng cho logic học."
-                    }
-                ]
-            },
-            {
-                id: 2,
-                philosopher: "Karl Marx",
-                quote: "Các nhà triết học chỉ giải thích thế giới bằng nhiều cách khác nhau; vấn đề là thay đổi thế giới",
-                explanation: "Luận điểm 11 trong 'Luận cương về Feuerbach', thể hiện bản chất cách mạng của triết học Mác.",
-                module: "Module 4: Triết học Mác - Lênin",
-                sources: [
-                    {
-                        type: "primary",
-                        citation: "K. Marx, Luận cương về Feuerbach (1845), Luận điểm 11",
-                        description: "Nguyên văn: 'Các nhà triết học chỉ giải thích thế giới bằng nhiều cách khác nhau; song vấn đề là cải tạo thế giới.'"
-                    },
-                    {
-                        type: "textbook",
-                        citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 215",
-                        description: "Luận điểm này thể hiện sự khác biệt căn bản giữa triết học Mác với các triết học trước đó: gắn lý luận với thực tiễn cách mạng."
-                    }
-                ]
-            },
-            {
-                id: 3,
-                philosopher: "V.I. Lenin",
-                quote: "Vật chất là một phạm trù triết học dùng để chỉ thực tại khách quan... được đem lại cho con người trong cảm giác",
-                explanation: "Định nghĩa kinh điển về vật chất trong chủ nghĩa duy vật biện chứng.",
-                module: "Module 2: Chủ nghĩa duy vật",
-                sources: [
-                    {
-                        type: "primary",
-                        citation: "V.I. Lenin, Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán (1909), Chương 2",
-                        description: "Định nghĩa đầy đủ: 'Vật chất là một phạm trù triết học dùng để chỉ thực tại khách quan được đem lại cho con người trong cảm giác...'"
-                    },
-                    {
-                        type: "textbook",
-                        citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 87",
-                        description: "Định nghĩa này khắc phục quan niệm siêu hình về vật chất, xác lập quan điểm duy vật biện chứng về mối quan hệ vật chất - ý thức."
-                    }
-                ]
-            },
-            {
-                id: 4,
-                philosopher: "Friedrich Engels",
-                quote: "Vận động là phương thức tồn tại của vật chất",
-                explanation: "Nguyên lý cơ bản của phép biện chứng duy vật về tính vận động của thế giới vật chất.",
-                module: "Module 2: Phép biện chứng",
-                sources: [
-                    {
-                        type: "primary",
-                        citation: "F. Engels, Biện chứng của tự nhiên (1873-1882)",
-                        description: "Engels viết: 'Vận động... là phương thức tồn tại của vật chất.'"
-                    },
-                    {
-                        type: "textbook",
-                        citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 102",
-                        description: "Nguyên lý này phủ nhận quan niệm siêu hình về vật chất tĩnh tại, khẳng định thế giới vật chất luôn vận động và phát triển."
-                    }
-                ]
-            },
-            {
-                id: 5,
-                philosopher: "Hồ Chí Minh",
-                quote: "Thực tiễn không có lý luận hướng dẫn thì thành thực tiễn mù quáng. Lý luận mà không liên hệ với thực tiễn là lý luận suông",
-                explanation: "Quan điểm về mối quan hệ biện chứng giữa lý luận và thực tiễn.",
-                module: "Module 3: Lý luận và thực tiễn",
-                sources: [
-                    {
-                        type: "primary",
-                        citation: "Hồ Chí Minh, Toàn tập, Tập 5, tr. 234",
-                        description: "Trích từ bài 'Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân' (1969)."
-                    },
-                    {
-                        type: "textbook",
-                        citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 156",
-                        description: "Tư tưởng này vận dụng sáng tạo nguyên lý thống nhất giữa lý luận và thực tiễn của chủ nghĩa Mác vào điều kiện Việt Nam."
-                    }
-                ]
-            },
-            {
-                id: 6,
-                philosopher: "Plato",
-                quote: "Tri thức là nhớ lại",
-                explanation: "Thuyết hồi ức (Anamnesis) - linh hồn bất tử đã biết mọi chân lý trước khi nhập vào thể xác.",
-                module: "Module 1: Lịch sử triết học",
-                sources: [
-                    {
-                        type: "primary",
-                        citation: "Plato, Meno, 81c-d",
-                        description: "Socrates chứng minh thuyết hồi ức qua việc dạy một nô lệ chưa học hình học giải bài toán."
-                    },
-                    {
-                        type: "secondary",
-                        citation: "Bertrand Russell, Lịch sử Triết học Phương Tây, tr. 120",
-                        description: "Plato cho rằng linh hồn bất tử đã từng chiêm ngưỡng các Ý niệm ở thế giới siêu việt, nên tri thức thực chất là nhớ lại."
-                    }
-                ]
-            },
-            {
-                id: 7,
-                philosopher: "Immanuel Kant",
-                quote: "Hãy dám biết! Hãy có can đảm sử dụng lý trí của chính mình",
-                explanation: "Khẩu hiệu của Khai sáng (Aufklärung), đề cao tự do tư duy và thoát khỏi sự vị thành niên tự gán cho mình.",
-                module: "Module 1: Triết học Khai sáng",
-                sources: [
-                    {
-                        type: "primary",
-                        citation: "I. Kant, Trả lời câu hỏi: Khai sáng là gì? (1784)",
-                        description: "Nguyên văn: 'Sapere aude! Hãy có can đảm sử dụng lý trí của chính mình! Đó là phương châm của Khai sáng.'"
-                    },
-                    {
-                        type: "secondary",
-                        citation: "Giáo trình Lịch sử Triết học, tr. 189",
-                        description: "Kant định nghĩa Khai sáng là sự thoát khỏi tình trạng vị thành niên do chính con người tự gán cho mình."
-                    }
-                ]
-            },
-            {
-                id: 8,
-                philosopher: "Aristotle",
-                quote: "Con người là động vật có lý trí",
-                explanation: "Định nghĩa bản chất con người qua thuộc tính đặc trưng là logos (lý trí, ngôn ngữ).",
-                module: "Module 5: Triết học về con người",
-                sources: [
-                    {
-                        type: "primary",
-                        citation: "Aristotle, Chính trị học, 1253a",
-                        description: "Aristotle viết: 'Con người là động vật có lý trí (zoon logon echon) và là động vật chính trị (zoon politikon).'"
-                    },
-                    {
-                        type: "textbook",
-                        citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 278",
-                        description: "Quan điểm này nhấn mạnh bản chất xã hội và tư duy của con người, phân biệt với các loài động vật khác."
-                    }
-                ]
-            }
-        ];
+        <!-- Game Logic -->
+        <script>
+            // ==================== ACADEMIC DATA ====================
+            const academicPairs = [
+                {
+                    id: 1,
+                    philosopher: "Socrates",
+                    quote: "Tôi biết rằng tôi không biết gì cả",
+                    explanation: "Câu nói thể hiện phương pháp biện chứng Socrates: bắt đầu từ sự khiêm tốn nhận thức để đi tìm chân lý.",
+                    module: "Module 1: Nhập môn Triết học",
+                    sources: [
+                        {
+                            type: "primary",
+                            citation: "Plato, Apology, 21d",
+                            description: "Trong 'Lời Biện hộ của Socrates', Plato ghi lại lời Socrates trước tòa án Athens: 'Điều tôi biết chắc là tôi không biết gì cả'."
+                        },
+                        {
+                            type: "textbook",
+                            citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 45",
+                            description: "Socrates là đại diện tiêu biểu của triết học Hy Lạp cổ đại, phương pháp đối thoại biện chứng của ông đặt nền móng cho logic học."
+                        }
+                    ]
+                },
+                {
+                    id: 2,
+                    philosopher: "Karl Marx",
+                    quote: "Các nhà triết học chỉ giải thích thế giới bằng nhiều cách khác nhau; vấn đề là thay đổi thế giới",
+                    explanation: "Luận điểm 11 trong 'Luận cương về Feuerbach', thể hiện bản chất cách mạng của triết học Mác.",
+                    module: "Module 4: Triết học Mác - Lênin",
+                    sources: [
+                        {
+                            type: "primary",
+                            citation: "K. Marx, Luận cương về Feuerbach (1845), Luận điểm 11",
+                            description: "Nguyên văn: 'Các nhà triết học chỉ giải thích thế giới bằng nhiều cách khác nhau; song vấn đề là cải tạo thế giới.'"
+                        },
+                        {
+                            type: "textbook",
+                            citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 215",
+                            description: "Luận điểm này thể hiện sự khác biệt căn bản giữa triết học Mác với các triết học trước đó: gắn lý luận với thực tiễn cách mạng."
+                        }
+                    ]
+                },
+                {
+                    id: 3,
+                    philosopher: "V.I. Lenin",
+                    quote: "Vật chất là một phạm trù triết học dùng để chỉ thực tại khách quan... được đem lại cho con người trong cảm giác",
+                    explanation: "Định nghĩa kinh điển về vật chất trong chủ nghĩa duy vật biện chứng.",
+                    module: "Module 2: Chủ nghĩa duy vật",
+                    sources: [
+                        {
+                            type: "primary",
+                            citation: "V.I. Lenin, Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán (1909), Chương 2",
+                            description: "Định nghĩa đầy đủ: 'Vật chất là một phạm trù triết học dùng để chỉ thực tại khách quan được đem lại cho con người trong cảm giác...'"
+                        },
+                        {
+                            type: "textbook",
+                            citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 87",
+                            description: "Định nghĩa này khắc phục quan niệm siêu hình về vật chất, xác lập quan điểm duy vật biện chứng về mối quan hệ vật chất - ý thức."
+                        }
+                    ]
+                },
+                {
+                    id: 4,
+                    philosopher: "Friedrich Engels",
+                    quote: "Vận động là phương thức tồn tại của vật chất",
+                    explanation: "Nguyên lý cơ bản của phép biện chứng duy vật về tính vận động của thế giới vật chất.",
+                    module: "Module 2: Phép biện chứng",
+                    sources: [
+                        {
+                            type: "primary",
+                            citation: "F. Engels, Biện chứng của tự nhiên (1873-1882)",
+                            description: "Engels viết: 'Vận động... là phương thức tồn tại của vật chất.'"
+                        },
+                        {
+                            type: "textbook",
+                            citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 102",
+                            description: "Nguyên lý này phủ nhận quan niệm siêu hình về vật chất tĩnh tại, khẳng định thế giới vật chất luôn vận động và phát triển."
+                        }
+                    ]
+                },
+                {
+                    id: 5,
+                    philosopher: "Hồ Chí Minh",
+                    quote: "Thực tiễn không có lý luận hướng dẫn thì thành thực tiễn mù quáng. Lý luận mà không liên hệ với thực tiễn là lý luận suông",
+                    explanation: "Quan điểm về mối quan hệ biện chứng giữa lý luận và thực tiễn.",
+                    module: "Module 3: Lý luận và thực tiễn",
+                    sources: [
+                        {
+                            type: "primary",
+                            citation: "Hồ Chí Minh, Toàn tập, Tập 5, tr. 234",
+                            description: "Trích từ bài 'Nâng cao đạo đức cách mạng, quét sạch chủ nghĩa cá nhân' (1969)."
+                        },
+                        {
+                            type: "textbook",
+                            citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 156",
+                            description: "Tư tưởng này vận dụng sáng tạo nguyên lý thống nhất giữa lý luận và thực tiễn của chủ nghĩa Mác vào điều kiện Việt Nam."
+                        }
+                    ]
+                },
+                {
+                    id: 6,
+                    philosopher: "Plato",
+                    quote: "Tri thức là nhớ lại",
+                    explanation: "Thuyết hồi ức (Anamnesis) - linh hồn bất tử đã biết mọi chân lý trước khi nhập vào thể xác.",
+                    module: "Module 1: Lịch sử triết học",
+                    sources: [
+                        {
+                            type: "primary",
+                            citation: "Plato, Meno, 81c-d",
+                            description: "Socrates chứng minh thuyết hồi ức qua việc dạy một nô lệ chưa học hình học giải bài toán."
+                        },
+                        {
+                            type: "secondary",
+                            citation: "Bertrand Russell, Lịch sử Triết học Phương Tây, tr. 120",
+                            description: "Plato cho rằng linh hồn bất tử đã từng chiêm ngưỡng các Ý niệm ở thế giới siêu việt, nên tri thức thực chất là nhớ lại."
+                        }
+                    ]
+                },
+                {
+                    id: 7,
+                    philosopher: "Immanuel Kant",
+                    quote: "Hãy dám biết! Hãy có can đảm sử dụng lý trí của chính mình",
+                    explanation: "Khẩu hiệu của Khai sáng (Aufklärung), đề cao tự do tư duy và thoát khỏi sự vị thành niên tự gán cho mình.",
+                    module: "Module 1: Triết học Khai sáng",
+                    sources: [
+                        {
+                            type: "primary",
+                            citation: "I. Kant, Trả lời câu hỏi: Khai sáng là gì? (1784)",
+                            description: "Nguyên văn: 'Sapere aude! Hãy có can đảm sử dụng lý trí của chính mình! Đó là phương châm của Khai sáng.'"
+                        },
+                        {
+                            type: "secondary",
+                            citation: "Giáo trình Lịch sử Triết học, tr. 189",
+                            description: "Kant định nghĩa Khai sáng là sự thoát khỏi tình trạng vị thành niên do chính con người tự gán cho mình."
+                        }
+                    ]
+                },
+                {
+                    id: 8,
+                    philosopher: "Aristotle",
+                    quote: "Con người là động vật có lý trí",
+                    explanation: "Định nghĩa bản chất con người qua thuộc tính đặc trưng là logos (lý trí, ngôn ngữ).",
+                    module: "Module 5: Triết học về con người",
+                    sources: [
+                        {
+                            type: "primary",
+                            citation: "Aristotle, Chính trị học, 1253a",
+                            description: "Aristotle viết: 'Con người là động vật có lý trí (zoon logon echon) và là động vật chính trị (zoon politikon).'"
+                        },
+                        {
+                            type: "textbook",
+                            citation: "Giáo trình Triết học Mác - Lênin (2021), tr. 278",
+                            description: "Quan điểm này nhấn mạnh bản chất xã hội và tư duy của con người, phân biệt với các loài động vật khác."
+                        }
+                    ]
+                }
+            ];
 
-        // ==================== GAME STATE ====================
-        let score = 0;
-        let timer = 120;
-        let timerInterval = null;
-        let matchedPairs = 0;
-        let totalPairs = 8;
-        let flippedCards = [];
-        let canFlip = true;
-        let hintsLeft = 3;
-        let gameActive = true;
+            // ==================== GAME STATE ====================
+            let score = 0;
+            let timer = 120;
+            let timerInterval = null;
+            let matchedPairs = 0;
+            let totalPairs = 8;
+            let flippedCards = [];
+            let canFlip = true;
+            let hintsLeft = 3;
+            let gameActive = true;
 
-        // ==================== GAME INITIALIZATION ====================
-        function initGame() {
-            const grid = document.getElementById('game-grid');
-            grid.innerHTML = '';
-            
-            // Create cards array (philosopher + quote pairs)
-            let cards = [];
-            academicPairs.forEach(pair => {
-                // Philosopher card
-                cards.push({
-                    type: 'philosopher',
-                    content: pair.philosopher,
-                    pairId: pair.id,
-                    color: '#308ce8',
-                    pairData: pair
+            // ==================== GAME INITIALIZATION ====================
+            function initGame() {
+                const grid = document.getElementById('game-grid');
+                grid.innerHTML = '';
+
+                // Create cards array (philosopher + quote pairs)
+                let cards = [];
+                academicPairs.forEach(pair => {
+                    // Philosopher card
+                    cards.push({
+                        type: 'philosopher',
+                        content: pair.philosopher,
+                        pairId: pair.id,
+                        color: '#308ce8',
+                        pairData: pair
+                    });
+                    // Quote card
+                    cards.push({
+                        type: 'quote',
+                        content: pair.quote,
+                        pairId: pair.id,
+                        color: '#10b981',
+                        pairData: pair
+                    });
                 });
-                // Quote card
-                cards.push({
-                    type: 'quote',
-                    content: pair.quote,
-                    pairId: pair.id,
-                    color: '#10b981',
-                    pairData: pair
-                });
-            });
-            
-            // Shuffle cards
-            cards = shuffleArray(cards);
-            
-            // Create card elements
-            cards.forEach((card, index) => {
-                const cardEl = document.createElement('div');
-                cardEl.className = 'relative h-48 cursor-pointer perspective';
-                cardEl.dataset.index = index;
-                cardEl.dataset.pairId = card.pairId;
-                cardEl.dataset.type = card.type;
-                
-                cardEl.innerHTML = `
+
+                // Shuffle cards
+                cards = shuffleArray(cards);
+
+                // Create card elements
+                cards.forEach((card, index) => {
+                    const cardEl = document.createElement('div');
+                    cardEl.className = 'relative h-48 cursor-pointer perspective';
+                    cardEl.dataset.index = index;
+                    cardEl.dataset.pairId = card.pairId;
+                    cardEl.dataset.type = card.type;
+
+                    cardEl.innerHTML = `
                     <div class="card w-full h-full">
                         <!-- Front of card -->
                         <div class="card-front bg-white dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600">
@@ -548,83 +624,83 @@
                                 <div class="text-sm font-medium leading-tight">
                                     ${card.content}
                                 </div>
-                                ${card.type === 'quote' ? 
-                                    `<div class="text-xs opacity-80 mt-3">${card.pairData.module}</div>` : ''}
+                                ${card.type === 'quote' ?
+                            `<div class="text-xs opacity-80 mt-3">${card.pairData.module}</div>` : ''}
                             </div>
                         </div>
                     </div>
                 `;
-                
-                cardEl.addEventListener('click', () => flipCard(cardEl));
-                grid.appendChild(cardEl);
-            });
-            
-            // Start timer
-            startTimer();
-            updateStats();
-        }
 
-        // ==================== GAME LOGIC ====================
-        function flipCard(cardEl) {
-            if (!canFlip || !gameActive) return;
-            if (flippedCards.length >= 2) return;
-            if (cardEl.classList.contains('matched')) return;
-            if (flippedCards.includes(cardEl)) return;
-            
-            const card = cardEl.querySelector('.card');
-            card.classList.add('flipped');
-            flippedCards.push(cardEl);
-            
-            // Check for match when 2 cards are flipped
-            if (flippedCards.length === 2) {
-                canFlip = false;
-                
-                const card1 = flippedCards[0];
-                const card2 = flippedCards[1];
-                
-                if (card1.dataset.pairId === card2.dataset.pairId) {
-                    // Match found!
-                    setTimeout(() => {
-                        card1.classList.add('matched');
-                        card2.classList.add('matched');
-                        card1.style.opacity = '0.7';
-                        card2.style.opacity = '0.7';
-                        
-                        score += 100;
-                        matchedPairs++;
-                        
-                        // Show academic explanation
-                        const pair = academicPairs.find(p => p.id == card1.dataset.pairId);
-                        showAcademicMatch(pair);
-                        
-                        updateStats();
-                        
-                        // Check win condition
-                        if (matchedPairs === totalPairs) {
-                            endGame(true);
-                        }
-                        
-                        flippedCards = [];
-                        canFlip = true;
-                    }, 800);
-                } else {
-                    // No match
-                    setTimeout(() => {
-                        card1.querySelector('.card').classList.remove('flipped');
-                        card2.querySelector('.card').classList.remove('flipped');
-                        flippedCards = [];
-                        canFlip = true;
-                    }, 1500);
+                    cardEl.addEventListener('click', () => flipCard(cardEl));
+                    grid.appendChild(cardEl);
+                });
+
+                // Start timer
+                startTimer();
+                updateStats();
+            }
+
+            // ==================== GAME LOGIC ====================
+            function flipCard(cardEl) {
+                if (!canFlip || !gameActive) return;
+                if (flippedCards.length >= 2) return;
+                if (cardEl.classList.contains('matched')) return;
+                if (flippedCards.includes(cardEl)) return;
+
+                const card = cardEl.querySelector('.card');
+                card.classList.add('flipped');
+                flippedCards.push(cardEl);
+
+                // Check for match when 2 cards are flipped
+                if (flippedCards.length === 2) {
+                    canFlip = false;
+
+                    const card1 = flippedCards[0];
+                    const card2 = flippedCards[1];
+
+                    if (card1.dataset.pairId === card2.dataset.pairId) {
+                        // Match found!
+                        setTimeout(() => {
+                            card1.classList.add('matched');
+                            card2.classList.add('matched');
+                            card1.style.opacity = '0.7';
+                            card2.style.opacity = '0.7';
+
+                            score += 100;
+                            matchedPairs++;
+
+                            // Show academic explanation
+                            const pair = academicPairs.find(p => p.id == card1.dataset.pairId);
+                            showAcademicMatch(pair);
+
+                            updateStats();
+
+                            // Check win condition
+                            if (matchedPairs === totalPairs) {
+                                endGame(true);
+                            }
+
+                            flippedCards = [];
+                            canFlip = true;
+                        }, 800);
+                    } else {
+                        // No match
+                        setTimeout(() => {
+                            card1.querySelector('.card').classList.remove('flipped');
+                            card2.querySelector('.card').classList.remove('flipped');
+                            flippedCards = [];
+                            canFlip = true;
+                        }, 1500);
+                    }
                 }
             }
-        }
 
-        function showAcademicMatch(pair) {
-            // Create notification
-            const notification = document.createElement('div');
-            notification.className = 'fixed top-4 right-4 z-40 p-5 rounded-xl shadow-lg max-w-sm animate-bounce-in bg-white dark:bg-gray-800 border-l-4 border-green-500';
-            
-            notification.innerHTML = `
+            function showAcademicMatch(pair) {
+                // Create notification
+                const notification = document.createElement('div');
+                notification.className = 'fixed top-4 right-4 z-40 p-5 rounded-xl shadow-lg max-w-sm animate-bounce-in bg-white dark:bg-gray-800 border-l-4 border-green-500';
+
+                notification.innerHTML = `
                 <div class="flex items-start">
                     <div class="flex-shrink-0 mt-1 text-green-500">
                         <span class="material-symbols-outlined">check_circle</span>
@@ -651,27 +727,27 @@
                     </div>
                 </div>
             `;
-            
-            document.body.appendChild(notification);
-            
-            // Auto-remove after 5 seconds
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.remove();
-                }
-            }, 5000);
-        }
 
-        // ==================== SOURCE VIEWING ====================
-        function showCardSource(pairId, event) {
-            if (event) event.stopPropagation();
-            const pair = academicPairs.find(p => p.id === pairId);
-            if (!pair) return;
-            
-            document.getElementById('modal-title').textContent = `Nguồn tham khảo: ${pair.philosopher}`;
-            
-            const content = document.getElementById('source-content');
-            content.innerHTML = `
+                document.body.appendChild(notification);
+
+                // Auto-remove after 5 seconds
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 5000);
+            }
+
+            // ==================== SOURCE VIEWING ====================
+            function showCardSource(pairId, event) {
+                if (event) event.stopPropagation();
+                const pair = academicPairs.find(p => p.id === pairId);
+                if (!pair) return;
+
+                document.getElementById('modal-title').textContent = `Nguồn tham khảo: ${pair.philosopher}`;
+
+                const content = document.getElementById('source-content');
+                content.innerHTML = `
                 <div class="space-y-6">
                     <div>
                         <h4 class="font-bold text-lg text-slate-900 dark:text-white mb-2">${pair.philosopher}</h4>
@@ -725,84 +801,99 @@
                     </div>
                 </div>
             `;
-            
-            document.getElementById('source-modal').classList.remove('hidden');
-        }
 
-        function showFullPairSource(pairId) {
-            const pair = academicPairs.find(p => p.id === pairId);
-            showCardSource(pairId, { stopPropagation: () => {} });
-        }
+                document.getElementById('source-modal').classList.remove('hidden');
+            }
 
-        function closeSourceModal() {
-            document.getElementById('source-modal').classList.add('hidden');
-        }
+            function showFullPairSource(pairId) {
+                const pair = academicPairs.find(p => p.id === pairId);
+                showCardSource(pairId, { stopPropagation: () => { } });
+            }
 
-        // ==================== HINT SYSTEM ====================
-        document.getElementById('hint-btn').addEventListener('click', function() {
-            if (hintsLeft > 0 && gameActive) {
-                hintsLeft--;
-                
-                // Find two unmatched cards that are a pair
-                const unmatchedCards = Array.from(document.querySelectorAll('#game-grid > div:not(.matched)'));
-                const pairs = {};
-                
-                unmatchedCards.forEach(card => {
-                    const pairId = card.dataset.pairId;
-                    if (!pairs[pairId]) pairs[pairId] = [];
-                    pairs[pairId].push(card);
-                });
-                
-                // Find a pair that has both cards still hidden
-                for (const pairId in pairs) {
-                    if (pairs[pairId].length === 2) {
-                        // Briefly show both cards
-                        pairs[pairId].forEach(card => {
-                            card.querySelector('.card').classList.add('flipped');
-                            setTimeout(() => {
-                                if (!card.classList.contains('matched')) {
-                                    card.querySelector('.card').classList.remove('flipped');
-                                }
-                            }, 1000);
-                        });
-                        
-                        // Show hint notification
-                        const notification = document.createElement('div');
-                        notification.className = 'fixed top-20 right-4 z-40 p-4 rounded-xl shadow-lg max-w-sm animate-bounce-in bg-academic text-white';
-                        notification.innerHTML = `
+            function closeSourceModal() {
+                document.getElementById('source-modal').classList.add('hidden');
+            }
+
+            // ==================== HINT SYSTEM ====================
+            document.getElementById('hint-btn').addEventListener('click', function () {
+                if (hintsLeft > 0 && gameActive) {
+                    hintsLeft--;
+
+                    // Find two unmatched cards that are a pair
+                    const unmatchedCards = Array.from(document.querySelectorAll('#game-grid > div:not(.matched)'));
+                    const pairs = {};
+
+                    unmatchedCards.forEach(card => {
+                        const pairId = card.dataset.pairId;
+                        if (!pairs[pairId]) pairs[pairId] = [];
+                        pairs[pairId].push(card);
+                    });
+
+                    // Find a pair that has both cards still hidden
+                    for (const pairId in pairs) {
+                        if (pairs[pairId].length === 2) {
+                            // Briefly show both cards
+                            pairs[pairId].forEach(card => {
+                                card.querySelector('.card').classList.add('flipped');
+                                setTimeout(() => {
+                                    if (!card.classList.contains('matched')) {
+                                        card.querySelector('.card').classList.remove('flipped');
+                                    }
+                                }, 1000);
+                            });
+
+                            // Show hint notification
+                            const notification = document.createElement('div');
+                            notification.className = 'fixed top-20 right-4 z-40 p-4 rounded-xl shadow-lg max-w-sm animate-bounce-in bg-academic text-white';
+                            notification.innerHTML = `
                             <div class="flex items-center gap-3">
                                 <span class="material-symbols-outlined">lightbulb</span>
                                 <div>
-                                    <p class="font-bold">Gợi ý học thuật</p>
+                                    <p class="font-bold">Gợi ý</p>
                                     <p class="text-sm opacity-90">Đã hiển thị một cặp thẻ trong 1 giây!</p>
                                 </div>
                             </div>
                         `;
-                        
-                        document.body.appendChild(notification);
-                        setTimeout(() => notification.remove(), 2000);
-                        
-                        updateStats();
-                        return;
+
+                            document.body.appendChild(notification);
+                            setTimeout(() => notification.remove(), 2000);
+
+                            updateStats();
+                            return;
+                        }
                     }
+
+                    // If no pairs found
+                    if (hintsLeft < 0) hintsLeft = 0;
+                    updateStats();
+                } else if (hintsLeft === 0 && gameActive) {
+                    // Show notification when hints are exhausted
+                    const notification = document.createElement('div');
+                    notification.className = 'fixed top-20 right-4 z-40 p-4 rounded-xl shadow-lg max-w-sm animate-bounce-in bg-red-500 text-white';
+                    notification.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined">warning</span>
+                            <div>
+                                <p class="font-bold">Hết lượt gợi ý!</p>
+                                <p class="text-sm opacity-90">Bạn đã sử dụng hết 3 lượt gợi ý. Hãy cố gắng tự tìm các cặp còn lại nhé!</p>
+                            </div>
+                        </div>
+                    `;
+                    document.body.appendChild(notification);
+                    setTimeout(() => notification.remove(), 3000);
                 }
-                
-                // If no pairs found
-                if (hintsLeft < 0) hintsLeft = 0;
-                updateStats();
-            }
-        });
+            });
 
-        // ==================== SHOW ALL SOURCES ====================
-        document.getElementById('show-sources-btn').addEventListener('click', function() {
-            showAllReferences();
-        });
+            // ==================== SHOW ALL SOURCES ====================
+            document.getElementById('show-sources-btn').addEventListener('click', function () {
+                showAllReferences();
+            });
 
-        function showAllReferences() {
-            document.getElementById('modal-title').textContent = 'Toàn bộ tài liệu tham khảo học thuật';
-            
-            const content = document.getElementById('source-content');
-            let referencesHTML = `
+            function showAllReferences() {
+                document.getElementById('modal-title').textContent = 'Toàn bộ tài liệu tham khảo học thuật';
+
+                const content = document.getElementById('source-content');
+                let referencesHTML = `
                 <div class="space-y-8">
                     <div>
                         <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">📚 Tài liệu tham khảo chính</h4>
@@ -830,9 +921,9 @@
                         <h4 class="text-xl font-bold text-slate-900 dark:text-white mb-4">📖 Trích dẫn theo từng triết gia</h4>
                         <div class="space-y-6">
             `;
-            
-            academicPairs.forEach(pair => {
-                referencesHTML += `
+
+                academicPairs.forEach(pair => {
+                    referencesHTML += `
                     <div class="p-4 border border-gray-200 dark:border-gray-700 rounded-xl">
                         <div class="font-bold text-slate-900 dark:text-white mb-2">${pair.philosopher}</div>
                         <blockquote class="text-sm italic text-slate-600 dark:text-gray-400 mb-3 p-3 bg-gray-50 dark:bg-gray-800 rounded">"${pair.quote}"</blockquote>
@@ -857,9 +948,9 @@
                         </div>
                     </div>
                 `;
-            });
-            
-            referencesHTML += `
+                });
+
+                referencesHTML += `
                         </div>
                     </div>
                     
@@ -879,53 +970,53 @@
                     </div>
                 </div>
             `;
-            
-            content.innerHTML = referencesHTML;
-            document.getElementById('source-modal').classList.remove('hidden');
-        }
 
-        // ==================== GAME CONTROLS ====================
-        function startTimer() {
-            clearInterval(timerInterval);
-            timer = 120;
-            updateStats();
-            
-            timerInterval = setInterval(() => {
-                timer--;
+                content.innerHTML = referencesHTML;
+                document.getElementById('source-modal').classList.remove('hidden');
+            }
+
+            // ==================== GAME CONTROLS ====================
+            function startTimer() {
+                clearInterval(timerInterval);
+                timer = 120;
                 updateStats();
-                
-                if (timer <= 30) {
-                    document.getElementById('timer').classList.add('text-red-500', 'animate-pulse');
-                }
-                
-                if (timer <= 0) {
-                    clearInterval(timerInterval);
-                    endGame(false);
-                }
-            }, 1000);
-        }
 
-        function updateStats() {
-            document.getElementById('score').textContent = score;
-            document.getElementById('timer').textContent = timer;
-            document.getElementById('pairs-matched').textContent = `${matchedPairs}/${totalPairs}`;
-            document.getElementById('hints-left').textContent = hintsLeft;
-        }
+                timerInterval = setInterval(() => {
+                    timer--;
+                    updateStats();
 
-        function endGame(isWin) {
-            gameActive = false;
-            clearInterval(timerInterval);
-            
-            // Calculate final score
-            let timeBonus = timer * 2;
-            let hintBonus = hintsLeft * 50;
-            let finalScore = score + timeBonus + hintBonus;
-            
-            // Create results modal
-            const modal = document.createElement('div');
-            modal.className = 'fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 animate-bounce-in';
-            
-            modal.innerHTML = `
+                    if (timer <= 30) {
+                        document.getElementById('timer').classList.add('text-red-500', 'animate-pulse');
+                    }
+
+                    if (timer <= 0) {
+                        clearInterval(timerInterval);
+                        endGame(false);
+                    }
+                }, 1000);
+            }
+
+            function updateStats() {
+                document.getElementById('score').textContent = score;
+                document.getElementById('timer').textContent = timer;
+                document.getElementById('pairs-matched').textContent = `${matchedPairs}/${totalPairs}`;
+                document.getElementById('hints-left').textContent = hintsLeft;
+            }
+
+            function endGame(isWin) {
+                gameActive = false;
+                clearInterval(timerInterval);
+
+                // Calculate final score
+                let timeBonus = timer * 2;
+                let hintBonus = hintsLeft * 50;
+                let finalScore = score + timeBonus + hintBonus;
+
+                // Create results modal
+                const modal = document.createElement('div');
+                modal.className = 'fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4 animate-bounce-in';
+
+                modal.innerHTML = `
                 <div class="bg-gradient-to-br from-white to-blue-50 dark:from-gray-800 dark:to-blue-900/20 rounded-3xl p-8 max-w-md w-full shadow-2xl">
                     <div class="text-center">
                         <div class="w-20 h-20 ${isWin ? 'bg-green-100 dark:bg-green-900/30' : 'bg-red-100 dark:bg-red-900/30'} rounded-full flex items-center justify-center mx-auto mb-4 ${isWin ? 'text-green-500' : 'text-red-500'}">
@@ -993,97 +1084,148 @@
                     </div>
                 </div>
             `;
-            
-            document.body.appendChild(modal);
-            
-            // Create confetti if win
-            if (isWin) {
-                createConfetti();
-            }
-        }
 
-        function restartGame() {
-            // Remove existing modals
-            document.querySelectorAll('.fixed.inset-0.bg-black\\/70').forEach(el => {
-                if (el.id !== 'source-modal') {
-                    el.remove();
+                document.body.appendChild(modal);
+
+                // Create confetti if win
+                if (isWin) {
+                    createConfetti();
                 }
-            });
-            
-            // Reset game state
-            score = 0;
-            timer = 120;
-            matchedPairs = 0;
-            hintsLeft = 3;
-            flippedCards = [];
-            canFlip = true;
-            gameActive = true;
-            
-            // Reinitialize game
-            initGame();
-        }
-
-        // ==================== HELPER FUNCTIONS ====================
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
             }
-            return array;
-        }
 
-        function createConfetti() {
-            const colors = ['#308ce8', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.width = Math.random() * 10 + 5 + 'px';
-                confetti.style.height = Math.random() * 10 + 5 + 'px';
-                
-                document.body.appendChild(confetti);
-                
-                // Animation
-                const animation = confetti.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                ], {
-                    duration: Math.random() * 3000 + 2000,
-                    easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+            function restartGame() {
+                // Remove existing modals
+                document.querySelectorAll('.fixed.inset-0.bg-black\\/70').forEach(el => {
+                    if (el.id !== 'source-modal') {
+                        el.remove();
+                    }
                 });
-                
-                animation.onfinish = () => confetti.remove();
-            }
-        }
 
-        // ==================== INITIALIZE GAME ====================
-        document.addEventListener('DOMContentLoaded', function() {
-            initGame();
-            
-            // Setup event listeners
-            document.getElementById('restart-btn').addEventListener('click', restartGame);
-            
-            // Keyboard shortcuts
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'r' || e.key === 'R') {
-                    restartGame();
+                // Reset game state
+                score = 0;
+                timer = 120;
+                matchedPairs = 0;
+                hintsLeft = 3;
+                flippedCards = [];
+                canFlip = true;
+                gameActive = true;
+
+                // Reinitialize game
+                initGame();
+            }
+
+            // ==================== HELPER FUNCTIONS ====================
+            function shuffleArray(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
                 }
-                if (e.key === 'h' || e.key === 'H') {
-                    document.getElementById('hint-btn').click();
+                return array;
+            }
+
+            function createConfetti() {
+                const colors = ['#308ce8', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899'];
+
+                for (let i = 0; i < 50; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = Math.random() * 10 + 5 + 'px';
+
+                    document.body.appendChild(confetti);
+
+                    // Animation
+                    const animation = confetti.animate([
+                        { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 3000 + 2000,
+                        easing: 'cubic-bezier(0.215, 0.610, 0.355, 1)'
+                    });
+
+                    animation.onfinish = () => confetti.remove();
                 }
-                if (e.key === 'Escape') {
-                    closeSourceModal();
-                    // Close results modal if exists
-                    document.querySelectorAll('.fixed.inset-0.bg-black\\/70').forEach(el => {
-                        if (el.id !== 'source-modal') {
-                            el.remove();
+            }
+
+            // ==================== INITIALIZE GAME ====================
+            document.addEventListener('DOMContentLoaded', function () {
+                // Don't start game immediately - wait for user to click start button
+                const welcomeModal = document.getElementById('welcome-modal');
+                const startBtn = document.getElementById('btn-start-game');
+                const closeBtn = document.getElementById('btn-close-modal');
+
+                // Handle start button click
+                startBtn.addEventListener('click', function () {
+                    welcomeModal.classList.add('hidden');
+                    initGame();
+                });
+
+                // Handle close button click
+                closeBtn.addEventListener('click', function () {
+                    welcomeModal.classList.add('hidden');
+                    initGame();
+                });
+
+                // ==================== HELP MODAL LOGIC ====================
+                const helpBtn = document.getElementById('help-btn');
+                const helpModal = document.getElementById('help-modal');
+                const closeHelpBtn = document.getElementById('btn-close-help');
+                const closeHelpBottomBtn = document.getElementById('btn-close-help-bottom');
+
+                if (helpBtn && helpModal) {
+                    helpBtn.addEventListener('click', () => {
+                        helpModal.classList.remove('hidden');
+                    });
+
+                    const closeHelp = () => {
+                        helpModal.classList.add('hidden');
+                    };
+
+                    if (closeHelpBtn) closeHelpBtn.addEventListener('click', closeHelp);
+                    if (closeHelpBottomBtn) closeHelpBottomBtn.addEventListener('click', closeHelp);
+
+                    // Close on backdrop click
+                    helpModal.addEventListener('click', (e) => {
+                        if (e.target === helpModal) {
+                            closeHelp();
                         }
                     });
                 }
+
+                // Setup event listeners
+                document.getElementById('restart-btn').addEventListener('click', restartGame);
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'r' || e.key === 'R') {
+                        restartGame();
+                    }
+                    if (e.key === 'h' || e.key === 'H') {
+                        document.getElementById('hint-btn').click();
+                    }
+                    if (e.key === 'Escape') {
+                        closeSourceModal();
+                        // Close results modal if exists
+                        document.querySelectorAll('.fixed.inset-0.bg-black\\/70').forEach(el => {
+                            if (el.id !== 'source-modal') {
+                                el.remove();
+                            }
+                        });
+                    }
+                });
             });
-        });
-    </script>
+        </script>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Load Components -->
+    <script src="js/load-components.js"></script>
+    <script src="js/tet-effect.js"></script>
 </body>
+
 </html>

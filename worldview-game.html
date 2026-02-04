@@ -185,8 +185,8 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display min-h-screen flex flex-col overflow-hidden">
-  <!-- Header Component -->
-  <div id="header-placeholder"></div>
+  <!-- Header Component Removed -->
+  <!-- <div id="header-placeholder"></div> -->
 
   <!-- Main Game Container -->
   <main class="flex-grow flex overflow-hidden">
@@ -703,6 +703,14 @@
         <div id="achievements-list" class="grid grid-cols-2 gap-2 max-h-64 overflow-y-auto sidebar-scroll p-2">
           <!-- Achievements will appear here -->
         </div>
+      </div>
+      <!-- Exit Button -->
+      <div class="p-4 mt-auto border-t border-gray-200 dark:border-gray-700">
+        <a href="games.html"
+          class="flex items-center justify-center gap-2 w-full bg-slate-100 hover:bg-slate-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-slate-700 dark:text-gray-300 font-bold py-3 px-4 rounded-xl transition-all duration-300 group">
+          <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+          Thoát Game
+        </a>
       </div>
     </aside>
   </main>

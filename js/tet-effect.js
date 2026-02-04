@@ -33,7 +33,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url('images/tet-2026-background.png');
+        background-image: url('assets/images/tet-2026.png');
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
@@ -103,12 +103,33 @@
     `;
     overlay.appendChild(greeting);
 
+    // ========== Audio Elements ==========
+    // YouTube Music Player (hidden iframe for Ngày Tết Quê Em instrumental)
+    const musicContainer = document.createElement('div');
+    musicContainer.id = 'tet-music-container';
+    musicContainer.style.cssText = `
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+        pointer-events: none;
+    `;
+    overlay.appendChild(musicContainer);
+
+    // Firework sound effect - "Chạy đi các cháu ơi"
+    const fireworkSound = document.createElement('audio');
+    fireworkSound.id = 'firework-sound';
+    fireworkSound.volume = 0.6;
+    fireworkSound.src = 'https://www.myinstants.com/media/sounds/chay-di-cac-chau-oi.mp3';
+    overlay.appendChild(fireworkSound);
+
     document.body.appendChild(overlay);
 
     // ========== Fireworks instance ==========
     let fireworksInstance = null;
     let FireworksClass = null;
     let fireworksTimeout = null;
+    let youtubePlayer = null;
 
     // Load fireworks-js from CDN
     function loadFireworksLibrary() {
@@ -255,6 +276,23 @@
         overlay.style.opacity = '1';
         greeting.style.opacity = '1';
 
+        // Start background music (YouTube embed)
+        musicContainer.innerHTML = `
+            <iframe 
+                id="tet-youtube-player"
+                width="1" 
+                height="1" 
+                src="https://www.youtube.com/embed/-NoDAWr6g9g?autoplay=1&loop=1&playlist=-NoDAWr6g9g" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+        `;
+
+        // Play "Chạy đi các cháu ơi" sound
+        fireworkSound.currentTime = 0;
+        fireworkSound.play().catch(e => console.log('Audio autoplay blocked:', e));
+
         // Start fireworks
         if (FireworksClass) {
             startFireworks();
@@ -270,6 +308,13 @@
     function hideOverlay() {
         overlay.style.opacity = '0';
         greeting.style.opacity = '0';
+
+        // Stop music
+        musicContainer.innerHTML = '';
+
+        // Stop firework sound
+        fireworkSound.pause();
+        fireworkSound.currentTime = 0;
 
         // Clear timeout
         if (fireworksTimeout) {

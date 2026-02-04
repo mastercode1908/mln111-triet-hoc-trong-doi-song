@@ -1,705 +1,527 @@
 <!doctype html>
 <html class="light" lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>PhiloMap - Thực hành tư duy</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#308ce8",
-              "primary-dark": "#1a6bb8",
-              "accent-yellow": "#fef3c7",
-              "accent-yellow-dark": "#d97706",
-              "background-light": "#f8f9fa",
-              "background-dark": "#111921",
-              surface: "#ffffff",
-            },
-            fontFamily: {
-              sans: ["Lexend", "sans-serif"],
-              serif: ["Lora", "serif"],
-            },
-            borderRadius: {
-              DEFAULT: "0.5rem",
-              lg: "1rem",
-              xl: "1.5rem",
-              "2xl": "2rem",
-              full: "9999px",
-            },
-            boxShadow: {
-              soft: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
-              card: "0 10px 40px -10px rgba(0, 0, 0, 0.06)",
-              "inner-light": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.02)",
-            },
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>PhiloMap - Thực hành tư duy</title>
+  <link href="https://fonts.googleapis.com" rel="preconnect" />
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#308ce8",
+            "primary-dark": "#1a6bb8",
+            "accent-yellow": "#fef3c7",
+            "accent-yellow-dark": "#d97706",
+            "background-light": "#f8f9fa",
+            "background-dark": "#111921",
+            surface: "#ffffff",
+          },
+          fontFamily: {
+            sans: ["Lexend", "sans-serif"],
+            serif: ["Lora", "serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            "2xl": "2rem",
+            full: "9999px",
+          },
+          boxShadow: {
+            soft: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+            card: "0 10px 40px -10px rgba(0, 0, 0, 0.06)",
+            "inner-light": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.02)",
           },
         },
-      };
-    </script>
-    <style>
-      .material-symbols-outlined {
-        font-family: "Material Symbols Outlined";
-        font-weight: normal;
-        font-style: normal;
-        font-size: 24px;
-        display: inline-block;
-        line-height: 1;
-        text-transform: none;
-        letter-spacing: normal;
-        word-wrap: normal;
-        white-space: nowrap;
-        direction: ltr;
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
+      },
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-family: "Material Symbols Outlined";
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Navigation hover effects */
+    .nav-link {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+    }
+
+    .nav-link:hover {
+      background-color: rgba(48, 140, 232, 0.08);
+      transform: translateY(-1px);
+    }
+
+    /* Pulse scale animation */
+    @keyframes pulse-scale {
+
+      0%,
+      100% {
+        transform: scale(1);
       }
 
-      .hide-scrollbar::-webkit-scrollbar {
-        display: none;
+      50% {
+        transform: scale(1.1);
       }
+    }
 
-      .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
+    .animate-pulse-scale {
+      animation: pulse-scale 2s ease-in-out infinite;
+    }
+  </style>
+</head>
 
-      .card-hover {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
+<body class="bg-background-light text-slate-800 font-sans min-h-screen flex flex-col overflow-x-hidden">
+  <!-- Header Placeholder -->
+  <div id="header-placeholder"></div>
+  <main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-10">
+    <section class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+      <div class="flex flex-col gap-4 items-start">
+        <div
+          class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800 text-primary text-xs font-bold uppercase tracking-wider gap-2">
+          <a href="home.html" class="hover:underline hover:text-blue-600 transition-colors">TRANG CHỦ</a>
+          <span class="opacity-60">/</span>
+          <span>THỰC HÀNH ỨNG DỤNG</span>
+        </div>
+        <h1 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight max-w-3xl">
+          Thực hành tư duy triết học<br /><span class="text-slate-500 italic font-normal">cho đời sống cá nhân</span>
+        </h1>
+        <p class="text-slate-600 max-w-2xl">
+          Đây là không gian làm việc của bạn. Hãy sử dụng các công cụ bên dưới
+          để chuyển hóa lý thuyết thành hành động cụ thể hàng ngày.
+        </p>
+      </div>
+      <a href="assets/docs/1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf" download="SGK_Triet_Hoc.pdf">
+        <button
+          class="flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl shadow-lg hover:bg-primary transition-colors font-medium shrink-0 group">
+          <span class="material-symbols-outlined group-hover:animate-bounce">download</span>
+          <span>Tải tài liệu SGK Triết Học PDF</span>
+        </button>
+      </a>
+    </section>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-20">
 
-      .card-hover:hover {
-        transform: translateY(-4px);
-        box-shadow:
-          0 20px 25px -5px rgba(0, 0, 0, 0.1),
-          0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      }
-
-      /* Navigation hover effects */
-      .nav-link {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        position: relative;
-        padding: 0.5rem 0.75rem;
-        border-radius: 0.5rem;
-      }
-
-      .nav-link:hover {
-        background-color: rgba(48, 140, 232, 0.08);
-        transform: translateY(-1px);
-      }
-
-      /* Pulse scale animation */
-      @keyframes pulse-scale {
-        0%,
-        100% {
-          transform: scale(1);
-        }
-        50% {
-          transform: scale(1.1);
-        }
-      }
-
-      .animate-pulse-scale {
-        animation: pulse-scale 2s ease-in-out infinite;
-      }
-    </style>
-  </head>
-
-  <body
-    class="bg-background-light text-slate-800 font-sans min-h-screen flex flex-col overflow-x-hidden"
-  >
-    <!-- Header Placeholder -->
-    <div id="header-placeholder"></div>
-    <main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-10">
-      <section
-        class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
-      >
-        <div class="flex flex-col gap-4 items-start">
+      <div class="md:col-span-12">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="p-2 bg-blue-100 text-primary rounded-lg">
+            <span class="material-symbols-outlined">psychology_alt</span>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-slate-900">
+            1. Năm câu hỏi triết học hàng ngày
+          </h3>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
           <div
-            class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 dark:bg-blue-900/20 dark:border-blue-800 text-primary text-xs font-bold uppercase tracking-wider gap-2"
-          >
-            <a
-              href="home.html"
-              class="hover:underline hover:text-blue-600 transition-colors"
-              >TRANG CHỦ</a
-            >
-            <span class="opacity-60">/</span>
-            <span>THỰC HÀNH ỨNG DỤNG</span>
-          </div>
-          <h1
-            class="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight max-w-3xl"
-          >
-            Thực hành tư duy triết học<br /><span
-              class="text-slate-500 italic font-normal"
-              >cho đời sống cá nhân</span
-            >
-          </h1>
-          <p class="text-slate-600 max-w-2xl">
-            Đây là không gian làm việc của bạn. Hãy sử dụng các công cụ bên dưới
-            để chuyển hóa lý thuyết thành hành động cụ thể hàng ngày.
-          </p>
-        </div>
-        <a
-          href="assets/docs/1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf"
-          download="SGK_Triet_Hoc.pdf"
-        >
-          <button
-            class="flex items-center gap-2 px-6 py-3 bg-slate-900 text-white rounded-xl shadow-lg hover:bg-primary transition-colors font-medium shrink-0 group"
-          >
-            <span class="material-symbols-outlined group-hover:animate-bounce"
-              >download</span
-            >
-            <span>Tải tài liệu SGK Triết Học PDF</span>
-          </button>
-        </a>
-      </section>
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-20">
-        <!-- NEW: Philosophy Game Feature Card -->
-        <div class="md:col-span-12 mb-8">
-          <a href="philosophy-game-enhanced.html" class="block group">
-            <div
-              class="bg-indigo-600 rounded-3xl p-8 md:p-10 shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-[1.02] relative overflow-hidden"
-            >
-              <!-- Animated Background Elements -->
-              <div
-                class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"
-              ></div>
-              <div
-                class="absolute bottom-0 left-0 w-48 h-48 bg-purple-400/20 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2 group-hover:scale-150 transition-transform duration-700"
-              ></div>
-
-              <div
-                class="relative z-10 flex flex-col md:flex-row items-center gap-8"
-              >
-                <!-- Icon -->
-                <div class="flex-shrink-0">
-                  <div
-                    class="w-24 h-24 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500 shadow-xl"
-                  >
-                    <span class="material-symbols-outlined text-white text-5xl"
-                      >psychology</span
-                    >
-                  </div>
-                </div>
-
-                <!-- Content -->
-                <div class="flex-grow text-center md:text-left">
-                  <div
-                    class="inline-flex items-center gap-2 bg-yellow-400/30 backdrop-blur-sm px-4 py-1.5 rounded-full mb-3"
-                  >
-                    <span
-                      class="material-symbols-outlined text-yellow-200 text-sm"
-                      >stars</span
-                    >
-                    <span
-                      class="text-yellow-100 text-xs font-bold uppercase tracking-wider"
-                      >THẾ GIỚI QUAN</span
-                    >
-                  </div>
-                  <h2
-                    class="text-3xl md:text-4xl font-serif font-bold text-white mb-3"
-                  >
-                    KHÁM PHÁ TRIẾT LÝ SỐNG
-                  </h2>
-                  <p class="text-blue-50 text-lg mb-4 max-w-2xl">
-                    Game giúp các bạn khám phá triết lý sống của bản thân qua
-                    các tình huống thực tế, biến triết học từ lý thuyết trừu
-                    tượng thành công cụ sống có ích.
-                  </p>
-                  <div
-                    class="flex flex-wrap gap-3 justify-center md:justify-start"
-                  >
-                    <span
-                      class="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-full"
-                      >10 Tình huống</span
-                    >
-                    <span
-                      class="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-full"
-                      >5 Triết lý</span
-                    >
-                    <span
-                      class="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs rounded-full"
-                      >Kết quả cá nhân hóa</span
-                    >
-                  </div>
-                </div>
-
-                <!-- CTA Button -->
-                <div class="flex-shrink-0">
-                  <div
-                    class="px-8 py-4 bg-cyan-100 text-cyan-700 rounded-xl font-bold shadow-xl transition-all duration-300 flex items-center gap-2 animate-pulse-scale"
-                  >
-                    <span>Chơi ngay</span>
-                    <span class="material-symbols-outlined">arrow_forward</span>
-                  </div>
-                </div>
-              </div>
+            class="group bg-white p-6 rounded-2xl shadow-soft border border-gray-100 cursor-pointer hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+              <span class="material-symbols-outlined text-6xl">person</span>
             </div>
-          </a>
-        </div>
-        <div class="md:col-span-12">
-          <div class="flex items-center gap-2 mb-6">
-            <div class="p-2 bg-blue-100 text-primary rounded-lg">
-              <span class="material-symbols-outlined">psychology_alt</span>
-            </div>
-            <h3 class="text-xl font-serif font-bold text-slate-900">
-              1. Năm câu hỏi triết học hàng ngày
-            </h3>
-          </div>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4">
-            <div
-              class="group bg-white p-6 rounded-2xl shadow-soft border border-gray-100 cursor-pointer hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
-            >
-              <div
-                class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity"
-              >
-                <span class="material-symbols-outlined text-6xl">person</span>
-              </div>
-              <span class="text-primary font-bold text-lg mb-2 block">01</span>
-              <h4 class="font-bold text-slate-800 leading-snug mb-2">
-                Tôi là ai?
-              </h4>
-              <p
-                class="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0"
-              >
-                Ngoài tên tuổi và nghề nghiệp, bản chất cốt lõi của tôi là gì?
-              </p>
-            </div>
-            <div
-              class="group bg-white p-6 rounded-2xl shadow-soft border border-gray-100 cursor-pointer hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
-            >
-              <div
-                class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity"
-              >
-                <span class="material-symbols-outlined text-6xl">public</span>
-              </div>
-              <span class="text-primary font-bold text-lg mb-2 block">02</span>
-              <h4 class="font-bold text-slate-800 leading-snug mb-2">
-                Thế giới là gì?
-              </h4>
-              <p
-                class="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0"
-              >
-                Tôi đang nhìn thế giới như nó là, hay qua lăng kính định kiến?
-              </p>
-            </div>
-            <div
-              class="group bg-white p-6 rounded-2xl shadow-soft border border-gray-100 cursor-pointer hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
-            >
-              <div
-                class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity"
-              >
-                <span class="material-symbols-outlined text-6xl">balance</span>
-              </div>
-              <span class="text-primary font-bold text-lg mb-2 block">03</span>
-              <h4 class="font-bold text-slate-800 leading-snug mb-2">
-                Điều gì đúng?
-              </h4>
-              <p
-                class="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0"
-              >
-                Hệ giá trị nào đang dẫn dắt hành động của tôi hôm nay?
-              </p>
-            </div>
-            <div
-              class="group bg-white p-6 rounded-2xl shadow-soft border border-gray-100 cursor-pointer hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
-            >
-              <div
-                class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity"
-              >
-                <span class="material-symbols-outlined text-6xl">favorite</span>
-              </div>
-              <span class="text-primary font-bold text-lg mb-2 block">04</span>
-              <h4 class="font-bold text-slate-800 leading-snug mb-2">
-                Yêu là gì?
-              </h4>
-              <p
-                class="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0"
-              >
-                Tôi có đang yêu thương một cách vị kỷ hay vô điều kiện?
-              </p>
-            </div>
-            <div
-              class="group bg-white p-6 rounded-2xl shadow-soft border border-gray-100 cursor-pointer hover:border-primary/50 transition-all duration-300 relative overflow-hidden"
-            >
-              <div
-                class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity"
-              >
-                <span class="material-symbols-outlined text-6xl">skull</span>
-              </div>
-              <span class="text-primary font-bold text-lg mb-2 block">05</span>
-              <h4 class="font-bold text-slate-800 leading-snug mb-2">
-                Chết thế nào?
-              </h4>
-              <p
-                class="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0"
-              >
-                Nếu hôm nay là ngày cuối, tôi có hối tiếc điều gì không?
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="md:col-span-7 flex flex-col">
-          <div class="flex items-center gap-2 mb-6 mt-4">
-            <div
-              class="p-2 bg-accent-yellow text-accent-yellow-dark rounded-lg"
-            >
-              <span class="material-symbols-outlined">edit_note</span>
-            </div>
-            <h3 class="text-xl font-serif font-bold text-slate-900">
-              2. Nhật ký triết học
-            </h3>
+            <span class="text-primary font-bold text-lg mb-2 block">01</span>
+            <h4 class="font-bold text-slate-800 leading-snug mb-2">
+              Tôi là ai?
+            </h4>
+            <p
+              class="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+              Ngoài tên tuổi và nghề nghiệp, bản chất cốt lõi của tôi là gì?
+            </p>
           </div>
           <div
-            class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 h-full flex flex-col"
-          >
-            <div class="flex items-start gap-6 mb-8">
-              <div
-                class="hidden sm:block p-4 bg-accent-yellow/30 rounded-2xl text-accent-yellow-dark"
-              >
-                <span class="material-symbols-outlined text-4xl">book</span>
-              </div>
-              <div>
-                <h4 class="text-lg font-bold text-slate-800 mb-2">
-                  Tại sao cần viết nhật ký?
-                </h4>
-                <p class="text-slate-600 text-sm leading-relaxed">
-                  Nhật ký triết học không phải để kể lể sự việc, mà là để
-                  <span class="font-semibold text-slate-900"
-                    >đối thoại với chính mình</span
-                  >. Hãy dành 15 phút mỗi tối để phản tư về những phản ứng cảm
-                  xúc của bạn trong ngày.
-                </p>
-              </div>
+            class="group bg-white p-6 rounded-2xl shadow-soft border border-gray-100 cursor-pointer hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+              <span class="material-symbols-outlined text-6xl">public</span>
             </div>
-            <div
-              class="bg-background-light rounded-xl p-6 border border-gray-200 shadow-inner-light flex-grow"
-            >
-              <h5
-                class="text-xs font-bold uppercase text-slate-400 tracking-widest mb-4"
-              >
-                Gợi ý viết hôm nay
-              </h5>
-              <ul class="space-y-4">
-                <li class="flex gap-3 items-start">
-                  <span class="text-accent-yellow-dark font-bold">•</span>
-                  <span class="text-slate-700 text-sm"
-                    >Hôm nay, sự việc nào đã làm xáo trộn tâm trí tôi? Tại
-                    sao?</span
-                  >
-                </li>
-                <li class="flex gap-3 items-start">
-                  <span class="text-accent-yellow-dark font-bold">•</span>
-                  <span class="text-slate-700 text-sm"
-                    >Tôi đã hành động dựa trên lý trí hay sự bốc đồng?</span
-                  >
-                </li>
-                <li class="flex gap-3 items-start">
-                  <span class="text-accent-yellow-dark font-bold">•</span>
-                  <span class="text-slate-700 text-sm"
-                    >Có góc nhìn nào khác về sự việc đó mà tôi đã bỏ qua
-                    không?</span
-                  >
-                </li>
-              </ul>
-              <div class="mt-6 pt-6 border-t border-gray-200">
-                <button
-                  id="openDiaryBtn"
-                  class="w-full py-3 border-2 border-dashed border-gray-300 rounded-lg text-slate-500 text-sm font-medium hover:border-accent-yellow-dark hover:text-accent-yellow-dark transition-colors flex items-center justify-center gap-2"
-                >
-                  <span class="material-symbols-outlined">add</span>
-                  Mở mẫu nhật ký trống
-                </button>
-
-                <div id="diaryBox" class="hidden mt-6">
-                  <textarea
-                    id="diaryContent"
-                    class="w-full h-40 p-4 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent-yellow"
-                    placeholder="Viết suy ngẫm của bạn ở đây..."
-                  ></textarea>
-
-                  <button
-                    id="saveDiaryBtn"
-                    class="mt-4 w-full bg-accent-yellow-dark text-white py-2 rounded-lg font-medium hover:opacity-90 transition"
-                  >
-                    Lưu nhật ký
-                  </button>
-                </div>
-                <div id="diaryList" class="mt-8 space-y-4"></div>
-              </div>
-            </div>
+            <span class="text-primary font-bold text-lg mb-2 block">02</span>
+            <h4 class="font-bold text-slate-800 leading-snug mb-2">
+              Thế giới là gì?
+            </h4>
+            <p
+              class="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+              Tôi đang nhìn thế giới như nó là, hay qua lăng kính định kiến?
+            </p>
           </div>
-        </div>
-        <div class="md:col-span-5 flex flex-col">
-          <div class="flex items-center gap-2 mb-6 mt-4">
-            <div class="p-2 bg-green-100 text-green-700 rounded-lg">
-              <span class="material-symbols-outlined">quiz</span>
+          <div
+            class="group bg-white p-6 rounded-2xl shadow-soft border border-gray-100 cursor-pointer hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+              <span class="material-symbols-outlined text-6xl">balance</span>
             </div>
-            <h3 class="text-xl font-serif font-bold text-slate-900">
-              3. Trắc nghiệm kiến thức
-            </h3>
+            <span class="text-primary font-bold text-lg mb-2 block">03</span>
+            <h4 class="font-bold text-slate-800 leading-snug mb-2">
+              Điều gì đúng?
+            </h4>
+            <p
+              class="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+              Hệ giá trị nào đang dẫn dắt hành động của tôi hôm nay?
+            </p>
           </div>
-          <div class="flex flex-col gap-4 h-full">
-            <!-- Quiz Card 1 -->
-            <a
-              href="quiz1.html"
-              class="bg-white p-4 rounded-xl shadow-soft border border-gray-100 card-hover flex items-center gap-4 group"
-            >
-              <div
-                class="size-10 rounded-lg bg-blue-100 text-primary flex items-center justify-center shrink-0"
-              >
-                <span class="material-symbols-outlined">psychology</span>
-              </div>
-              <div class="flex-grow">
-                <h4 class="font-bold text-slate-800 text-sm">
-                  Thế giới quan & Mối quan hệ Vật chất - Ý thức
-                </h4>
-                <p class="text-[10px] text-slate-500">
-                  Bộ quiz : Kiểm tra "cặp kính" nhìn đời của bạn
-                </p>
-              </div>
-              <div
-                class="size-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors"
-              >
-                <span class="material-symbols-outlined text-lg"
-                  >arrow_forward</span
-                >
-              </div>
-            </a>
-            <!-- Quiz Card 2 -->
-            <a
-              href="quiz2.html"
-              class="bg-white p-4 rounded-xl shadow-soft border border-gray-100 card-hover flex items-center gap-4 group"
-            >
-              <div
-                class="size-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0"
-              >
-                <span class="material-symbols-outlined">change_circle</span>
-              </div>
-              <div class="flex-grow">
-                <h4 class="font-bold text-slate-800 text-sm">
-                  Phép biện chứng duy vật – Quy luật của sự phát triển
-                </h4>
-                <p class="text-[10px] text-slate-500">
-                  Bộ quiz: Các quy luật cơ bản của sự phát triển
-                </p>
-              </div>
-              <div
-                class="size-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors"
-              >
-                <span class="material-symbols-outlined text-lg"
-                  >arrow_forward</span
-                >
-              </div>
-            </a>
-            <!-- Quiz Card 3 -->
-            <a
-              href="quiz3.html"
-              class="bg-white p-4 rounded-xl shadow-soft border border-gray-100 card-hover flex items-center gap-4 group"
-            >
-              <div
-                class="size-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center shrink-0"
-              >
-                <span class="material-symbols-outlined">lightbulb</span>
-              </div>
-              <div class="flex-grow">
-                <h4 class="font-bold text-slate-800 text-sm">
-                  Học đi đôi với hành – Con đường nhận thức chân lý
-                </h4>
-                <p class="text-[10px] text-slate-500">
-                  Bộ quiz: Nhận thức – Thực tiễn – Chân lý
-                </p>
-              </div>
-              <div
-                class="size-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors"
-              >
-                <span class="material-symbols-outlined text-lg"
-                  >arrow_forward</span
-                >
-              </div>
-            </a>
-            <!-- Quiz Card 4 -->
-            <a
-              href="quiz4.html"
-              class="bg-white p-4 rounded-xl shadow-soft border border-gray-100 card-hover flex items-center gap-4 group"
-            >
-              <div
-                class="size-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center shrink-0"
-              >
-                <span class="material-symbols-outlined">history_edu</span>
-              </div>
-              <div class="flex-grow">
-                <h4 class="font-bold text-slate-800 text-sm">
-                  Luật chơi của xã hội – Kinh tế, quyền lực và ý thức
-                </h4>
-                <p class="text-[10px] text-slate-500">
-                  Bộ quiz: Chủ nghĩa duy vật lịch sử
-                </p>
-              </div>
-              <div
-                class="size-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors"
-              >
-                <span class="material-symbols-outlined text-lg"
-                  >arrow_forward</span
-                >
-              </div>
-            </a>
-            <!-- Quiz Card 5 -->
-            <a
-              href="quiz5.html"
-              class="bg-white p-4 rounded-xl shadow-soft border border-gray-100 card-hover flex items-center gap-4 group"
-            >
-              <div
-                class="size-10 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center shrink-0"
-              >
-                <span class="material-symbols-outlined">person_search</span>
-              </div>
-              <div class="flex-grow">
-                <h4 class="font-bold text-slate-800 text-sm">
-                  Con người trong triết học Mác – Lênin
-                </h4>
-                <p class="text-[10px] text-slate-500">
-                  Bộ quiz: Triết học Mác – Lênin về con người
-                </p>
-              </div>
-              <div
-                class="size-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors"
-              >
-                <span class="material-symbols-outlined text-lg"
-                  >arrow_forward</span
-                >
-              </div>
-            </a>
+          <div
+            class="group bg-white p-6 rounded-2xl shadow-soft border border-gray-100 cursor-pointer hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+              <span class="material-symbols-outlined text-6xl">favorite</span>
+            </div>
+            <span class="text-primary font-bold text-lg mb-2 block">04</span>
+            <h4 class="font-bold text-slate-800 leading-snug mb-2">
+              Yêu là gì?
+            </h4>
+            <p
+              class="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+              Tôi có đang yêu thương một cách vị kỷ hay vô điều kiện?
+            </p>
+          </div>
+          <div
+            class="group bg-white p-6 rounded-2xl shadow-soft border border-gray-100 cursor-pointer hover:border-primary/50 transition-all duration-300 relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+              <span class="material-symbols-outlined text-6xl">skull</span>
+            </div>
+            <span class="text-primary font-bold text-lg mb-2 block">05</span>
+            <h4 class="font-bold text-slate-800 leading-snug mb-2">
+              Chết thế nào?
+            </h4>
+            <p
+              class="text-xs text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform translate-y-2 group-hover:translate-y-0">
+              Nếu hôm nay là ngày cuối, tôi có hối tiếc điều gì không?
+            </p>
           </div>
         </div>
       </div>
-    </main>
-    <script>
-      const openBtn = document.getElementById("openDiaryBtn");
-      const diaryBox = document.getElementById("diaryBox");
-      const diaryContent = document.getElementById("diaryContent");
-      const saveBtn = document.getElementById("saveDiaryBtn");
-      const diaryList = document.getElementById("diaryList");
+      <div class="md:col-span-7 flex flex-col">
+        <div class="flex items-center gap-2 mb-6 mt-4">
+          <div class="p-2 bg-accent-yellow text-accent-yellow-dark rounded-lg">
+            <span class="material-symbols-outlined">edit_note</span>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-slate-900">
+            2. Nhật ký triết học
+          </h3>
+        </div>
+        <div class="bg-white rounded-3xl p-8 shadow-card border border-gray-100 h-full flex flex-col">
+          <div class="flex items-start gap-6 mb-8">
+            <div class="hidden sm:block p-4 bg-accent-yellow/30 rounded-2xl text-accent-yellow-dark">
+              <span class="material-symbols-outlined text-4xl">book</span>
+            </div>
+            <div>
+              <h4 class="text-lg font-bold text-slate-800 mb-2">
+                Tại sao cần viết nhật ký?
+              </h4>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Nhật ký triết học không phải để kể lể sự việc, mà là để
+                <span class="font-semibold text-slate-900">đối thoại với chính mình</span>. Hãy dành 15 phút mỗi tối để
+                phản tư về những phản ứng cảm
+                xúc của bạn trong ngày.
+              </p>
+            </div>
+          </div>
+          <div class="bg-background-light rounded-xl p-6 border border-gray-200 shadow-inner-light flex-grow">
+            <h5 class="text-xs font-bold uppercase text-slate-400 tracking-widest mb-4">
+              Gợi ý viết hôm nay
+            </h5>
+            <ul class="space-y-4">
+              <li class="flex gap-3 items-start">
+                <span class="text-accent-yellow-dark font-bold">•</span>
+                <span class="text-slate-700 text-sm">Hôm nay, sự việc nào đã làm xáo trộn tâm trí tôi? Tại
+                  sao?</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <span class="text-accent-yellow-dark font-bold">•</span>
+                <span class="text-slate-700 text-sm">Tôi đã hành động dựa trên lý trí hay sự bốc đồng?</span>
+              </li>
+              <li class="flex gap-3 items-start">
+                <span class="text-accent-yellow-dark font-bold">•</span>
+                <span class="text-slate-700 text-sm">Có góc nhìn nào khác về sự việc đó mà tôi đã bỏ qua
+                  không?</span>
+              </li>
+            </ul>
+            <div class="mt-6 pt-6 border-t border-gray-200">
+              <button id="openDiaryBtn"
+                class="w-full py-3 border-2 border-dashed border-gray-300 rounded-lg text-slate-500 text-sm font-medium hover:border-accent-yellow-dark hover:text-accent-yellow-dark transition-colors flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined">add</span>
+                Mở mẫu nhật ký trống
+              </button>
 
-      // Add Cancel Button dynamically
-      const cancelBtn = document.createElement("button");
-      cancelBtn.id = "cancelEditBtn";
-      cancelBtn.className =
-        "mt-4 w-full bg-gray-200 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-300 transition hidden";
-      cancelBtn.innerText = "Hủy bỏ";
-      saveBtn.parentNode.insertBefore(cancelBtn, saveBtn.nextSibling);
+              <div id="diaryBox" class="hidden mt-6">
+                <textarea id="diaryContent"
+                  class="w-full h-40 p-4 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent-yellow"
+                  placeholder="Viết suy ngẫm của bạn ở đây..."></textarea>
 
-      let diaries = JSON.parse(localStorage.getItem("philosophyDiaries")) || [];
-      let editingIndex = -1;
+                <button id="saveDiaryBtn"
+                  class="mt-4 w-full bg-accent-yellow-dark text-white py-2 rounded-lg font-medium hover:opacity-90 transition">
+                  Lưu nhật ký
+                </button>
+              </div>
+              <div id="diaryList" class="mt-8 space-y-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="md:col-span-5 flex flex-col">
+        <div class="flex items-center gap-2 mb-6 mt-4">
+          <div class="p-2 bg-green-100 text-green-700 rounded-lg">
+            <span class="material-symbols-outlined">quiz</span>
+          </div>
+          <h3 class="text-xl font-serif font-bold text-slate-900">
+            3. Trắc nghiệm kiến thức
+          </h3>
+        </div>
+        <div class="flex flex-col gap-4 h-full">
+          <!-- Quiz Card 1 -->
+          <a href="quiz1.html"
+            class="bg-white p-4 rounded-xl shadow-soft border border-gray-100 card-hover flex items-center gap-4 group">
+            <div class="size-10 rounded-lg bg-blue-100 text-primary flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined">psychology</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="font-bold text-slate-800 text-sm">
+                Thế giới quan & Mối quan hệ Vật chất - Ý thức
+              </h4>
+              <p class="text-[10px] text-slate-500">
+                Bộ quiz : Kiểm tra "cặp kính" nhìn đời của bạn
+              </p>
+            </div>
+            <div
+              class="size-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </div>
+          </a>
+          <!-- Quiz Card 2 -->
+          <a href="quiz2.html"
+            class="bg-white p-4 rounded-xl shadow-soft border border-gray-100 card-hover flex items-center gap-4 group">
+            <div class="size-10 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined">change_circle</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="font-bold text-slate-800 text-sm">
+                Phép biện chứng duy vật – Quy luật của sự phát triển
+              </h4>
+              <p class="text-[10px] text-slate-500">
+                Bộ quiz: Các quy luật cơ bản của sự phát triển
+              </p>
+            </div>
+            <div
+              class="size-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </div>
+          </a>
+          <!-- Quiz Card 3 -->
+          <a href="quiz3.html"
+            class="bg-white p-4 rounded-xl shadow-soft border border-gray-100 card-hover flex items-center gap-4 group">
+            <div class="size-10 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined">lightbulb</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="font-bold text-slate-800 text-sm">
+                Học đi đôi với hành – Con đường nhận thức chân lý
+              </h4>
+              <p class="text-[10px] text-slate-500">
+                Bộ quiz: Nhận thức – Thực tiễn – Chân lý
+              </p>
+            </div>
+            <div
+              class="size-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </div>
+          </a>
+          <!-- Quiz Card 4 -->
+          <a href="quiz4.html"
+            class="bg-white p-4 rounded-xl shadow-soft border border-gray-100 card-hover flex items-center gap-4 group">
+            <div class="size-10 rounded-lg bg-purple-100 text-purple-600 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined">history_edu</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="font-bold text-slate-800 text-sm">
+                Luật chơi của xã hội – Kinh tế, quyền lực và ý thức
+              </h4>
+              <p class="text-[10px] text-slate-500">
+                Bộ quiz: Chủ nghĩa duy vật lịch sử
+              </p>
+            </div>
+            <div
+              class="size-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </div>
+          </a>
+          <!-- Quiz Card 5 -->
+          <a href="quiz5.html"
+            class="bg-white p-4 rounded-xl shadow-soft border border-gray-100 card-hover flex items-center gap-4 group">
+            <div class="size-10 rounded-lg bg-rose-100 text-rose-600 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined">person_search</span>
+            </div>
+            <div class="flex-grow">
+              <h4 class="font-bold text-slate-800 text-sm">
+                Con người trong triết học Mác – Lênin
+              </h4>
+              <p class="text-[10px] text-slate-500">
+                Bộ quiz: Triết học Mác – Lênin về con người
+              </p>
+            </div>
+            <div
+              class="size-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-300 group-hover:border-primary group-hover:text-primary transition-colors">
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script>
+    const openBtn = document.getElementById("openDiaryBtn");
+    const diaryBox = document.getElementById("diaryBox");
+    const diaryContent = document.getElementById("diaryContent");
+    const saveBtn = document.getElementById("saveDiaryBtn");
+    const diaryList = document.getElementById("diaryList");
 
-      // Toggle khung viết
-      openBtn.addEventListener("click", () => {
-        diaryBox.classList.toggle("hidden");
-        if (!diaryBox.classList.contains("hidden") && editingIndex === -1) {
-          diaryContent.focus();
-        }
-      });
+    // Add Cancel Button dynamically
+    const cancelBtn = document.createElement("button");
+    cancelBtn.id = "cancelEditBtn";
+    cancelBtn.className =
+      "mt-4 w-full bg-gray-200 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-300 transition hidden";
+    cancelBtn.innerText = "Hủy bỏ";
+    saveBtn.parentNode.insertBefore(cancelBtn, saveBtn.nextSibling);
 
-      // Cancel Edit
-      cancelBtn.addEventListener("click", () => {
-        resetForm();
-      });
+    let diaries = JSON.parse(localStorage.getItem("philosophyDiaries")) || [];
+    let editingIndex = -1;
 
-      function resetForm() {
-        editingIndex = -1;
-        diaryContent.value = "";
-        saveBtn.innerText = "Lưu nhật ký";
-        saveBtn.classList.remove("bg-blue-600", "hover:bg-blue-700");
-        saveBtn.classList.add("bg-accent-yellow-dark", "hover:opacity-90");
-        cancelBtn.classList.add("hidden");
+    // Toggle khung viết
+    openBtn.addEventListener("click", () => {
+      diaryBox.classList.toggle("hidden");
+      if (!diaryBox.classList.contains("hidden") && editingIndex === -1) {
+        diaryContent.focus();
+      }
+    });
 
-        // Optionally hide box if it was closed before, but UX is better if we just reset
-        // If we want to close box: diaryBox.classList.add("hidden");
+    // Cancel Edit
+    cancelBtn.addEventListener("click", () => {
+      resetForm();
+    });
+
+    function resetForm() {
+      editingIndex = -1;
+      diaryContent.value = "";
+      saveBtn.innerText = "Lưu nhật ký";
+      saveBtn.classList.remove("bg-blue-600", "hover:bg-blue-700");
+      saveBtn.classList.add("bg-accent-yellow-dark", "hover:opacity-90");
+      cancelBtn.classList.add("hidden");
+
+      // Auto close the box
+      diaryBox.classList.add("hidden");
+    }
+
+    // Lưu nhật ký (Create or Update)
+    saveBtn.addEventListener("click", () => {
+      const content = diaryContent.value.trim();
+      if (!content) {
+        alert("Bạn chưa viết gì cả");
+        return;
       }
 
-      // Lưu nhật ký (Create or Update)
-      saveBtn.addEventListener("click", () => {
-        const content = diaryContent.value.trim();
-        if (!content) {
-          alert("Bạn chưa viết gì cả");
-          return;
-        }
+      const diary = {
+        date: new Date().toLocaleDateString("vi-VN"),
+        content: content,
+      };
 
-        const diary = {
-          date: new Date().toLocaleDateString("vi-VN"),
-          content: content,
-        };
+      if (editingIndex > -1) {
+        // Update existing
+        diaries[editingIndex] = diary;
+      } else {
+        // Create new
+        diaries.unshift(diary); // mới nhất lên trên
+      }
 
-        if (editingIndex > -1) {
-          // Update existing
-          diaries[editingIndex] = diary;
-          resetForm();
-        } else {
-          // Create new
-          diaries.unshift(diary); // mới nhất lên trên
-          diaryContent.value = "";
-        }
+      // Reset form and close box in both cases
+      resetForm();
 
+      saveLocalStorage();
+      renderDiaries();
+    });
+
+    function saveLocalStorage() {
+      localStorage.setItem("philosophyDiaries", JSON.stringify(diaries));
+    }
+
+    window.deleteDiary = function (index) {
+      if (confirm("Bạn có chắc chắn muốn xóa nhật ký này không?")) {
+        diaries.splice(index, 1);
         saveLocalStorage();
         renderDiaries();
-      });
-
-      function saveLocalStorage() {
-        localStorage.setItem("philosophyDiaries", JSON.stringify(diaries));
+        // If we were editing the deleted item, reset form
+        if (editingIndex === index) resetForm();
       }
+    };
 
-      window.deleteDiary = function (index) {
-        if (confirm("Bạn có chắc chắn muốn xóa nhật ký này không?")) {
-          diaries.splice(index, 1);
-          saveLocalStorage();
-          renderDiaries();
-          // If we were editing the deleted item, reset form
-          if (editingIndex === index) resetForm();
-        }
-      };
+    window.editDiary = function (index) {
+      editingIndex = index;
+      diaryContent.value = diaries[index].content;
 
-      window.editDiary = function (index) {
-        editingIndex = index;
-        diaryContent.value = diaries[index].content;
+      // Change UI to Edit Mode
+      saveBtn.innerText = "Cập nhật";
+      saveBtn.classList.remove("bg-accent-yellow-dark", "hover:opacity-90");
+      saveBtn.classList.add("bg-blue-600", "hover:bg-blue-700");
+      cancelBtn.classList.remove("hidden");
 
-        // Change UI to Edit Mode
-        saveBtn.innerText = "Cập nhật";
-        saveBtn.classList.remove("bg-accent-yellow-dark", "hover:opacity-90");
-        saveBtn.classList.add("bg-blue-600", "hover:bg-blue-700");
-        cancelBtn.classList.remove("hidden");
+      // Open box if closed
+      diaryBox.classList.remove("hidden");
+      diaryContent.focus();
 
-        // Open box if closed
-        diaryBox.classList.remove("hidden");
-        diaryContent.focus();
+      // Scroll to editor
+      diaryBox.scrollIntoView({ behavior: "smooth", block: "center" });
+    };
 
-        // Scroll to editor
-        diaryBox.scrollIntoView({ behavior: "smooth", block: "center" });
-      };
+    // Render danh sách
+    function renderDiaries() {
+      diaryList.innerHTML = "";
 
-      // Render danh sách
-      function renderDiaries() {
-        diaryList.innerHTML = "";
+      diaries.forEach((diary, index) => {
+        const div = document.createElement("div");
+        div.className =
+          "bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative group";
 
-        diaries.forEach((diary, index) => {
-          const div = document.createElement("div");
-          div.className =
-            "bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative group";
-
-          div.innerHTML = `
+        div.innerHTML = `
             <div class="flex justify-between items-start mb-2">
                 <div class="text-xs text-slate-400">📅 ${diary.date}</div>
                 <div class="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -716,18 +538,20 @@
             </p>
         `;
 
-          diaryList.appendChild(div);
-        });
-      }
+        diaryList.appendChild(div);
+      });
+    }
 
-      // Load khi mở trang
-      renderDiaries();
-    </script>
+    // Load khi mở trang
+    renderDiaries();
+  </script>
 
-    <!-- Footer Placeholder -->
-    <div id="footer-placeholder"></div>
+  <!-- Footer Placeholder -->
+  <div id="footer-placeholder"></div>
 
-    <!-- Component Loader -->
-    <script src="js/load-components.js"></script>
-  </body>
+  <!-- Component Loader -->
+  <script src="js/load-components.js"></script>
+  <script src="js/tet-effect.js"></script>
+</body>
+
 </html>
