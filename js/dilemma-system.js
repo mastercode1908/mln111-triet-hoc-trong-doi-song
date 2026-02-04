@@ -274,9 +274,9 @@ class DilemmaSystem {
         // Add to activity log before closing
         if (this.currentDilemma && this.lastChoice) {
             const logHTML = `
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-3 shadow-md border border-gray-200 dark:border-gray-700 mb-2">
+                <div class="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-3 shadow-md border-l-4 border-purple-500 dark:border-purple-400 mb-2">
                     <div class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-purple-500">psychology</span>
+                        <span class="material-symbols-outlined text-sm text-purple-600 dark:text-purple-400">psychology</span>
                         <div class="flex-1">
                             <div class="text-sm font-semibold text-slate-900 dark:text-white">
                                 🤔 ${this.currentDilemma.title} - Lựa chọn ${this.lastChoice.letter}

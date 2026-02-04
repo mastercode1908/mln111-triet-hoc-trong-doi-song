@@ -131,7 +131,28 @@ class DevelopmentMapGame {
         // Check for state transformation
         if (result.transformed) {
             this.stats.transformations++;
-            this.handleStateTransformation(result.previousState, result.newState);
+            this.showTransformationAnimation(result.previousState, result.newState);
+
+            // Add transformation to activity log
+            const activityLog = document.getElementById('action-log');
+            if (activityLog) {
+                const logEntry = document.createElement('div');
+                logEntry.className = 'action-feedback animate-slide-in';
+
+                logEntry.innerHTML = `
+                    <div class="bg-green-50 dark:bg-green-900/20 rounded-xl p-3 shadow-md border-l-4 border-green-500 dark:border-green-400 mb-2">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="material-symbols-outlined text-sm text-green-600 dark:text-green-400">${result.newState.icon}</span>
+                            <span class="font-semibold text-sm text-slate-900 dark:text-white">🎉 Biến đổi: ${result.newState.name}</span>
+                        </div>
+                        <div class="text-xs text-slate-600 dark:text-gray-400">
+                            ${result.newState.description}
+                        </div>
+                    </div>
+                `;
+
+                activityLog.insertBefore(logEntry, activityLog.firstChild);
+            }
         }
 
         // Check for completion
@@ -223,12 +244,12 @@ class DevelopmentMapGame {
         notification.className = 'event-notification animate-bounce-in';
 
         notification.innerHTML = `
-      <div class="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl p-4 shadow-lg mb-3">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl px-6 py-4 shadow-lg mb-3 min-w-[360px] border-0" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
         <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-3xl">${event.icon}</span>
+          <span class="material-symbols-outlined text-orange-500 text-2xl flex-shrink-0">${event.icon}</span>
           <div class="flex-1">
-            <div class="font-bold">${event.name}</div>
-            <div class="text-sm opacity-90">${event.message}</div>
+            <div class="font-semibold text-base text-slate-900 dark:text-white mb-0.5">${event.name}</div>
+            <div class="text-sm text-slate-600 dark:text-gray-400">${event.message}</div>
           </div>
         </div>
       </div>

@@ -286,9 +286,9 @@ class QuizSystem {
             this.lastLoggedCorrect = this.stats.correctAnswers;
 
             const logHTML = `
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-3 shadow-md border border-gray-200 dark:border-gray-700 mb-2">
+                <div class="bg-blue-50 dark:bg-blue-900/20 rounded-xl p-3 shadow-md border-l-4 border-blue-500 dark:border-blue-400 mb-2">
                     <div class="flex items-start gap-3">
-                        <span class="material-symbols-outlined text-primary">quiz</span>
+                        <span class="material-symbols-outlined text-sm text-blue-600 dark:text-blue-400">quiz</span>
                         <div class="flex-1">
                             <div class="text-sm font-semibold text-slate-900 dark:text-white">
                                 📚 Câu hỏi Triết học: ${wasCorrect ? '✅ Đúng' : '❌ Sai'}
