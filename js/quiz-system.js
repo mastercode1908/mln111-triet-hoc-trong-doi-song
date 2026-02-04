@@ -102,49 +102,59 @@ class QuizSystem {
         if (this.isQuizActive) return;
 
         this.currentQuestion = this.getRandomQuestion();
+        if (!this.currentQuestion) return;
+
         this.isQuizActive = true;
 
-        // Update stats display
-        const accuracy = this.stats.totalQuizzes > 0
-            ? Math.round((this.stats.correctAnswers / this.stats.totalQuizzes) * 100)
-            : 0;
-        document.getElementById('quiz-stats').textContent = `${this.stats.correctAnswers}/${this.stats.totalQuizzes} (${accuracy}%)`;
+        // Shuffle answer options to prevent predictable correct answer position
+        const correctAnswer = this.currentQuestion.options[this.currentQuestion.correct];
+        const shuffledOptions = [...this.currentQuestion.options];
 
-        // Update category
+        // Fisher-Yates shuffle algorithm
+        for (let i = shuffledOptions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffledOptions[i], shuffledOptions[j]] = [shuffledOptions[j], shuffledOptions[i]];
+        }
+
+        // Find new index of correct answer after shuffle
+        this.shuffledCorrectIndex = shuffledOptions.indexOf(correctAnswer);
+
+        // Show modal
+        const modal = document.getElementById('quiz-modal');
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+
+        // Populate question info
         const categoryLabels = {
-            'luong-chat': 'Quy luật Lượng-Chất',
-            'mau-thuan': 'Quy luật Mâu thuẫn',
+            'luong-chat': 'Lượng - Chất',
+            'mau-thuan': 'Mâu thuẫn',
             'phu-dinh': 'Phủ định của Phủ định',
             'ung-dung': 'Ứng dụng thực tế'
         };
-        document.getElementById('quiz-category').textContent = categoryLabels[this.currentQuestion.category] || 'Triết học';
 
-        // Update question
+        document.getElementById('quiz-category').textContent = categoryLabels[this.currentQuestion.category] || this.currentQuestion.category;
         document.getElementById('quiz-question').textContent = this.currentQuestion.question;
+        document.getElementById('quiz-stats').textContent = `${this.stats.correctAnswers}/${this.stats.totalQuizzes} đúng`;
 
-        // Create options
+        // Populate options with shuffled answers
         const optionsContainer = document.getElementById('quiz-options');
         optionsContainer.innerHTML = '';
 
-        this.currentQuestion.options.forEach((option, index) => {
-            const optionBtn = document.createElement('button');
-            optionBtn.className = 'quiz-option w-full text-left p-4 rounded-xl border-2 border-gray-200 dark:border-gray-700 hover:border-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200';
-            optionBtn.innerHTML = `
-                <div class="flex items-start gap-3">
-                    <span class="font-bold text-primary flex-shrink-0">${String.fromCharCode(65 + index)})</span>
-                    <span class="text-sm text-slate-900 dark:text-white">${option}</span>
-                </div>
+        shuffledOptions.forEach((option, index) => {
+            const optionButton = document.createElement('button');
+            optionButton.className = 'quiz-option w-full text-left p-4 rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:border-primary hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-200 flex items-start gap-3';
+            optionButton.innerHTML = `
+                <span class="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-primary to-blue-600 text-white flex items-center justify-center font-bold text-sm">
+                    ${String.fromCharCode(65 + index)}
+                </span>
+                <span class="flex-1 text-sm text-slate-900 dark:text-white leading-relaxed">${option}</span>
             `;
-            optionBtn.addEventListener('click', () => this.selectAnswer(index, optionBtn));
-            optionsContainer.appendChild(optionBtn);
+            optionButton.onclick = () => this.selectAnswer(index, optionButton);
+            optionsContainer.appendChild(optionButton);
         });
 
-        // Hide explanation
+        // Clear result area
         document.getElementById('quiz-explanation').classList.add('hidden');
-
-        // Show modal
-        document.getElementById('quiz-modal').classList.remove('hidden');
-        document.getElementById('quiz-modal').classList.add('flex');
     }
 
     selectAnswer(selectedIndex, selectedButton) {
@@ -152,7 +162,8 @@ class QuizSystem {
         const allOptions = document.querySelectorAll('.quiz-option');
         allOptions.forEach(opt => opt.disabled = true);
 
-        const isCorrect = selectedIndex === this.currentQuestion.correct;
+        // Check against shuffled correct index
+        const isCorrect = selectedIndex === this.shuffledCorrectIndex;
 
         // Update stats
         this.stats.totalQuizzes++;
@@ -162,9 +173,9 @@ class QuizSystem {
             this.stats.wrongAnswers++;
         }
 
-        // Visual feedback
+        // Visual feedback - highlight correct answer
         allOptions.forEach((opt, idx) => {
-            if (idx === this.currentQuestion.correct) {
+            if (idx === this.shuffledCorrectIndex) {
                 opt.classList.add('border-green-500', 'bg-green-50', 'dark:bg-green-900/20');
                 opt.classList.remove('border-gray-200', 'dark:border-gray-700');
             } else if (idx === selectedIndex && !isCorrect) {

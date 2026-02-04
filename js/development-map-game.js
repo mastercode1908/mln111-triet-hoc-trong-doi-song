@@ -356,9 +356,17 @@ class DevelopmentMapGame {
     }
 
     updateStatsDisplay() {
+        // Update stats counters
         document.getElementById('stat-actions').textContent = this.stats.totalActions;
         document.getElementById('stat-transformations').textContent = this.stats.transformations;
         document.getElementById('stat-events').textContent = this.stats.eventsTriggered;
+
+        // Update quiz and dilemma counters
+        const quizStats = this.quizSystem?.stats || { totalQuizzes: 0 };
+        const dilemmaStats = this.dilemmaSystem?.stats || { totalDilemmas: 0 };
+
+        document.getElementById('stat-quizzes').textContent = quizStats.totalQuizzes || 0;
+        document.getElementById('stat-dilemmas').textContent = dilemmaStats.totalDilemmas || 0;
     }
 
     updateAchievementsDisplay() {
