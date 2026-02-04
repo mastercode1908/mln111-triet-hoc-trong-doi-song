@@ -98,27 +98,37 @@ class DevelopmentMapGame {
         // Show feedback
         this.showElementFeedback(elementData, result);
 
-        // Priority system: Quiz > Dilemma > Event (only one triggers per action)
+        // Priority system with strict mutual exclusion
         let triggered = false;
 
-        // Check for quiz trigger FIRST (every 3 actions, increased from 5)
-        if (this.quizSystem.shouldTriggerQuiz(this.stats.totalActions)) {
-            setTimeout(() => this.quizSystem.showQuiz(), 1000);
+        // Check for quiz trigger FIRST (every 3 actions)
+        if (this.quizSystem.shouldTriggerQuiz(this.stats.totalActions) &&
+            !this.quizSystem.isQuizActive &&
+            !this.dilemmaSystem.isActive) {
+            setTimeout(() => {
+                if (!this.dilemmaSystem.isActive) { // Double check
+                    this.quizSystem.showQuiz();
+                }
+            }, 1500);
             triggered = true;
         }
-        // Check for dilemma trigger SECOND (30% random, increased from 20%)
+        // Check for dilemma trigger SECOND (30% random)
         else if (!this.quizSystem.isQuizActive &&
+            !this.dilemmaSystem.isActive &&
             (this.dilemmaSystem.shouldTriggerDilemma() || this.dilemmaSystem.shouldTriggerConditional())) {
-            setTimeout(() => this.dilemmaSystem.showDilemma(), 1200);
+            setTimeout(() => {
+                if (!this.quizSystem.isQuizActive) { // Double check
+                    this.dilemmaSystem.showDilemma();
+                }
+            }, 2000); // Longer delay to avoid race
             triggered = true;
         }
-        // Try to trigger random event LAST PRIORITY (only if no quiz/dilemma)
-        else {
+        // Try to trigger random event LAST (only if nothing else triggered)
+        else if (!triggered && !this.quizSystem.isQuizActive && !this.dilemmaSystem.isActive) {
             const eventResult = this.eventSystem.tryTrigger();
             if (eventResult) {
                 this.stats.eventsTriggered++;
                 this.showEventNotification(eventResult.event);
-                triggered = true;
             }
         }
 
@@ -244,15 +254,21 @@ class DevelopmentMapGame {
         notification.className = 'event-notification animate-bounce-in';
 
         notification.innerHTML = `
-      <div class="bg-white dark:bg-gray-800 rounded-2xl px-6 py-4 shadow-lg mb-3 min-w-[360px] border-0" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;">
-        <div class="flex items-center gap-3">
-          <span class="material-symbols-outlined text-orange-500 text-2xl flex-shrink-0">${event.icon}</span>
-          <div class="flex-1">
-            <div class="font-semibold text-base text-slate-900 dark:text-white mb-0.5">${event.name}</div>
-            <div class="text-sm text-slate-600 dark:text-gray-400">${event.message}</div>
-          </div>
-        </div>
-      </div>
+            <div class="bg-orange-700 dark:bg-orange-800 rounded-xl px-4 py-3 shadow-md mb-2">
+            <div class="flex items-start gap-3">
+                <span class="material-symbols-outlined text-white text-xl flex-shrink-0">
+                ${event.icon}
+                </span>
+                <div class="flex-1">
+                <div class="font-bold text-sm text-white mb-1">
+                    ${event.name}
+                </div>
+                <div class="text-xs text-orange-100 leading-relaxed">
+                    ${event.message}
+                </div>
+                </div>
+            </div>
+            </div>
     `;
 
         container.appendChild(notification);
