@@ -1,5 +1,7 @@
-// Philosophy Quiz Data - MLN111
+// Philosophy Quiz Data - MLN111 (4 Stats Only, Balanced Bonus/Penalty)
 // Questions about Dialectical Materialism for Development Map Game
+// Stats: quantity, knowledge, softSkills, creativity, mentalHealth
+// Bonus max: +6, Penalty max: -3
 
 const QUIZ_QUESTIONS = [
     // === QUY LUẬT LƯỢNG - CHẤT (8 câu) ===
@@ -14,8 +16,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Quy luật Lượng-Chất chỉ ra rằng sự tích lũy về lượng đến một điểm nút (ngưỡng) nhất định sẽ tạo ra bước nhảy về chất - một sự biến đổi căn bản.',
-        bonus: { quantity: 12, knowledge: 5 },
-        penalty: { quantity: -5 }
+        bonus: { quantity: 6, knowledge: 3 },
+        penalty: { quantity: -2 }
     },
     {
         id: 'q2',
@@ -28,8 +30,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Học nhiều giờ (lượng) nhưng không hiểu (chất thấp) là vi phạm quy luật Lượng-Chất. Cần cân bằng giữa thời gian học và chất lượng tiếp thu.',
-        bonus: { quantity: 10, knowledge: 8 },
-        penalty: { knowledge: -3 }
+        bonus: { quantity: 5, knowledge: 4 },
+        penalty: { knowledge: -2 }
     },
     {
         id: 'q3',
@@ -42,8 +44,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Điểm nút là ngưỡng quan trọng - khi tích lũy lượng đạt đến đây, sẽ xảy ra bước nhảy về chất (chuyển biến căn bản).',
-        bonus: { quantity: 8, creativity: 5 },
-        penalty: { quantity: -3 }
+        bonus: { quantity: 4, creativity: 3 },
+        penalty: { quantity: -2 }
     },
     {
         id: 'q4',
@@ -56,8 +58,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Tích lũy kiến thức đều đặn (lượng) sẽ dẫn đến hiểu biết sâu sắc (chất) - đây là ví dụ điển hình của quy luật Lượng-Chất.',
-        bonus: { quantity: 10, knowledge: 6 },
-        penalty: { quantity: -4 }
+        bonus: { quantity: 5, knowledge: 3 },
+        penalty: { quantity: -2 }
     },
     {
         id: 'q5',
@@ -70,8 +72,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Không thể bỏ qua tích lũy lượng vì bước nhảy chất là kết quả tất yếu của sự tích lũy về lượng. Không có lượng thì không có chất.',
-        bonus: { quantity: 15, knowledge: 5, creativity: 3 },
-        penalty: { quantity: -5 }
+        bonus: { quantity: 6, knowledge: 3, creativity: 2 },
+        penalty: { quantity: -2 }
     },
     {
         id: 'q6',
@@ -84,8 +86,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Sinh viên A tích lũy đều đặn (lượng) qua thời gian dài, tạo nên sự thay đổi chất bền vững. Sinh viên B chỉ tích lũy lượng mà thiếu quá trình chuyển hóa chất.',
-        bonus: { quantity: 12, knowledge: 8, mentalHealth: 5 },
-        penalty: { knowledge: -4 }
+        bonus: { quantity: 6, knowledge: 4, mentalHealth: 3 },
+        penalty: { knowledge: -2 }
     },
     {
         id: 'q7',
@@ -98,8 +100,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Đây là bước nhảy về chất - một sự biến đổi căn bản về trình độ sau khi tích lũy đủ lượng (kiến thức, kỹ năng).',
-        bonus: { quantity: 10, creativity: 8 },
-        penalty: { quantity: -3 }
+        bonus: { quantity: 5, creativity: 4 },
+        penalty: { quantity: -2 }
     },
     {
         id: 'q8',
@@ -112,8 +114,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Game mô phỏng quy luật Lượng-Chất: mỗi hành động là tích lũy lượng, và khi đạt ngưỡng sẽ xảy ra transformation (bước nhảy chất).',
-        bonus: { quantity: 15, knowledge: 10, creativity: 5 },
-        penalty: { quantity: -5 }
+        bonus: { quantity: 6, knowledge: 5, creativity: 3 },
+        penalty: { quantity: -2 }
     },
 
     // === QUY LUẬT MÂU THUẪN (7 câu) ===
@@ -128,8 +130,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Mâu thuẫn biện chứng là sự thống nhất và đấu tranh giữa các mặt đối lập trong cùng một sự vật, là nguồn gốc và động lực phát triển.',
-        bonus: { quantity: 10, knowledge: 8, creativity: 5 },
-        penalty: { knowledge: -4 }
+        bonus: { quantity: 5, knowledge: 4, creativity: 3 },
+        penalty: { knowledge: -2 }
     },
     {
         id: 'q10',
@@ -142,8 +144,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Đây là mâu thuẫn điển hình: học tập vs nghỉ ngơi. Cần cân bằng cả hai để phát triển bền vững, không thể chỉ tập trung vào một mặt.',
-        bonus: { quantity: 12, mentalHealth: 8, creativity: 5 },
-        penalty: { mentalHealth: -5 }
+        bonus: { quantity: 6, mentalHealth: 4, creativity: 3 },
+        penalty: { mentalHealth: -3 }
     },
     {
         id: 'q11',
@@ -156,8 +158,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Mâu thuẫn là động lực phát triển vì sự đấu tranh giữa các mặt đối lập thúc đẩy sự vật vận động, thay đổi và phát triển.',
-        bonus: { quantity: 10, knowledge: 10, creativity: 8 },
-        penalty: { knowledge: -5 }
+        bonus: { quantity: 5, knowledge: 5, creativity: 4 },
+        penalty: { knowledge: -2 }
     },
     {
         id: 'q12',
@@ -170,8 +172,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Khi tinh thần thấp, cần giải quyết mâu thuẫn bằng cách nghỉ ngơi hoặc giao tiếp để cân bằng lại. Đây là cách giải quyết mâu thuẫn hợp lý.',
-        bonus: { mentalHealth: 15, creativity: 5 },
-        penalty: { mentalHealth: -5 }
+        bonus: { mentalHealth: 6, creativity: 3 },
+        penalty: { mentalHealth: -3 }
     },
     {
         id: 'q13',
@@ -184,8 +186,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Áp lực vừa là động lực (tăng lượng) vừa gây stress (giảm tinh thần) - đây là mâu thuẫn điển hình cần được quản lý hợp lý.',
-        bonus: { quantity: 10, knowledge: 8, mentalHealth: 5 },
-        penalty: { knowledge: -4 }
+        bonus: { quantity: 5, knowledge: 4, mentalHealth: 3 },
+        penalty: { knowledge: -2 }
     },
     {
         id: 'q14',
@@ -197,9 +199,9 @@ const QUIZ_QUESTIONS = [
             'Chỉ nghỉ ngơi, bỏ học'
         ],
         correct: 0,
-        explanation: 'Giải quyết mâu thuẫn bằng cách cân bằng, không đi cực đoan. Vừa học vừa nghỉ hợp lý là cách tốt nhất.',
-        bonus: { quantity: 12, mentalHealth: 10, creativity: 5 },
-        penalty: { mentalHealth: -5 }
+        explanation: 'Giải quyết mâu thuẫn bằngcách cân bằng, không đi cực đoan. Vừa học vừa nghỉ hợp lý là cách tốt nhất.',
+        bonus: { quantity: 6, mentalHealth: 5, creativity: 3 },
+        penalty: { mentalHealth: -3 }
     },
     {
         id: 'q15',
@@ -212,8 +214,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Cặp Học tập - Nghỉ ngơi thể hiện mâu thuẫn điển hình: một bên tích lũy kiến thức nhưng mệt mỏi, một bên phục hồi tinh thần nhưng không tiến bộ.',
-        bonus: { quantity: 10, creativity: 8 },
-        penalty: { quantity: -3 }
+        bonus: { quantity: 5, creativity: 4 },
+        penalty: { quantity: -2 }
     },
 
     // === QUY LUẬT PHỦ ĐỊNH CỦA PHỦ ĐỊNH (5 câu) ===
@@ -228,8 +230,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Phủ định biện chứng là phủ định nhưng có kế thừa, phát triển theo hình xoáy ốc lên cao hơn, không phải quay lại điểm xuất phát cũ.',
-        bonus: { quantity: 15, knowledge: 10, creativity: 8 },
-        penalty: { knowledge: -5 }
+        bonus: { quantity: 6, knowledge: 5, creativity: 4 },
+        penalty: { knowledge: -2 }
     },
     {
         id: 'q17',
@@ -242,8 +244,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Đây là phát triển theo hình xoáy ốc: mỗi giai đoạn phủ định giai đoạn trước nhưng kế thừa và nâng lên mức cao hơn.',
-        bonus: { quantity: 12, knowledge: 8, creativity: 10 },
-        penalty: { knowledge: -4 }
+        bonus: { quantity: 6, knowledge: 4, creativity: 5 },
+        penalty: { knowledge: -2 }
     },
     {
         id: 'q18',
@@ -256,8 +258,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Phủ định biện chứng không phải quay vòng tròn mà là xoáy ốc: kế thừa những gì tốt của cũ và phát triển lên mức cao hơn.',
-        bonus: { quantity: 10, creativity: 10 },
-        penalty: { creativity: -5 }
+        bonus: { quantity: 5, creativity: 5 },
+        penalty: { creativity: -2 }
     },
     {
         id: 'q19',
@@ -270,8 +272,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Phủ định siêu hình phủ nhận tuyệt đối. Phủ định biện chứng phủ nhận nhưng kế thừa cái hợp lý và phát triển lên.',
-        bonus: { quantity: 12, knowledge: 10, creativity: 8 },
-        penalty: { knowledge: -5 }
+        bonus: { quantity: 6, knowledge: 5, creativity: 4 },
+        penalty: { knowledge: -2 }
     },
     {
         id: 'q20',
@@ -284,8 +286,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Đây là phủ định biện chứng: phủ nhận cách học sai (phủ định lần 1), nhưng tiếp thu kinh nghiệm để học đúng hơn (phủ định lần 2, kế thừa kinh nghiệm).',
-        bonus: { quantity: 10, knowledge: 10, creativity: 8 },
-        penalty: { knowledge: -4 }
+        bonus: { quantity: 5, knowledge: 5, creativity: 4 },
+        penalty: { knowledge: -2 }
     },
 
     // === ỨNG DỤNG THỰC TẾ (10 câu) ===
@@ -300,8 +302,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Tích lũy đều đặn (lượng) qua thực hành hàng ngày sẽ dẫn đến thành thạo (chất). Đây là áp dụng quy luật Lượng-Chất.',
-        bonus: { quantity: 10, knowledge: 8, creativity: 5 },
-        penalty: { knowledge: -4 }
+        bonus: { quantity: 5, knowledge: 4, creativity: 3 },
+        penalty: { knowledge: -2 }
     },
     {
         id: 'q22',
@@ -314,8 +316,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Đây là mâu thuẫn điển hình của sinh viên. Cần quản lý thời gian hợp lý để cân bằng cả học tập và phát triển kỹ năng mềm.',
-        bonus: { quantity: 8, softSkills: 8, mentalHealth: 5 },
-        penalty: { softSkills: -3 }
+        bonus: { quantity: 4, softSkills: 4, mentalHealth: 3 },
+        penalty: { softSkills: -2 }
     },
     {
         id: 'q23',
@@ -328,8 +330,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Áp lực có thể tăng lượng nhanh nhưng giảm tinh thần. Cần dùng có chọn lọc và cân bằng với các elements phục hồi tinh thần.',
-        bonus: { quantity: 10, mentalHealth: 5, creativity: 5 },
-        penalty: { mentalHealth: -5 }
+        bonus: { quantity: 5, mentalHealth: 3, creativity: 3 },
+        penalty: { mentalHealth: -2 }
     },
     {
         id: 'q24',
@@ -342,8 +344,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Theo triết học Mác, bản chất con người là tổng hòa các quan hệ xã hội. Giao tiếp phát triển kỹ năng mềm và tinh thần - không thể thiếu.',
-        bonus: { softSkills: 10, mentalHealth: 10, creativity: 5 },
-        penalty: { softSkills: -5 }
+        bonus: { softSkills: 5, mentalHealth: 5, creativity: 3 },
+        penalty: { softSkills: -2 }
     },
     {
         id: 'q25',
@@ -356,8 +358,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Nghỉ ngơi giải quyết mâu thuẫn giữa phấn đấu và sức khỏe. Dù không tăng lượng trực tiếp nhưng cần thiết cho phát triển bền vững.',
-        bonus: { mentalHealth: 15, physicalHealth: 10 },
-        penalty: { mentalHealth: -5 }
+        bonus: { mentalHealth: 6 },
+        penalty: { mentalHealth: -3 }
     },
     {
         id: 'q26',
@@ -370,50 +372,50 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Theo phủ định biện chứng, thất bại có thể là bài học giúp phủ định cách học cũ và tìm cách học hiệu quả hơn.',
-        bonus: { quantity: 10, knowledge: 10, creativity: 8 },
-        penalty: { knowledge: -4 }
+        bonus: { quantity: 5, knowledge: 5, creativity: 4 },
+        penalty: { knowledge: -2 }
     },
     {
         id: 'q27',
         category: 'ung-dung',
-        question: 'Element "Tình nguyện" (+kỹ năng mềm, +sức khỏe, +tinh thần) thể hiện quan điểm triết học nào?',
+        question: 'Element "Tình nguyện" (+kỹ năng mềm, +tinh thần) thể hiện quan điểm triết học nào?',
         options: [
             'Con người phát triển toàn diện khi cống hiến cho cộng đồng',
             'Chỉ là hoạt động tốt nhưng không liên quan triết',
             'Lãng phí thời gian'
         ],
         correct: 0,
-        explanation: 'Tình nguyện thể hiện quan điểm phát triển toàn diện: vừa rèn kỹ năng, vừa tốt cho sức khỏe và tinh thần, vừa cống hiến xã hội.',
-        bonus: { softSkills: 10, mentalHealth: 10, familyRelations: 5 },
-        penalty: { softSkills: -4 }
+        explanation: 'Tình nguyện thể hiện quan điểm phát triển toàn diện: vừa rèn kỹ năng, vừa tốt cho tinh thần, vừa cống hiến xã hội.',
+        bonus: { softSkills: 5, mentalHealth: 5 },
+        penalty: { softSkills: -2 }
     },
     {
         id: 'q28',
         category: 'ung-dung',
-        question: 'Khi stats "Gia đình" thấp, điều này ảnh hưởng như thế nào theo triết học duy vật?',
+        question: 'Khi bạn làm nhiều project cùng lúc, bạn đang áp dụng nguyên lý nào?',
         options: [
-            'Ảnh hưởng tiêu cực vì con người không thể tồn tại độc lập khỏi quan hệ gia đình',
-            'Không ảnh hưởng gì, gia đình không quan trọng',
-            'Chỉ là con số trong game'
+            'Cân bằng mâu thuẫn: đa dạng hóa kinh nghiệm vừa phát triển kỹ năng đa dạng',
+            'Tham lam, làm nhiều thứ cùng lúc là sai',
+            'Chỉ nên tập trung một việc duy nhất'
         ],
         correct: 0,
-        explanation: 'Theo triết học duy vật, con người là sản phẩm của các mối quan hệ xã hội, trong đó gia đình là mối quan hệ cơ bản. Stats thấp phản ánh sự mất cân bằng.',
-        bonus: { familyRelations: 15, mentalHealth: 8 },
-        penalty: { familyRelations: -5 }
+        explanation: 'Làm nhiều project đa dạng giúp phát triển toàn diện nhiều kỹ năng, thể hiện nguyên lý cân bằng và phát triển đa chiều.',
+        bonus: { creativity: 5, softSkills: 4 },
+        penalty: { creativity: -2 }
     },
     {
         id: 'q29',
         category: 'ung-dung',
-        question: 'Element "Thể thao" (+sức khỏe, +tinh thần) quan trọng như thế nào trong phát triển toàn diện?',
+        question: 'Element "Thể thao" (+tinh thần) quan trọng như thế nào trong phát triển toàn diện?',
         options: [
-            'Rất quan trọng - thể chất là nền tảng cho mọi hoạt động tinh thần',
+            'Rất quan trọng - cơ thể khỏe là nền tảng cho mọi hoạt động',
             'Không cần thiết, chỉ cần học',
             'Chỉ dành cho vận động viên'
         ],
         correct: 0,
-        explanation: 'Theo triết học duy vật, thể chất và tinh thần có mối liên hệ biện chứng. Sức khỏe tốt là nền tảng cho học tập và làm việc hiệu quả.',
-        bonus: { physicalHealth: 15, mentalHealth: 10, quantity: 5 },
-        penalty: { physicalHealth: -5 }
+        explanation: 'Thể chất và tinh thần có mối liên hệ biện chứng. Cơ thể khỏe là nền tảng cho học tập và làm việc hiệu quả.',
+        bonus: { mentalHealth: 6, quantity: 3 },
+        penalty: { mentalHealth: -2 }
     },
     {
         id: 'q30',
@@ -426,8 +428,8 @@ const QUIZ_QUESTIONS = [
         ],
         correct: 0,
         explanation: 'Theo quan điểm phát triển toàn diện, cần cân bằng tri thức, kỹ năng, sức khỏe... Spam một loại dẫn đến phát triển lệch lạc.',
-        bonus: { quantity: 10, knowledge: 8, creativity: 8, softSkills: 5 },
-        penalty: { quantity: -5 }
+        bonus: { quantity: 5, knowledge: 4, creativity: 4, softSkills: 3 },
+        penalty: { quantity: -2 }
     }
 ];
 
