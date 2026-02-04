@@ -1,287 +1,259 @@
 <!DOCTYPE html>
 <html class="light" lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Trò chuyện với AI Assistants - PhiloMap</title>
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Lora:wght@0,400;0,600;0,700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            colors: {
-              primary: "#308ce8",
-              "primary-dark": "#1a6bb8",
-              "background-light": "#f8f9fa",
-              "background-dark": "#111921",
-            },
-            fontFamily: {
-              sans: ["Lexend", "sans-serif"],
-              serif: ["Lora", "serif"],
-            },
-            borderRadius: {
-              DEFAULT: "0.5rem",
-              lg: "1rem",
-              xl: "1.5rem",
-              "2xl": "2rem",
-              full: "9999px",
-            },
-            boxShadow: {
-              soft: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
-              card: "0 10px 40px -10px rgba(0, 0, 0, 0.06)",
-            },
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Trò chuyện với AI Assistants - PhiloMap</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&amp;display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Lora:wght@700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#308ce8",
+            "primary-dark": "#1a6bb8",
+            "background-light": "#f8f9fa",
+            "background-dark": "#111921",
+          },
+          fontFamily: {
+            "display": ["Lexend", "sans-serif"],
+            "serif": ["Lora", "serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+            lg: "1rem",
+            xl: "1.5rem",
+            "2xl": "2rem",
+            full: "9999px",
+          },
+          boxShadow: {
+            soft: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+            card: "0 10px 40px -10px rgba(0, 0, 0, 0.06)",
+          },
+          animation: {
+            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
           },
         },
-      };
-    </script>
-    <style>
-      .material-symbols-outlined {
-        font-family: "Material Symbols Outlined";
-        font-weight: normal;
-        font-style: normal;
-        font-size: 24px;
-        display: inline-block;
-        line-height: 1;
-        text-transform: none;
-        letter-spacing: normal;
-        word-wrap: normal;
-        white-space: nowrap;
-        direction: ltr;
-        font-variation-settings:
-          "FILL" 0,
-          "wght" 400,
-          "GRAD" 0,
-          "opsz" 24;
-      }
-    </style>
-    <script type="importmap">
+      },
+    };
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-family: "Material Symbols Outlined";
+      font-weight: normal;
+      font-style: normal;
+      font-size: 24px;
+      display: inline-block;
+      line-height: 1;
+      text-transform: none;
+      letter-spacing: normal;
+      word-wrap: normal;
+      white-space: nowrap;
+      direction: ltr;
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+  </style>
+  <script type="importmap">
       {
         "imports": {
           "@google/generative-ai": "https://esm.run/@google/generative-ai"
         }
       }
     </script>
-    <script type="module">
-      import { GoogleGenerativeAI } from "@google/generative-ai";
-      window.GoogleGenerativeAI = GoogleGenerativeAI;
-    </script>
-  </head>
-  <body
-    class="bg-background-light text-slate-800 font-sans min-h-screen flex flex-col overflow-x-hidden"
-  >
-    <div id="header-placeholder"></div>
-    <main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-10">
-      <section class="flex flex-col gap-4 mb-10">
-        <div
-          class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-primary text-xs font-bold uppercase tracking-wider gap-2 w-fit"
-        >
-          <a
-            href="home.html"
-            class="hover:underline hover:text-blue-600 transition-colors"
-            >TRANG CHỦ</a
-          >
-          <span class="opacity-60">/</span>
-          <span>TRÒ CHUYỆN VỚI AI ASSISTANTS</span>
+  <script type="module">
+    import { GoogleGenerativeAI } from "@google/generative-ai";
+    window.GoogleGenerativeAI = GoogleGenerativeAI;
+  </script>
+</head>
+
+<body class="bg-background-light text-slate-800 font-display min-h-screen flex flex-col overflow-x-hidden">
+  <div id="header-placeholder"></div>
+  <main class="flex-grow w-full max-w-7xl mx-auto px-4 md:px-10 py-10">
+    <section class="flex flex-col gap-4 mb-10">
+      <div
+        class="inline-flex items-center px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-primary text-xs font-bold uppercase tracking-wider gap-2 w-fit">
+        <a href="home.html" class="hover:underline hover:text-blue-600 transition-colors">TRANG CHỦ</a>
+        <span class="opacity-60">/</span>
+        <span>TRÒ CHUYỆN VỚI AI ASSISTANTS</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight max-w-3xl">
+        Trò chuyện với AI Assistants<br />
+        <span class="text-slate-500 italic font-normal">dựa trên giáo trình Triết học Mác - Lênin</span>
+      </h1>
+      <p class="text-slate-600 max-w-3xl">
+        Đặt câu hỏi và nhận phản hồi dựa trên tài liệu chính thức
+        <span class="font-semibold">"Giáo trình Triết học Mác - Lênin 2021."</span>
+      </p>
+    </section>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <section class="lg:col-span-4 space-y-6">
+        <div class="bg-white rounded-2xl p-6 shadow-soft border border-gray-100">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-3">
+              <div class="p-2 bg-purple-100 text-purple-700 rounded-lg">
+                <span class="material-symbols-outlined">history</span>
+              </div>
+              <h2 class="text-lg font-bold text-slate-900">
+                Lịch sử trò chuyện
+              </h2>
+            </div>
+            <button id="clear-history-btn"
+              class="text-xs font-semibold text-slate-500 hover:text-red-500 transition-colors" type="button">
+              Xóa
+            </button>
+          </div>
+          <div id="history-list" class="space-y-3"></div>
+          <p id="history-empty" class="text-sm text-slate-500">
+            Chưa có câu hỏi nào.
+          </p>
         </div>
-        <h1
-          class="text-3xl md:text-4xl font-serif font-bold text-slate-900 leading-tight max-w-3xl"
-        >
-          Trò chuyện với AI Assistants<br />
-          <span class="text-slate-500 italic font-normal"
-            >dựa trên giáo trình Triết học Mác - Lênin</span
-          >
-        </h1>
-        <p class="text-slate-600 max-w-3xl">
-          Đặt câu hỏi và nhận phản hồi dựa trên tài liệu chính thức
-          <span class="font-semibold"
-            >"Giáo trình Triết học Mác - Lênin 2021."</span
-          >
-        </p>
+        <div class="bg-white rounded-2xl p-6 shadow-soft border border-gray-100">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="p-2 bg-blue-100 text-primary rounded-lg">
+              <span class="material-symbols-outlined">menu_book</span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900">Nguồn dữ liệu</h2>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            File PDF được sử dụng trực tiếp:
+            <span class="font-semibold">1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf</span>. Bạn có thể tải về để
+            tham khảo ngoại tuyến.
+          </p>
+          <a class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
+            href="assets/docs/1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf" download="SGK_Triet_Hoc.pdf">
+            <span class="material-symbols-outlined text-base">download</span>
+            Tải giáo trình
+          </a>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-soft border border-gray-100">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="p-2 bg-emerald-100 text-emerald-700 rounded-lg">
+              <span class="material-symbols-outlined">tips_and_updates</span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900">Gợi ý hỏi</h2>
+          </div>
+          <div class="flex flex-col gap-3">
+            <button
+              class="suggestion-btn text-left px-4 py-3 rounded-xl border border-gray-200 hover:border-primary/40 hover:bg-blue-50 transition-colors text-sm text-slate-700"
+              data-question="Trình bày khái niệm vật chất trong triết học Mác - Lênin và ví dụ minh họa.">
+              Khái niệm vật chất và ví dụ minh họa
+            </button>
+            <button
+              class="suggestion-btn text-left px-4 py-3 rounded-xl border border-gray-200 hover:border-primary/40 hover:bg-blue-50 transition-colors text-sm text-slate-700"
+              data-question="Sự khác nhau giữa chủ nghĩa duy vật biện chứng và chủ nghĩa duy vật siêu hình là gì?">
+              So sánh duy vật biện chứng và duy vật siêu hình
+            </button>
+            <button
+              class="suggestion-btn text-left px-4 py-3 rounded-xl border border-gray-200 hover:border-primary/40 hover:bg-blue-50 transition-colors text-sm text-slate-700"
+              data-question="Hãy giải thích quy luật lượng - chất và lấy ví dụ trong đời sống.">
+              Quy luật lượng - chất và ví dụ đời sống
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-soft border border-gray-100">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="p-2 bg-amber-100 text-amber-700 rounded-lg">
+              <span class="material-symbols-outlined">info</span>
+            </div>
+            <h2 class="text-lg font-bold text-slate-900">Lưu ý</h2>
+          </div>
+          <ul class="text-sm text-slate-600 space-y-2">
+            <li>
+              • Câu trả lời dựa trên nội dung sách giáo trình, bạn có thể kiểm tra lại nội dung nếu cần.
+            </li>
+            <li>
+              • Mỗi lần hỏi sẽ tải lại giáo trình, thời gian phản hồi có thể
+              lâu hơn.
+            </li>
+            <li>• Dùng câu hỏi rõ ràng để có trích dẫn chính xác hơn.</li>
+          </ul>
+        </div>
       </section>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <section class="lg:col-span-4 space-y-6">
-          <div class="bg-white rounded-2xl p-6 shadow-soft border border-gray-100">
-            <div class="flex items-center justify-between mb-3">
+      <section class="lg:col-span-8 flex flex-col gap-4">
+        <div class="bg-white rounded-2xl shadow-card border border-gray-100 flex flex-col h-full">
+          <div class="px-6 py-4 border-b border-gray-100">
+            <div class="flex items-center justify-between gap-4">
               <div class="flex items-center gap-3">
-                <div class="p-2 bg-purple-100 text-purple-700 rounded-lg">
-                  <span class="material-symbols-outlined">history</span>
+                <div class="p-2 bg-blue-100 text-primary rounded-lg">
+                  <span class="material-symbols-outlined">smart_toy</span>
                 </div>
-                <h2 class="text-lg font-bold text-slate-900">
-                  Lịch sử trò chuyện
-                </h2>
-              </div>
-              <button
-                id="clear-history-btn"
-                class="text-xs font-semibold text-slate-500 hover:text-red-500 transition-colors"
-                type="button"
-              >
-                Xóa
-              </button>
-            </div>
-            <div id="history-list" class="space-y-3"></div>
-            <p id="history-empty" class="text-sm text-slate-500">
-              Chưa có câu hỏi nào.
-            </p>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-soft border border-gray-100">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="p-2 bg-blue-100 text-primary rounded-lg">
-                <span class="material-symbols-outlined">menu_book</span>
-              </div>
-              <h2 class="text-lg font-bold text-slate-900">Nguồn dữ liệu</h2>
-            </div>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              File PDF được sử dụng trực tiếp:
-              <span class="font-semibold"
-                >1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf</span
-              >. Bạn có thể tải về để tham khảo ngoại tuyến.
-            </p>
-            <a
-              class="inline-flex items-center gap-2 mt-4 text-sm font-semibold text-primary hover:text-primary-dark transition-colors"
-              href="assets/docs/1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf"
-              download="SGK_Triet_Hoc.pdf"
-            >
-              <span class="material-symbols-outlined text-base">download</span>
-              Tải giáo trình
-            </a>
-          </div>
-
-          <div class="bg-white rounded-2xl p-6 shadow-soft border border-gray-100">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="p-2 bg-emerald-100 text-emerald-700 rounded-lg">
-                <span class="material-symbols-outlined">tips_and_updates</span>
-              </div>
-              <h2 class="text-lg font-bold text-slate-900">Gợi ý hỏi</h2>
-            </div>
-            <div class="flex flex-col gap-3">
-              <button
-                class="suggestion-btn text-left px-4 py-3 rounded-xl border border-gray-200 hover:border-primary/40 hover:bg-blue-50 transition-colors text-sm text-slate-700"
-                data-question="Trình bày khái niệm vật chất trong triết học Mác - Lênin và ví dụ minh họa."
-              >
-                Khái niệm vật chất và ví dụ minh họa
-              </button>
-              <button
-                class="suggestion-btn text-left px-4 py-3 rounded-xl border border-gray-200 hover:border-primary/40 hover:bg-blue-50 transition-colors text-sm text-slate-700"
-                data-question="Sự khác nhau giữa chủ nghĩa duy vật biện chứng và chủ nghĩa duy vật siêu hình là gì?"
-              >
-                So sánh duy vật biện chứng và duy vật siêu hình
-              </button>
-              <button
-                class="suggestion-btn text-left px-4 py-3 rounded-xl border border-gray-200 hover:border-primary/40 hover:bg-blue-50 transition-colors text-sm text-slate-700"
-                data-question="Hãy giải thích quy luật lượng - chất và lấy ví dụ trong đời sống."
-              >
-                Quy luật lượng - chất và ví dụ đời sống
-              </button>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-2xl p-6 shadow-soft border border-gray-100">
-            <div class="flex items-center gap-3 mb-3">
-              <div class="p-2 bg-amber-100 text-amber-700 rounded-lg">
-                <span class="material-symbols-outlined">info</span>
-              </div>
-              <h2 class="text-lg font-bold text-slate-900">Lưu ý</h2>
-            </div>
-            <ul class="text-sm text-slate-600 space-y-2">
-              <li>
-                • Câu trả lời dựa trên nội dung sách giáo trình, bạn có thể kiểm tra lại nội dung nếu cần.
-              </li>
-              <li>
-                • Mỗi lần hỏi sẽ tải lại giáo trình, thời gian phản hồi có thể
-                lâu hơn.
-              </li>
-              <li>• Dùng câu hỏi rõ ràng để có trích dẫn chính xác hơn.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="lg:col-span-8 flex flex-col gap-4">
-          <div
-            class="bg-white rounded-2xl shadow-card border border-gray-100 flex flex-col h-full"
-          >
-            <div class="px-6 py-4 border-b border-gray-100">
-              <div class="flex items-center justify-between gap-4">
-                <div class="flex items-center gap-3">
-                  <div class="p-2 bg-blue-100 text-primary rounded-lg">
-                    <span class="material-symbols-outlined">smart_toy</span>
-                  </div>
-                  <div>
-                    <h2 class="text-lg font-bold text-slate-900">
-                      Hỏi đáp với AI
-                    </h2>
-                    <p class="text-xs text-slate-500">
-                      Dựa trên giáo trình chính thức
-                    </p>
-                  </div>
-                </div>
-                <div
-                  id="pdf-status"
-                  class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full"
-                >
-                  Sẵn sàng
-                </div>
-              </div>
-            </div>
-
-            <div
-              id="chat-box"
-              class="flex-1 p-6 space-y-4 overflow-y-auto min-h-[380px]"
-            ></div>
-
-            <div class="p-6 border-t border-gray-100">
-              <div class="flex items-end gap-3">
-                <div class="flex-1">
-                  <label class="sr-only" for="chat-input">Nhập câu hỏi</label>
-                  <textarea
-                    id="chat-input"
-                    rows="3"
-                    class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary resize-none"
-                    placeholder="Nhập câu hỏi triết học của bạn..."
-                  ></textarea>
-                  <p class="text-xs text-slate-400 mt-2">
-                    Enter để gửi • Shift + Enter để xuống dòng
+                <div>
+                  <h2 class="text-lg font-bold text-slate-900">
+                    Hỏi đáp với AI
+                  </h2>
+                  <p class="text-xs text-slate-500">
+                    Dựa trên giáo trình chính thức
                   </p>
                 </div>
-                <button
-                  id="stop-btn"
-                  type="button"
-                  class="h-12 px-4 rounded-xl border border-gray-200 text-slate-600 font-semibold hover:border-primary/40 hover:text-primary transition-colors flex items-center gap-2"
-                >
-                  <span class="material-symbols-outlined text-base">stop</span>
-                  Dừng
-                </button>
-                <button
-                  id="send-btn"
-                  type="button"
-                  class="h-12 px-5 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors flex items-center gap-2"
-                >
-                  <span class="material-symbols-outlined text-base"
-                    >send</span
-                  >
-                  Gửi
-                </button>
+              </div>
+              <div id="pdf-status" class="text-xs text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                Sẵn sàng
               </div>
             </div>
           </div>
-        </section>
-      </div>
-    </main>
 
-    <div id="footer-placeholder"></div>
+          <div id="chat-box" class="flex-1 p-6 space-y-4 overflow-y-auto min-h-[380px]"></div>
 
-    <script src="js/load-components.js"></script>
-    <script src="js/ai-assistants.js"></script>
-  </body>
+          <div class="p-6 border-t border-gray-100">
+            <div class="flex items-end gap-3">
+              <div class="flex-1">
+                <label class="sr-only" for="chat-input">Nhập câu hỏi</label>
+                <textarea id="chat-input" rows="3"
+                  class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary resize-none"
+                  placeholder="Nhập câu hỏi triết học của bạn..."></textarea>
+                <p class="text-xs text-slate-400 mt-2">
+                  Enter để gửi • Shift + Enter để xuống dòng
+                </p>
+              </div>
+              <button id="stop-btn" type="button"
+                class="h-12 px-4 rounded-xl border border-gray-200 text-slate-600 font-semibold hover:border-primary/40 hover:text-primary transition-colors flex items-center gap-2">
+                <span class="material-symbols-outlined text-base">stop</span>
+                Dừng
+              </button>
+              <button id="send-btn" type="button"
+                class="h-12 px-5 rounded-xl bg-primary text-white font-semibold hover:bg-primary-dark transition-colors flex items-center gap-2">
+                <span class="material-symbols-outlined text-base">send</span>
+                Gửi
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <!-- Load search data FIRST - must be before header loads -->
+  <script src="js/search-data-global.js"></script>
+
+  <!-- Component Loader -->
+  <script src="js/load-components.js"></script>
+
+  <!-- Search initialization - must be AFTER header is loaded -->
+  <script src="js/search-init.js"></script>
+
+  <!-- Tet Effect -->
+  <script src="js/tet-effect.js"></script>
+
+  <!-- AI Assistants functionality -->
+  <script src="js/ai-assistants.js"></script>
+</body>
+
 </html>
