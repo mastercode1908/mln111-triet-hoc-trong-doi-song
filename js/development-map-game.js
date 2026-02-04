@@ -98,22 +98,28 @@ class DevelopmentMapGame {
         // Show feedback
         this.showElementFeedback(elementData, result);
 
-        // Try to trigger random event (15% chance)
-        const eventResult = this.eventSystem.tryTrigger();
-        if (eventResult) {
-            this.stats.eventsTriggered++;
-            this.showEventNotification(eventResult.event);
-        }
+        // Priority system: Quiz > Dilemma > Event (only one triggers per action)
+        let triggered = false;
 
-        // Check for quiz trigger (every 5 actions)
+        // Check for quiz trigger FIRST (every 3 actions, increased from 5)
         if (this.quizSystem.shouldTriggerQuiz(this.stats.totalActions)) {
             setTimeout(() => this.quizSystem.showQuiz(), 1000);
+            triggered = true;
         }
-
-        // Check for dilemma trigger (20% random or conditional)
-        if (!this.quizSystem.isQuizActive &&
+        // Check for dilemma trigger SECOND (30% random, increased from 20%)
+        else if (!this.quizSystem.isQuizActive &&
             (this.dilemmaSystem.shouldTriggerDilemma() || this.dilemmaSystem.shouldTriggerConditional())) {
             setTimeout(() => this.dilemmaSystem.showDilemma(), 1200);
+            triggered = true;
+        }
+        // Try to trigger random event LAST PRIORITY (only if no quiz/dilemma)
+        else {
+            const eventResult = this.eventSystem.tryTrigger();
+            if (eventResult) {
+                this.stats.eventsTriggered++;
+                this.showEventNotification(eventResult.event);
+                triggered = true;
+            }
         }
 
         // Check for achievements

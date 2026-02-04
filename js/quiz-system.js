@@ -77,8 +77,8 @@ class QuizSystem {
     }
 
     shouldTriggerQuiz(actionCount) {
-        // Trigger every 5 actions
-        return actionCount % 5 === 0 && actionCount > 0;
+        // Trigger every 3 actions (increased from 5)
+        return actionCount % 3 === 0 && actionCount > 0;
     }
 
     getRandomQuestion() {

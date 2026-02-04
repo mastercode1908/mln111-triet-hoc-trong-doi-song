@@ -84,8 +84,8 @@ class DilemmaSystem {
     }
 
     shouldTriggerDilemma() {
-        // 20% random chance per action
-        return Math.random() < 0.20;
+        // 30% random chance per action (increased from 20%)
+        return Math.random() < 0.30;
     }
 
     shouldTriggerConditional() {
