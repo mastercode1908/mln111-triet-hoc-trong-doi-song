@@ -344,8 +344,9 @@ class DevelopmentMapGame {
     updateCharacterDisplay() {
         const state = this.character.currentState;
 
-        document.getElementById('character-state-name').textContent = state.name;
-        document.getElementById('character-state-description').textContent = state.description;
+        // Use dynamic display name and description based on semester
+        document.getElementById('character-state-name').textContent = this.character.getDisplayName();
+        document.getElementById('character-state-description').textContent = this.character.getDisplayDescription();
         document.getElementById('character-state-icon').textContent = state.icon;
         document.getElementById('character-state-icon').style.color = state.color;
 

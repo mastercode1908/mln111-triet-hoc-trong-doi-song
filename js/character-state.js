@@ -118,9 +118,44 @@ class CharacterState {
         return skills.every(skill => skill >= 60);
     }
 
-    // Get current semester based on quantity
+    // Get display name based on current semester
+    getDisplayName() {
+        const semester = this.getCurrentSemester();
+
+        if (semester <= 2) {
+            return 'Sinh viên năm 1';
+        } else if (semester <= 4) {
+            return 'Sinh viên năm 2';
+        } else if (semester === 5) {
+            return 'Sinh viên năm 3';
+        } else if (semester >= 6 && semester <= 8) {
+            return 'Thực tập sinh';
+        } else { // semester 9
+            return 'Có việc làm ổn định';
+        }
+    }
+
+    // Get display description based on current semester
+    getDisplayDescription() {
+        const semester = this.getCurrentSemester();
+
+        if (semester <= 2) {
+            return 'Mới bắt đầu, đang làm quen';
+        } else if (semester <= 4) {
+            return 'Đã có nền tảng, tự tin hơn';
+        } else if (semester === 5) {
+            return 'Chuẩn bị thực tập, hoàn thiện kỹ năng';
+        } else if (semester >= 6 && semester <= 8) {
+            return 'Áp dụng kiến thức vào thực tế';
+        } else { // semester 9
+            return 'Hoàn thành chuyển đổi, sẵn sàng làm việc';
+        }
+    }
+
+    // Get current semester based on quantity (9 semesters total)
     getCurrentSemester() {
-        return Math.floor(this.quantityLevel / 12.5) + 1; // 8 semesters max
+        // 250 quantity / 9 semesters = ~27.78 per semester
+        return Math.min(9, Math.floor(this.quantityLevel / 27.78) + 1);
     }
 
     // Export state for saving
