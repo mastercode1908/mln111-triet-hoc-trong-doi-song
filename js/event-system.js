@@ -220,14 +220,8 @@ class EventSystem {
 
     // Trigger specific event
     triggerEvent(event) {
-        // DISABLED: Events now only show notifications, don't apply effects
-        // const result = this.character.updateSkills(event.effects);
-
-        // Mock result for notification display
-        const result = {
-            transformed: false,
-            effects: event.effects
-        };
+        // Apply event effects to character
+        const result = this.character.updateSkills(event.effects);
 
         // Record in history
         this.eventHistory.push({

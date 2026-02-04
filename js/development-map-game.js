@@ -499,6 +499,8 @@ class DevelopmentMapGame {
         this.character = new CharacterState();
         this.eventSystem = new EventSystem(this.character);
         this.achievementSystem = new AchievementSystem(this.character);
+        this.quizSystem = new QuizSystem(this);
+        this.dilemmaSystem = new DilemmaSystem(this);
 
         this.stats = {
             totalActions: 0,
