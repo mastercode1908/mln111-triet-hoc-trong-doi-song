@@ -1108,18 +1108,48 @@
       if (savedAchievements) {
         achievements = JSON.parse(savedAchievements);
       }
+      let consequenceTimeout = null; // Store timeout ID for clearing
 
       // Avatar selection
       document.querySelectorAll(".avatar-option").forEach((option) => {
         option.addEventListener("click", function () {
           document
             .querySelectorAll(".avatar-option")
-            .forEach((o) => o.classList.remove("border-primary", "bg-blue-50"));
-          this.classList.add("border-primary", "bg-blue-50");
+            .forEach((o) => o.classList.remove("border-primary"));
+          this.classList.add("border-primary");
           playerAvatar = this.dataset.avatar;
-          playerPhilosophy = this.dataset.philosophy; // Save avatar's philosophy
+          playerPhilosophy = this.dataset.philosophy;
+          console.log(
+            `Avatar selected: ${playerAvatar}, Philosophy: ${playerPhilosophy}`,
+          );
         });
       });
+
+      function showPhilosophyIntro() {
+        const nameInput = document.getElementById("player-name");
+        playerName = nameInput.value.trim() || "Bạn";
+
+        if (!playerAvatar) {
+          alert("Vui lòng chọn avatar!");
+          return;
+        }
+
+        document.getElementById("intro-screen").classList.add("hidden");
+        document
+          .getElementById("philosophy-intro-screen")
+          .classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      function showGameTutorial() {
+        document
+          .getElementById("philosophy-intro-screen")
+          .classList.add("hidden");
+        document
+          .getElementById("game-tutorial-screen")
+          .classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
 
       // Initialize Chart
       function initChart() {
@@ -1829,12 +1859,10 @@
           bonusApplied: bonusApplied,
         });
 
-        setTimeout(() => {
-          hideConsequence();
-          updateChart();
-          currentScenario++;
-          setTimeout(() => loadScenario(), 300);
-        }, 1000);
+        // Store timeout ID so it can be cleared on click outside
+        consequenceTimeout = setTimeout(() => {
+          proceedToNextQuestion();
+        }, 3500);
       }
 
       function showConsequence(consequence, choiceScores) {
@@ -1861,13 +1889,36 @@
         document.getElementById("consequence-score").textContent =
           `+${maxScore} ${philosophyNames[philosophy]}`;
 
-        document
-          .getElementById("consequence-screen")
-          .classList.remove("hidden");
+        const consequenceScreen = document.getElementById("consequence-screen");
+        consequenceScreen.classList.remove("hidden");
+        
+        // Add click outside listener
+        const handleClickOutside = (e) => {
+          // If click is on the backdrop (not on the content box)
+          if (e.target.id === "consequence-screen") {
+            proceedToNextQuestion();
+            consequenceScreen.removeEventListener("click", handleClickOutside);
+          }
+        };
+        
+        // Add event listener to the consequence screen
+        consequenceScreen.addEventListener("click", handleClickOutside);
       }
 
       function hideConsequence() {
         document.getElementById("consequence-screen").classList.add("hidden");
+        // Clear timeout when hiding
+        if (consequenceTimeout) {
+          clearTimeout(consequenceTimeout);
+          consequenceTimeout = null;
+        }
+      }
+
+      function proceedToNextQuestion() {
+        hideConsequence();
+        updateChart();
+        currentScenario++;
+        setTimeout(() => loadScenario(), 300);
       }
 
       function showResult() {

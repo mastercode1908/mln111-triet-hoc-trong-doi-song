@@ -1,6 +1,6 @@
-const API_KEY = "AIzaSyDHJ14udNA4U--3IVs000WLz5bN031h6zE";
-const PDF_URL =
-  "assets/docs/1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf";
+// Backend API endpoint (change this if deploying to production)
+const API_ENDPOINT = window.location.origin + "/api/ask-gemini";
+const PDF_URL = "assets/docs/1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf";
 
 const chatBox = document.getElementById("chat-box");
 const chatInput = document.getElementById("chat-input");
@@ -14,7 +14,7 @@ const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 const HISTORY_KEY = "philoMapAiHistory";
 
-let cachedPdfPart = null;
+let cachedPdfData = null;
 let isBusy = false;
 let activeRequestId = 0;
 let currentLoadingBubble = null;
@@ -121,7 +121,7 @@ function formatAnswer(text) {
     .replace(/\n/g, "<br>");
 }
 
-async function fileToGenerativePart(url) {
+async function loadPdfAsBase64(url) {
   const response = await fetch(encodeURI(url));
   if (!response.ok) {
     throw new Error("Không thể tải file PDF.");
@@ -133,21 +133,16 @@ async function fileToGenerativePart(url) {
     reader.onerror = () => reject(new Error("Không đọc được file PDF."));
     reader.readAsDataURL(blob);
   });
-  return {
-    inlineData: {
-      data: await base64EncodedDataPromise,
-      mimeType: "application/pdf",
-    },
-  };
+  return await base64EncodedDataPromise;
 }
 
-async function getPdfPart() {
-  if (cachedPdfPart) {
-    return cachedPdfPart;
+async function getPdfData() {
+  if (cachedPdfData) {
+    return cachedPdfData;
   }
   setStatus("Đang tải giáo trình...");
-  cachedPdfPart = await fileToGenerativePart(PDF_URL);
-  return cachedPdfPart;
+  cachedPdfData = await loadPdfAsBase64(PDF_URL);
+  return cachedPdfData;
 }
 
 async function askPhilosophyGemini(userQuestion) {
@@ -157,16 +152,7 @@ async function askPhilosophyGemini(userQuestion) {
     );
   }
 
-  if (!window.GoogleGenerativeAI) {
-    throw new Error(
-      "Không tải được thư viện Gemini. Hãy kiểm tra kết nối mạng hoặc import map.",
-    );
-  }
-
-  const genAI = new window.GoogleGenerativeAI(API_KEY);
-  const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
-
-  const pdfPart = await getPdfPart();
+  const pdfData = await getPdfData();
   setStatus("Đang gửi câu hỏi...");
 
   const prompt = `
@@ -180,9 +166,25 @@ Yêu cầu:
 Câu hỏi của sinh viên: "${userQuestion}"
 `;
 
-  const result = await model.generateContent([prompt, pdfPart]);
-  const response = await result.response;
-  return response.text();
+  // Call backend API instead of directly calling Gemini
+  const response = await fetch(API_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      prompt: prompt,
+      pdfData: pdfData,
+    }),
+  });
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    throw new Error(errorData.error || "Không thể kết nối với server");
+  }
+
+  const data = await response.json();
+  return data.answer;
 }
 
 async function handleSend() {
