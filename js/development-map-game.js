@@ -6,6 +6,8 @@ class DevelopmentMapGame {
         this.character = new CharacterState();
         this.eventSystem = new EventSystem(this.character);
         this.achievementSystem = new AchievementSystem(this.character);
+        this.quizSystem = new QuizSystem(this);
+        this.dilemmaSystem = new DilemmaSystem(this);
 
         this.stats = {
             totalActions: 0,
@@ -23,7 +25,11 @@ class DevelopmentMapGame {
                 socialmedia: 0,
                 selfstudy: 0,
                 sports: 0,
-                club: 0
+                club: 0,
+                familyvisit: 0,
+                volunteering: 0,
+                community: 0,
+                cooking: 0
             }
         };
 
@@ -99,6 +105,17 @@ class DevelopmentMapGame {
             this.showEventNotification(eventResult.event);
         }
 
+        // Check for quiz trigger (every 5 actions)
+        if (this.quizSystem.shouldTriggerQuiz(this.stats.totalActions)) {
+            setTimeout(() => this.quizSystem.showQuiz(), 1000);
+        }
+
+        // Check for dilemma trigger (20% random or conditional)
+        if (!this.quizSystem.isQuizActive &&
+            (this.dilemmaSystem.shouldTriggerDilemma() || this.dilemmaSystem.shouldTriggerConditional())) {
+            setTimeout(() => this.dilemmaSystem.showDilemma(), 1200);
+        }
+
         // Check for achievements
         this.checkAchievements();
 
@@ -130,8 +147,32 @@ class DevelopmentMapGame {
         const feedback = document.createElement('div');
         feedback.className = 'action-feedback animate-slide-in';
 
+        // Define which effects to show for each element (matching card display)
+        const displayPriority = {
+            study: ['quantity', 'knowledge'],
+            time: ['quantity'],
+            perseverance: ['quantity', 'mentalHealth'],
+            pressure: ['quantity', 'mentalHealth'],
+            social: ['softSkills', 'mentalHealth'],
+            rest: ['mentalHealth'],
+            parttime: ['softSkills', 'knowledge'],
+            entertainment: ['mentalHealth'],
+            socialmedia: ['softSkills', 'creativity'],
+            selfstudy: ['quantity', 'creativity'],
+            sports: ['mentalHealth', 'softSkills'],
+            club: ['quantity', 'softSkills'],
+            familyvisit: ['mentalHealth', 'softSkills'],
+            volunteering: ['softSkills', 'mentalHealth'],
+            community: ['softSkills', 'creativity'],
+            cooking: ['creativity', 'mentalHealth']
+        };
+
         const effects = [];
-        Object.entries(elementData.effects).forEach(([key, value]) => {
+        const priorityStats = displayPriority[elementData.id] || Object.keys(elementData.effects);
+
+        // Only show priority stats
+        priorityStats.forEach(key => {
+            const value = elementData.effects[key];
             if (value !== 0) {
                 const sign = value > 0 ? '+' : '';
                 const label = this.getEffectLabel(key);
@@ -438,6 +479,8 @@ class DevelopmentMapGame {
             stats: this.stats,
             events: this.eventSystem.export(),
             achievements: this.achievementSystem.export(),
+            quiz: this.quizSystem.export(),
+            dilemma: this.dilemmaSystem.export(),
             timestamp: Date.now()
         };
 

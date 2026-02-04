@@ -47,10 +47,10 @@ class CharacterState {
         this.semester = 1;
 
         this.skills = {
-            knowledge: 20,      // 📚 Tri thức
-            softSkills: 10,     // 💬 Kỹ năng mềm
-            creativity: 15,     // 💡 Sáng tạo
-            mentalHealth: 100   // 🧘 Sức khỏe tinh thần
+            knowledge: 10,        // 📚 Tri thức
+            softSkills: 5,       // 💬 Kỹ năng mềm
+            creativity: 5,       // 💡 Sáng tạo
+            mentalHealth: 70    // 🧘 Sức khỏe tinh thần
         };
     }
 
@@ -139,10 +139,10 @@ class CharacterState {
         this.quantityLevel = data.quantityLevel || 0;
         this.semester = data.semester || 1;
         this.skills = data.skills || {
-            knowledge: 20,
-            softSkills: 10,
-            creativity: 15,
-            mentalHealth: 100
+            knowledge: 10,
+            softSkills: 5,
+            creativity: 5,
+            mentalHealth: 70
         };
     }
 }

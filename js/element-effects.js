@@ -1,4 +1,4 @@
-// Element Effects Configuration
+// Element Effects Configuration - Simplified to 4 Core Stats
 // Defines the effects of each draggable element on character
 
 const ELEMENT_EFFECTS = {
@@ -12,8 +12,6 @@ const ELEMENT_EFFECTS = {
             quantity: 5,
             knowledge: 10,
             creativity: 5,
-            softSkills: 0,
-            mentalHealth: -3
         },
         tip: 'Học nhiều quá cũng mệt đấy!'
     },
@@ -22,29 +20,25 @@ const ELEMENT_EFFECTS = {
         id: 'time',
         icon: 'schedule',
         name: 'Thời gian',
-        description: 'Thời gian trôi đi, kinh nghiệm tích lũy',
+        description: 'Kiên trì theo thời gian',
         color: '#6366f1',
         effects: {
             quantity: 3,
             knowledge: 2,
             creativity: 2,
-            softSkills: 2,
-            mentalHealth: 0
         },
-        tip: 'Thời gian là yếu tố quan trọng'
+        tip: 'Thời gian là yếu tố quan trọng!'
     },
 
     perseverance: {
         id: 'perseverance',
-        icon: 'fitness_center',
+        icon: 'trending_up',
         name: 'Kiên trì',
-        description: 'Nỗ lực không ngừng nghỉ',
-        color: '#10b981',
+        description: 'Không bỏ cuộc, tiếp tục cố gắng',
+        color: '#8b5cf6',
         effects: {
             quantity: 8,
             knowledge: 5,
-            creativity: 3,
-            softSkills: 0,
             mentalHealth: 5
         },
         tip: 'Kiên trì là chìa khóa thành công!'
@@ -54,32 +48,28 @@ const ELEMENT_EFFECTS = {
         id: 'pressure',
         icon: 'warning',
         name: 'Áp lực',
-        description: 'Deadline, kỳ vọng gia đình',
+        description: 'Áp lực thúc đẩy tiến bộ',
         color: '#ef4444',
         effects: {
             quantity: 4,
             knowledge: 3,
-            creativity: -2,
-            softSkills: 0,
             mentalHealth: -10
         },
-        tip: 'Cẩn thận! Áp lực giảm tinh thần'
+        tip: 'Áp lực vừa phải tốt, quá nhiều hại!'
     },
 
     social: {
         id: 'social',
         icon: 'groups',
         name: 'Giao tiếp',
-        description: 'Tham gia hoạt động, gặp gỡ bạn bè',
+        description: 'Kết nối với bạn bè',
         color: '#ec4899',
         effects: {
             quantity: 4,
-            knowledge: 0,
             creativity: 3,
-            softSkills: 10,
-            mentalHealth: 5
+            softSkills: 10
         },
-        tip: 'Kỹ năng mềm cũng quan trọng!'
+        tip: 'Con người là sinh vật xã hội!'
     },
 
     rest: {
@@ -91,7 +81,7 @@ const ELEMENT_EFFECTS = {
         effects: {
             quantity: 0,
             knowledge: 0,
-            creativity: 5,
+            creativity: 0,
             softSkills: 0,
             mentalHealth: 15
         },
@@ -107,9 +97,7 @@ const ELEMENT_EFFECTS = {
         effects: {
             quantity: 3,
             knowledge: -3,
-            creativity: 2,
-            softSkills: 8,
-            mentalHealth: -5
+            softSkills: 8
         },
         tip: 'Kiếm tiền nhưng cần cân bằng thời gian!'
     },
@@ -118,62 +106,53 @@ const ELEMENT_EFFECTS = {
         id: 'entertainment',
         icon: 'videogame_asset',
         name: 'Giải trí',
-        description: 'Giảm stress nhưng không tăng lượng',
-        color: '#06b6d4',
+        description: 'Chơi game, xem phim',
+        color: '#a855f7',
         effects: {
-            quantity: 0,
-            knowledge: 0,
-            creativity: 3,
-            softSkills: 0,
-            mentalHealth: 12
+            mentalHealth: 12,
+            knowledge: -2,
         },
-        tip: 'Giải trí vừa đủ để thư giãn!'
+        tip: 'Giải trí điều độ, tránh nghiện!'
     },
 
     socialmedia: {
         id: 'socialmedia',
-        icon: 'smartphone',
+        icon: 'phone_iphone',
         name: 'Mạng xã hội',
-        description: 'Kết nối nhưng dễ phân tâm',
-        color: '#14b8a6',
+        description: 'Lướt mạng, kết nối online',
+        color: '#0ea5e9',
         effects: {
             quantity: 1,
-            knowledge: -2,
-            creativity: 1,
-            softSkills: 5,
-            mentalHealth: 3
+            knowledge: -3,
+            creativity: 3,
         },
-        tip: 'Cẩn thận! Dễ mất thời gian!'
+        tip: 'Dùng mạng xã hội có chọn lọc!'
     },
 
     selfstudy: {
         id: 'selfstudy',
-        icon: 'auto_stories',
+        icon: 'school',
         name: 'Tự học',
-        description: 'Học theo đam mê, sáng tạo cao',
-        color: '#a855f7',
+        description: 'Tìm hiểu, nghiên cứu tự giác',
+        color: '#3b82f6',
         effects: {
-            quantity: 6,
-            knowledge: 8,
-            creativity: 12,
-            softSkills: 0,
-            mentalHealth: 5
+            quantity: 5,
+            knowledge: 5,
+            creativity: 7,
         },
-        tip: 'Học điều mình thích hiệu quả hơn!'
+        tip: 'Tự học là phát triển bền vững!'
     },
 
     sports: {
         id: 'sports',
         icon: 'sports_soccer',
         name: 'Thể thao',
-        description: 'Khỏe mạnh, giảm căng thẳng',
+        description: 'Vận động, giảm căng thẳng',
         color: '#16a34a',
         effects: {
             quantity: 2,
-            knowledge: 0,
-            creativity: 3,
             softSkills: 5,
-            mentalHealth: 18
+            mentalHealth: 10
         },
         tip: 'Cơ thể khỏe, tinh thần tỉnh táo!'
     },
@@ -187,62 +166,120 @@ const ELEMENT_EFFECTS = {
         effects: {
             quantity: 5,
             knowledge: 2,
-            creativity: 5,
-            softSkills: 15,
-            mentalHealth: 8
+            softSkills: 12,
         },
         tip: 'CLB giúp phát triển kỹ năng mềm!'
+    },
+
+    familyvisit: {
+        id: 'familyvisit',
+        icon: 'family_star',
+        name: 'Thăm ông bà',
+        description: 'Trò chuyện, quan tâm gia đình',
+        color: '#be185d',
+        effects: {
+            quantity: 5,
+            softSkills: 3,
+            mentalHealth: 15
+        },
+        tip: 'Gia đình luôn quan trọng nhất!'
+    },
+
+    volunteering: {
+        id: 'volunteering',
+        icon: 'volunteer_activism',
+        name: 'Tình nguyện',
+        description: 'Giúp đỡ cộng đồng',
+        color: '#0891b2',
+        effects: {
+            quantity: 4,
+            knowledge: 3,
+            softSkills: 5,
+        },
+        tip: 'Cho đi là còn mãi!'
+    },
+
+    community: {
+        id: 'community',
+        icon: 'real_estate_agent',
+        name: 'Cộng đồng',
+        description: 'Xây dựng cộng đồng',
+        color: '#0d9488',
+        effects: {
+            quantity: 3,
+            knowledge: 2,
+            softSkills: 10,
+        },
+        tip: 'Cùng nhau xây dựng cộng đồng!'
+    },
+
+    cooking: {
+        id: 'cooking',
+        icon: 'cooking',
+        name: 'Nấu ăn',
+        description: 'Tự nấu, chăm sóc bản thân',
+        color: '#f59e0b',
+        effects: {
+            quantity: 2,
+            softSkills: 5,
+            mentalHealth: 5
+        },
+        tip: 'Tự nấu ăn là kỹ năng sống!'
     }
 };
 
-// Philosophy tooltips
-const PHILOSOPHY_CONTENT = {
-    quantityQuality: {
-        title: "Quy luật Lượng - Chất",
-        short: "Tích lũy đủ về lượng sẽ dẫn tới biến đổi về chất",
-        explanation: "Sự tích lũy về lượng đến một ngưỡng nhất định (điểm nút) sẽ dẫn tới sự biến đổi về chất - một bước nhảy trong phát triển.",
-        examples: [
-            "Học tập đều đặn (lượng) → Hiểu sâu kiến thức (chất)",
-            "Rèn luyện kỹ năng (lượng) → Thành thục nghề nghiệp (chất)",
-            "Tích lũy kinh nghiệm (lượng) → Trưởng thành trong tư duy (chất)"
-        ]
-    },
+// Helper function
+function getElementData(elementId) {
+    return ELEMENT_EFFECTS[elementId] || null;
+}
 
-    thresholds: {
-        0: {
-            message: "Bạn đang ở giai đoạn khởi đầu",
-            advice: "Hãy kiên trì tích lũy!"
-        },
-        30: {
-            message: "🎯 Bạn đã tích lũy đủ để có nền tảng ban đầu!",
-            advice: "Sự biến đổi đầu tiên đã xảy ra",
-            philosophy: "Đây là điểm nút đầu tiên - bước nhảy từ lượng sang chất"
-        },
-        60: {
-            message: "🚀 Sự biến đổi rõ rệt! Bạn đã chuyển mình!",
-            advice: "Kiến thức và kỹ năng đã đạt trình độ mới",
-            philosophy: "Tích lũy liên tục đã tạo nên biến đổi chất lượng"
-        },
-        80: {
-            message: "⭐ Gần hoàn thành hành trình phát triển!",
-            advice: "Bạn đã sẵn sàng bước vào thế giới thực",
-            philosophy: "Sự biến đổi chất đã đưa bạn lên tầm cao mới"
-        },
-        100: {
-            message: "🏆 Hoàn thành! Bạn đã trải nghiệm quy luật lượng-chất!",
-            advice: "Từ sinh viên → Người có việc làm",
-            philosophy: "Quá trình tích lũy lượng liên tục đã tạo nên những bước nhảy chất lượng"
-        }
-    },
+// Export
+if (typeof window !== 'undefined') {
+    window.ELEMENT_EFFECTS = ELEMENT_EFFECTS;
+    window.getElementData = getElementData;
+}
 
-    dialectics: {
-        balance: "Biện chứng duy vật nhấn mạnh sự cân bằng trong phát triển",
-        contradiction: "Mâu thuẫn (học tập vs áp lực) là động lực phát triển",
-        process: "Phát triển là quá trình, không phải bước nhảy đơn lẻ"
+
+// === RANDOM EVENT EFFECTS (Simplified to 4 stats) ===
+
+const EVENT_EFFECTS = {
+    failExam: {
+        quantity: -15,
+        knowledge: -10,
+        creativity: 0,
+        softSkills: 0,
+        mentalHealth: -20
+    },
+    breakup: {
+        quantity: -8,
+        knowledge: 0,
+        creativity: -10,
+        softSkills: -8,
+        mentalHealth: -25
+    },
+    sickness: {
+        quantity: -10,
+        knowledge: -5,
+        creativity: 0,
+        softSkills: 0,
+        mentalHealth: -15
+    },
+    gameAddiction: {
+        quantity: -12,
+        knowledge: -15,
+        creativity: 0,
+        softSkills: -10,
+        mentalHealth: -10
     }
 };
 
-// Skill descriptions
+if (typeof window !== 'undefined') {
+    window.EVENT_EFFECTS = EVENT_EFFECTS;
+}
+
+
+// === SKILL INFO (Simplified to 4 stats) ===
+
 const SKILL_INFO = {
     knowledge: {
         name: 'Tri thức',
@@ -270,9 +307,6 @@ const SKILL_INFO = {
     }
 };
 
-// Export for use in main game
 if (typeof window !== 'undefined') {
-    window.ELEMENT_EFFECTS = ELEMENT_EFFECTS;
-    window.PHILOSOPHY_CONTENT = PHILOSOPHY_CONTENT;
     window.SKILL_INFO = SKILL_INFO;
 }
