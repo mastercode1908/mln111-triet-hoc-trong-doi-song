@@ -194,9 +194,8 @@ class EventSystem {
 
     // Try to trigger a random event
     tryTrigger() {
-        if (Math.random() > this.triggerChance) {
-            return null;
-        }
+        // 30% chance to trigger event (increased from 20%)
+        if (Math.random() > 0.30) return null;
 
         // Filter events based on conditions
         const availableEvents = Object.values(this.events).filter(event => {
@@ -270,9 +269,9 @@ class EventSystem {
             });
 
             feedback.innerHTML = `
-                <div class="bg-white dark:bg-gray-800 rounded-xl p-3 shadow-md border border-gray-200 dark:border-gray-700 mb-2">
+                <div class="bg-orange-50 dark:bg-orange-900/20 rounded-xl p-3 shadow-md border-l-4 border-orange-500 dark:border-orange-400 mb-2">
                     <div class="flex items-center gap-2 mb-1">
-                        <span class="material-symbols-outlined text-sm text-orange-500">${event.icon}</span>
+                        <span class="material-symbols-outlined text-sm text-orange-600 dark:text-orange-400">${event.icon}</span>
                         <span class="font-semibold text-sm text-slate-900 dark:text-white">⚠️ ${event.name}</span>
                     </div>
                     <div class="text-xs text-slate-600 dark:text-gray-400">

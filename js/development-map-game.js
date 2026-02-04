@@ -165,8 +165,8 @@ class DevelopmentMapGame {
             }
         }
 
-        // Check for completion
-        if (this.character.quantityLevel >= 100) {
+        // Check for completion (250 quantity = max level)
+        if (this.character.quantityLevel >= 250) {
             setTimeout(() => this.showCompletionModal(), 1000);
         }
     }
@@ -359,15 +359,17 @@ class DevelopmentMapGame {
         const bar = document.getElementById('quantity-bar-fill');
         const percentage = document.getElementById('quantity-percentage');
 
-        bar.style.width = `${quantity}%`;
-        percentage.textContent = `${Math.round(quantity)}%`;
+        // Calculate percentage based on 250 max
+        const percentValue = (quantity / 250) * 100;
+        bar.style.width = `${percentValue}%`;
+        percentage.textContent = `${Math.round(quantity)}`;
 
-        // Update color based on level
-        if (quantity >= 80) {
+        // Update color based on level (adjusted for 250 max)
+        if (quantity >= 200) {
             bar.className = 'h-full bg-gradient-to-r from-purple-500 to-pink-500 rounded-full transition-all duration-500';
-        } else if (quantity >= 60) {
+        } else if (quantity >= 150) {
             bar.className = 'h-full bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full transition-all duration-500';
-        } else if (quantity >= 30) {
+        } else if (quantity >= 100) {
             bar.className = 'h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full transition-all duration-500';
         } else {
             bar.className = 'h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full transition-all duration-500';
@@ -375,20 +377,16 @@ class DevelopmentMapGame {
     }
 
     updateSkillBars() {
-        Object.entries(this.character.skills).forEach(([skill, value]) => {
-            const bar = document.getElementById(`skill-${skill}-fill`);
-            const text = document.getElementById(`skill-${skill}-value`);
+        const skills = ['knowledge', 'softSkills', 'creativity', 'mentalHealth'];
 
-            if (bar && text) {
-                bar.style.width = `${value}%`;
-                text.textContent = Math.round(value);
+        skills.forEach(skill => {
+            const value = this.character.skills[skill];
+            const percentage = (value / 200) * 100; // Max 200 for all skills
+            const fill = document.getElementById(`skill-${skill}-fill`);
+            const valueDisplay = document.getElementById(`skill-${skill}-value`);
 
-                // Update color
-                if (value >= 80) bar.style.backgroundColor = '#10b981';
-                else if (value >= 60) bar.style.backgroundColor = '#3b82f6';
-                else if (value >= 40) bar.style.backgroundColor = '#f59e0b';
-                else bar.style.backgroundColor = '#ef4444';
-            }
+            if (fill) fill.style.width = `${Math.max(0, Math.min(100, percentage))}%`;
+            if (valueDisplay) valueDisplay.textContent = Math.round(value);
         });
     }
 

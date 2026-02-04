@@ -10,7 +10,7 @@ class CharacterState {
                 description: 'Mới bắt đầu, đang làm quen',
                 icon: 'school',
                 minQuantity: 0,
-                maxQuantity: 30,
+                maxQuantity: 50,
                 color: '#3b82f6'
             },
             student_skilled: {
@@ -18,8 +18,8 @@ class CharacterState {
                 name: 'Sinh viên có kỹ năng',
                 description: 'Đã có nền tảng, tự tin hơn',
                 icon: 'workspace_premium',
-                minQuantity: 30,
-                maxQuantity: 60,
+                minQuantity: 50,
+                maxQuantity: 100,
                 color: '#10b981'
             },
             intern: {
@@ -27,8 +27,8 @@ class CharacterState {
                 name: 'Thực tập sinh',
                 description: 'Áp dụng kiến thức thực tế',
                 icon: 'work',
-                minQuantity: 60,
-                maxQuantity: 80,
+                minQuantity: 150,
+                maxQuantity: 200,
                 color: '#f59e0b'
             },
             employed: {
@@ -36,8 +36,8 @@ class CharacterState {
                 name: 'Có việc làm ổn định',
                 description: 'Hoàn thành sự biến đổi',
                 icon: 'verified',
-                minQuantity: 80,
-                maxQuantity: 100,
+                minQuantity: 200,
+                maxQuantity: 250,
                 color: '#8b5cf6'
             }
         };
@@ -68,12 +68,12 @@ class CharacterState {
     updateSkills(effects) {
         const previousState = this.currentState;
 
-        // Update skills with bounds (0-100)
+        // Update skills with bounds: quantity [0-250], skills [0-200]
         Object.keys(effects).forEach(skill => {
             if (skill === 'quantity') {
-                this.quantityLevel = Math.max(0, Math.min(100, this.quantityLevel + effects.quantity));
+                this.quantityLevel = Math.max(0, Math.min(250, this.quantityLevel + effects.quantity));
             } else if (this.skills.hasOwnProperty(skill)) {
-                this.skills[skill] = Math.max(0, Math.min(100, this.skills[skill] + effects[skill]));
+                this.skills[skill] = Math.max(0, Math.min(200, this.skills[skill] + effects[skill]));
             }
         });
 
