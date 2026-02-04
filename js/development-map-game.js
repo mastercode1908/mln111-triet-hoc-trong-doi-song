@@ -168,10 +168,9 @@ class DevelopmentMapGame {
         };
 
         const effects = [];
-        const priorityStats = displayPriority[elementData.id] || Object.keys(elementData.effects);
 
-        // Only show priority stats
-        priorityStats.forEach(key => {
+        // Show ALL non-zero effects (not just priority stats)
+        Object.keys(elementData.effects).forEach(key => {
             const value = elementData.effects[key];
             if (value !== 0) {
                 const sign = value > 0 ? '+' : '';

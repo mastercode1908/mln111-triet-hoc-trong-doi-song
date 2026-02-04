@@ -243,6 +243,27 @@ class EventSystem {
         });
         document.dispatchEvent(customEvent);
 
+        // Add to activity log (matching element card format)
+        const feedbackContainer = document.getElementById('action-feedback');
+        if (feedbackContainer) {
+            const feedback = document.createElement('div');
+            feedback.className = 'action-feedback animate-slide-in';
+
+            feedback.innerHTML = `
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-3 shadow-md border border-gray-200 dark:border-gray-700 mb-2">
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="material-symbols-outlined text-sm text-orange-500">${event.icon}</span>
+                        <span class="font-semibold text-sm text-slate-900 dark:text-white">⚠️ ${event.name}</span>
+                    </div>
+                    <div class="text-xs text-slate-600 dark:text-gray-400">
+                        ${event.message}
+                    </div>
+                </div>
+            `;
+
+            feedbackContainer.insertBefore(feedback, feedbackContainer.firstChild);
+        }
+
         return { event, result };
     }
 
