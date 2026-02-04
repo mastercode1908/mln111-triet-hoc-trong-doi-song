@@ -244,10 +244,30 @@ class EventSystem {
         document.dispatchEvent(customEvent);
 
         // Add to activity log (matching element card format)
-        const feedbackContainer = document.getElementById('action-feedback');
+        const feedbackContainer = document.getElementById('action-log'); // Fixed: was 'action-feedback'
         if (feedbackContainer) {
             const feedback = document.createElement('div');
             feedback.className = 'action-feedback animate-slide-in';
+
+            // Format effects like element cards
+            const effectLabels = {
+                quantity: 'Lượng',
+                knowledge: 'Tri thức',
+                softSkills: 'Kỹ năng mềm',
+                creativity: 'Sáng tạo',
+                mentalHealth: 'Tinh thần'
+            };
+
+            const effectsList = [];
+            Object.keys(event.effects).forEach(key => {
+                const value = event.effects[key];
+                if (value !== 0) {
+                    const sign = value > 0 ? '+' : '';
+                    const label = effectLabels[key] || key;
+                    const color = value > 0 ? 'text-green-600' : 'text-red-600';
+                    effectsList.push(`<span class="${color}">${sign}${value} ${label}</span>`);
+                }
+            });
 
             feedback.innerHTML = `
                 <div class="bg-white dark:bg-gray-800 rounded-xl p-3 shadow-md border border-gray-200 dark:border-gray-700 mb-2">
@@ -258,6 +278,7 @@ class EventSystem {
                     <div class="text-xs text-slate-600 dark:text-gray-400">
                         ${event.message}
                     </div>
+                    ${effectsList.length > 0 ? `<div class="text-xs mt-1">${effectsList.join(', ')}</div>` : ''}
                 </div>
             `;
 
