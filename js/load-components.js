@@ -52,9 +52,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             };
 
+
             // Load search data first, then search init script
-            loadScript(scriptPrefix + 'js/search-data-global.js')
-                .then(() => loadScript(scriptPrefix + 'js/search-init.js'))
+            const timestamp = new Date().getTime();
+            loadScript(scriptPrefix + 'js/search-data-global.js?v=' + timestamp)
+                .then(() => loadScript(scriptPrefix + 'js/search-init.js?v=' + timestamp))
                 .then(() => {
                     if (typeof initializeSearch === 'function') {
                         initializeSearch();
@@ -64,8 +66,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Add scroll-based navigation highlighting for home.html
             setupScrollBasedNavigation();
+
+            // Check if we are on a game page and hide floating buttons
+            checkAndHideFloatingButtons();
         })
         .catch(error => console.error('Error loading header:', error));
+
+    function checkAndHideFloatingButtons() {
+        const currentPath = window.location.pathname;
+        const gamePages = ['worldview-game.html', 'philosopher-match-game.html', 'philosophy-game-enhanced.html'];
+
+        const isGamePage = gamePages.some(page => currentPath.includes(page));
+
+        if (isGamePage) {
+            const tetBtn = document.getElementById('tet-toggle-btn-header');
+            const aiBtn = document.getElementById('ai-chat-btn');
+
+            if (tetBtn) tetBtn.style.display = 'none';
+            if (aiBtn) aiBtn.style.display = 'none';
+        }
+    }
+
 
     // Load Footer
     fetch(prefix + 'footer.html?v=' + timestamp)

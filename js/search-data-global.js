@@ -6,7 +6,6 @@ window.searchData = [
     { title: "Module 4: Luật chơi của xã hội", subtitle: "Khám phá trí tuệ từ các triết gia vĩ đại", url: "module4.html", keywords: ["xã hội", "lịch sử", "kinh tế", "chính trị", "module 4", "m4", "duy vật", "luật chơi"], type: "module", icon: "groups" },
     { title: "Module 5: Con người – Mục tiêu & Động lực", subtitle: "Hành trình khám phá bản chất nhân sinh", url: "module5.html", keywords: ["con người", "bản chất", "tha hóa", "giải phóng", "module 5", "m5", "mục tiêu", "động lực"], type: "module", icon: "person" },
     { title: "Thực hành", subtitle: "Bài tập và câu hỏi ôn tập", url: "practice.html", keywords: ["thực hành", "bài tập", "ôn tập", "practice"], type: "practice", icon: "edit_note" },
-<<<<<<< HEAD
     { title: "Góc nhìn", subtitle: "Tuyển tập bài viết và góc nhìn triết học", url: "articles.html", keywords: ["góc nhìn", "bài viết", "triết học", "articles", "news"], type: "page", icon: "newspaper" },
 
     // Articles
@@ -20,11 +19,14 @@ window.searchData = [
     { title: "Quan điểm của C.Mác về giải phóng con người", subtitle: "Góc nhìn - Tạp chí Lý luận chính trị", url: "articles/giai-phong-con-nguoi-mac.html", keywords: ["giải phóng", "con người", "c mác", "triết học", "lý luận chính trị", "tự do"], type: "article", icon: "article" },
     { title: "Đào tạo đại học gắn với thực tiễn", subtitle: "Góc nhìn - Tuổi Trẻ", url: "articles/dao-tao-dai-hoc-thuc-tien.html", keywords: ["đào tạo", "đại học", "thực tiễn", "giáo dục", "tuổi trẻ", "gắn kết"], type: "article", icon: "article" },
 
-=======
-    { title: "Trò chuyện với AI Assistants", subtitle: "Hỏi đáp triết học dựa trên giáo trình", url: "ai-assistants.html", keywords: ["ai", "assistant", "chat", "trò chuyện", "gemini", "giáo trình", "triết học mác - lênin"], type: "page", icon: "smart_toy" },
->>>>>>> main
     { title: "Quy luật Lượng - Chất", subtitle: "Module 2", url: "module2.html", keywords: ["lượng", "chất", "độ", "điểm nút", "bước nhảy"], type: "concept", icon: "science" },
     { title: "Quy luật Mâu thuẫn", subtitle: "Module 2", url: "module2.html", keywords: ["mâu thuẫn", "đối lập", "đấu tranh"], type: "concept", icon: "balance" },
     { title: "Quy luật Phủ định", subtitle: "Module 2", url: "module2.html", keywords: ["phủ định", "xoáy ốc", "kế thừa"], type: "concept", icon: "autorenew" },
-    { title: "Trang chủ", subtitle: "Tổng quan về PhiloMap", url: "home.html", keywords: ["trang chủ", "home", "overview"], type: "page", icon: "home" }
+    { title: "Trang chủ", subtitle: "Tổng quan về PhiloMap", url: "home.html", keywords: ["trang chủ", "home", "overview"], type: "page", icon: "home" },
+
+    // Games
+    { title: "Xây Thế Giới Quan", subtitle: "Trò chơi Simulation - Tự tay xây dựng hệ tư duy", url: "worldview-game.html", keywords: ["game", "trò chơi", "thế giới quan", "simulation", "kéo thả", "xây dựng"], type: "game", icon: "hub" },
+    { title: "Ghép đôi Triết gia", subtitle: "Trò chơi Tương tác - Thử thách trí nhớ", url: "philosopher-match-game.html", keywords: ["game", "trò chơi", "ghép đôi", "triết gia", "trí nhớ", "match"], type: "game", icon: "psychology" },
+    { title: "Khám phá Triết lý sống", subtitle: "Trò chơi Roleplay - Ứng dụng triết học vào đời sống", url: "philosophy-game-enhanced.html", keywords: ["game", "trò chơi", "triết lý sống", "roleplay", "tình huống", "khám phá"], type: "game", icon: "explore" },
+    { title: "Danh sách Trò chơi", subtitle: "Kho trò chơi triết học tương tác", url: "games.html", keywords: ["game", "trò chơi", "games", "play"], type: "page", icon: "sports_esports" }
 ];
