@@ -43,6 +43,11 @@ npm install
    PORT=3000
    ```
 
+3. (Khuyến nghị) Dùng PDF bên ngoài để giảm size deploy:
+   ```
+   PDF_URL=https://drive.google.com/uc?export=download&id=13FQwIAIQqBWWcJzMBtopdpUKpAEaKOHW
+   ```
+
 ### Bước 4: Chạy Server
 ```bash
 npm start

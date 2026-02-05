@@ -1,6 +1,8 @@
 // Backend API endpoint (change this if deploying to production)
-const API_ENDPOINT = window.location.origin + "/api/ask-gemini";
-const PDF_URL = "assets/docs/1. Giao trinh Triet hoc Mac - Lenin 2021.doc.pdf";
+const API_ENDPOINT =
+  window.location.port && window.location.port !== "3000"
+    ? `http://${window.location.hostname}:3000/api/ask-gemini`
+    : window.location.origin + "/api/ask-gemini";
 
 const chatBox = document.getElementById("chat-box");
 const chatInput = document.getElementById("chat-input");
@@ -14,7 +16,6 @@ const clearHistoryBtn = document.getElementById("clear-history-btn");
 
 const HISTORY_KEY = "philoMapAiHistory";
 
-let cachedPdfData = null;
 let isBusy = false;
 let activeRequestId = 0;
 let currentLoadingBubble = null;
@@ -121,65 +122,36 @@ function formatAnswer(text) {
     .replace(/\n/g, "<br>");
 }
 
-async function loadPdfAsBase64(url) {
-  const response = await fetch(encodeURI(url));
-  if (!response.ok) {
-    throw new Error("Không thể tải file PDF.");
-  }
-  const blob = await response.blob();
-  const base64EncodedDataPromise = new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onloadend = () => resolve(reader.result.split(",")[1]);
-    reader.onerror = () => reject(new Error("Không đọc được file PDF."));
-    reader.readAsDataURL(blob);
-  });
-  return await base64EncodedDataPromise;
-}
-
-async function getPdfData() {
-  if (cachedPdfData) {
-    return cachedPdfData;
-  }
-  setStatus("Đang tải giáo trình...");
-  cachedPdfData = await loadPdfAsBase64(PDF_URL);
-  return cachedPdfData;
-}
-
 async function askPhilosophyGemini(userQuestion) {
   if (location.protocol === "file:") {
     throw new Error(
-      "Trang đang mở bằng file://. Hãy chạy bằng Live Server hoặc một web server để tải PDF.",
+      "Trang đang mở bằng file://. Hãy chạy bằng Live Server hoặc một web server.",
     );
   }
 
-  const pdfData = await getPdfData();
   setStatus("Đang gửi câu hỏi...");
 
-  const prompt = `
-Vai trò: Bạn là một giảng viên Triết học Mác - Lênin nhiệt tình.
-Nhiệm vụ: Trả lời câu hỏi của sinh viên dựa trên giáo trình được cung cấp.
-Yêu cầu:
-- Chỉ trả lời dựa trên nội dung file PDF đính kèm.
-- Trích dẫn rõ ý đó nằm ở phần nào nếu có thể.
-- Giọng văn: Học thuật nhưng dễ hiểu, khuyến khích tư duy.
-
-Câu hỏi của sinh viên: "${userQuestion}"
-`;
-
-  // Call backend API instead of directly calling Gemini
   const response = await fetch(API_ENDPOINT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: prompt,
-      pdfData: pdfData,
+      question: userQuestion,
     }),
   });
 
   if (!response.ok) {
     const errorData = await response.json().catch(() => ({}));
+    if (response.status === 429) {
+      const retryAfter = errorData.retryAfter;
+      const waitText = retryAfter
+        ? ` Vui lòng thử lại sau ${retryAfter}s.`
+        : " Vui lòng thử lại sau ít phút.";
+      throw new Error(
+        `Bạn đã vượt giới hạn miễn phí.${waitText} Nếu cần, hãy nâng quota hoặc đợi sang ngày mới.`,
+      );
+    }
     throw new Error(errorData.error || "Không thể kết nối với server");
   }
 
@@ -237,7 +209,13 @@ async function handleSend() {
       "Xin lỗi, hệ thống đang quá tải hoặc không đọc được tài liệu. Vui lòng thử lại sau.";
     const errorMessage =
       error && error.message ? `Lỗi: ${error.message}` : fallbackMessage;
-    loadingBubble.textContent = errorMessage;
+    const networkHint =
+      error &&
+      error.message &&
+      error.message.toLowerCase().includes("failed to fetch")
+        ? " (Kiểm tra backend đang chạy ở http://localhost:3000)"
+        : "";
+    loadingBubble.textContent = errorMessage + networkHint;
   } finally {
     if (requestId !== activeRequestId) {
       return;
