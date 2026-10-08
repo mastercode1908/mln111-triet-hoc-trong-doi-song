@@ -92,3 +92,7 @@ Không cấu hình `PDF_URL` của bản Triết học cũ; nguồn PDF hiện t
 Tài liệu chính thức: https://vercel.com/docs/frameworks/backend/express
 
 Thay đổi trong kho chưa tự cập nhật website đã phát hành; cần tạo bản preview và triển khai từ kho đã cập nhật. Không có thao tác deploy hoặc push trong lần chỉnh sửa này.
+
+Minh họa phiên bản 2 được tạo từ mẫu UI bằng imagegen: ảnh đầu trang và đầu chương có nền trong suốt; ảnh thẻ phủ kín vùng ảnh. PNG gốc ở `output/ui-cnxh/v2/`, WebP ở `assets/illustrations/generated/`. Chạy `python scripts/prepare-illustrations.py` (cần Pillow) để cắt và tăng nét, giữ nguyên alpha. Mô tả bộ ảnh trong `output/ui-cnxh/v2/ARTWORK_NOTES.md`.
+
+Cả 28 mục bài học có phần dẫn nhập, 3 phần giải thích chi tiết, câu hỏi tự kiểm tra, ý chính và nguồn PDF. Nội dung là diễn giải theo giáo trình 2021. Sửa nội dung trực tiếp trong `data/chapters.json`; tìm kiếm và tra cứu dùng cả phần giải thích mới. `scripts/expand-course.mjs` ghi lại lần bổ sung nội dung, chạy lại sẽ thay thế các trường `sections`, `review` và thời lượng của chương.

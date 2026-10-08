@@ -1,0 +1,87 @@
+{
+  "chapter-1-cutout-v2": {
+    "width": 444,
+    "height": 405,
+    "kind": "cutout"
+  },
+  "chapter-2-cutout-v2": {
+    "width": 442,
+    "height": 419,
+    "kind": "cutout"
+  },
+  "chapter-3-cutout-v2": {
+    "width": 443,
+    "height": 405,
+    "kind": "cutout"
+  },
+  "chapter-4-cutout-v2": {
+    "width": 444,
+    "height": 407,
+    "kind": "cutout"
+  },
+  "chapter-5-cutout-v2": {
+    "width": 444,
+    "height": 402,
+    "kind": "cutout"
+  },
+  "chapter-6-cutout-v2": {
+    "width": 443,
+    "height": 407,
+    "kind": "cutout"
+  },
+  "chapter-7-cutout-v2": {
+    "width": 443,
+    "height": 393,
+    "kind": "cutout"
+  },
+  "books-cutout-v2": {
+    "width": 427,
+    "height": 400,
+    "kind": "cutout"
+  },
+  "hero-cutout-v2": {
+    "width": 1536,
+    "height": 987,
+    "kind": "cutout"
+  },
+  "scene-1-v2": {
+    "width": 508,
+    "height": 380,
+    "kind": "scene"
+  },
+  "scene-2-v2": {
+    "width": 508,
+    "height": 380,
+    "kind": "scene"
+  },
+  "scene-3-v2": {
+    "width": 508,
+    "height": 380,
+    "kind": "scene"
+  },
+  "scene-4-v2": {
+    "width": 508,
+    "height": 380,
+    "kind": "scene"
+  },
+  "scene-5-v2": {
+    "width": 508,
+    "height": 380,
+    "kind": "scene"
+  },
+  "scene-6-v2": {
+    "width": 508,
+    "height": 380,
+    "kind": "scene"
+  },
+  "scene-7-v2": {
+    "width": 508,
+    "height": 380,
+    "kind": "scene"
+  },
+  "scene-8-v2": {
+    "width": 508,
+    "height": 380,
+    "kind": "scene"
+  }
+}

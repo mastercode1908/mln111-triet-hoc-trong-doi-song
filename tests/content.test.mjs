@@ -18,6 +18,22 @@ test('42 questions each have valid answers, explanation and source',()=>{
   for(const c of chapters)assert.equal(questions.filter(q=>q.chapterId===c.id).length,6);
   for(const q of questions){assert.equal(q.options.length,4);assert.ok(Number.isInteger(q.correct)&&q.correct>=0&&q.correct<4);assert.ok(q.explanation.length>50);const c=chapters[q.chapterId-1];assert.ok(q.pages[0]>=c.pages[0]&&q.pages[1]<=c.pages[1]);}
 });
+
+test('all lessons include detailed, cited sections and review prompts',()=>{
+  let count=0;
+  for(const c of chapters)for(const l of c.lessons){
+    assert.equal(l.sections.length,3,l.id);
+    assert.ok(l.review.length>80,l.id);
+    for(const section of l.sections){
+      count++;
+      assert.ok(section.title.length>12);
+      assert.equal(section.paragraphs.length,2);
+      assert.ok(section.paragraphs.every(p=>p.length>100));
+      assert.deepEqual(section.pages,l.pages);
+    }
+  }
+  assert.equal(count,84);
+});
 test('progress survives reload, toggles without duplicates and handles corrupt storage',()=>{
   const memory=new Map();const storage={getItem:k=>memory.get(k),setItem:(k,v)=>memory.set(k,v)};
   const state=emptyState();toggleLesson(state,'2-1');toggleLesson(state,'2-2');assert.equal(writeState(storage,state),true);const read=readState(storage);assert.equal(chapterProgress(chapters[1],read).percent,50);toggleLesson(read,'2-1');assert.deepEqual(read.completed,['2-2']);

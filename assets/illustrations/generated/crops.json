@@ -1,0 +1,162 @@
+[
+  {
+    "file": "assets/illustrations/generated/hero-society.webp",
+    "source": "home.png",
+    "box": [
+      442,
+      56,
+      1024,
+      424
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/chapter-1.webp",
+    "source": "home.png",
+    "box": [
+      209,
+      518,
+      346,
+      651
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/chapter-2.webp",
+    "source": "home.png",
+    "box": [
+      565,
+      511,
+      660,
+      651
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/chapter-3.webp",
+    "source": "home.png",
+    "box": [
+      878,
+      510,
+      978,
+      651
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/chapter-4.webp",
+    "source": "home.png",
+    "box": [
+      233,
+      679,
+      346,
+      816
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/chapter-5.webp",
+    "source": "home.png",
+    "box": [
+      562,
+      682,
+      660,
+      816
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/chapter-6.webp",
+    "source": "home.png",
+    "box": [
+      843,
+      682,
+      978,
+      816
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/chapter-7.webp",
+    "source": "home.png",
+    "box": [
+      242,
+      834,
+      424,
+      967
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/case-automation.webp",
+    "source": "home.png",
+    "box": [
+      49,
+      1062,
+      265,
+      1161
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/case-participation.webp",
+    "source": "home.png",
+    "box": [
+      288,
+      1062,
+      503,
+      1161
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/case-diversity.webp",
+    "source": "home.png",
+    "box": [
+      526,
+      1062,
+      741,
+      1161
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/case-family.webp",
+    "source": "home.png",
+    "box": [
+      765,
+      1062,
+      977,
+      1161
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/case-study.webp",
+    "source": "overview.png",
+    "box": [
+      273,
+      229,
+      400,
+      315
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/case-development.webp",
+    "source": "overview.png",
+    "box": [
+      273,
+      478,
+      400,
+      566
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/books-learning.webp",
+    "source": "chapter1.png",
+    "box": [
+      744,
+      77,
+      925,
+      308
+    ]
+  },
+  {
+    "file": "assets/illustrations/generated/factory-automation.webp",
+    "source": "chapter2.png",
+    "box": [
+      604,
+      374,
+      899,
+      604
+    ]
+  }
+]
