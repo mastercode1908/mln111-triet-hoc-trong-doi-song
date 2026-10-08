@@ -1,0 +1,237 @@
+[
+  {
+    "file": "index.html",
+    "page": "home",
+    "title": "Trang chủ"
+  },
+  {
+    "file": "home.html",
+    "page": "home",
+    "title": "Trang chủ"
+  },
+  {
+    "file": "Overview.html",
+    "page": "overview",
+    "title": "Lộ trình 7 chương"
+  },
+  {
+    "file": "practice.html",
+    "page": "practice",
+    "title": "Luyện tập"
+  },
+  {
+    "file": "quiz.html",
+    "page": "quiz",
+    "title": "Ôn tập tổng hợp"
+  },
+  {
+    "file": "games.html",
+    "page": "games",
+    "title": "Trò chơi"
+  },
+  {
+    "file": "game.html",
+    "page": "game",
+    "title": "Hoạt động tương tác"
+  },
+  {
+    "file": "articles.html",
+    "page": "articles",
+    "title": "Bài viết"
+  },
+  {
+    "file": "cases.html",
+    "page": "cases",
+    "title": "Tình huống đời sống"
+  },
+  {
+    "file": "ai-assistants.html",
+    "page": "ai",
+    "title": "Trợ lý học tập"
+  },
+  {
+    "file": "resources.html",
+    "page": "resources",
+    "title": "Giáo trình và tài nguyên"
+  },
+  {
+    "file": "progress.html",
+    "page": "progress",
+    "title": "Tiến độ của tôi"
+  },
+  {
+    "file": "module1.html",
+    "page": "chapter",
+    "title": "Nhập môn Chủ nghĩa xã hội khoa học"
+  },
+  {
+    "file": "quiz1.html",
+    "page": "quiz",
+    "title": "Trắc nghiệm chương 1"
+  },
+  {
+    "file": "module2.html",
+    "page": "chapter",
+    "title": "Sứ mệnh lịch sử của giai cấp công nhân"
+  },
+  {
+    "file": "quiz2.html",
+    "page": "quiz",
+    "title": "Trắc nghiệm chương 2"
+  },
+  {
+    "file": "module3.html",
+    "page": "chapter",
+    "title": "Chủ nghĩa xã hội và thời kỳ quá độ lên chủ nghĩa xã hội"
+  },
+  {
+    "file": "quiz3.html",
+    "page": "quiz",
+    "title": "Trắc nghiệm chương 3"
+  },
+  {
+    "file": "module4.html",
+    "page": "chapter",
+    "title": "Dân chủ xã hội chủ nghĩa và Nhà nước xã hội chủ nghĩa"
+  },
+  {
+    "file": "quiz4.html",
+    "page": "quiz",
+    "title": "Trắc nghiệm chương 4"
+  },
+  {
+    "file": "module5.html",
+    "page": "chapter",
+    "title": "Cơ cấu xã hội - giai cấp và liên minh giai cấp, tầng lớp trong thời kỳ quá độ lên chủ nghĩa xã hội"
+  },
+  {
+    "file": "quiz5.html",
+    "page": "quiz",
+    "title": "Trắc nghiệm chương 5"
+  },
+  {
+    "file": "module6.html",
+    "page": "chapter",
+    "title": "Vấn đề dân tộc và tôn giáo trong thời kỳ quá độ lên chủ nghĩa xã hội"
+  },
+  {
+    "file": "quiz6.html",
+    "page": "quiz",
+    "title": "Trắc nghiệm chương 6"
+  },
+  {
+    "file": "module7.html",
+    "page": "chapter",
+    "title": "Vấn đề gia đình trong thời kỳ quá độ lên chủ nghĩa xã hội"
+  },
+  {
+    "file": "quiz7.html",
+    "page": "quiz",
+    "title": "Trắc nghiệm chương 7"
+  },
+  {
+    "file": "articles/doc-xa-hoi-bang-ly-luan.html",
+    "page": "article",
+    "title": "Từ một câu chuyện đến một vấn đề xã hội"
+  },
+  {
+    "file": "articles/cong-nghe-va-nguoi-lao-dong.html",
+    "page": "article",
+    "title": "Công nghệ thay đổi, người lao động học gì?"
+  },
+  {
+    "file": "articles/hieu-dung-thoi-ky-qua-do.html",
+    "page": "article",
+    "title": "Vì sao thay đổi xã hội cần một quá trình?"
+  },
+  {
+    "file": "articles/tieng-noi-va-quyen-tham-gia.html",
+    "page": "article",
+    "title": "Một ý kiến được lắng nghe như thế nào?"
+  },
+  {
+    "file": "articles/mot-san-pham-nhieu-ban-tay.html",
+    "page": "article",
+    "title": "Một sản phẩm, nhiều bàn tay và nhiều lợi ích"
+  },
+  {
+    "file": "articles/ton-trong-khac-biet.html",
+    "page": "article",
+    "title": "Cùng hợp tác khi khác nhau về niềm tin"
+  },
+  {
+    "file": "articles/chia-se-viec-nha.html",
+    "page": "article",
+    "title": "Chia sẻ việc nhà cũng là chia sẻ cơ hội"
+  },
+  {
+    "file": "worldview-game.html",
+    "page": "game",
+    "title": "Chọn cách phân tích"
+  },
+  {
+    "file": "philosopher-match-game.html",
+    "page": "game",
+    "title": "Ghép khái niệm"
+  },
+  {
+    "file": "philosophy-game.html",
+    "page": "game",
+    "title": "Phân loại và phân biệt"
+  },
+  {
+    "file": "philosophy-game-enhanced.html",
+    "page": "game",
+    "title": "Chọn cách phân tích"
+  },
+  {
+    "file": "cafef.html",
+    "page": "articles",
+    "title": "Bài viết"
+  },
+  {
+    "file": "articles/5-thoi-quen-thay-doi-doi-nguoi.html",
+    "page": "article",
+    "title": "Chia sẻ việc nhà cũng là chia sẻ cơ hội"
+  },
+  {
+    "file": "articles/ap-luc-hoc-tap.html",
+    "page": "article",
+    "title": "Từ một câu chuyện đến một vấn đề xã hội"
+  },
+  {
+    "file": "articles/dao-tao-dai-hoc-thuc-tien.html",
+    "page": "article",
+    "title": "Một sản phẩm, nhiều bàn tay và nhiều lợi ích"
+  },
+  {
+    "file": "articles/giai-phong-con-nguoi-mac.html",
+    "page": "article",
+    "title": "Công nghệ thay đổi, người lao động học gì?"
+  },
+  {
+    "file": "articles/khai-niem-tha-hoa.html",
+    "page": "article",
+    "title": "Công nghệ thay đổi, người lao động học gì?"
+  },
+  {
+    "file": "articles/song-mon-nguoi-tre-tu-hai-minh.html",
+    "page": "article",
+    "title": "Vì sao thay đổi xã hội cần một quá trình?"
+  },
+  {
+    "file": "articles/stress-nguyen-nhan-va-cach-dieu-tri.html",
+    "page": "article",
+    "title": "Chia sẻ việc nhà cũng là chia sẻ cơ hội"
+  },
+  {
+    "file": "articles/toi-la-ai-kham-pha-ban-than.html",
+    "page": "article",
+    "title": "Cùng hợp tác khi khác nhau về niềm tin"
+  },
+  {
+    "file": "articles/top-7-cau-noi-truyen-cam-hung.html",
+    "page": "article",
+    "title": "Một ý kiến được lắng nghe như thế nào?"
+  }
+]

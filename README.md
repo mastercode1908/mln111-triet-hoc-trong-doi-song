@@ -1,93 +1,94 @@
-# MLN111-Triet hoc trong doi song
+﻿# Chủ nghĩa xã hội khoa học trong đời sống
 
+Website HTML/JavaScript với backend Express. Nội dung chuyển từ Triết học sang 7 chương của **Giáo trình Chủ nghĩa xã hội khoa học**, Bộ GD&ĐT, NXB Chính trị quốc gia Sự thật, 2021.
 
+## Chạy cục bộ
 
-## Getting started
+Cần Node.js 22 trở lên.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-* [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/mln111-nhom-12/mln111-triet-hoc-trong-doi-song.git
-git branch -M main
-git push -uf origin main
+```powershell
+npm ci
+npm start
 ```
 
-## Integrate with your tools
+Mở http://localhost:3000. `npm start` tự tạo bản chạy trong `public/` trước khi mở máy chủ. Không mở HTML bằng `file://` vì bài học được tải qua HTTP.
 
-* [Set up project integrations](https://gitlab.com/mln111-nhom-12/mln111-triet-hoc-trong-doi-song/-/settings/integrations)
+Khi biên tập và phát triển:
 
-## Collaborate with your team
+```powershell
+npm run dev
+```
 
-* [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+Chế độ phát triển tự dựng lại website khi nội dung, CSS, JavaScript hoặc backend thay đổi. Không cần khóa AI để học, làm bài hoặc tra cứu.
 
-## Test and Deploy
+## Nội dung và chức năng
 
-Use the built-in continuous integration in GitLab.
+- 7 chương, 28 mục bài học: mục tiêu, tình huống, kiến thức, sơ đồ, điểm dễ nhầm, tự luận và nguồn.
+- 42 câu trắc nghiệm theo 7 chương; bài tổng hợp lấy 2 câu từ mỗi chương.
+- 7 tình huống và 7 bài viết diễn giải theo giáo trình.
+- Ba hoạt động: ghép khái niệm, phân biệt kiến thức, phân tích tình huống.
+- Tìm kiếm có hoặc không dấu; từ điển gồm 18 khái niệm.
+- Lưu các mục đã đọc, kết quả tốt nhất, bài tự luận, lịch sử tra cứu trên trình duyệt; xuất bản sao tiến độ.
+- Giao diện điện thoại, bàn phím, liên kết mở đúng trang PDF.
+- Không còn video, trình phát hoặc iframe trên website được xuất để chạy.
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+Các bài học là phần tóm lược và diễn giải phục vụ học tập, không phải bản chép toàn bộ giáo trình. Mọi tình huống đều là giả định. Số trang liên kết là trang PDF tính từ 1, không phải số trang in trên sách. Khi thêm trích dẫn nguyên văn, kiểm tra trang gốc. Nhận định và chính sách trong sách được đặt trong bối cảnh 2021.
 
-***
+## Chỉnh sửa nội dung
 
-# Editing this README
+| Tệp | Nội dung |
+| --- | --- |
+| `data/course.json` | Tên môn, thông điệp, mô tả |
+| `data/chapters.json` | 7 chương, mục bài học, mục tiêu, sơ đồ, tự luận |
+| `data/questions.json` | Câu hỏi, lựa chọn, chỉ số đáp án, giải thích, nguồn |
+| `data/cases.json` | Tình huống và các gợi ý phân tích |
+| `data/articles.json` | Bài viết và đường dẫn mới |
+| `data/glossary.json` | Thuật ngữ và liên kết bài học |
+| `data/sources.json` | Thông tin nguồn và PDF |
+| `css/site.css` | Màu sắc, bố cục, kiểu chữ, giao diện điện thoại |
+| `js/app.js` | Hiển thị trang và tương tác |
+| `js/state.mjs` | Lưu tiến độ và tính kết quả |
+| `js/retrieval.mjs` | Tìm đoạn học liệu cho tra cứu và Gemini |
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Giữ ID chương 1–7, ID mục `chương-mục` và các liên kết giữa dữ liệu đồng bộ. Đáp án `correct` bắt đầu từ 0. Mỗi câu hỏi cần `lessonId`, `pages` và `explanation`. Sau khi chỉnh:
 
-## Suggestions for a good README
+```powershell
+npm run build
+npm test
+```
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Các tệp HTML là trang khung được tạo bởi `scripts/build-pages.js`; sửa bố cục trong `js/app.js`, không sửa trực tiếp phần được tạo. `data/routes.json` cũng được sinh tự động. `public/` chỉ chứa các tệp cho người dùng truy cập, không đưa backend, tài liệu nội bộ hoặc script cũ vào bản chạy.
 
-## Name
-Choose a self-explaining name for your project.
+Các địa chỉ `module1.html`–`module5.html`, bài viết và game cũ vẫn mở được, nhưng hiển thị học liệu mới. Chương 6–7, tình huống, từ điển và tiến độ có các địa chỉ mới. Một số hình và tài liệu cũ trong kho được giữ để tránh mất tài nguyên; chúng không được đưa vào `public/`.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## Trợ lý AI
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Mặc định trang trợ lý tìm học liệu ngay trong trình duyệt và ghi rõ **Tra cứu học liệu · Không dùng AI**. Cách tìm dựa trên từ khóa, nên câu hỏi cụ thể cho kết quả tốt hơn. Câu hỏi ngoài học liệu được thông báo thiếu căn cứ.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Để bật Gemini, sao chép `.env.example` thành `.env`, điền `GEMINI_API_KEY` và khởi động lại. Có thể chọn mô hình bằng `GEMINI_MODEL`. Khóa chỉ dùng ở backend, không đưa vào mã frontend.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+Người học chủ động chọn ô dùng Gemini. Khi đó, câu hỏi và các đoạn bài học liên quan được gửi tới dịch vụ AI. Backend dùng vai trò CNXH khoa học và chỉ chấp nhận ID nguồn thuộc các đoạn đã truy xuất; số trang lấy từ dữ liệu website, không lấy số trang do mô hình tự tạo. Nguồn cho AI là 28 mục diễn giải của môn mới; PDF đầy đủ được cung cấp riêng để đối chiếu. Không gửi toàn bộ 29 MB PDF cho mỗi câu hỏi.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+API có giới hạn độ dài, dung lượng và số yêu cầu cơ bản trong mỗi tiến trình. Giới hạn này không phải giới hạn phân tán giữa nhiều instance. Khi cần bảo vệ chi phí ở quy mô lớn, cấu hình giới hạn trên nền tảng triển khai.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+## Kiểm tra
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+```powershell
+npm run build
+npm test
+npm run test:browser
+```
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Bộ kiểm tra trình duyệt dùng Microsoft Edge đã cài trên Windows, chạy headless qua Playwright. Trên môi trường khác, cài Chromium cho Playwright và thay `channel: 'msedge'` trong `playwright.config.cjs`. Suite mở máy chủ ở cổng 3187, không dùng khóa thật hoặc gọi dịch vụ AI.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+Kiểm tra bao gồm liên kết và hiển thị 47 trang, việc loại bỏ video, đọc PDF theo byte range, lưu tiến độ và tự luận, tìm không dấu, hoàn thành bài trắc nghiệm, game, tra cứu không có AI, và bố cục điện thoại. Ảnh kiểm tra giao diện được lưu tại `output/site-preview/`.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## Vercel
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+`server.js` xuất ứng dụng Express; `npm run build` tạo `public/` để Vercel phục vụ tệp tĩnh. Khi kết nối dự án, dùng thư mục này làm root dự án, framework Express và lệnh build `npm run build`; không chọn chế độ chỉ triển khai frontend nếu muốn dùng AI. Thêm `GEMINI_API_KEY` và tùy chọn `GEMINI_MODEL` trong môi trường Vercel nếu bật AI.
 
-## License
-For open source projects, say how it is licensed.
+Không cấu hình `PDF_URL` của bản Triết học cũ; nguồn PDF hiện tại là `assets/docs/cnxh-khoa-hoc-2021.pdf`.
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Tài liệu chính thức: https://vercel.com/docs/frameworks/backend/express
+
+Thay đổi trong kho chưa tự cập nhật website đã phát hành; cần tạo bản preview và triển khai từ kho đã cập nhật. Không có thao tác deploy hoặc push trong lần chỉnh sửa này.

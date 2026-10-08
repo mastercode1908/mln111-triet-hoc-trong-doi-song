@@ -1,22 +1,31 @@
 {
-  "name": "mln111-triet-hoc-trong-doi-song",
-  "version": "1.0.0",
-  "description": "Philosophy learning platform with AI assistant",
+  "name": "cnxh-khoa-hoc-trong-doi-song",
+  "version": "2.0.0",
+  "description": "Scientific Socialism learning platform based on the 2021 textbook",
   "main": "server.js",
   "scripts": {
+    "build": "node scripts/build-public.js",
+    "prestart": "npm run build",
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "predev": "npm run build",
+    "dev": "node --watch --watch-path=data --watch-path=js --watch-path=css --watch-path=assets/illustrations --watch-path=server.js scripts/dev.js",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "playwright test"
   },
-  "keywords": ["philosophy", "education", "ai", "gemini"],
+  "keywords": [
+    "scientific-socialism",
+    "education",
+    "ai",
+    "gemini"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
-    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.21.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "@playwright/test": "^1.64.0"
   }
 }

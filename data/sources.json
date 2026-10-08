@@ -1,0 +1,14 @@
+[
+  {
+    "id": "textbook-2021",
+    "title": "Giáo trình Chủ nghĩa xã hội khoa học",
+    "author": "Bộ Giáo dục và Đào tạo",
+    "publisher": "Nhà xuất bản Chính trị quốc gia Sự thật",
+    "year": 2021,
+    "audience": "Bậc đại học hệ không chuyên lý luận chính trị",
+    "url": "/assets/docs/cnxh-khoa-hoc-2021.pdf",
+    "pages": 273,
+    "pageNote": "Số trang PDF tính từ trang đầu tiên của tệp, khác số trang in trong sách.",
+    "description": "Tài liệu nền tảng của toàn bộ lộ trình. Bài học và câu hỏi liên kết đến các mục tương ứng để đối chiếu."
+  }
+]
